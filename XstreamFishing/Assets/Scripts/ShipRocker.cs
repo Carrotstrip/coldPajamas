@@ -9,7 +9,7 @@ public class ShipRocker: MonoBehaviour
     float originalY;
     public float speed = 2.0f;
     public float bobbingMultiplier = .5f;
-    public float rollMultiplier = .4f;
+    //public float rollMultiplier = .4f;
     private Quaternion startRotation;
  
     void Start()
