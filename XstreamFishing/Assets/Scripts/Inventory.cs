@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         numFish = 0;
-        fish_count_text.text = "Press Z to cast";
+        //fish_count_text.text = "Press Z to cast";
     }
 
     // Update is called once per frame

@@ -14,30 +14,35 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startupText.text = "It's a nice day to be out fishing \nfeel free to come on down to the pro shop for supplies\nHeck I'll even throw in some free advice";
+        //startupText.text = "It's a nice day to be out fishing \nfeel free to come on down to the pro shop for supplies\nHeck I'll even throw in some free advice";
         timerRunning = false;
         startSequence = true;
         player = GameObject.Find("Player");
         inventory = player.GetComponent<Inventory>();
+        ToastManager.setShowDuration(4.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
         if (inventory.numFish >= 3){
-            startupText.text = "Looks like you fished this lake dry Partner \n Catch ya tomorrow";
+            //startupText.text = "Looks like you fished this lake dry Partner \n Catch ya tomorrow";
+            ToastManager.Toast("Looks like you fished this lake dry Partner \n Catch ya tomorrow");
         } 
         if (startSequence){
             if (timerRunning){
                 timer += Time.deltaTime;
                 if (timer >= 4.0f){
-                    startupText.text = "";
+                    //startupText.text = "";
                     startSequence = false;
+                    ToastManager.setShowDuration(1.0f);
+                    ToastManager.Toast("Press Z to Cast");
                 }
             }
             if (!timerRunning && (Input.GetAxis ("Horizontal") != 0 || Input.GetAxis ("Vertical") != 0 || Input.GetKeyDown(KeyCode.Z))){
                 timer = 0.0f;
                 timerRunning = true;
+                ToastManager.Toast("It's a nice day to be out fishing \nfeel free to come on down to the pro shop for supplies\nHeck I'll even throw in some free advice");
             }
         }
         
