@@ -14,6 +14,8 @@ public class CastLine : MonoBehaviour
     bool has_fish;
     bool cast;
 
+    public event Action<int> OnCatchFish;
+
     void Start()
     {
         has_fish = false;
@@ -46,6 +48,7 @@ public class CastLine : MonoBehaviour
                     // TODO: add to inventory
                     Inventory inventory = gameObject.GetComponentInParent(typeof(Inventory)) as Inventory;
                     inventory.AddFish();
+                    OnCatchFish(1);
                     if (inventory.numFish % 3 == 1){
                         fish_text.text = "You caught a small fish!";
                     } else if (inventory.numFish % 3 == 2){

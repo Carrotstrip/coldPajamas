@@ -10,19 +10,19 @@ public class InventoryEntry : MonoBehaviour {
 
 
     private Item item;
-    private InventoryScrollList scrollList;
+    private InventoryUI thisUI;
 
     // Use this for initialization
     void Start () 
     {
     }
 
-    public void Setup(Item currentItem, InventoryScrollList currentScrollList)
+    public void Setup(Item currentItem, InventoryUI currentUI)
     {
         item = currentItem;
         nameLabel.text = item.itemName;
         iconImage.sprite = item.icon;
-        scrollList = currentScrollList;
+        thisUI = currentUI;
 
     }
 }

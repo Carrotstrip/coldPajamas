@@ -16,8 +16,9 @@ public class ShopScrollList : MonoBehaviour {
     public List<Item> itemList;
     public Transform contentPanel;
     public Inventory inventory;
-    public InventoryScrollList inventoryScrollList;
-    public Text fishDisplay;
+    public Text fishDisplayText;
+
+    public GameObject shopButton;
 
 
     // Use this for initialization
@@ -32,7 +33,7 @@ public class ShopScrollList : MonoBehaviour {
 
     void RefreshDisplay()
     {
-        fishDisplay.text = "Fish: " + inventory.numFish.ToString();
+        fishDisplayText.text = "Fish: " + inventory.numFish.ToString();
         RemoveButtons ();
         AddButtons ();
     }
@@ -41,8 +42,7 @@ public class ShopScrollList : MonoBehaviour {
     {
         while (contentPanel.childCount > 0) 
         {
-            GameObject toRemove = transform.GetChild(0).gameObject;
-            buttonObjectPool.ReturnObject(toRemove);
+            Destroy(transform.GetChild(0).gameObject);
         }
     }
 
@@ -51,11 +51,10 @@ public class ShopScrollList : MonoBehaviour {
         for (int i = 0; i < itemList.Count; i++) 
         {
             Item item = itemList[i];
-            GameObject newButton = buttonObjectPool.GetObject();
+            GameObject newButton = Instantiate(shopButton);
             newButton.transform.SetParent(contentPanel);
-
-            ShopButton shopButton = newButton.GetComponent<ShopButton>();
-            shopButton.Setup(item, this);
+            ShopButton newShopButton = newButton.GetComponent<ShopButton>();
+            newShopButton.Setup(item, this);
         }
     }
 

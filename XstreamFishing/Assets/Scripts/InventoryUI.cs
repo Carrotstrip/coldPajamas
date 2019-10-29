@@ -14,6 +14,19 @@ public class InventoryUI : MonoBehaviour {
         // RefreshDisplay ();
     }
 
+    private void OnEnable() {
+      inventory.OnCatchFish += HandleOnCatchFish;
+    }
+ 
+    private void OnDisable() {
+      inventory.OnCatchFish -= HandleOnCatchFish;
+    }
+
+    public void HandleOnCatchFish(int numFish) {
+        // update numFish display
+    }
+
+
     // public void RefreshDisplay()
     // {
     //     RemoveButtons ();
