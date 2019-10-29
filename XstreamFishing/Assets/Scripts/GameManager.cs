@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     private bool startSequence;
     public GameObject player;
     public Inventory inventory;
+
+    public bool winState;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,14 +22,17 @@ public class GameManager : MonoBehaviour
         player = GameObject.Find("Player");
         inventory = player.GetComponent<Inventory>();
         ToastManager.setShowDuration(4.0f);
+        winState = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (inventory.numFish >= 3){
+        if (inventory.numFish >= 3 && !winState){
             //startupText.text = "Looks like you fished this lake dry Partner \n Catch ya tomorrow";
-            ToastManager.Toast("Looks like you fished this lake dry Partner \n Catch ya tomorrow");
+            ToastManager.setShowDuration(4.0f);
+            ToastManager.OverwriteToast("Looks like you fished this lake dry Partner \n Catch ya tomorrow");
+            winState = true;
         } 
         if (startSequence){
             if (timerRunning){

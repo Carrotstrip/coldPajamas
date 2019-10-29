@@ -48,14 +48,14 @@ public class CastLine : MonoBehaviour
                     inventory.addFish();
                     if (inventory.numFish % 3 == 1){
                         //fish_text.text = "You caught a small fish!";
-                        ToastManager.Toast("You caught a small fish!");
+                        ToastManager.OverwriteToast("You caught a small fish!");
                     } else if (inventory.numFish % 3 == 2){
                         //fish_text.text = "You caught a medium fish!";
-                        ToastManager.Toast("You caught a medium fish!");
+                        ToastManager.OverwriteToast("You caught a medium fish!");
 
                     } else {
                         //fish_text.text = "You caught a Big Ass fish!";
-                        ToastManager.Toast("You caught a Large fish!");
+                        ToastManager.OverwriteToast("You caught a Large fish!");
                     }
                     StartCoroutine(StopText());
                 }
@@ -63,7 +63,7 @@ public class CastLine : MonoBehaviour
                 else
                 {
                     has_fish = false;
-                    ToastManager.Toast("Reeled in too fast!");
+                    ToastManager.OverwriteToast("Reeled in too fast!");
                     //fish_text.text = "Reeled in too fast!";
                     StartCoroutine(StopText());
                 }
@@ -101,7 +101,7 @@ public class CastLine : MonoBehaviour
             has_fish = false;
             cast = false;
             //fish_text.text = "Reeled in too slow!";
-            ToastManager.Toast("Reeled in too slow!");
+            ToastManager.OverwriteToast("Reeled in too slow!");
             Destroy(rod_clone);
         }
     }

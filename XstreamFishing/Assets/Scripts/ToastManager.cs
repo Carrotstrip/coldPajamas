@@ -35,10 +35,15 @@ public class ToastManager : MonoBehaviour {
     public float ease_duration = 0.5f;
     public float show_duration = 2.0f;
 
+    public int hidden_y = 325;
+    public int visible_y = 150;
+
     // We don't want to discard toast requests that come in while we are already toasting. What if the message is critical?
     // The queue keeps a rolling data store of work we still need to do.
     Queue<ToastRequest> requests = new Queue<ToastRequest>();
     Queue<ToastRequest> strongRequests = new Queue<ToastRequest>();
+    
+    private IEnumerator coroutine;
 
     // Use this for initialization
     void Awake()
@@ -57,8 +62,8 @@ public class ToastManager : MonoBehaviour {
         }
 
         // Init positions
-        hidden_pos = new Vector3(0, 300, 0);
-        visible_pos = new Vector3(0, -300, 0);
+        hidden_pos = new Vector3(0, hidden_y, 0);
+        visible_pos = new Vector3(0, visible_y, 0);
     }
 
     // "public static" makes this function accessible from anywhere.
@@ -71,6 +76,15 @@ public class ToastManager : MonoBehaviour {
     {
         instance.strongRequests.Enqueue(new ToastRequest(msg));
     }
+    void startToastCoroutine(){
+        show_duration = 1.0f;
+        ToastRequest new_strong_request = strongRequests.Dequeue();
+        toasting = true;
+        instance.toast_text.text = new_strong_request.message;
+
+        coroutine = DoToast(instance.ease_duration, instance.show_duration, false);
+        instance.StartCoroutine(coroutine);
+    }
     public static void setShowDuration(float seconds)
     {
         instance.show_duration = seconds;
@@ -79,6 +93,7 @@ public class ToastManager : MonoBehaviour {
     // The Update function is responsible for monitoring the queue and executing requests
     void Update()
     {
+        Debug.Log(strongRequests.Count);
         // If a request exists on the queue, and we're not busy servicing an earlier request, we service the next one on the queue.
         if (!toasting && requests.Count > 0)
         {
@@ -86,17 +101,31 @@ public class ToastManager : MonoBehaviour {
             toasting = true;
 
             instance.toast_text.text = new_request.message;
-            instance.StartCoroutine(DoToast(instance.ease_duration, instance.show_duration));
+            coroutine = DoToast(instance.ease_duration, instance.show_duration, true);
+            instance.StartCoroutine(coroutine);
+            //instance.StartCoroutine(DoToast(instance.ease_duration, instance.show_duration,true));
+        }
+        if (toasting && strongRequests.Count > 0){
+            instance.StopCoroutine(coroutine);
+            ToastRequest new_request = strongRequests.Dequeue();
+            Debug.Log("CEHCL");
+
+            toasting = true;
+
+            instance.toast_text.text = new_request.message;
+            coroutine = DoToast(instance.ease_duration, instance.show_duration, false);
+            instance.StartCoroutine(coroutine);
+
         }
     }
 
-    static IEnumerator DoToast(float duration_ease_sec, float duration_show_sec)
+    static IEnumerator DoToast(float duration_ease_sec, float duration_show_sec, bool movePanel)
     {
         // Ease In the UI panel
         float initial_time = Time.time;
         float progress = (Time.time - initial_time) / duration_ease_sec;
 
-        while(progress < 1.0f)
+        while(progress < 1.0f && movePanel)
         {
             progress = (Time.time - initial_time) / duration_ease_sec;
             float eased_progress = instance.ease.Evaluate(progress);
@@ -108,11 +137,15 @@ public class ToastManager : MonoBehaviour {
         // float wait_start_time = Time.time;
         // // Show the UI Panel for "duration_show_sec" seconds.
         // while(Time.time - wait_start_time < duration_show_sec){
-        //     if (strongRequests.Count > 0){
-        //         ToastRequest new_strong_request = strongRequests.Dequeue();
-        //         instance.toast_text.text = new_strong_request.message;
-        //         wait_start_time += .5f;
+        //     if (instance.strongRequests.Count>0){
+        //         instance.startToastCoroutine();
+        //         yield return break;
+
+        //         // ToastRequest new_strong_request = strongRequests.Dequeue();
+        //         // instance.toast_text.text = new_strong_request.message;
+        //         // wait_start_time += .5f;
         //     }
+        //     yield return new WaitForSeconds(0.1f);
         // }
         
         yield return new WaitForSeconds(duration_show_sec);
