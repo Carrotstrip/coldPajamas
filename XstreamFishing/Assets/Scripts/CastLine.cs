@@ -45,7 +45,7 @@ public class CastLine : MonoBehaviour
                     has_fish = false;
                     // TODO: add to inventory
                     Inventory inventory = gameObject.GetComponentInParent(typeof(Inventory)) as Inventory;
-                    inventory.addFish();
+                    inventory.AddFish();
                     if (inventory.numFish % 3 == 1){
                         fish_text.text = "You caught a small fish!";
                     } else if (inventory.numFish % 3 == 2){

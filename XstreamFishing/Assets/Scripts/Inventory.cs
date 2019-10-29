@@ -19,7 +19,7 @@ public class Inventory : MonoBehaviour
     {
         
     }
-    public void addFish(){
+    public void AddFish(){
         ++numFish;
         fish_count_text.text = "Fish: " + numFish.ToString();
     }
