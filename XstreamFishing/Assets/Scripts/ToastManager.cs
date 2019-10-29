@@ -93,7 +93,7 @@ public class ToastManager : MonoBehaviour {
     // The Update function is responsible for monitoring the queue and executing requests
     void Update()
     {
-        Debug.Log(strongRequests.Count);
+        //Debug.Log(strongRequests.Count);
         // If a request exists on the queue, and we're not busy servicing an earlier request, we service the next one on the queue.
         if (!toasting && requests.Count > 0)
         {
@@ -105,10 +105,9 @@ public class ToastManager : MonoBehaviour {
             instance.StartCoroutine(coroutine);
             //instance.StartCoroutine(DoToast(instance.ease_duration, instance.show_duration,true));
         }
-        if (toasting && strongRequests.Count > 0){
+        if (strongRequests.Count > 0){
             instance.StopCoroutine(coroutine);
             ToastRequest new_request = strongRequests.Dequeue();
-            Debug.Log("CEHCL");
 
             toasting = true;
 
