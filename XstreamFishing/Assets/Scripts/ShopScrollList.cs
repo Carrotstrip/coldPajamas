@@ -24,26 +24,12 @@ public class ShopScrollList : MonoBehaviour {
     // Use this for initialization
     void Start () 
     {
-        RefreshDisplay ();
-    }
-
-    void Update () {
-      RefreshDisplay();
+        AddButtons();
     }
 
     void RefreshDisplay()
     {
         fishDisplayText.text = "Fish: " + inventory.numFish.ToString();
-        RemoveButtons ();
-        AddButtons ();
-    }
-
-    private void RemoveButtons()
-    {
-        while (contentPanel.childCount > 0) 
-        {
-            Destroy(transform.GetChild(0).gameObject);
-        }
     }
 
     private void AddButtons()
@@ -53,6 +39,7 @@ public class ShopScrollList : MonoBehaviour {
             Item item = itemList[i];
             GameObject newButton = Instantiate(shopButton);
             newButton.transform.SetParent(contentPanel);
+            newButton.transform.localScale = new Vector3(1f, 1f, 1f);
             ShopButton newShopButton = newButton.GetComponent<ShopButton>();
             newShopButton.Setup(item, this);
         }
@@ -62,31 +49,9 @@ public class ShopScrollList : MonoBehaviour {
     {
         if (inventory.numFish >= item.price) 
         {
-
             inventory.numFish -= item.price;
-
-            AddItem(item, inventory);
-            RemoveItem(item, this);
-
+            inventory.AddItem(item);
             RefreshDisplay();
-            // inventoryScrollList.RefreshDisplay();
-
-        }
-    }
-
-    void AddItem(Item itemToAdd, Inventory inventory)
-    {
-        inventory.itemList.Add(itemToAdd);
-    }
-
-    private void RemoveItem(Item itemToRemove, ShopScrollList shopList)
-    {
-        for (int i = shopList.itemList.Count - 1; i >= 0; i--) 
-        {
-            if (shopList.itemList[i] == itemToRemove)
-            {
-                shopList.itemList.RemoveAt(i);
-            }
         }
     }
 }
