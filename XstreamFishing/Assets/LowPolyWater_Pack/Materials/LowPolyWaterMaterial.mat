@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: LowPolyWaterMaterial
   m_Shader: {fileID: 4800000, guid: 16516895e8a79bf49a6562c3c3b84cbf, type: 3}
   m_ShaderKeywords: _EMISSION
@@ -150,6 +151,7 @@ Material:
     - _Mode: 0
     - _NormalsDisplacement: 0
     - _OcclusionStrength: 1
+    - _Outline: 0.1
     - _Parallax: 0.02
     - _RandomHeight: 0.5
     - _RandomSpeed: 0.5
@@ -200,6 +202,7 @@ Material:
     - _HorizonColor: {r: 0.052907113, g: 0.24486735, b: 0.2835821, a: 1}
     - _InvFadeParemeter: {r: 0.67, g: 0.17, b: 27.39, a: 9.18}
     - _MainTex_ST: {r: 1, g: 1, b: 0, a: 0}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectionColor: {r: 0.5794164, g: 0.6849238, b: 0.76119405, a: 0.43137255}
     - _ReflectionTex_ST: {r: 1, g: 1, b: 0, a: 0}
     - _ReflectiveColorCube_ST: {r: 1, g: 1, b: 0, a: 0}
