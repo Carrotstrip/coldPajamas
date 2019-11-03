@@ -49,11 +49,6 @@ public class CastLine : MonoBehaviour
                     inventory.AddFish();
                     OnCatchFish(1);
                     if (inventory.numFish % 3 == 1){
-<<<<<<< HEAD
-                        Debug.Log("TEST");
-                        //fish_text.text = "You caught a small fish!";
-=======
->>>>>>> 6adbc0c7e9ffd92174fb3d47b70da99885275eb8
                         ToastManager.OverwriteToast("You caught a small fish!");
                     } else if (inventory.numFish % 3 == 2){
                         ToastManager.OverwriteToast("You caught a medium fish!");

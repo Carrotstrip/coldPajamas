@@ -50,7 +50,7 @@ public class ToastManager : MonoBehaviour {
         if(instance != null && instance != this)
         {
             // If there already exists a ToastManager, we need to go away.
-            Destroy(gameObject);
+            //Destroy(gameObject);
             return;
         } else
         {
