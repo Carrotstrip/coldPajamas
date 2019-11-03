@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class CastLine : MonoBehaviour
 {
     public GameObject rod;
-    public Text fish_text;
     GameObject rod_clone;
     GameObject boat;
     bool has_fish;
@@ -20,7 +19,6 @@ public class CastLine : MonoBehaviour
     {
         has_fish = false;
         cast = false;
-        fish_text.text = "";
         boat = GameObject.Find("Player");
     }
 
@@ -51,15 +49,16 @@ public class CastLine : MonoBehaviour
                     inventory.AddFish();
                     OnCatchFish(1);
                     if (inventory.numFish % 3 == 1){
+<<<<<<< HEAD
                         Debug.Log("TEST");
                         //fish_text.text = "You caught a small fish!";
+=======
+>>>>>>> 6adbc0c7e9ffd92174fb3d47b70da99885275eb8
                         ToastManager.OverwriteToast("You caught a small fish!");
                     } else if (inventory.numFish % 3 == 2){
-                        //fish_text.text = "You caught a medium fish!";
                         ToastManager.OverwriteToast("You caught a medium fish!");
 
                     } else {
-                        //fish_text.text = "You caught a Big Ass fish!";
                         ToastManager.OverwriteToast("You caught a Large fish!");
                     }
                     StartCoroutine(StopText());
@@ -69,7 +68,6 @@ public class CastLine : MonoBehaviour
                 {
                     has_fish = false;
                     ToastManager.OverwriteToast("Reeled in too fast!");
-                    //fish_text.text = "Reeled in too fast!";
                     StartCoroutine(StopText());
                 }
                 Destroy(rod_clone);
@@ -105,7 +103,6 @@ public class CastLine : MonoBehaviour
         {
             has_fish = false;
             cast = false;
-            //fish_text.text = "Reeled in too slow!";
             ToastManager.OverwriteToast("Reeled in too slow!");
             Destroy(rod_clone);
         }
@@ -114,6 +111,5 @@ public class CastLine : MonoBehaviour
     IEnumerator StopText()
     {
         yield return new WaitForSeconds(1.5f);
-        fish_text.text = "";
     }
 }

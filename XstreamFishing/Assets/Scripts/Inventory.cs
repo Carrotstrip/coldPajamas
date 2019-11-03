@@ -6,44 +6,42 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    public Text fish_count_text;
     public int numFish;
 
     public CastLine castLine;
 
-    public event Action<int> OnCatchFish;
+    public event Action<int> OnNumFishChange;
 
     public List<Item> itemList;
     // Start is called before the first frame update
     void Start()
     {
         numFish = 0;
-        //fish_count_text.text = "Press Z to cast";
+        
     }
 
 
     private void OnEnable() {
-        castLine.OnCatchFish += HandleOnCatchFish;
+        castLine.OnCatchFish += HandleOnNumFishChange;
     }
  
     private void OnDisable() {
-        castLine.OnCatchFish -= HandleOnCatchFish;
+        castLine.OnCatchFish -= HandleOnNumFishChange;
     }
 
     public void AddItem(Item item) {
         itemList.Add(item);
     }
 
-    public void HandleOnCatchFish(int numFish) {
-        OnCatchFish(numFish);
+    public void HandleOnNumFishChange(int numFish) {
+        OnNumFishChange(numFish);
     }
 
     public void HandleBuyItem() {
 
-
     }
+
     public void AddFish(){
         ++numFish;
-        fish_count_text.text = "Fish: " + numFish.ToString();
     }
 }

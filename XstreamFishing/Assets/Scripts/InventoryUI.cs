@@ -15,14 +15,14 @@ public class InventoryUI : MonoBehaviour {
     }
 
     private void OnEnable() {
-      inventory.OnCatchFish += HandleOnCatchFish;
+      inventory.OnNumFishChange += HandleOnNumFishChange;
     }
  
     private void OnDisable() {
-      inventory.OnCatchFish -= HandleOnCatchFish;
+      inventory.OnNumFishChange -= HandleOnNumFishChange;
     }
 
-    public void HandleOnCatchFish(int numFish) {
+    void HandleOnNumFishChange(int numFish) {
         // update numFish display
     }
 
