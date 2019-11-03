@@ -19,8 +19,6 @@ public class ToastManager : MonoBehaviour {
 
     // Singleton static instance variable. When one ToastManager "claims" this variable, all the others go away.
     static ToastManager instance;
-
-    // The two places the toast UI panel alternates between.
     Vector3 hidden_pos;
     Vector3 visible_pos;
 
@@ -82,8 +80,8 @@ public class ToastManager : MonoBehaviour {
         toasting = true;
         instance.toast_text.text = new_strong_request.message;
 
-        coroutine = DoToast(instance.ease_duration, instance.show_duration, false);
-        instance.StartCoroutine(coroutine);
+        coroutine = DoToast(instance.ease_duration, instance.show_duration);
+        StartCoroutine(coroutine);
     }
     public static void setShowDuration(float seconds)
     {
@@ -101,30 +99,39 @@ public class ToastManager : MonoBehaviour {
             toasting = true;
 
             instance.toast_text.text = new_request.message;
-            coroutine = DoToast(instance.ease_duration, instance.show_duration, true);
+            coroutine = DoToast(instance.ease_duration, instance.show_duration);
             instance.StartCoroutine(coroutine);
             //instance.StartCoroutine(DoToast(instance.ease_duration, instance.show_duration,true));
         }
         if (strongRequests.Count > 0){
-            instance.StopCoroutine(coroutine);
+            if (toasting){
+                instance.StopCoroutine(coroutine);
+            }
+            Debug.Log(strongRequests.Count);
             ToastRequest new_request = strongRequests.Dequeue();
+            Debug.Log(strongRequests.Count);
 
-            toasting = true;
 
             instance.toast_text.text = new_request.message;
-            coroutine = DoToast(instance.ease_duration, instance.show_duration, false);
+            if (toasting){
+                coroutine = DoToast(instance.ease_duration, instance.show_duration);
+            } else {
+                toasting = true;
+                coroutine = DoToast(instance.ease_duration, instance.show_duration);
+            }
+
             instance.StartCoroutine(coroutine);
 
         }
     }
 
-    static IEnumerator DoToast(float duration_ease_sec, float duration_show_sec, bool movePanel)
+    static IEnumerator ShowPanel(float duration_ease_sec)
     {
         // Ease In the UI panel
         float initial_time = Time.time;
         float progress = (Time.time - initial_time) / duration_ease_sec;
 
-        while(progress < 1.0f && movePanel)
+        while(progress < 1.0f)
         {
             progress = (Time.time - initial_time) / duration_ease_sec;
             float eased_progress = instance.ease.Evaluate(progress);
@@ -132,6 +139,36 @@ public class ToastManager : MonoBehaviour {
 
             yield return null;
         }
+    }
+    static IEnumerator HidePanel(float duration_ease_sec)
+    {
+        // Ease In the UI panel
+        float initial_time = Time.time;
+        float progress = 0.0f;
+        while (progress < 1.0f)
+        {
+            progress = (Time.time - initial_time) / duration_ease_sec;
+            float eased_progress = instance.ease_out.Evaluate(progress);
+            instance.toast_panel.anchoredPosition = Vector3.LerpUnclamped(instance.hidden_pos, instance.visible_pos, 1.0f - eased_progress);
+
+            yield return null;
+        }
+    }
+
+    static IEnumerator DoToast(float duration_ease_sec, float duration_show_sec)
+    {
+        // Ease In the UI panel
+        // float initial_time = Time.time;
+        // float progress = (Time.time - initial_time) / duration_ease_sec;
+
+        // while(progress < 1.0f && movePanel)
+        // {
+        //     progress = (Time.time - initial_time) / duration_ease_sec;
+        //     float eased_progress = instance.ease.Evaluate(progress);
+        //     instance.toast_panel.anchoredPosition = Vector3.LerpUnclamped(instance.hidden_pos, instance.visible_pos, eased_progress);
+
+        //     yield return null;
+        // }
 
         // float wait_start_time = Time.time;
         // // Show the UI Panel for "duration_show_sec" seconds.
@@ -150,18 +187,19 @@ public class ToastManager : MonoBehaviour {
         yield return new WaitForSeconds(duration_show_sec);
 
         // Ease Out the UI panel
-        initial_time = Time.time;
-        progress = 0.0f;
-        while (progress < 1.0f)
-        {
-            progress = (Time.time - initial_time) / duration_ease_sec;
-            float eased_progress = instance.ease_out.Evaluate(progress);
-            instance.toast_panel.anchoredPosition = Vector3.LerpUnclamped(instance.hidden_pos, instance.visible_pos, 1.0f - eased_progress);
+        // initial_time = Time.time;
+        // progress = 0.0f;
+        // while (progress < 1.0f)
+        // {
+        //     progress = (Time.time - initial_time) / duration_ease_sec;
+        //     float eased_progress = instance.ease_out.Evaluate(progress);
+        //     instance.toast_panel.anchoredPosition = Vector3.LerpUnclamped(instance.hidden_pos, instance.visible_pos, 1.0f - eased_progress);
 
-            yield return null;
-        }
+        //     yield return null;
+        // }
+        // Debug.Log("GGGOOODD DAMN");
 
-        // When we're done toasting, we tell the "Update" function that we're ready for more requests.
+        // // When we're done toasting, we tell the "Update" function that we're ready for more requests.
         instance.toasting = false;
     }
 

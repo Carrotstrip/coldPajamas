@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,10 +19,21 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        //bool xbox_a = Input.GetButton("XboxA");
+
+        // if (Input.GetButton("XboxA")){
+        //     Debug.Log("TESTES");
+        // }
+        if (Gamepad.current.rightTrigger.wasPressedThisFrame){
+            Debug.Log("TESTES");
+        }
         if (can_move)
         {
-            float moveHorizontal = Input.GetAxis("Horizontal");
-            float moveVertical = Input.GetAxis("Vertical");
+            // float moveHorizontal = Input.GetAxis("Horizontal");
+            // float moveVertical = Input.GetAxis("Vertical");
+            Vector2 input = Gamepad.current.leftStick.ReadValue();
+            float moveHorizontal = input.x; 
+            float moveVertical = input.y;
             rb.AddTorque(0f, moveHorizontal * turnSpeed * Time.deltaTime, 0f);
             rb.AddForce(transform.forward * moveVertical * accelerateSpeed * Time.deltaTime);
         }

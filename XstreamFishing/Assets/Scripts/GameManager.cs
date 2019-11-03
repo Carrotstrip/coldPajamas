@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
             if (!timerRunning && (Input.GetAxis ("Horizontal") != 0 || Input.GetAxis ("Vertical") != 0 || Input.GetKeyDown(KeyCode.Z))){
                 timer = 0.0f;
                 timerRunning = true;
-                ToastManager.Toast("It's a nice day to be out fishing \nfeel free to come on down to the pro shop for supplies\nHeck I'll even throw in some free advice");
+                //ToastManager.Toast("It's a nice day to be out fishing \nfeel free to come on down to the pro shop for supplies\nHeck I'll even throw in some free advice");
             }
         }
         
