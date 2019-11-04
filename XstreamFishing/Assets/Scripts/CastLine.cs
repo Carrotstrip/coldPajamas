@@ -12,6 +12,7 @@ public class CastLine : MonoBehaviour
     GameObject boat;
     bool has_fish;
     bool cast;
+    public string controller;
 
     public event Action<int> OnCatchFish;
 
@@ -26,7 +27,16 @@ public class CastLine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        bool crit;
+        if (controller == "")
+        {
+            crit = Input.GetKeyDown(KeyCode.Z);
+        }
+        else
+        {
+            crit = Input.GetButtonDown(controller + "A");
+        }
+        if (crit)
         {
             if (!cast)
             {
@@ -48,12 +58,17 @@ public class CastLine : MonoBehaviour
                     Inventory inventory = boat.GetComponent<Inventory>();
                     inventory.AddFish();
                     OnCatchFish(1);
-                    if (inventory.numFish % 3 == 1){
+                    if (inventory.numFish % 3 == 1)
+                    {
                         ToastManager.OverwriteToast("You caught a small fish!");
-                    } else if (inventory.numFish % 3 == 2){
+                    }
+                    else if (inventory.numFish % 3 == 2)
+                    {
                         ToastManager.OverwriteToast("You caught a medium fish!");
 
-                    } else {
+                    }
+                    else
+                    {
                         ToastManager.OverwriteToast("You caught a Large fish!");
                     }
                     StartCoroutine(StopText());

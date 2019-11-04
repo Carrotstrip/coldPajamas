@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float turnSpeed = 1000f;
     public float accelerateSpeed = 1000f;
     public bool can_move;
+    public string controller;
     private Rigidbody rb;
 
     // Start is called before the first frame update
@@ -24,16 +25,14 @@ public class PlayerController : MonoBehaviour
         // if (Input.GetButton("XboxA")){
         //     Debug.Log("TESTES");
         // }
-        if (Gamepad.current.rightTrigger.wasPressedThisFrame){
-            Debug.Log("TESTES");
-        }
+        // if (Gamepad.current.rightTrigger.wasPressedThisFrame)
+        // {
+        //     Debug.Log("TESTES");
+        // }
         if (can_move)
         {
-            // float moveHorizontal = Input.GetAxis("Horizontal");
-            // float moveVertical = Input.GetAxis("Vertical");
-            Vector2 input = Gamepad.current.leftStick.ReadValue();
-            float moveHorizontal = input.x; 
-            float moveVertical = input.y;
+            float moveHorizontal = Input.GetAxis(controller + "Horizontal");
+            float moveVertical = Input.GetAxis(controller + "Vertical");
             rb.AddTorque(0f, moveHorizontal * turnSpeed * Time.deltaTime, 0f);
             rb.AddForce(transform.forward * moveVertical * accelerateSpeed * Time.deltaTime);
         }
