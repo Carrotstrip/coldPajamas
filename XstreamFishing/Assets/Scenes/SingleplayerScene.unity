@@ -646,6 +646,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -0.000091552734
       objectReference: {fileID: 0}
+    - target: {fileID: 1444451872780970360, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 7.2499
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444451872780970360, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 37
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18a8140dace6c4fb9b3cb11d06650156, type: 3}
 --- !u!4 &318330463 stripped
@@ -970,6 +980,7 @@ MonoBehaviour:
   boatCamera: {fileID: 1471113465}
   player: {fileID: 1376820858}
   playerStartPos: {fileID: 771857417}
+  controller: 
 --- !u!4 &600336031
 Transform:
   m_ObjectHideFlags: 0
@@ -1594,6 +1605,7 @@ MonoBehaviour:
   turnSpeed: 100
   accelerateSpeed: 2000
   can_move: 0
+  controller: 
 --- !u!54 &1147869149
 Rigidbody:
   m_ObjectHideFlags: 0
