@@ -15,7 +15,8 @@ public class Item
     public int multiplier = 0;
 }
 
-public class ShopScrollList : MonoBehaviour {
+public class ShopScrollList : MonoBehaviour
+{
 
     public List<Item> itemList;
     public Transform contentPanel;
@@ -26,7 +27,7 @@ public class ShopScrollList : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () 
+    void Start()
     {
         AddButtons();
         RefreshDisplay();
@@ -39,7 +40,8 @@ public class ShopScrollList : MonoBehaviour {
 
     private void AddButtons()
     {
-        for (int i = 0; i < itemList.Count; i++) 
+        RefreshDisplay();
+        for (int i = 0; i < itemList.Count; i++)
         {
             Item item = itemList[i];
             GameObject newButton = Instantiate(shopButton);
@@ -52,7 +54,7 @@ public class ShopScrollList : MonoBehaviour {
 
     public void TryTransferItemToInventory(Item item)
     {
-        if (inventory.numFish >= item.price) 
+        if (inventory.numFish >= item.price)
         {
             inventory.numFish -= item.price;
             inventory.AddItem(item);

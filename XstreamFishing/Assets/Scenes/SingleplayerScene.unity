@@ -589,22 +589,22 @@ PrefabInstance:
     - target: {fileID: 1444451873049501311, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -235
+      value: -239.05
       objectReference: {fileID: 0}
     - target: {fileID: 1444451873049501311, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 411
+      value: 267.01
       objectReference: {fileID: 0}
     - target: {fileID: 1444451873049501311, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 636.6
+      value: 649.07
       objectReference: {fileID: 0}
     - target: {fileID: 1444451873049501311, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1195.7
+      value: 752.21
       objectReference: {fileID: 0}
     - target: {fileID: 1444451873049501311, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
@@ -635,6 +635,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444451872122315847, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000091552734
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444451872122315847, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 645.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444451872122315847, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1090373927002775365, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
@@ -681,10 +696,25 @@ PrefabInstance:
       propertyPath: itemList.Array.data[0].multiplier
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 1444451872122315847, guid: 18a8140dace6c4fb9b3cb11d06650156,
+    - target: {fileID: 1090373927002775365, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[0].price
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090373927002775365, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[1].price
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444451872780970360, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000091552734
+      value: 230
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444451872780970360, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 287
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18a8140dace6c4fb9b3cb11d06650156, type: 3}
@@ -1682,6 +1712,7 @@ MonoBehaviour:
   fishing: {fileID: 1376820860}
   rodMultiplier: 1
   baitMultiplier: 1
+  fishText: {fileID: 188807369}
   itemList:
   - itemName: Jimbo's Rugged Rod
     isConsumable: 0
@@ -1916,6 +1947,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6fa03b2fc7bc4e4e801c9ed9b5a1185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rod: {fileID: 7225878842896087267, guid: 2dbabd8c142814ad6ba9ca53f226b873, type: 3}
+  inventory: {fileID: 1147869151}
+  controller: 
+--- !u!114 &1376820865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376820858}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edad7775cd1c64f35a7ab84616e0ec1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rod: {fileID: 7225878842896087267, guid: 2dbabd8c142814ad6ba9ca53f226b873, type: 3}
@@ -2365,6 +2411,7 @@ GameObject:
   - component: {fileID: 1985805582}
   - component: {fileID: 1985805581}
   - component: {fileID: 1985805583}
+  - component: {fileID: 1985805584}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -2379,7 +2426,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985805580}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 886086835ad344a92b5093db4bd06398, type: 3}
   m_Name: 
@@ -2433,6 +2480,23 @@ MonoBehaviour:
   show_duration: 2
   hidden_y: 325
   visible_y: 150
+--- !u!114 &1985805584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985805580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca348fa8c80f40248e30300cf868737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1147869145}
+  inventory: {fileID: 1147869151}
+  shopUI: {fileID: 378298463}
+  inventoryUI: {fileID: 2113501595}
+  winState: 0
 --- !u!1 &1988985009
 GameObject:
   m_ObjectHideFlags: 0

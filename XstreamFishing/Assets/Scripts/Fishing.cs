@@ -18,6 +18,7 @@ public class Fishing : MonoBehaviour
     bool cast;
     private IEnumerator coroutine;
     private string[] fishArr;
+    public string controller;
 
 
     public static event Action<int> OnCatchFish;
@@ -52,15 +53,27 @@ public class Fishing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool player_reel;
+        bool player_cast;
+        if (controller == "")
+        {
+            player_cast = Input.GetKeyDown("v");
+            player_reel = Input.GetKeyDown("b");
+        }
+        else
+        {
+            player_cast = Input.GetButtonDown(controller + "A");
+            player_reel = Input.GetButtonDown(controller + "B");
+        }
         // if (!cast && Gamepad.current.buttonSouth.wasPressedThisFrame){
-        if (!cast && Input.GetButtonDown("J1A"))
+        if (!cast && player_cast)
         {
             // CAST
             coroutine = WaitForFish();
             StartCoroutine(coroutine);
 
         }
-        else if (cast && Input.GetButtonDown("J1B")/*Gamepad.current.buttonEast.wasPressedThisFrame*/)
+        else if (cast && player_reel)
         {
             // REEL
             if (has_fish)
@@ -72,7 +85,8 @@ public class Fishing : MonoBehaviour
             {
                 // Reel in too quickly
                 //Debug.Log("Reeled in too fast");
-                ToastManager.OverwriteToast("Reeled in too fast!");
+                if (controller == "")
+                    ToastManager.OverwriteToast("Reeled in too fast!");
                 StopCoroutine(coroutine);
             }
             //Destroy(rod_clone);
@@ -80,13 +94,18 @@ public class Fishing : MonoBehaviour
         }
     }
 
-    void CatchFish(){
+    void CatchFish()
+    {
         int rodMultiplier = inventory.rodMultiplier;
         int baitMultiplier = inventory.baitMultiplier;
-        int fishIndex = Random.Range(0,18) % (2 * rodMultiplier * baitMultiplier);
-        Debug.Log("You caught a " + fishArr[fishIndex]+"!");
-        ToastManager.OverwriteToast("You caught a " + fishArr[fishIndex]+"!");
-        OnCatchFish(fishIndex + 1);
+        int fishIndex = Random.Range(0, 18) % (2 * rodMultiplier * baitMultiplier);
+        Debug.Log("You caught a " + fishArr[fishIndex] + "!");
+        if (controller == "")
+            ToastManager.OverwriteToast("You caught a " + fishArr[fishIndex] + "!");
+        if (OnCatchFish != null)
+        {
+            OnCatchFish(fishIndex + 1);
+        }
     }
 
     void endFish()
@@ -120,7 +139,8 @@ public class Fishing : MonoBehaviour
         {
             Debug.Log("Reeled in too slow");
             endFish();
-            ToastManager.OverwriteToast("Reeled in too slow!");
+            if (controller == "")
+                ToastManager.OverwriteToast("Reeled in too slow!");
         }
     }
 

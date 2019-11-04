@@ -3,34 +3,40 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class InventoryUI : MonoBehaviour {
+public class InventoryUI : MonoBehaviour
+{
 
     public Inventory inventory;
     public Transform contentPanel;
     public GameObject inventoryEntry;
+    public Text fishCount;
 
     // Use this for initialization
-    void Start() 
+    void Start()
     {
-        RefreshDisplay ();
+        RefreshDisplay();
     }
 
-    private void OnEnable() {
-      Inventory.OnNumFishChange += HandleOnNumFishChange;
-      Inventory.OnReceiveItem += HandleOnReceiveItem;
-    }
- 
-    private void OnDisable() {
-      Inventory.OnNumFishChange -= HandleOnNumFishChange;
-      Inventory.OnReceiveItem -= HandleOnReceiveItem;
+    private void OnEnable()
+    {
+        Inventory.OnNumFishChange += HandleOnNumFishChange;
+        Inventory.OnReceiveItem += HandleOnReceiveItem;
     }
 
-    void HandleOnNumFishChange(int numFish) {
+    private void OnDisable()
+    {
+        Inventory.OnNumFishChange -= HandleOnNumFishChange;
+        Inventory.OnReceiveItem -= HandleOnReceiveItem;
+    }
+
+    void HandleOnNumFishChange(int numFish)
+    {
         // update numFish display
     }
 
-    void HandleOnReceiveItem(Item item) {
-      RefreshDisplay();
+    void HandleOnReceiveItem(Item item)
+    {
+        RefreshDisplay();
     }
 
 
@@ -42,14 +48,15 @@ public class InventoryUI : MonoBehaviour {
 
     private void RemoveEntries()
     {
-        foreach (Transform child in contentPanel.transform) {
+        foreach (Transform child in contentPanel.transform)
+        {
             GameObject.Destroy(child.gameObject);
         }
     }
 
     private void AddEntries()
     {
-        for (int i = 0; i < inventory.itemList.Count; i++) 
+        for (int i = 0; i < inventory.itemList.Count; i++)
         {
             Debug.Log("adding entries");
             Item item = inventory.itemList[i];
