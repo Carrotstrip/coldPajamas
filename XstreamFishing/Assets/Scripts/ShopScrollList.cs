@@ -12,7 +12,7 @@ public class Item
     public Sprite icon;
     public int price = 1;
     public int amount = 1;
-    public float multiplier = 0f;
+    public int multiplier = 0;
 }
 
 public class ShopScrollList : MonoBehaviour {

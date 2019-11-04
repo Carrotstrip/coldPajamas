@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 
-public class Fishing : MonoBehaviour
+public class FishingKey : MonoBehaviour
 {
     public GameObject rod;
     private Rigidbody rb;
@@ -53,14 +53,14 @@ public class Fishing : MonoBehaviour
     void Update()
     {
         // if (!cast && Gamepad.current.buttonSouth.wasPressedThisFrame){
-        if (!cast && Input.GetButtonDown("J1A"))
+        if (!cast && Input.GetKeyDown("v"))
         {
             // CAST
             coroutine = WaitForFish();
             StartCoroutine(coroutine);
 
         }
-        else if (cast && Input.GetButtonDown("J1B")/*Gamepad.current.buttonEast.wasPressedThisFrame*/)
+        else if (cast && Input.GetKeyDown("b")/*Gamepad.current.buttonEast.wasPressedThisFrame*/)
         {
             // REEL
             if (has_fish)
@@ -81,16 +81,20 @@ public class Fishing : MonoBehaviour
     }
 
     void CatchFish(){
+        has_fish = false;
         int rodMultiplier = inventory.rodMultiplier;
         int baitMultiplier = inventory.baitMultiplier;
         int fishIndex = Random.Range(0,18) % (2 * rodMultiplier * baitMultiplier);
         Debug.Log("You caught a " + fishArr[fishIndex]+"!");
         ToastManager.OverwriteToast("You caught a " + fishArr[fishIndex]+"!");
-        OnCatchFish(fishIndex + 1);
+        if(OnCatchFish != null) {
+            OnCatchFish(fishIndex + 1);
+        }
     }
 
     void endFish()
     {
+        Debug.Log("T");
         has_fish = false;
         cast = false;
         Destroy(rod_clone);
@@ -125,58 +129,3 @@ public class Fishing : MonoBehaviour
     }
 
 }
-// IEnumerator WaitForFishFlee()
-// {
-//     //float num_seconds = Random.Range(1.0f, 2.0f);
-//     yield return new WaitForSeconds(0.5f);
-//     if (has_fish)
-//     {
-//         endFish();
-//         ToastManager.OverwriteToast("Reeled in too slow!");
-//         Destroy(rod_clone);
-//     }
-// }
-
-//     if (Input.GetKeyDown(KeyCode.Z))
-//     {
-//         if (!cast)
-//         {
-//             // if Z pressed, instantiate old rod in front of player, wait 3-7 seconds for fish
-//             rod_clone = Instantiate(rod, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z + 5f), new Quaternion(0, 90, 55, 1));
-//             rod_clone.transform.parent = transform.parent;
-//             cast = true;
-//             boat.GetComponent<PlayerController>().can_move = false;
-//             StartCoroutine(WaitForFish());
-//         }
-//         else
-//         {
-//             // if Z is pressed and there is fish, bring up lil fish message and destroy rod
-//             if (has_fish)
-//             {
-//                 has_fish = false;
-//                 // TODO: add to inventory
-//                 // Inventory inventory = gameObject.GetComponentInParent(typeof(Inventory)) as Inventory;
-//                 Inventory inventory = boat.GetComponent<Inventory>();
-//                 inventory.AddFish();
-//                 OnCatchFish(1);
-//             }
-//             // if Z is pressed again and there is no fish, destroy rod
-//             else {
-//                 has_fish = false;
-//                 ToastManager.OverwriteToast("Reeled in too fast!");
-//             }
-//             Destroy(rod_clone);
-//             StopCoroutine(WaitForFish());
-//             StopCoroutine(WaitForFishFlee());
-//             cast = false;
-//             boat.GetComponent<PlayerController>().can_move = true;
-//         }
-//     }
-//     if (cast)
-//     {
-//         if (has_fish)
-//             rod_clone.transform.rotation = new Quaternion(0, 55, 55, 1);
-//         else
-//             rod_clone.transform.rotation = new Quaternion(0, 90, 55, 1);
-//     }
-// }

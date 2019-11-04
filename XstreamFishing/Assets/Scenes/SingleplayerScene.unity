@@ -641,6 +641,46 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 1147869151}
+    - target: {fileID: 1090373927002775365, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[2].isConsumable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090373927002775365, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[3].isConsumable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090373927002775365, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[4].isConsumable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090373927002775365, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[4].multiplier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090373927002775365, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[3].multiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090373927002775365, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[2].multiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090373927002775365, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[1].multiplier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090373927002775365, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[0].multiplier
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1444451872122315847, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1649,11 +1689,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numFish: 0
-  castLine: {fileID: 0}
+  fishing: {fileID: 1376820860}
+  rodMultiplier: 1
+  baitMultiplier: 1
   itemList:
   - itemName: Jimbo's Rugged Rod
     isConsumable: 0
     category: rod
+    icon: {fileID: -631023095337379593, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
+    price: 0
+    amount: 1
+    multiplier: 1
+  - itemName: Bait
+    isConsumable: 0
+    category: bait
     icon: {fileID: -631023095337379593, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
     price: 0
     amount: 1
@@ -1880,6 +1929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rod: {fileID: 7225878842896087267, guid: 2dbabd8c142814ad6ba9ca53f226b873, type: 3}
+  inventory: {fileID: 1147869151}
 --- !u!1001 &1402636125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2283,7 +2333,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3761138834904284077, guid: d034ef73934c74261bcdfc643571da01, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d034ef73934c74261bcdfc643571da01, type: 3}
 --- !u!4 &1861113056 stripped
 Transform:
@@ -2460,8 +2511,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: ' Start Text testing newlines in the text so that we can when the the new
-    lines happen in the text.'
+  m_Text: 
 --- !u!222 &1988985012
 CanvasRenderer:
   m_ObjectHideFlags: 0
