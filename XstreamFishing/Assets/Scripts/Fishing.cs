@@ -12,6 +12,7 @@ public class Fishing : MonoBehaviour
     public GameObject rod;
     private Rigidbody rb;
     GameObject rod_clone;
+    public Inventory inventory;
 
     bool has_fish;
     bool cast;
@@ -19,7 +20,7 @@ public class Fishing : MonoBehaviour
     private string[] fishArr;
 
 
-    //public event Action<int> OnCatchFish;
+    public static event Action<int> OnCatchFish;
 
     void Start()
     {
@@ -73,11 +74,12 @@ public class Fishing : MonoBehaviour
     }
 
     void CatchFish(){
-        int rodMultiplier = 1;
-        int baitMultiplier = 1;
+        int rodMultiplier = inventory.rodMultiplier;
+        int baitMultiplier = inventory.baitMultiplier;
         int fishIndex = Random.Range(0,18) % (2 * rodMultiplier * baitMultiplier);
         Debug.Log("You caught a " + fishArr[fishIndex]+"!");
         ToastManager.OverwriteToast("You caught a " + fishArr[fishIndex]+"!");
+        OnCatchFish(fishIndex + 1);
     }
     
     void endFish(){

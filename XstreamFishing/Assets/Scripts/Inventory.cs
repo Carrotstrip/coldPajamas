@@ -8,7 +8,9 @@ public class Inventory : MonoBehaviour
 {
     public int numFish;
 
-    public CastLine castLine;
+    public Fishing fishing;
+    public int rodMultiplier = 1;
+    public int baitMultiplier = 1;
 
     public static event Action<int> OnNumFishChange;
     public static event Action<Item> OnReceiveItem;
@@ -19,14 +21,12 @@ public class Inventory : MonoBehaviour
         numFish = 0;
     }
 
-
     private void OnEnable() {
-        // call rhs function when lhs event fires
-        CastLine.OnCatchFish += HandleOnNumFishChange;
+      Fishing.OnCatchFish += HandleOnNumFishChange;
     }
  
     private void OnDisable() {
-        CastLine.OnCatchFish -= HandleOnNumFishChange;
+      Fishing.OnCatchFish -= HandleOnNumFishChange;
     }
 
     public void AddItem(Item item) {
@@ -57,6 +57,12 @@ public class Inventory : MonoBehaviour
                 if (itemList[i].category == item.category) {
                     itemList.Remove(itemList[i]);
                     removed = true;
+                    if(item.category == "rod") {
+                        rodMultiplier = item.multiplier;
+                    }
+                    else if(item.category == "bait") {
+                        baitMultiplier = item.multiplier;
+                    }
                     break;
                 }
             }
@@ -69,15 +75,15 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void HandleOnNumFishChange(int numFish) {
-        OnNumFishChange(numFish);
+    public void HandleOnNumFishChange(int numFishIn) {
+        numFish += numFishIn;
+        if(OnNumFishChange != null) {
+            OnNumFishChange(numFish);
+        }
     }
 
     public void HandleReceiveItem() {
 
     }
 
-    public void AddFish(){
-        ++numFish;
-    }
 }
