@@ -13,7 +13,7 @@ public class CastLine : MonoBehaviour
     bool has_fish;
     bool cast;
 
-    public event Action<int> OnCatchFish;
+    public static event Action<int> OnCatchFish;
 
     void Start()
     {

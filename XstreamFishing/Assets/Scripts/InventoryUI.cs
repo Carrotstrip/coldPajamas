@@ -7,52 +7,62 @@ public class InventoryUI : MonoBehaviour {
 
     public Inventory inventory;
     public Transform contentPanel;
+    public GameObject inventoryEntry;
 
     // Use this for initialization
-    void Start () 
+    void Start() 
     {
-        // RefreshDisplay ();
+        RefreshDisplay ();
     }
 
     private void OnEnable() {
-      inventory.OnNumFishChange += HandleOnNumFishChange;
+      Inventory.OnNumFishChange += HandleOnNumFishChange;
+      Inventory.OnReceiveItem += HandleOnReceiveItem;
     }
  
     private void OnDisable() {
-      inventory.OnNumFishChange -= HandleOnNumFishChange;
+      Inventory.OnNumFishChange -= HandleOnNumFishChange;
+      Inventory.OnReceiveItem -= HandleOnReceiveItem;
     }
 
     void HandleOnNumFishChange(int numFish) {
         // update numFish display
     }
 
+    void HandleOnReceiveItem(Item item) {
+      Debug.Log(item.itemName);
+      RefreshDisplay();
+    }
 
-    // public void RefreshDisplay()
-    // {
-    //     RemoveButtons ();
-    //     AddButtons ();
-    // }
 
-    // private void RemoveButtons()
-    // {
-    //     while (contentPanel.childCount > 0) 
-    //     {
-    //         GameObject toRemove = transform.GetChild(0).gameObject;
-    //         buttonObjectPool.ReturnObject(toRemove);
-    //     }
-    // }
+    public void RefreshDisplay()
+    {
+        RemoveEntries();
+        AddEntries();
+    }
 
-    // private void AddButtons()
-    // {
-    //     for (int i = 0; i < inventory.itemList.Count; i++) 
-    //     {
-    //         Item item = inventory.itemList[i];
-    //         GameObject newEntry = buttonObjectPool.GetObject();
-    //         newEntry.transform.SetParent(contentPanel);
+    private void RemoveEntries()
+    {
+        while (contentPanel.childCount > 0) 
+        {
+            GameObject toRemove = transform.GetChild(0).gameObject;
+            Destroy(toRemove);
+        }
+    }
 
-    //         InventoryEntry invEntry = newEntry.GetComponent<InventoryEntry>();
-    //         invEntry.Setup(item, this);
-    //     }
-    // }
+    private void AddEntries()
+    {
+        for (int i = 0; i < inventory.itemList.Count; i++) 
+        {
+            Debug.Log("adding entries");
+            Item item = inventory.itemList[i];
+            Debug.Log(item.itemName);
+            GameObject newEntry = Instantiate(inventoryEntry);
+            newEntry.transform.SetParent(contentPanel);
+            newEntry.transform.localScale = new Vector3(1f, 1f, 1f);
+            InventoryEntry newInvEntry = newEntry.GetComponent<InventoryEntry>();
+            newInvEntry.Setup(item, this);
+        }
+    }
 
 }

@@ -6,9 +6,8 @@ public class InventoryEntry : MonoBehaviour {
 
     public Button buttonComponent;
     public Text nameLabel;
+    public Text amountLabel;
     public Image iconImage;
-
-
     private Item item;
     private InventoryUI thisUI;
 
@@ -21,6 +20,7 @@ public class InventoryEntry : MonoBehaviour {
     {
         item = currentItem;
         nameLabel.text = item.itemName;
+        amountLabel.text = 1f.ToString();
         iconImage.sprite = item.icon;
         thisUI = currentUI;
 

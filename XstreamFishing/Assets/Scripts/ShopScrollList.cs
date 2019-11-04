@@ -51,7 +51,6 @@ public class ShopScrollList : MonoBehaviour {
         {
             inventory.numFish -= item.price;
             inventory.AddItem(item);
-            RefreshDisplay();
         }
     }
 }
