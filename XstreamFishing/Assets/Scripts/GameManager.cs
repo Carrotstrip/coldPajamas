@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
                     //startupText.text = "";
                     startSequence = false;
                     ToastManager.setShowDuration(1.0f);
-                    //ToastManager.Toast("Press Z to Cast");
+                    ToastManager.Toast("Press Y to Fish!");
                 }
             }
             if (!timerRunning && (Input.GetAxis ("Horizontal") != 0 || Input.GetAxis ("Vertical") != 0 || Input.GetKeyDown(KeyCode.Z))){
