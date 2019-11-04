@@ -32,9 +32,18 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         public void LookRotation(Transform character, Transform camera)
         {
-            float yRot = CrossPlatformInputManager.GetAxis(num_controller + "RightStickHoriz") * XSensitivity;
-            float xRot = CrossPlatformInputManager.GetAxis(num_controller + "RightStickVerti") * YSensitivity;
-
+            float yRot;
+            float xRot;
+            if (num_controller == "")
+            {
+                yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
+                xRot = CrossPlatformInputManager.GetAxis("Mouse Y") * YSensitivity;
+            }
+            else
+            {
+                yRot = CrossPlatformInputManager.GetAxis(num_controller + "RightStickHoriz") * XSensitivity;
+                xRot = CrossPlatformInputManager.GetAxis(num_controller + "RightStickVerti") * YSensitivity;
+            }
             m_CharacterTargetRot *= Quaternion.Euler(0f, yRot, 0f);
             m_CameraTargetRot *= Quaternion.Euler(-xRot, 0f, 0f);
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManagerKey : MonoBehaviour
 {
@@ -32,25 +33,46 @@ public class GameManagerKey : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (winState)
+        {
+            winState = false;
+            SceneManager.LoadScene("MainMenu");
+        }
+
+
         // show pro shop
-        if(Input.GetKeyDown("x")) {
+        if (Input.GetKeyDown("x"))
+        {
             shopUI.SetActive(!shopUI.activeSelf);
         }
 
         // show inventory
-        if(Input.GetKeyDown("c")) {
+        if (Input.GetKeyDown("c"))
+        {
             inventoryUI.SetActive(!inventoryUI.activeSelf);
         }
-
-        if (inventory.numFish >= 3 && !winState){
+        if (inventoryUI != null && shopUI != null)
+        {
+            if (inventoryUI.activeSelf || shopUI.activeSelf)
+            {
+                Cursor.visible = true;
+                Screen.lockCursor = false;
+            }
+        }
+        if (inventory.numFish >= 10 && !winState)
+        {
             ToastManager.setShowDuration(4.0f);
             ToastManager.OverwriteToast("Looks like you fished this lake dry Partner. Catch ya tomorrow.");
             winState = true;
-        } 
-        if (startSequence){
-            if (timerRunning){
+        }
+        if (startSequence)
+        {
+            if (timerRunning)
+            {
                 timer += Time.deltaTime;
-                if (timer >= 4.0f){
+                if (timer >= 4.0f)
+                {
                     //startupText.text = "";
                     startSequence = false;
                     ToastManager.setShowDuration(4.0f);
@@ -61,12 +83,13 @@ public class GameManagerKey : MonoBehaviour
                     ToastManager.Toast("For your inventory, go ahead and press the start button");
                 }
             }
-            if (!timerRunning && (Input.GetAxis ("Horizontal") != 0 || Input.GetAxis ("Vertical") != 0 || Input.GetKeyDown(KeyCode.Z))){
+            if (!timerRunning && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 || Input.GetKeyDown(KeyCode.Z)))
+            {
                 timer = 0.0f;
                 timerRunning = true;
                 ToastManager.Toast("It's a nice day to be out fishing. Feel free to come on down to the pro shop for supplies. Heck I'll even throw in some free advice.");
             }
         }
-        
+
     }
 }

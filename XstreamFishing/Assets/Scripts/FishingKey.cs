@@ -80,14 +80,16 @@ public class FishingKey : MonoBehaviour
         }
     }
 
-    void CatchFish(){
+    void CatchFish()
+    {
         has_fish = false;
         int rodMultiplier = inventory.rodMultiplier;
         int baitMultiplier = inventory.baitMultiplier;
-        int fishIndex = Random.Range(0,18) % (2 * rodMultiplier * baitMultiplier);
-        Debug.Log("You caught a " + fishArr[fishIndex]+"!");
-        ToastManager.OverwriteToast("You caught a " + fishArr[fishIndex]+"!");
-        if(OnCatchFish != null) {
+        int fishIndex = Random.Range(0, 18) % (2 * rodMultiplier * baitMultiplier);
+        Debug.Log("You caught a " + fishArr[fishIndex] + "!");
+        ToastManager.OverwriteToast("You caught a " + fishArr[fishIndex] + "!");
+        if (OnCatchFish != null)
+        {
             OnCatchFish(fishIndex + 1);
         }
     }

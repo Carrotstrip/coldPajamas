@@ -11,6 +11,7 @@ public class Inventory : MonoBehaviour
     public Fishing fishing;
     public int rodMultiplier = 1;
     public int baitMultiplier = 1;
+    public Text fishText;
 
     public static event Action<int> OnNumFishChange;
     public static event Action<Item> OnReceiveItem;
@@ -21,19 +22,29 @@ public class Inventory : MonoBehaviour
         numFish = 0;
     }
 
-    private void OnEnable() {
-      Fishing.OnCatchFish += HandleOnNumFishChange;
-    }
- 
-    private void OnDisable() {
-      Fishing.OnCatchFish -= HandleOnNumFishChange;
+    void Update()
+    {
+        fishText.text = "Fish: " + numFish.ToString();
     }
 
-    public void AddItem(Item item) {
+    private void OnEnable()
+    {
+        Fishing.OnCatchFish += HandleOnNumFishChange;
+    }
+
+    private void OnDisable()
+    {
+        Fishing.OnCatchFish -= HandleOnNumFishChange;
+    }
+
+    public void AddItem(Item item)
+    {
         bool alreadyInList = false;
         Item foundItem = null;
-        for (int i = 0; i < itemList.Count; i++) {
-            if (itemList[i].itemName == item.itemName) {
+        for (int i = 0; i < itemList.Count; i++)
+        {
+            if (itemList[i].itemName == item.itemName)
+            {
                 alreadyInList = true;
                 foundItem = itemList[i];
                 break;
@@ -41,48 +52,61 @@ public class Inventory : MonoBehaviour
         }
 
         // it it's a consumable
-        if(item.isConsumable) {
-            if(alreadyInList) {
+        if (item.isConsumable)
+        {
+            if (alreadyInList)
+            {
                 foundItem.amount++;
             }
-            else {
+            else
+            {
                 itemList.Add(item);
             }
         }
         // if it's an upgrade
-        else if(!item.isConsumable) {
+        else if (!item.isConsumable)
+        {
             // delete the one of the same category
             bool removed = false;
-            for (int i = 0; i < itemList.Count; i++) {
-                if (itemList[i].category == item.category) {
+            for (int i = 0; i < itemList.Count; i++)
+            {
+                if (itemList[i].category == item.category)
+                {
                     itemList.Remove(itemList[i]);
                     removed = true;
-                    if(item.category == "rod") {
+                    if (item.category == "rod")
+                    {
                         rodMultiplier = item.multiplier;
                     }
-                    else if(item.category == "bait") {
+                    else if (item.category == "bait")
+                    {
                         baitMultiplier = item.multiplier;
                     }
                     break;
                 }
             }
-            if(removed) {
+            if (removed)
+            {
                 itemList.Add(item);
             }
         }
-        if(OnReceiveItem != null) {
+        if (OnReceiveItem != null)
+        {
             OnReceiveItem(item);
         }
     }
 
-    public void HandleOnNumFishChange(int numFishIn) {
+    public void HandleOnNumFishChange(int numFishIn)
+    {
         numFish += numFishIn;
-        if(OnNumFishChange != null) {
+        if (OnNumFishChange != null)
+        {
             OnNumFishChange(numFish);
         }
     }
 
-    public void HandleReceiveItem() {
+    public void HandleReceiveItem()
+    {
 
     }
 
