@@ -14,7 +14,7 @@ public class CastLine : MonoBehaviour
     bool cast;
     public string controller;
 
-    public event Action<int> OnCatchFish;
+    public static event Action<int> OnCatchFish;
 
     void Start()
     {

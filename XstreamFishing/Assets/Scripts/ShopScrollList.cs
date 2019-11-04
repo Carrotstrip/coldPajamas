@@ -7,8 +7,12 @@ using System.Collections.Generic;
 public class Item
 {
     public string itemName;
+    public bool isConsumable = true;
+    public string category = "";
     public Sprite icon;
     public int price = 1;
+    public int amount = 1;
+    public float multiplier = 0f;
 }
 
 public class ShopScrollList : MonoBehaviour {
@@ -25,9 +29,10 @@ public class ShopScrollList : MonoBehaviour {
     void Start () 
     {
         AddButtons();
+        RefreshDisplay();
     }
 
-    void RefreshDisplay()
+    public void RefreshDisplay()
     {
         fishDisplayText.text = "Fish: " + inventory.numFish.ToString();
     }
@@ -51,7 +56,6 @@ public class ShopScrollList : MonoBehaviour {
         {
             inventory.numFish -= item.price;
             inventory.AddItem(item);
-            RefreshDisplay();
         }
     }
 }

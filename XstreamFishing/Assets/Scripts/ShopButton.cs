@@ -24,13 +24,14 @@ public class ShopButton : MonoBehaviour {
         item = currentItem;
         nameLabel.text = item.itemName;
         iconImage.sprite = item.icon;
-        priceText.text = item.price.ToString ();
+        priceText.text = item.price.ToString();
         scrollList = currentScrollList;
 
     }
 
     public void HandleClick()
     {
-        scrollList.TryTransferItemToInventory (item);
+        scrollList.RefreshDisplay();
+        scrollList.TryTransferItemToInventory(item);
     }
 }

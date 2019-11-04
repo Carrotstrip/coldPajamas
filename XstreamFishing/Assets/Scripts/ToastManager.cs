@@ -106,19 +106,14 @@ public class ToastManager : MonoBehaviour {
         if (strongRequests.Count > 0){
             if (toasting){
                 instance.StopCoroutine(coroutine);
+                instance.requests.Enqueue(new ToastRequest(instance.toast_text.text));
             }
-            Debug.Log(strongRequests.Count);
             ToastRequest new_request = strongRequests.Dequeue();
-            Debug.Log(strongRequests.Count);
 
 
             instance.toast_text.text = new_request.message;
-            if (toasting){
-                coroutine = DoToast(instance.ease_duration, instance.show_duration);
-            } else {
-                toasting = true;
-                coroutine = DoToast(instance.ease_duration, instance.show_duration);
-            }
+            toasting = true;
+            coroutine = DoToast(instance.ease_duration, instance.show_duration);
 
             instance.StartCoroutine(coroutine);
 
@@ -131,10 +126,13 @@ public class ToastManager : MonoBehaviour {
         float initial_time = Time.time;
         float progress = (Time.time - initial_time) / duration_ease_sec;
 
+        Debug.Log(instance.hidden_pos);
+        Debug.Log(instance.visible_pos);
         while(progress < 1.0f)
         {
             progress = (Time.time - initial_time) / duration_ease_sec;
             float eased_progress = instance.ease.Evaluate(progress);
+            Debug.Log(progress);
             instance.toast_panel.anchoredPosition = Vector3.LerpUnclamped(instance.hidden_pos, instance.visible_pos, eased_progress);
 
             yield return null;
@@ -201,6 +199,7 @@ public class ToastManager : MonoBehaviour {
 
         // // When we're done toasting, we tell the "Update" function that we're ready for more requests.
         instance.toasting = false;
+        instance.toast_text.text = "";
     }
 
     bool toasting = false;
