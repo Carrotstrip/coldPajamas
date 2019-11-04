@@ -1638,7 +1638,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numFish: 0
   castLine: {fileID: 0}
-  itemList: []
+  itemList:
+  - itemName: Jimbo's Rugged Rod
+    isConsumable: 0
+    category: rod
+    icon: {fileID: -631023095337379593, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
+    price: 0
+    amount: 1
+    multiplier: 1
 --- !u!114 &1147869152
 MonoBehaviour:
   m_ObjectHideFlags: 0

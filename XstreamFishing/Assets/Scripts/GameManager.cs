@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         inventory = player.GetComponent<Inventory>();
         ToastManager.setShowDuration(4.0f);
         winState = false;
-        inventoryUI.SetActive(false);
+        inventoryUI.SetActive(true);
         shopUI.SetActive(false);
     }
 
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
         }
 
         // show inventory
-        if(Gamepad.current.startButton.wasPressedThisFrame || Input.GetKeyDown("c")) {
+        if(Input.GetKeyDown("c") || Gamepad.current.startButton.wasPressedThisFrame) {
             inventoryUI.SetActive(!inventoryUI.activeSelf);
         }
 
