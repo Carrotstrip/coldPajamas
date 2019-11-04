@@ -31,19 +31,38 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(Item item) {
         bool alreadyInList = false;
-        int ix = 0;
-        for (int i=0; i< itemList.Count; i++) {
+        Item foundItem = null;
+        for (int i = 0; i < itemList.Count; i++) {
             if (itemList[i].itemName == item.itemName) {
                 alreadyInList = true;
-                ix = i;
+                foundItem = itemList[i];
                 break;
             }
         }
-        if(alreadyInList) {
-            itemList[ix].amount++;
+
+        // it it's a consumable
+        if(item.isConsumable) {
+            if(alreadyInList) {
+                foundItem.amount++;
+            }
+            else {
+                itemList.Add(item);
+            }
         }
-        else {
-            itemList.Add(item);
+        // if it's an upgrade
+        else if(!item.isConsumable) {
+            // delete the one of the same category
+            bool removed = false;
+            for (int i = 0; i < itemList.Count; i++) {
+                if (itemList[i].category == item.category) {
+                    itemList.Remove(itemList[i]);
+                    removed = true;
+                    break;
+                }
+            }
+            if(removed) {
+                itemList.Add(item);
+            }
         }
         if(OnReceiveItem != null) {
             OnReceiveItem(item);
