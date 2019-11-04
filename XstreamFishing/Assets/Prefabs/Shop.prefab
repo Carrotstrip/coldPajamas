@@ -145,8 +145,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5.9000244, y: 39.8}
-  m_SizeDelta: {x: -82, y: -173.1}
+  m_AnchoredPosition: {x: 0.7000122, y: 20}
+  m_SizeDelta: {x: -88.6, y: -150}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &1444451872096729585
 CanvasRenderer:
@@ -291,9 +291,9 @@ MonoBehaviour:
   m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
-  m_Elasticity: 0.005
+  m_Elasticity: 0.05
   m_Inertia: 0
-  m_DecelerationRate: 1
+  m_DecelerationRate: 3
   m_ScrollSensitivity: 3
   m_Viewport: {fileID: 1444451872096729586}
   m_HorizontalScrollbar: {fileID: 1444451872830818294}
@@ -622,8 +622,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1444451872027090607}
   m_HandleRect: {fileID: 1444451872027090606}
   m_Direction: 2
-  m_Value: -0.00000041481007
-  m_Size: 0.32776973
+  m_Value: -0.0000003796664
+  m_Size: 0.41360575
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -773,8 +773,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0.00005722046, y: 0.0003789356}
-  m_SizeDelta: {x: 540.1, y: 1313.3}
+  m_AnchoredPosition: {x: -0.000061035156, y: 0.00026673946}
+  m_SizeDelta: {x: 513.65, y: 1096.6}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1090373927002775365
 MonoBehaviour:
@@ -792,273 +792,363 @@ MonoBehaviour:
   - itemName: Jimbo's Rugged Rod
     icon: {fileID: -631023095337379593, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
     price: 10
+    amount: 1
   - itemName: Crazy Stick
     icon: {fileID: 7737449626985026946, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
     price: 30
+    amount: 1
   - itemName: Ancestral Obelisk
     icon: {fileID: -1199251295059341621, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
     price: 80
+    amount: 1
   - itemName: Cannonball
     icon: {fileID: 5596361543026112581, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 1
+    amount: 1
   - itemName: Golden Cannonball
     icon: {fileID: 7199686104288873141, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 5
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   - itemName: Cobalt Cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 25
+    amount: 1
   contentPanel: {fileID: 1444451873169316025}
   inventory: {fileID: 0}
   fishDisplayText: {fileID: 1444451872780970362}
