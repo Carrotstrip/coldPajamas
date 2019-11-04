@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,18 +26,23 @@ public class GameManager : MonoBehaviour
         inventory = player.GetComponent<Inventory>();
         ToastManager.setShowDuration(4.0f);
         winState = false;
+        inventoryUI.SetActive(false);
+        shopUI.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         // show pro shop
-        if(Input.GetKeyDown("x")) {
+        if(Input.GetKeyDown("x") || Gamepad.current.buttonWest.wasPressedThisFrame) {
+            shopUI.SetActive(!shopUI.activeSelf);
+        }
+        if (Gamepad.current.rightTrigger.wasPressedThisFrame){
             shopUI.SetActive(!shopUI.activeSelf);
         }
 
         // show inventory
-        if(Input.GetKeyDown("c")) {
+        if(Gamepad.current.startButton.wasPressedThisFrame || Input.GetKeyDown("c")) {
             inventoryUI.SetActive(!inventoryUI.activeSelf);
         }
 
@@ -51,8 +57,11 @@ public class GameManager : MonoBehaviour
                 if (timer >= 4.0f){
                     //startupText.text = "";
                     startSequence = false;
-                    ToastManager.setShowDuration(1.0f);
-                    ToastManager.Toast("Press Y to Fish!");
+                    ToastManager.setShowDuration(4.0f);
+                    ToastManager.Toast("Press Y to get Fishin");
+                    ToastManager.Toast("Press A to cast and B to reel in some dinner");
+                    ToastManager.Toast("Visit my shop by pressing X");
+                    ToastManager.Toast("For your inventory, go ahead and smash that start button!");
                 }
             }
             if (!timerRunning && (Input.GetAxis ("Horizontal") != 0 || Input.GetAxis ("Vertical") != 0 || Input.GetKeyDown(KeyCode.Z))){

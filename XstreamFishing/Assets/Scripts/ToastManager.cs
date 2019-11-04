@@ -106,6 +106,7 @@ public class ToastManager : MonoBehaviour {
         if (strongRequests.Count > 0){
             if (toasting){
                 instance.StopCoroutine(coroutine);
+                instance.requests.Enqueue(new ToastRequest(instance.toast_text.text));
             }
             ToastRequest new_request = strongRequests.Dequeue();
 
