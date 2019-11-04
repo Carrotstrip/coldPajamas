@@ -30,7 +30,6 @@ public class InventoryUI : MonoBehaviour {
     }
 
     void HandleOnReceiveItem(Item item) {
-      Debug.Log(item.itemName);
       RefreshDisplay();
     }
 
@@ -43,10 +42,8 @@ public class InventoryUI : MonoBehaviour {
 
     private void RemoveEntries()
     {
-        while (contentPanel.childCount > 0) 
-        {
-            GameObject toRemove = transform.GetChild(0).gameObject;
-            Destroy(toRemove);
+        foreach (Transform child in contentPanel.transform) {
+            GameObject.Destroy(child.gameObject);
         }
     }
 

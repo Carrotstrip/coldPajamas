@@ -30,9 +30,22 @@ public class Inventory : MonoBehaviour
     }
 
     public void AddItem(Item item) {
-        itemList.Add(item);
+        bool alreadyInList = false;
+        int ix = 0;
+        for (int i=0; i< itemList.Count; i++) {
+            if (itemList[i].itemName == item.itemName) {
+                alreadyInList = true;
+                ix = i;
+                break;
+            }
+        }
+        if(alreadyInList) {
+            itemList[ix].amount++;
+        }
+        else {
+            itemList.Add(item);
+        }
         if(OnReceiveItem != null) {
-            Debug.Log("onReceiveItem");
             OnReceiveItem(item);
         }
     }

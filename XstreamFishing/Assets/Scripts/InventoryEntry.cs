@@ -20,7 +20,7 @@ public class InventoryEntry : MonoBehaviour {
     {
         item = currentItem;
         nameLabel.text = item.itemName;
-        amountLabel.text = 1f.ToString();
+        amountLabel.text = currentItem.amount.ToString();
         iconImage.sprite = item.icon;
         thisUI = currentUI;
 

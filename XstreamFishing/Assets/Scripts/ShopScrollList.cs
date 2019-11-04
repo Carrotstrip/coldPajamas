@@ -9,6 +9,7 @@ public class Item
     public string itemName;
     public Sprite icon;
     public int price = 1;
+    public int amount = 1;
 }
 
 public class ShopScrollList : MonoBehaviour {
