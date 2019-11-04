@@ -31,6 +31,7 @@ public class ShopButton : MonoBehaviour {
 
     public void HandleClick()
     {
+        scrollList.RefreshDisplay();
         scrollList.TryTransferItemToInventory(item);
     }
 }
