@@ -11,7 +11,7 @@ public class InventoryEntry : MonoBehaviour {
     private Item item;
     private InventoryUI thisUI;
 
-    // Use this for initialization
+    
     void Start () 
     {
     }

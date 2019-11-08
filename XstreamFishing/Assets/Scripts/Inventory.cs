@@ -13,24 +13,42 @@ public class Inventory : MonoBehaviour
     public int baitMultiplier = 1;
     public Text fishText;
 
-    public static event Action<int> OnNumFishChange;
-    public static event Action<Item> OnReceiveItem;
+    public event Action OnNumFishChange;
+    public event Action OnReceiveItem;
+    public event Action OnInventoryChange;
     public List<Item> itemList;
-    // Start is called before the first frame update
+
     void Start()
     {
+        fishing.OnCatchFish += HandleOnNumFishChange;
         numFish = 0;
     }
 
-    private void OnEnable()
-    {
-        Fishing.OnCatchFish += HandleOnNumFishChange;
+    public bool GetHasCategory(string category) {
+        for (int i = 0; i < itemList.Count; i++)
+        {
+            if (itemList[i].category == category)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
-    private void OnDisable()
-    {
-        Fishing.OnCatchFish -= HandleOnNumFishChange;
+    public void UseCannonball() {
+        for (int i = 0; i < itemList.Count; i++)
+        {
+            if (itemList[i].category == "cannonball")
+            {
+                itemList[i].amount--;
+                if(itemList[i].amount <= 0) {
+                    itemList.Remove(itemList[i]);
+                    OnInventoryChange();
+                }
+            }
+        }
     }
+
 
     public void AddItem(Item item)
     {
@@ -63,31 +81,31 @@ public class Inventory : MonoBehaviour
         // if it's an upgrade
         else if (!item.isConsumable)
         {
-            // delete the one of the same category
-            bool removed = false;
+            // delete the one of the same category (don't let them buy a worse one)
+            bool removedOld = false;
             for (int i = 0; i < itemList.Count; i++)
             {
-                if (itemList[i].category == item.category)
+                if (itemList[i].category == item.category && itemList[i].multiplier <  item.multiplier)
                 {
                     itemList.Remove(itemList[i]);
-                    removed = true;
+                    removedOld = true;
+                    // set the proper multipliers
                     if (item.category == "rod")
                     {
                         rodMultiplier = item.multiplier;
                     }
-                    else if (item.category == "bait")
-                    {
-                        baitMultiplier = item.multiplier;
-                    }
                     break;
                 }
             }
-            // add the new item
-            itemList.Add(item);
+            if(removedOld) {
+                // add the new item
+                itemList.Add(item);
+            }
         }
+        // tell the inventory UI that we got this item
         if (OnReceiveItem != null)
         {
-            OnReceiveItem(item);
+            OnReceiveItem();
         }
     }
 
@@ -96,7 +114,7 @@ public class Inventory : MonoBehaviour
         numFish += numFishIn;
         if (OnNumFishChange != null)
         {
-            OnNumFishChange(numFish);
+            OnNumFishChange();
         }
     }
 

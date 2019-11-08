@@ -21,7 +21,7 @@ public class Fishing : MonoBehaviour
     public string controller;
 
 
-    public static event Action<int> OnCatchFish;
+    public event Action<int> OnCatchFish;
 
     void Start()
     {
