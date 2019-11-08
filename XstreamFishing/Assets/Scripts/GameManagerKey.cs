@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManagerKey : MonoBehaviour
 {
     private float timer;
     private bool timerRunning;
@@ -27,30 +26,41 @@ public class GameManager : MonoBehaviour
         inventory = player.GetComponent<Inventory>();
         ToastManager.setShowDuration(4.0f);
         winState = false;
-        inventoryUI.SetActive(false);
         shopUI.SetActive(false);
+        inventoryUI.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (winState)
         {
             winState = false;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene("MainMenu");
         }
+
+
         // show pro shop
-        if (Input.GetKeyDown("x") /*|| Gamepad.current.buttonWest.wasPressedThisFrame*/)
+        if (Input.GetKeyDown("x"))
         {
             shopUI.SetActive(!shopUI.activeSelf);
         }
+
         // show inventory
-        if (Input.GetKeyDown("c") /*|| Gamepad.current.startButton.wasPressedThisFrame*/)
+        if (Input.GetKeyDown("c"))
         {
             inventoryUI.SetActive(!inventoryUI.activeSelf);
         }
-
-        if (inventory.numFish >= 9 && !winState)
+        if (inventoryUI != null && shopUI != null)
+        {
+            if (inventoryUI.activeSelf || shopUI.activeSelf)
+            {
+                Cursor.visible = true;
+                Screen.lockCursor = false;
+            }
+        }
+        if (inventory.numFish >= 10 && !winState)
         {
             ToastManager.setShowDuration(4.0f);
             ToastManager.OverwriteToast("Looks like you fished this lake dry Partner. Catch ya tomorrow.");
@@ -66,10 +76,11 @@ public class GameManager : MonoBehaviour
                     //startupText.text = "";
                     startSequence = false;
                     ToastManager.setShowDuration(4.0f);
+                    //ToastManager.Toast("Press Z to Cast");
                     ToastManager.Toast("Press Y to get Fishin");
                     ToastManager.Toast("Press V to cast and B to reel in some dinner");
                     ToastManager.Toast("Visit my shop by pressing X");
-                    ToastManager.Toast("For your inventory, go ahead and press the start buttone");
+                    ToastManager.Toast("For your inventory, go ahead and press the start button");
                 }
             }
             if (!timerRunning && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 || Input.GetKeyDown(KeyCode.Z)))

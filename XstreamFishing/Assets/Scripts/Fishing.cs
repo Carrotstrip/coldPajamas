@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 using UnityStandardAssets.Characters.FirstPerson;
 
 public class Fishing : MonoBehaviour
-{ 
+{
     public GameObject rod;
     private Rigidbody rb;
     GameObject rod_clone;
@@ -33,7 +33,7 @@ public class Fishing : MonoBehaviour
     private float minSpeedLimit = .01f;
 
 
-    //public event Action<int> OnCatchFish;
+    public static event Action<int> OnCatchFish;
 
     void Start()
     {
@@ -68,7 +68,8 @@ public class Fishing : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { 
+    {
+        // if (!cast && Gamepad.current.buttonSouth.wasPressedThisFrame){
         if (!cast && Gamepad.current.buttonSouth.wasPressedThisFrame){
             // CAST
             fpc.enabled = false;
@@ -88,13 +89,17 @@ public class Fishing : MonoBehaviour
          /*else if (cast && Gamepad.current.buttonEast.wasPressedThisFrame){
 
             // REEL
-            if(has_fish){
+            if (has_fish)
+            {
                 // Catch Fish
                 CatchFish();
-            } else {
+            }
+            else
+            {
                 // Reel in too quickly
                 //Debug.Log("Reeled in too fast");
-                ToastManager.OverwriteToast("Reeled in too fast!");
+                if (controller == "")
+                    ToastManager.OverwriteToast("Reeled in too fast!");
                 StopCoroutine(coroutine);
             }
             //Destroy(rod_clone);
@@ -186,7 +191,7 @@ public class Fishing : MonoBehaviour
         rod_clone = Instantiate(rod, spawnPos, Quaternion.identity);
         rod_clone.transform.parent = transform;
         rod_clone.transform.LookAt(transform);
-        rod_clone.transform.Rotate(-40,0,0,Space.Self);
+        rod_clone.transform.Rotate(-40, 0, 0, Space.Self);
         rod_clone.GetComponent<Renderer>().material.color = Color.red;
         for (int i = 0; i < 50; ++i){
             if (i < 25){
@@ -211,58 +216,58 @@ public class Fishing : MonoBehaviour
         }
     }
 }
-    // IEnumerator WaitForFishFlee()
-    // {
-    //     //float num_seconds = Random.Range(1.0f, 2.0f);
-    //     yield return new WaitForSeconds(0.5f);
-    //     if (has_fish)
-    //     {
-    //         endFish();
-    //         ToastManager.OverwriteToast("Reeled in too slow!");
-    //         Destroy(rod_clone);
-    //     }
-    // }
+// IEnumerator WaitForFishFlee()
+// {
+//     //float num_seconds = Random.Range(1.0f, 2.0f);
+//     yield return new WaitForSeconds(0.5f);
+//     if (has_fish)
+//     {
+//         endFish();
+//         ToastManager.OverwriteToast("Reeled in too slow!");
+//         Destroy(rod_clone);
+//     }
+// }
 
-    //     if (Input.GetKeyDown(KeyCode.Z))
-    //     {
-    //         if (!cast)
-    //         {
-    //             // if Z pressed, instantiate old rod in front of player, wait 3-7 seconds for fish
-    //             rod_clone = Instantiate(rod, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z + 5f), new Quaternion(0, 90, 55, 1));
-    //             rod_clone.transform.parent = transform.parent;
-    //             cast = true;
-    //             boat.GetComponent<PlayerController>().can_move = false;
-    //             StartCoroutine(WaitForFish());
-    //         }
-    //         else
-    //         {
-    //             // if Z is pressed and there is fish, bring up lil fish message and destroy rod
-    //             if (has_fish)
-    //             {
-    //                 has_fish = false;
-    //                 // TODO: add to inventory
-    //                 // Inventory inventory = gameObject.GetComponentInParent(typeof(Inventory)) as Inventory;
-    //                 Inventory inventory = boat.GetComponent<Inventory>();
-    //                 inventory.AddFish();
-    //                 OnCatchFish(1);
-    //             }
-    //             // if Z is pressed again and there is no fish, destroy rod
-    //             else {
-    //                 has_fish = false;
-    //                 ToastManager.OverwriteToast("Reeled in too fast!");
-    //             }
-    //             Destroy(rod_clone);
-    //             StopCoroutine(WaitForFish());
-    //             StopCoroutine(WaitForFishFlee());
-    //             cast = false;
-    //             boat.GetComponent<PlayerController>().can_move = true;
-    //         }
-    //     }
-    //     if (cast)
-    //     {
-    //         if (has_fish)
-    //             rod_clone.transform.rotation = new Quaternion(0, 55, 55, 1);
-    //         else
-    //             rod_clone.transform.rotation = new Quaternion(0, 90, 55, 1);
-    //     }
-    // }
+//     if (Input.GetKeyDown(KeyCode.Z))
+//     {
+//         if (!cast)
+//         {
+//             // if Z pressed, instantiate old rod in front of player, wait 3-7 seconds for fish
+//             rod_clone = Instantiate(rod, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z + 5f), new Quaternion(0, 90, 55, 1));
+//             rod_clone.transform.parent = transform.parent;
+//             cast = true;
+//             boat.GetComponent<PlayerController>().can_move = false;
+//             StartCoroutine(WaitForFish());
+//         }
+//         else
+//         {
+//             // if Z is pressed and there is fish, bring up lil fish message and destroy rod
+//             if (has_fish)
+//             {
+//                 has_fish = false;
+//                 // TODO: add to inventory
+//                 // Inventory inventory = gameObject.GetComponentInParent(typeof(Inventory)) as Inventory;
+//                 Inventory inventory = boat.GetComponent<Inventory>();
+//                 inventory.AddFish();
+//                 OnCatchFish(1);
+//             }
+//             // if Z is pressed again and there is no fish, destroy rod
+//             else {
+//                 has_fish = false;
+//                 ToastManager.OverwriteToast("Reeled in too fast!");
+//             }
+//             Destroy(rod_clone);
+//             StopCoroutine(WaitForFish());
+//             StopCoroutine(WaitForFishFlee());
+//             cast = false;
+//             boat.GetComponent<PlayerController>().can_move = true;
+//         }
+//     }
+//     if (cast)
+//     {
+//         if (has_fish)
+//             rod_clone.transform.rotation = new Quaternion(0, 55, 55, 1);
+//         else
+//             rod_clone.transform.rotation = new Quaternion(0, 90, 55, 1);
+//     }
+// }

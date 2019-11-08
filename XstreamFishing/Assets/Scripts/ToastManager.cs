@@ -15,7 +15,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ToastManager : MonoBehaviour {
+public class ToastManager : MonoBehaviour
+{
 
     // Singleton static instance variable. When one ToastManager "claims" this variable, all the others go away.
     static ToastManager instance;
@@ -40,19 +41,20 @@ public class ToastManager : MonoBehaviour {
     // The queue keeps a rolling data store of work we still need to do.
     Queue<ToastRequest> requests = new Queue<ToastRequest>();
     Queue<ToastRequest> strongRequests = new Queue<ToastRequest>();
-    
+
     private IEnumerator coroutine;
 
     // Use this for initialization
     void Awake()
     {
         // Typical singleton initialization code.
-        if(instance != null && instance != this)
+        if (instance != null && instance != this)
         {
             // If there already exists a ToastManager, we need to go away.
             //Destroy(gameObject);
             return;
-        } else
+        }
+        else
         {
             // If we are the first ToastManager, we claim the "instance" variable so others go away.
             instance = this;
@@ -74,7 +76,8 @@ public class ToastManager : MonoBehaviour {
     {
         instance.strongRequests.Enqueue(new ToastRequest(msg));
     }
-    void startToastCoroutine(){
+    void startToastCoroutine()
+    {
         show_duration = 1.0f;
         ToastRequest new_strong_request = strongRequests.Dequeue();
         toasting = true;
@@ -103,8 +106,10 @@ public class ToastManager : MonoBehaviour {
             instance.StartCoroutine(coroutine);
             //instance.StartCoroutine(DoToast(instance.ease_duration, instance.show_duration,true));
         }
-        if (strongRequests.Count > 0){
-            if (toasting){
+        if (strongRequests.Count > 0)
+        {
+            if (toasting)
+            {
                 instance.StopCoroutine(coroutine);
             }
             ToastRequest new_request = strongRequests.Dequeue();
@@ -127,7 +132,7 @@ public class ToastManager : MonoBehaviour {
 
         Debug.Log(instance.hidden_pos);
         Debug.Log(instance.visible_pos);
-        while(progress < 1.0f)
+        while (progress < 1.0f)
         {
             progress = (Time.time - initial_time) / duration_ease_sec;
             float eased_progress = instance.ease.Evaluate(progress);
@@ -180,7 +185,7 @@ public class ToastManager : MonoBehaviour {
         //     }
         //     yield return new WaitForSeconds(0.1f);
         // }
-        
+
         yield return new WaitForSeconds(duration_show_sec);
 
         // Ease Out the UI panel
