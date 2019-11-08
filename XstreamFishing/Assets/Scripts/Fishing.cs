@@ -33,7 +33,7 @@ public class Fishing : MonoBehaviour
     private float minSpeedLimit = .01f;
 
 
-    public static event Action<int> OnCatchFish;
+    public event Action<int> OnCatchFish;
 
     void Start()
     {

@@ -15,33 +15,15 @@ public class InventoryUI : MonoBehaviour
     void Start()
     {
         RefreshDisplay();
-    }
-
-    private void OnEnable()
-    {
-        Inventory.OnNumFishChange += HandleOnNumFishChange;
-        Inventory.OnReceiveItem += HandleOnReceiveItem;
-    }
-
-    private void OnDisable()
-    {
-        Inventory.OnNumFishChange -= HandleOnNumFishChange;
-        Inventory.OnReceiveItem -= HandleOnReceiveItem;
-    }
-
-    void HandleOnNumFishChange(int numFish)
-    {
-        // update numFish display
-    }
-
-    void HandleOnReceiveItem(Item item)
-    {
-        RefreshDisplay();
+        inventory.OnNumFishChange += RefreshDisplay;
+        inventory.OnReceiveItem += RefreshDisplay;
+        inventory.OnInventoryChange += RefreshDisplay;
     }
 
 
     public void RefreshDisplay()
     {
+        fishCount.text = "Fish: " + inventory.numFish.ToString();
         RemoveEntries();
         AddEntries();
     }

@@ -7,14 +7,26 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+
+    public static GameManager Instance{ get; private set; }
+    void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+ 
     private float timer;
     private bool timerRunning;
     private bool startSequence;
-    public GameObject player;
-    public Inventory inventory;
-
-    public GameObject shopUI;
-    public GameObject inventoryUI;
+    private GameObject player;
+    Inventory inventory;
 
     public bool winState;
     // Start is called before the first frame update
@@ -27,8 +39,6 @@ public class GameManager : MonoBehaviour
         inventory = player.GetComponent<Inventory>();
         ToastManager.setShowDuration(4.0f);
         winState = false;
-        inventoryUI.SetActive(false);
-        shopUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -38,16 +48,6 @@ public class GameManager : MonoBehaviour
         {
             winState = false;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-        // show pro shop
-        if (Input.GetKeyDown("x") /*|| Gamepad.current.buttonWest.wasPressedThisFrame*/)
-        {
-            shopUI.SetActive(!shopUI.activeSelf);
-        }
-        // show inventory
-        if (Input.GetKeyDown("c") /*|| Gamepad.current.startButton.wasPressedThisFrame*/)
-        {
-            inventoryUI.SetActive(!inventoryUI.activeSelf);
         }
 
         if (inventory.numFish >= 9 && !winState)

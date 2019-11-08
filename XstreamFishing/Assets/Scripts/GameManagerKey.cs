@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerKey : MonoBehaviour
 {
+    public static GameManagerKey Instance{ get; private set; }
     private float timer;
     private bool timerRunning;
     private bool startSequence;
@@ -30,6 +31,19 @@ public class GameManagerKey : MonoBehaviour
         inventoryUI.SetActive(false);
     }
 
+    void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -37,7 +51,7 @@ public class GameManagerKey : MonoBehaviour
         if (winState)
         {
             winState = false;
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
 

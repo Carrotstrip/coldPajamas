@@ -11,7 +11,7 @@ public class ShopButton : MonoBehaviour {
 
 
     private Item item;
-    private ShopScrollList scrollList;
+    private ShopUI scrollList;
 
     // Use this for initialization
     void Start () 
@@ -19,7 +19,7 @@ public class ShopButton : MonoBehaviour {
         buttonComponent.onClick.AddListener (HandleClick);
     }
 
-    public void Setup(Item currentItem, ShopScrollList currentScrollList)
+    public void Setup(Item currentItem, ShopUI currentScrollList)
     {
         item = currentItem;
         nameLabel.text = item.itemName;
@@ -31,7 +31,6 @@ public class ShopButton : MonoBehaviour {
 
     public void HandleClick()
     {
-        scrollList.RefreshDisplay();
         scrollList.TryTransferItemToInventory(item);
     }
 }
