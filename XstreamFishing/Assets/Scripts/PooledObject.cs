@@ -21,5 +21,5 @@ public class PooledObject : MonoBehaviour {
 		}
 		return (T)poolInstanceForPrefab.GetObject();
 	}
-
+	
 }

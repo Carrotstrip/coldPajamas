@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public bool can_move;
     public string controller;
     private Rigidbody rb;
+    public GameObject shopUI;
+    public GameObject inventoryUI;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,16 @@ public class PlayerController : MonoBehaviour
         // {
         //     Debug.Log("TESTES");
         // }
+        // show pro shop
+        if (Input.GetKeyDown("x") /*|| Gamepad.current.buttonWest.wasPressedThisFrame*/)
+        {
+            shopUI.SetActive(!shopUI.activeSelf);
+        }
+        // show inventory
+        if (Input.GetKeyDown("c") /*|| Gamepad.current.startButton.wasPressedThisFrame*/)
+        {
+            inventoryUI.SetActive(!inventoryUI.activeSelf);
+        }
         if (can_move)
         {
             float moveHorizontal = Input.GetAxis(controller + "Horizontal");

@@ -17,6 +17,7 @@ public class Inventory : MonoBehaviour
     public event Action OnReceiveItem;
     public event Action OnInventoryChange;
     public List<Item> itemList;
+    public List<Item> equippedList;
 
     void Start()
     {
@@ -24,7 +25,7 @@ public class Inventory : MonoBehaviour
         numFish = 0;
     }
 
-    public bool GetHasCategory(string category) {
+    public bool GetHasCategoryEquipped(string category) {
         for (int i = 0; i < itemList.Count; i++)
         {
             if (itemList[i].category == category)

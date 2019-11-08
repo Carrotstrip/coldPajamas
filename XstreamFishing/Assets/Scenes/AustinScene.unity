@@ -885,37 +885,37 @@ PrefabInstance:
     - target: {fileID: 2079574644665926501, guid: 7998ad5a9a44e42a2963b172660bad1b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.97
+      value: -3.32
       objectReference: {fileID: 0}
     - target: {fileID: 2079574644665926501, guid: 7998ad5a9a44e42a2963b172660bad1b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.92
+      value: 4.68
       objectReference: {fileID: 0}
     - target: {fileID: 2079574644665926501, guid: 7998ad5a9a44e42a2963b172660bad1b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 8.33
       objectReference: {fileID: 0}
     - target: {fileID: 2079574644665926501, guid: 7998ad5a9a44e42a2963b172660bad1b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.1464466
       objectReference: {fileID: 0}
     - target: {fileID: 2079574644665926501, guid: 7998ad5a9a44e42a2963b172660bad1b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.35355338
       objectReference: {fileID: 0}
     - target: {fileID: 2079574644665926501, guid: 7998ad5a9a44e42a2963b172660bad1b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.38268343
+      value: 0.35355338
       objectReference: {fileID: 0}
     - target: {fileID: 2079574644665926501, guid: 7998ad5a9a44e42a2963b172660bad1b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.92387956
+      value: 0.8535535
       objectReference: {fileID: 0}
     - target: {fileID: 2079574644665926501, guid: 7998ad5a9a44e42a2963b172660bad1b,
         type: 3}
@@ -930,14 +930,67 @@ PrefabInstance:
     - target: {fileID: 2079574644665926501, guid: 7998ad5a9a44e42a2963b172660bad1b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 2079574644665926501, guid: 7998ad5a9a44e42a2963b172660bad1b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 45
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 2079574644665926502, guid: 7998ad5a9a44e42a2963b172660bad1b,
+        type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 401050296}
+    - target: {fileID: 2079574644665926502, guid: 7998ad5a9a44e42a2963b172660bad1b,
+        type: 3}
+      propertyPath: fireDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079574644665926502, guid: 7998ad5a9a44e42a2963b172660bad1b,
+        type: 3}
+      propertyPath: barrelSpeed
+      value: 2500
+      objectReference: {fileID: 0}
+    - target: {fileID: 277842390, guid: 7998ad5a9a44e42a2963b172660bad1b, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 277842390, guid: 7998ad5a9a44e42a2963b172660bad1b, type: 3}
+      propertyPath: lengthInSec
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 277842390, guid: 7998ad5a9a44e42a2963b172660bad1b, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 277842390, guid: 7998ad5a9a44e42a2963b172660bad1b, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 277842390, guid: 7998ad5a9a44e42a2963b172660bad1b, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 277842390, guid: 7998ad5a9a44e42a2963b172660bad1b, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 277842390, guid: 7998ad5a9a44e42a2963b172660bad1b, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 277842390, guid: 7998ad5a9a44e42a2963b172660bad1b, type: 3}
+      propertyPath: useRigidbodyForVelocity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 277842390, guid: 7998ad5a9a44e42a2963b172660bad1b, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 30
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 277842389, guid: 7998ad5a9a44e42a2963b172660bad1b, type: 3}
+    - {fileID: 277842390, guid: 7998ad5a9a44e42a2963b172660bad1b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7998ad5a9a44e42a2963b172660bad1b, type: 3}
 --- !u!1 &370583348
 GameObject:
@@ -1179,8 +1232,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 7, y: 8, z: 22}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 9.727331, y: 5.066826, z: 25.457958}
+  m_Center: {x: -0.1272583, y: 2.6708126, z: 3.0898228}
 --- !u!1 &438888258
 GameObject:
   m_ObjectHideFlags: 0
@@ -3446,6 +3499,27 @@ MonoBehaviour:
     price: 3
     amount: 1
     multiplier: 3
+  - itemName: Cannonball
+    isConsumable: 1
+    category: cannonball
+    icon: {fileID: 0}
+    price: 1
+    amount: 1
+    multiplier: 1
+  - itemName: Golden Cannonball
+    isConsumable: 1
+    category: cannonball
+    icon: {fileID: 0}
+    price: 2
+    amount: 1
+    multiplier: 2
+  - itemName: Cobalt Cannonball
+    isConsumable: 1
+    category: cannonball
+    icon: {fileID: 0}
+    price: 3
+    amount: 1
+    multiplier: 3
   contentPanel: {fileID: 1908461052}
   inventory: {fileID: 401050296}
   shopButton: {fileID: 2409473881141113518, guid: 4c8a4ca783afa4d9d87fe96d469c110d,
@@ -3788,7 +3862,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1e-45, y: 7.8465624e+11, z: 1e-45, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

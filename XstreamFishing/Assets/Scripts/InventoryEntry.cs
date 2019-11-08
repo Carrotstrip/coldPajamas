@@ -14,6 +14,12 @@ public class InventoryEntry : MonoBehaviour {
     
     void Start () 
     {
+        buttonComponent.onClick.AddListener(HandleClick);
+    }
+
+    public void HandleClick()
+    {
+        // thisUI.EquipItem(item);
     }
 
     public void Setup(Item currentItem, InventoryUI currentUI)

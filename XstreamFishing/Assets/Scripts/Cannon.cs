@@ -40,7 +40,8 @@ public class Cannon : MonoBehaviour
     }
 
     void Fire() {
-        if(!inventory.GetHasCategory("cannonball") || fireTimer > 0) {
+        // don't fire if we have no cannonball equipped or the delay timer hasn't run out
+        if(!inventory.GetHasCategoryEquipped("cannonball") || fireTimer > 0) {
             return;
         }
         fireTimer = fireDelay;
@@ -54,8 +55,6 @@ public class Cannon : MonoBehaviour
         rb.AddForce(transform.rotation*Vector3.up*barrelSpeed);
         // take cannonball from inventory
         inventory.UseCannonball();
-        // ps.Stop();
-        // ps.Play();
     }
 
     void GimbalUp() {

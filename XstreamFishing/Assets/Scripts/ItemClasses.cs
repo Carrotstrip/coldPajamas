@@ -9,6 +9,7 @@ public class Item
 {
     public string itemName;
     public bool isConsumable = true;
+    public bool isEquipped = false;
     public string category = "";
     public Sprite icon;
     public int price = 1;

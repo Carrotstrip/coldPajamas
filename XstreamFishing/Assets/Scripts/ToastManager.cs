@@ -19,7 +19,6 @@ public class ToastManager : MonoBehaviour
 {
 
     // Singleton static instance variable. When one ToastManager "claims" this variable, all the others go away.
-    static ToastManager instance;
     Vector3 hidden_pos;
     Vector3 visible_pos;
 
@@ -43,22 +42,19 @@ public class ToastManager : MonoBehaviour
     Queue<ToastRequest> strongRequests = new Queue<ToastRequest>();
 
     private IEnumerator coroutine;
+    public static ToastManager instance{ get; private set; }
 
     // Use this for initialization
     void Awake()
     {
-        // Typical singleton initialization code.
-        if (instance != null && instance != this)
+        if(instance == null)
         {
-            // If there already exists a ToastManager, we need to go away.
-            //Destroy(gameObject);
-            return;
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            // If we are the first ToastManager, we claim the "instance" variable so others go away.
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);
         }
 
         // Init positions

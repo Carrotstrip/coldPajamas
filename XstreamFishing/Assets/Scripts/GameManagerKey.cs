@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerKey : MonoBehaviour
 {
-    static GameManagerKey instance;
+    public static GameManagerKey Instance{ get; private set; }
     private float timer;
     private bool timerRunning;
     private bool startSequence;
@@ -33,17 +33,14 @@ public class GameManagerKey : MonoBehaviour
 
     void Awake()
     {
-        // Typical singleton initialization code.
-        if (instance != null && instance != this)
+        if(Instance == null)
         {
-            // If there already exists a ToastManager, we need to go away.
-            Destroy(gameObject);
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            // If we are the first ToastManager, we claim the "instance" variable so others go away.
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);
         }
     }
 
