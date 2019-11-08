@@ -1,27 +1,16 @@
 using UnityEngine;
 using System.Collections;
+using System;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-[System.Serializable]
-public class Item
-{
-    public string itemName;
-    public bool isConsumable = true;
-    public string category = "";
-    public Sprite icon;
-    public int price = 1;
-    public int amount = 1;
-    public int multiplier = 0;
-}
-
-public class ShopScrollList : MonoBehaviour
+public class ShopUI : MonoBehaviour
 {
 
     public List<Item> itemList;
     public Transform contentPanel;
     public Inventory inventory;
-    public Text fishDisplayText;
+    public static Action OnNotEnoughFish;
 
     public GameObject shopButton;
 
@@ -30,17 +19,10 @@ public class ShopScrollList : MonoBehaviour
     void Start()
     {
         AddButtons();
-        RefreshDisplay();
-    }
-
-    public void RefreshDisplay()
-    {
-        fishDisplayText.text = "Fish: " + inventory.numFish.ToString();
     }
 
     private void AddButtons()
     {
-        RefreshDisplay();
         for (int i = 0; i < itemList.Count; i++)
         {
             Item item = itemList[i];
@@ -54,10 +36,19 @@ public class ShopScrollList : MonoBehaviour
 
     public void TryTransferItemToInventory(Item item)
     {
+        // if you have enough fish to buy
         if (inventory.numFish >= item.price)
         {
+            // subtract funds and give item
             inventory.numFish -= item.price;
             inventory.AddItem(item);
+        }
+        // if not enough fish
+        else {
+            // emit not enough fish event
+            if(OnNotEnoughFish != null) {
+                OnNotEnoughFish();
+            }
         }
     }
 }

@@ -22,11 +22,6 @@ public class Inventory : MonoBehaviour
         numFish = 0;
     }
 
-    void Update()
-    {
-        fishText.text = "Fish: " + numFish.ToString();
-    }
-
     private void OnEnable()
     {
         Fishing.OnCatchFish += HandleOnNumFishChange;
@@ -51,13 +46,15 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        // it it's a consumable
+        // if it's a consumable
         if (item.isConsumable)
         {
+            // if we already have it, increment amount
             if (alreadyInList)
             {
                 foundItem.amount++;
             }
+            // if we don't, add it to inventory
             else
             {
                 itemList.Add(item);
@@ -85,10 +82,8 @@ public class Inventory : MonoBehaviour
                     break;
                 }
             }
-            if (removed)
-            {
-                itemList.Add(item);
-            }
+            // add the new item
+            itemList.Add(item);
         }
         if (OnReceiveItem != null)
         {

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerKey : MonoBehaviour
 {
+    static GameManagerKey instance;
     private float timer;
     private bool timerRunning;
     private bool startSequence;
@@ -30,6 +31,22 @@ public class GameManagerKey : MonoBehaviour
         inventoryUI.SetActive(false);
     }
 
+    void Awake()
+    {
+        // Typical singleton initialization code.
+        if (instance != null && instance != this)
+        {
+            // If there already exists a ToastManager, we need to go away.
+            Destroy(gameObject);
+        }
+        else
+        {
+            // If we are the first ToastManager, we claim the "instance" variable so others go away.
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -37,7 +54,7 @@ public class GameManagerKey : MonoBehaviour
         if (winState)
         {
             winState = false;
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
 
