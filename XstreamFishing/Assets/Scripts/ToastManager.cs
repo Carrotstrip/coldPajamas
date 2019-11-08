@@ -22,6 +22,7 @@ public class ToastManager : MonoBehaviour
     Vector3 hidden_pos;
     Vector3 visible_pos;
 
+    public GameObject canvas;
     public RectTransform toast_panel;
     public Text toast_text;
 
@@ -51,6 +52,7 @@ public class ToastManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(canvas);
         }
         else
         {

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Cannonball : PooledObject {
 
-
+	public float multiplier;
 	void OnTriggerEnter (Collider enteredCollider) {
 		if (enteredCollider.CompareTag("destroyZone")) {
 			Rigidbody rb = GetComponent<Rigidbody>();

@@ -49,12 +49,15 @@ public class GameManager : MonoBehaviour
             winState = false;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+        if(Input.GetKeyDown("q")) {
+            winState = true;
+        }
 
         if (inventory.numFish >= 9 && !winState)
         {
             ToastManager.setShowDuration(4.0f);
             ToastManager.OverwriteToast("Looks like you fished this lake dry Partner. Catch ya tomorrow.");
-            winState = true;
+            // winState = true;
         }
         if (startSequence)
         {

@@ -7,11 +7,9 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     public int numFish;
-
     public Fishing fishing;
     public int rodMultiplier = 1;
     public int baitMultiplier = 1;
-    public Text fishText;
 
     public event Action OnNumFishChange;
     public event Action OnReceiveItem;
@@ -22,18 +20,41 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         fishing.OnCatchFish += HandleOnNumFishChange;
-        numFish = 0;
     }
 
     public bool GetHasCategoryEquipped(string category) {
         for (int i = 0; i < itemList.Count; i++)
         {
-            if (itemList[i].category == category)
+            if (itemList[i].category == category && itemList[i].isEquipped)
             {
                 return true;
             }
         }
         return false;
+    }
+
+    
+    public Item GetEquippedOfCategory(string category) {
+        for (int i = 0; i < itemList.Count; i++)
+        {
+            if (itemList[i].category == category && itemList[i].isEquipped)
+            {
+                return itemList[i];
+            }
+        }
+        return itemList[0];
+    }
+
+    public void EquipItem(Item item, InventoryEntry ie) {
+        for (int i = 0; i < itemList.Count; i++)
+        {
+            if (itemList[i].category == item.category)
+            {
+                itemList[i].isEquipped = false;
+                // ie.image.color = new Color32(255, 255, 255, 255);
+            }
+        }
+        item.isEquipped = true;
     }
 
     public void UseCannonball() {
