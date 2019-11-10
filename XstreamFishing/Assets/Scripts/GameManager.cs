@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
     private bool startSequence;
     private GameObject player;
     Inventory inventory;
-
     public bool winState;
     // Start is called before the first frame update
     void Start()

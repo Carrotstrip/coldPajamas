@@ -5,20 +5,32 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
-
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class Fishing : MonoBehaviour
 {
     public GameObject rod;
     private Rigidbody rb;
     GameObject rod_clone;
-    public Inventory inventory;
+    public GameObject panel;
+    public Slider reelingSlider;
+    public Slider catchSlider;
+    public Slider releaseSlider;
+    public FishMap fishMap;
 
+    private FirstPersonController fpc;
     bool has_fish;
     bool cast;
+    bool caught;
     private IEnumerator coroutine;
     private string[] fishArr;
-    public string controller;
+    private Vector2 lastStickLocation;
+    private int releaseCap = 200;
+    private int catchCap = 300;
+    private int releaseCounter = 0;
+    private int catchCounter = 0;
+    private float maxSpeedLimit = .1f;
+    private float minSpeedLimit = .01f;
 
 
     public event Action<int> OnCatchFish;
@@ -47,34 +59,35 @@ public class Fishing : MonoBehaviour
             "Lake Sturgeon"
         };
         rb = GetComponent<Rigidbody>();
+        catchSlider.maxValue = catchCap;
+        releaseSlider.maxValue = releaseCap;
+        fpc = GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>();
+
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        bool player_reel;
-        bool player_cast;
-        if (controller == "")
-        {
-            player_cast = Input.GetKeyDown("v");
-            player_reel = Input.GetKeyDown("b");
-        }
-        else
-        {
-            player_cast = Input.GetButtonDown(controller + "A");
-            player_reel = Input.GetButtonDown(controller + "B");
-        }
         // if (!cast && Gamepad.current.buttonSouth.wasPressedThisFrame){
-        if (!cast && player_cast)
-        {
+        if (!cast && Gamepad.current.buttonSouth.wasPressedThisFrame){
             // CAST
+            fpc.enabled = false;
+            panel.SetActive(true);
             coroutine = WaitForFish();
             StartCoroutine(coroutine);
 
+        } else {
+            if (has_fish) {
+                reel();
+            }
+
         }
-        else if (cast && player_reel)
-        {
+        if (!cast && !has_fish && !caught && !fpc.enabled){
+            fpc.enabled = true;
+        }
+         /*else if (cast && Gamepad.current.buttonEast.wasPressedThisFrame){
+
             // REEL
             if (has_fish)
             {
@@ -91,59 +104,117 @@ public class Fishing : MonoBehaviour
             }
             //Destroy(rod_clone);
             endFish();
-        }
+        }*/
     }
 
-    void CatchFish()
-    {
-        int rodMultiplier = inventory.rodMultiplier;
-        int baitMultiplier = inventory.baitMultiplier;
-        int fishIndex = Random.Range(0, 18) % (2 * rodMultiplier * baitMultiplier);
-        Debug.Log("You caught a " + fishArr[fishIndex] + "!");
-        if (controller == "")
-            ToastManager.OverwriteToast("You caught a " + fishArr[fishIndex] + "!");
-        if (OnCatchFish != null)
-        {
-            OnCatchFish(fishIndex + 1);
+    void reel(){
+        Vector2 input = Gamepad.current.rightStick.ReadValue();
+        float distFromPrev = Mathf.Sqrt(Mathf.Pow(input.x - lastStickLocation.x,2) + Mathf.Pow(input.y - lastStickLocation.y,2));
+        //Debug.Log(distFromPrev);
+        reelingSlider.value = distFromPrev;
+        lastStickLocation = input;
+        if (distFromPrev > minSpeedLimit && distFromPrev < maxSpeedLimit){
+            Debug.Log(distFromPrev);
+            ++catchCounter;
+            releaseCounter = releaseCounter <= 0 ? 0: --releaseCounter;
+            releaseSlider.value = releaseCounter;
+            catchSlider.value = catchCounter;
+            switch(catchCounter){
+                case 50:
+                case 75:
+                case 100:
+                case 150:
+                case 180:
+                    rod_clone.transform.Rotate(10,0,0,Space.Self);
+                    break;
+                default:
+                    break;
+            }
+            if (catchCounter > catchCap)
+                CatchFish();
+        } else {
+            ++releaseCounter;
+            releaseSlider.value = releaseCounter;
+            catchCounter = catchCounter <= 0 ? 0: catchCounter-2;
+            catchSlider.value = catchCounter;
+            switch(releaseCounter){
+                case 30:
+                case 80:
+                    rod_clone.transform.Rotate(-10,0,0,Space.Self);
+                    break;
+                default:
+                    break;
+            }
+            if (releaseCounter > releaseCap)
+                endFish();
         }
-    }
 
-    void endFish()
-    {
+    }
+    void CatchFish(){
+        caught = true;
+        int rodMultiplier = 1;
+        int baitMultiplier = 1;
+        int fishIndex = Random.Range(0,18) % (2 * rodMultiplier * baitMultiplier);
+        Debug.Log("You caught a " + fishArr[fishIndex]+"!");
+        ToastManager.OverwriteToast("You caught a " + fishArr[fishIndex]+"!");
+        endFish();
+    }
+    
+    void endFish(){
+        caught = false;
         has_fish = false;
         cast = false;
+        catchSlider.value = 0;
+        releaseSlider.value = 0;
+        reelingSlider.value = 0;
+        // I like the idea of fish being scared off
+        // and decrementing number of fish even if they weren't caught
+        int x = (int)(transform.position.x + 375)/75;
+        int y = (int)(transform.position.y + 375)/75;
+        fishMap.decrementFish(x,y);
         Destroy(rod_clone);
+        panel.SetActive(false);
     }
     IEnumerator WaitForFish()
     {
+        ToastManager.OverwriteToast("Reel in with the right joystick");
+        cast = true;
+        int x = (int)(transform.position.x + 375)/75;
+        int y = (int)(transform.position.y + 375)/75;
+        int fishCount = fishMap.getFishCount(x,y);
+        releaseCounter = 0;
+        catchCounter = 0;
         Vector3 playerPos = transform.position;
         Vector3 playerDirection = transform.forward;
         Quaternion playerRotation = transform.rotation;
-        Vector3 spawnPos = playerPos + playerDirection.normalized * 4;
-        //rod_clone = Instantiate(rod, new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z + 5f), new Quaternion(0, 90, 55, 1));
-        //rod_clone = Instantiate(rod, spawnPos, playerRotation);
+        Vector3 spawnPos = playerPos + playerDirection.normalized*4;
         rod_clone = Instantiate(rod, spawnPos, Quaternion.identity);
         rod_clone.transform.parent = transform;
         rod_clone.transform.LookAt(transform);
         rod_clone.transform.Rotate(-40, 0, 0, Space.Self);
         rod_clone.GetComponent<Renderer>().material.color = Color.red;
-        cast = true;
-        //Gamepad.current.SetMotorSpeeds(1.0f, 1.0f);
+        for (int i = 0; i < 50; ++i){
+            if (i < 25){
+                rod_clone.transform.Rotate(1,0,0,Space.Self);
+                yield return new WaitForSeconds(.00001f);
+            } else {
+                rod_clone.transform.Rotate(-1,0,0,Space.Self);
+                yield return new WaitForSeconds(.01f);
+            }
+        }
         float num_seconds = Random.Range(2.0f, 4.0f);
         yield return new WaitForSeconds(num_seconds);
-        has_fish = true;
-        rod_clone.transform.Rotate(-40, 0, 0, Space.Self);
-        rod_clone.GetComponent<Renderer>().material.color = Color.green;
-        yield return new WaitForSeconds(0.75f);
-        if (has_fish)
-        {
-            Debug.Log("Reeled in too slow");
+        rb.freezeRotation = true;
+        Vector2 input = Gamepad.current.rightStick.ReadValue();
+        if (fishCount == 0){
+            ToastManager.OverwriteToast("Looks like nothing's biting around here");
             endFish();
-            if (controller == "")
-                ToastManager.OverwriteToast("Reeled in too slow!");
+        } else {
+            has_fish = true;
+            rod_clone.transform.Rotate(-40,0,0,Space.Self);
+            rod_clone.GetComponent<Renderer>().material.color = Color.green;
         }
     }
-
 }
 // IEnumerator WaitForFishFlee()
 // {
