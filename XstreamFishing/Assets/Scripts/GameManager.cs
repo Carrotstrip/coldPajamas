@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
                     ToastManager.Toast("Press Y to get Fishin");
                     ToastManager.Toast("Press V to cast and B to reel in some dinner");
                     ToastManager.Toast("Visit my shop by pressing X");
-                    ToastManager.Toast("For your inventory, go ahead and press the start buttone");
+                    ToastManager.Toast("For your inventory, go ahead and press the start button");
                 }
             }
             if (!timerRunning && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 || Input.GetKeyDown(KeyCode.Z)))

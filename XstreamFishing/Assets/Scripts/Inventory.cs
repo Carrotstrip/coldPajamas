@@ -17,7 +17,7 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        fishing.OnCatchFish += HandleOnNumFishChange;
+        fishing.OnCatchFish += HandleOnCatchFish;
     }
 
     void Update() {
@@ -154,28 +154,22 @@ public class Inventory : MonoBehaviour
             itemList.Add(item);
         }
         // tell the inventory UI that we got this item
-        if (OnReceiveItem != null)
-        {
-            OnReceiveItem();
-        }
+        OnInventoryChange();
     }
 
-    public void HandleOnNumFishChange(int numFishIn)
+    public void HandleOnCatchFish(int numFishIn)
     {
         GainFish(numFishIn);
-        if (OnNumFishChange != null)
-        {
-            OnNumFishChange();
+        Item bait = GetEquippedOfCategory("bait");
+        if(bait != null) {
+            bait.amount -= 1;
         }
+        OnInventoryChange();
     }
+
 
     public void GainFish(int numFishIn) {
         numFish += numFishIn;
-    }
-
-    public void HandleReceiveItem()
-    {
-
     }
 
 }
