@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public bool winState;
+    public static bool winState;
     public GameObject player_prefab;
     private List<GameObject> players;
     private List<string> controllers;
@@ -77,5 +77,9 @@ public class GameManager : MonoBehaviour
         //     winState = true;
         // }
 
+    }
+
+    public static void SomeoneWon(){
+        winState = true;
     }
 }
