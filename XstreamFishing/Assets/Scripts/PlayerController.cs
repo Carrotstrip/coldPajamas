@@ -9,10 +9,8 @@ public class PlayerController : MonoBehaviour
     public float turnSpeed = 1000f;
     public float accelerateSpeed = 1000f;
     public bool can_move;
-    public string controller;
     private Rigidbody rb;
-    public GameObject shopUI;
-    public GameObject inventoryUI;
+    protected Vector2 move_vector;
 
     // Start is called before the first frame update
     void Start()
@@ -20,31 +18,18 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         can_move = true;
     }
+
+    void OnMove(InputValue input)
+    {
+        move_vector = input.Get<Vector2>();
+    }
+
     void Update()
     {
-        //bool xbox_a = Input.GetButton("XboxA");
-
-        // if (Input.GetButton("XboxA")){
-        //     Debug.Log("TESTES");
-        // }
-        // if (Gamepad.current.rightTrigger.wasPressedThisFrame)
-        // {
-        //     Debug.Log("TESTES");
-        // }
-        // show pro shop
-        if (Input.GetKeyDown("x") /*|| Gamepad.current.buttonWest.wasPressedThisFrame*/)
-        {
-            shopUI.SetActive(!shopUI.activeSelf);
-        }
-        // show inventory
-        if (Input.GetKeyDown("c") /*|| Gamepad.current.startButton.wasPressedThisFrame*/)
-        {
-            inventoryUI.SetActive(!inventoryUI.activeSelf);
-        }
         if (can_move)
         {
-            float moveHorizontal = Input.GetAxis(controller + "Horizontal");
-            float moveVertical = Input.GetAxis(controller + "Vertical");
+            float moveHorizontal = move_vector.x;
+            float moveVertical = move_vector.y;
             rb.AddTorque(0f, moveHorizontal * turnSpeed * Time.deltaTime, 0f);
             rb.AddForce(transform.forward * moveVertical * accelerateSpeed * Time.deltaTime);
         }
@@ -53,6 +38,7 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector3(0, 0, 0);
         }
     }
+
     // void FixedUpdate()
     // {
     //     float moveHorizontal = Input.GetAxis ("Horizontal");
@@ -87,4 +73,6 @@ public class PlayerController : MonoBehaviour
     //         onGround = false;
     //     }
     // }
+
+
 }

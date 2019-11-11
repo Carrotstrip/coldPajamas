@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.InputSystem;
 
 namespace UnityStandardAssets.Characters.FirstPerson
 {
@@ -15,35 +16,24 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public bool smooth;
         public float smoothTime = 5f;
         public bool lockCursor = true;
-        private string num_controller;
+        public float yRot;
+        public float xRot;
 
 
         private Quaternion m_CharacterTargetRot;
         private Quaternion m_CameraTargetRot;
         private bool m_cursorIsLocked = true;
 
-        public void Init(Transform character, Transform camera, string controller)
+        public void Init(Transform character, Transform camera)
         {
             m_CharacterTargetRot = character.localRotation;
             m_CameraTargetRot = camera.localRotation;
-            num_controller = controller;
         }
 
 
-        public void LookRotation(Transform character, Transform camera)
+
+        public void LookRotation(Transform character, Transform camera, float yRot, float xRot)
         {
-            float yRot;
-            float xRot;
-            if (num_controller == "")
-            {
-                yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
-                xRot = CrossPlatformInputManager.GetAxis("Mouse Y") * YSensitivity;
-            }
-            else
-            {
-                yRot = CrossPlatformInputManager.GetAxis(num_controller + "RightStickHoriz") * XSensitivity;
-                xRot = CrossPlatformInputManager.GetAxis(num_controller + "RightStickVerti") * YSensitivity;
-            }
             m_CharacterTargetRot *= Quaternion.Euler(0f, yRot, 0f);
             m_CameraTargetRot *= Quaternion.Euler(-xRot, 0f, 0f);
 

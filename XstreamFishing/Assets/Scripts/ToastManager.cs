@@ -43,21 +43,21 @@ public class ToastManager : MonoBehaviour
     Queue<ToastRequest> strongRequests = new Queue<ToastRequest>();
 
     private IEnumerator coroutine;
-    public static ToastManager instance{ get; private set; }
+    public static ToastManager instance { get; private set; }
 
     // Use this for initialization
     void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
             DontDestroyOnLoad(canvas);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        // else
+        // {
+        //     Destroy(gameObject);
+        // }
 
         // Init positions
         hidden_pos = new Vector3(0, hidden_y, 0);

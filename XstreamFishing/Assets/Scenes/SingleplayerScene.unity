@@ -636,6 +636,36 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1444451872122315847, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000091552734
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444451872122315847, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 600.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444451872122315847, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444451872122315847, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 604.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444451872780970360, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444451872780970360, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 273
+      objectReference: {fileID: 0}
     - target: {fileID: 1090373927002775365, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: inventory
@@ -690,36 +720,6 @@ PrefabInstance:
         type: 3}
       propertyPath: itemList.Array.data[1].price
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1444451872122315847, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.000091552734
-      objectReference: {fileID: 0}
-    - target: {fileID: 1444451872122315847, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 600.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1444451872122315847, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1444451872122315847, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 604.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1444451872780970360, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 240
-      objectReference: {fileID: 0}
-    - target: {fileID: 1444451872780970360, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 273
       objectReference: {fileID: 0}
     - target: {fileID: 1444451873169316025, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
@@ -1045,6 +1045,7 @@ MonoBehaviour:
   itemList:
   - itemName: Crazy Stick
     isConsumable: 0
+    isEquipped: 0
     category: rod
     icon: {fileID: 0}
     price: 3
@@ -1052,6 +1053,7 @@ MonoBehaviour:
     multiplier: 2
   - itemName: Ancestral Obelisk
     isConsumable: 0
+    isEquipped: 0
     category: rod
     icon: {fileID: 0}
     price: 5
@@ -1059,6 +1061,7 @@ MonoBehaviour:
     multiplier: 3
   - itemName: Bait
     isConsumable: 1
+    isEquipped: 0
     category: bait
     icon: {fileID: 0}
     price: 1
@@ -1066,6 +1069,7 @@ MonoBehaviour:
     multiplier: 1
   - itemName: Synthetic Bait
     isConsumable: 1
+    isEquipped: 0
     category: bait
     icon: {fileID: 0}
     price: 2
@@ -1073,6 +1077,7 @@ MonoBehaviour:
     multiplier: 2
   - itemName: Worms
     isConsumable: 1
+    isEquipped: 0
     category: bait
     icon: {fileID: 0}
     price: 3
@@ -1823,6 +1828,8 @@ MonoBehaviour:
   accelerateSpeed: 2000
   can_move: 0
   controller: 
+  shopUI: {fileID: 0}
+  inventoryUI: {fileID: 0}
 --- !u!54 &1147869149
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1865,7 +1872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e4c297a925419197d10b45376c2c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numFish: 0
+  numFish: 20
   fishing: {fileID: 1376820860}
   rodMultiplier: 1
   baitMultiplier: 1
@@ -1873,6 +1880,7 @@ MonoBehaviour:
   itemList:
   - itemName: Jimbo's Rugged Rod
     isConsumable: 0
+    isEquipped: 0
     category: rod
     icon: {fileID: -631023095337379593, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
     price: 0
@@ -1880,11 +1888,13 @@ MonoBehaviour:
     multiplier: 1
   - itemName: Bait
     isConsumable: 0
+    isEquipped: 0
     category: bait
     icon: {fileID: -631023095337379593, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
     price: 0
     amount: 1
     multiplier: 1
+  equippedList: []
 --- !u!114 &1147869152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1965,6 +1975,7 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+  m_CurrentSelected: {fileID: 0}
 --- !u!4 &1165836592
 Transform:
   m_ObjectHideFlags: 0
@@ -2107,8 +2118,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rod: {fileID: 7225878842896087267, guid: 2dbabd8c142814ad6ba9ca53f226b873, type: 3}
-  inventory: {fileID: 1147869151}
-  controller: 
+  panel: {fileID: 0}
+  reelingSlider: {fileID: 0}
+  catchSlider: {fileID: 0}
+  releaseSlider: {fileID: 0}
+  fishMap: {fileID: 0}
 --- !u!114 &1376820865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2588,10 +2602,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886086835ad344a92b5093db4bd06398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1147869145}
-  inventory: {fileID: 1147869151}
-  shopUI: {fileID: 378298463}
-  inventoryUI: {fileID: 2113501595}
   winState: 0
 --- !u!4 &1985805582
 Transform:
@@ -2653,6 +2663,7 @@ MonoBehaviour:
   inventory: {fileID: 1147869151}
   shopUI: {fileID: 378298463}
   inventoryUI: {fileID: 2113501595}
+  pc: {fileID: 1147869148}
   winState: 0
 --- !u!1 &1988985009
 GameObject:

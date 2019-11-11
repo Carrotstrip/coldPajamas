@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
 public class ShopUI : MonoBehaviour
@@ -11,14 +12,21 @@ public class ShopUI : MonoBehaviour
     public Transform contentPanel;
     public Inventory inventory;
     public static Action OnNotEnoughFish;
+    //public EventSystem es;
+    
 
     public GameObject shopButton;
+    private GameObject firstButton;
 
 
     // Use this for initialization
     void Start()
     {
         AddButtons();
+        //EventSystem.current.SetSelectedGameObject(firstButton);
+        //StartCoroutine(SelectButton());
+        
+        
     }
 
     private void AddButtons()
@@ -31,6 +39,28 @@ public class ShopUI : MonoBehaviour
             newButton.transform.localScale = new Vector3(1f, 1f, 1f);
             ShopButton newShopButton = newButton.GetComponent<ShopButton>();
             newShopButton.Setup(item, this);
+            if(i == 0){
+                Image im = newShopButton.GetComponent<Image>();
+                im.color = new Color32(0xC0,0x7D,0x30,0xFF);
+                firstButton = newButton;
+                //newShopButton.Color = #C07D30;
+               // StartCoroutine("SelectButton");
+                EventSystem.current.SetSelectedGameObject(firstButton);
+            }
+           
+        }
+    }
+
+    void Update(){
+        GameObject temp = EventSystem.current.currentSelectedGameObject;
+        if(temp != firstButton){
+            ShopButton tempShop = firstButton.GetComponent<ShopButton>();
+            Image im = tempShop.GetComponent<Image>();
+            im.color = new Color32(0xFF,0xFF,0xFF,0xFF);
+        }
+        if(temp.tag == "button"){
+            ShopButton btn = temp.GetComponent<ShopButton>();
+            Debug.Log(btn.nameLabel.text);
         }
     }
 
