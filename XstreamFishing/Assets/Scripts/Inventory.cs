@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -22,6 +20,14 @@ public class Inventory : MonoBehaviour
         fishing.OnCatchFish += HandleOnNumFishChange;
     }
 
+    void Update() {
+        if(Input.GetKeyDown("k")) {
+            DropItem();
+			int numFishDropped = DropFish(2);
+			// GainFish(numFishDropped);
+        }
+    }
+
     public bool GetHasCategoryEquipped(string category) {
         for (int i = 0; i < itemList.Count; i++)
         {
@@ -33,6 +39,20 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
+    public void DropItem() {
+        int ixToDrop = UnityEngine.Random.Range(0, itemList.Count);
+        if(itemList.Count > 0) {
+            itemList.Remove(itemList[ixToDrop]);
+        }
+        OnInventoryChange();
+    }
+
+    public int DropFish(int multiplier) {
+        int numToDrop = UnityEngine.Random.Range(0, numFish/5*multiplier);
+        numFish -= numToDrop;
+        OnInventoryChange();
+        return numToDrop;
+    }
     
     public Item GetEquippedOfCategory(string category) {
         for (int i = 0; i < itemList.Count; i++)
@@ -51,10 +71,17 @@ public class Inventory : MonoBehaviour
             if (itemList[i].category == item.category)
             {
                 itemList[i].isEquipped = false;
-                // ie.image.color = new Color32(255, 255, 255, 255);
             }
         }
         item.isEquipped = true;
+        if (item.category == "rod")
+        {
+            rodMultiplier = item.multiplier;
+        }
+        if (item.category == "bait")
+        {
+            baitMultiplier = item.multiplier;
+        }
     }
 
     public void UseCannonball() {
@@ -65,8 +92,8 @@ public class Inventory : MonoBehaviour
                 itemList[i].amount--;
                 if(itemList[i].amount <= 0) {
                     itemList.Remove(itemList[i]);
-                    OnInventoryChange();
                 }
+                OnInventoryChange();
             }
         }
     }
@@ -107,7 +134,7 @@ public class Inventory : MonoBehaviour
             bool removedOld = false;
             for (int i = 0; i < itemList.Count; i++)
             {
-                if (itemList[i].category == item.category && itemList[i].multiplier <  item.multiplier)
+                if (itemList[i].category == item.category && itemList[i].multiplier <=  item.multiplier)
                 {
                     itemList.Remove(itemList[i]);
                     removedOld = true;
@@ -116,13 +143,15 @@ public class Inventory : MonoBehaviour
                     {
                         rodMultiplier = item.multiplier;
                     }
+                    if (item.category == "bait")
+                    {
+                        baitMultiplier = item.multiplier;
+                    }
                     break;
                 }
             }
-            if(removedOld) {
-                // add the new item
-                itemList.Add(item);
-            }
+            // add the new item
+            itemList.Add(item);
         }
         // tell the inventory UI that we got this item
         if (OnReceiveItem != null)
@@ -133,11 +162,15 @@ public class Inventory : MonoBehaviour
 
     public void HandleOnNumFishChange(int numFishIn)
     {
-        numFish += numFishIn;
+        GainFish(numFishIn);
         if (OnNumFishChange != null)
         {
             OnNumFishChange();
         }
+    }
+
+    public void GainFish(int numFishIn) {
+        numFish += numFishIn;
     }
 
     public void HandleReceiveItem()

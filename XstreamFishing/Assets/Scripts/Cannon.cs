@@ -49,6 +49,7 @@ public class Cannon : MonoBehaviour
         Cannonball newCannonball = cannonball.GetPooledInstance<Cannonball>();
         // set the multiplier of the cannonball based on which is equipped
         newCannonball.multiplier = inventory.GetEquippedOfCategory("cannonball").multiplier;
+        newCannonball.firerInventory = inventory;
         Rigidbody rb = newCannonball.GetComponent<Rigidbody>();
         // use ship rb, child rb's calculate velocity wrt the parent, no good
         Rigidbody rbShip = transform.parent.GetComponent<Rigidbody>();
