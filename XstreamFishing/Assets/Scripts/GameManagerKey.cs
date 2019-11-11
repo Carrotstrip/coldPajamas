@@ -16,6 +16,8 @@ public class GameManagerKey : MonoBehaviour
     public GameObject shopUI;
     public GameObject inventoryUI;
 
+    public PlayerController pc;
+
     public bool winState;
     // Start is called before the first frame update
     void Start()
@@ -56,9 +58,10 @@ public class GameManagerKey : MonoBehaviour
 
 
         // show pro shop
-        if (Input.GetKeyDown("x"))
+        if (Input.GetKeyDown("x") &&  shopUI.activeSelf)
         {
             shopUI.SetActive(!shopUI.activeSelf);
+            pc.can_move = true;
         }
 
         // show inventory
