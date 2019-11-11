@@ -134,7 +134,7 @@ public class PlayerManager : MonoBehaviour
                 ToastManager.Toast("It's a nice day to be out fishing. Feel free to come on down to the pro shop for supplies. Heck I'll even throw in some free advice.");
             }
         }
-        if(inventory.numFish == 1){
+        if(inventory.numFish >= 20){
             GameManager.SomeoneWon();
         }
     }

@@ -89,7 +89,9 @@ public class Inventory : MonoBehaviour
                 if(itemList[i].amount <= 0) {
                     itemList.Remove(itemList[i]);
                 }
-                OnInventoryChange();
+                if(OnInventoryChange != null) {
+                    OnInventoryChange();
+                }
             }
         }
     }
@@ -142,7 +144,9 @@ public class Inventory : MonoBehaviour
             itemList.Add(item);
         }
         // tell the inventory UI that we got this item
-        OnInventoryChange();
+        if(OnInventoryChange != null) {
+            OnInventoryChange();
+        }
     }
 
     public void HandleOnCatchFish(int numFishIn)
@@ -152,13 +156,17 @@ public class Inventory : MonoBehaviour
         if(bait != null) {
             bait.amount -= 1;
         }
-        OnInventoryChange();
+        if(OnInventoryChange != null) {
+            OnInventoryChange();
+        }
     }
 
 
     public void GainFish(int numFishIn) {
         numFish += numFishIn;
-        OnInventoryChange();
+        if(OnInventoryChange != null) {
+            OnInventoryChange();
+        }
     }
 
 }

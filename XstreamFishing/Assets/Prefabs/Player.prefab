@@ -2003,7 +2003,15 @@ MonoBehaviour:
   fishing: {fileID: 8205407519991223103}
   rodMultiplier: 1
   baitMultiplier: 1
-  itemList: []
+  itemList:
+  - itemName: 
+    isConsumable: 0
+    isEquipped: 1
+    category: cannonball
+    icon: {fileID: 0}
+    price: 0
+    amount: 2147483647
+    multiplier: 1
   equippedList: []
 --- !u!114 &4336414445536499773
 MonoBehaviour:
