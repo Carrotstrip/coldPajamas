@@ -31,27 +31,25 @@ public class PlayerManager : MonoBehaviour
         int index = player_input.playerIndex;
         if (index == 1)
         {
-            boat.transform.position = new Vector3(-150f, 0f, 150f);
+            boat.transform.position = new Vector3(-200f, 0f, 200f);
             mat.color = Color.blue;
         }
         if (index == 2)
         {
-            boat.transform.position = new Vector3(150f, 0f, 150f);
+            boat.transform.position = new Vector3(200f, 0f, 200f);
             mat.color = Color.red;
         }
         if (index == 3)
         {
-            boat.transform.position = new Vector3(150f, 0f, -150f);
+            boat.transform.position = new Vector3(200f, 0f, -200f);
             mat.color = Color.yellow;
         }
         if (index == 4)
         {
-            boat.transform.position = new Vector3(-150f, 0f, -150f);
+            boat.transform.position = new Vector3(-200f, 0f, -200f);
             mat.color = Color.green;
         }
     }
-
-    // show pro shop
 
     // show inventory
     void OnX()
@@ -134,7 +132,8 @@ public class PlayerManager : MonoBehaviour
                 ToastManager.Toast("It's a nice day to be out fishing. Feel free to come on down to the pro shop for supplies. Heck I'll even throw in some free advice.");
             }
         }
-        if(inventory.numFish == 1){
+        if (inventory.numFish == 1)
+        {
             GameManager.SomeoneWon();
         }
     }

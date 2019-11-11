@@ -805,7 +805,7 @@ Transform:
   m_GameObject: {fileID: 2968718990561345302}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 30, y: 30, z: 30}
+  m_LocalScale: {x: 60, y: 60, z: 60}
   m_Children: []
   m_Father: {fileID: 8205407519776410021}
   m_RootOrder: 10
@@ -1795,10 +1795,6 @@ MonoBehaviour:
   fp_camera: {fileID: 8205407519381377794}
   main_UI: {fileID: 8205407519251580839}
   boat: {fileID: 8205407519776410011}
-  red: {fileID: 2100000, guid: 012d406b8c29f42c4b5fdd1c67eb3294, type: 2}
-  blue: {fileID: 2100000, guid: 90f034df015984c0b9041bc8e0167c23, type: 2}
-  green: {fileID: 2100000, guid: e783762f2b0ce47f1ae36aa417ae5a19, type: 2}
-  yellow: {fileID: 2100000, guid: ceec318ffad1b4aacb14bee8b362f6d0, type: 2}
   sphere: {fileID: 2968718990561345302}
 --- !u!114 &3785103662729459601
 MonoBehaviour:
@@ -2383,7 +2379,6 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
-  m_CurrentSelected: {fileID: 0}
 --- !u!114 &7822469701722313020
 MonoBehaviour:
   m_ObjectHideFlags: 0
