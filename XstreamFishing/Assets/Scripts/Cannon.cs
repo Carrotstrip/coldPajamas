@@ -13,7 +13,6 @@ public class Cannon : MonoBehaviour
     public float fireDelay;
     float fireTimer = -1;
     public float gimbalSpeed = 1;
-    bool hasCannonballs = true;
     public Inventory inventory;
     
 
@@ -44,8 +43,13 @@ public class Cannon : MonoBehaviour
         if(!inventory.GetHasCategoryEquipped("cannonball") || fireTimer > 0) {
             return;
         }
+        // reset the firing delay
         fireTimer = fireDelay;
+        // get a cannonball from the pool
         Cannonball newCannonball = cannonball.GetPooledInstance<Cannonball>();
+        // set the multiplier of the cannonball based on which is equipped
+        newCannonball.multiplier = inventory.GetEquippedOfCategory("cannonball").multiplier;
+        newCannonball.firerInventory = inventory;
         Rigidbody rb = newCannonball.GetComponent<Rigidbody>();
         // use ship rb, child rb's calculate velocity wrt the parent, no good
         Rigidbody rbShip = transform.parent.GetComponent<Rigidbody>();

@@ -379,6 +379,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 122687358}
   m_CullTransparentMesh: 0
+--- !u!1 &154628310 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9086776263833126714, guid: 8d2a5d4a8425e4b43a3e63bec401874f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1822700144}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &154628311 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 9086776263833126713, guid: 8d2a5d4a8425e4b43a3e63bec401874f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1822700144}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &154628313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154628310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 100, y: 100}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &230394174
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,26 +1163,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6e4c297a925419197d10b45376c2c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numFish: 0
+  numFish: 999
   fishing: {fileID: 1640170968}
   rodMultiplier: 1
   baitMultiplier: 1
-  fishText: {fileID: 438888259}
   itemList:
   - itemName: Jimbo's Rugged Rod
     isConsumable: 0
+    isEquipped: 0
     category: rod
     icon: {fileID: -631023095337379593, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
     price: 0
     amount: 1
     multiplier: 1
   - itemName: Bait
-    isConsumable: 0
+    isConsumable: 1
+    isEquipped: 0
     category: bait
     icon: {fileID: -631023095337379593, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
     price: 0
     amount: 1
     multiplier: 1
+  - itemName: Bait
+    isConsumable: 0
+    isEquipped: 0
+    category: cannonball
+    icon: {fileID: 5596361543026112581, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
+    price: 0
+    amount: 99999
+    multiplier: 1
+  equippedList: []
 --- !u!114 &401050297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1205,6 +1251,8 @@ MonoBehaviour:
   accelerateSpeed: 2000
   can_move: 0
   controller: 
+  shopUI: {fileID: 800801609}
+  inventoryUI: {fileID: 1366166199}
 --- !u!54 &401050300
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2904,8 +2952,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rod: {fileID: 7225878842896087267, guid: 2dbabd8c142814ad6ba9ca53f226b873, type: 3}
-  inventory: {fileID: 401050296}
-  controller: 
+  panel: {fileID: 0}
+  reelingSlider: {fileID: 0}
+  catchSlider: {fileID: 0}
+  releaseSlider: {fileID: 0}
+  fishMap: {fileID: 0}
 --- !u!114 &1640170969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3119,7 +3170,6 @@ GameObject:
   - component: {fileID: 1782958227}
   - component: {fileID: 1782958226}
   - component: {fileID: 1782958225}
-  - component: {fileID: 1782958224}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -3127,23 +3177,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1782958224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1782958223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dca348fa8c80f40248e30300cf868737, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 401050294}
-  inventory: {fileID: 401050296}
-  shopUI: {fileID: 800801609}
-  inventoryUI: {fileID: 1366166199}
-  winState: 0
 --- !u!114 &1782958225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3156,6 +3189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4517e6b46c511409e865fa85dcedbe79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 824422771}
   toast_panel: {fileID: 321247296}
   toast_text: {fileID: 122687360}
   ease:
@@ -3181,15 +3215,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1782958223}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 886086835ad344a92b5093db4bd06398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 401050294}
-  inventory: {fileID: 401050296}
-  shopUI: {fileID: 800801609}
-  inventoryUI: {fileID: 1366166199}
   winState: 0
 --- !u!4 &1782958227
 Transform:
@@ -3362,7 +3392,58 @@ PrefabInstance:
       propertyPath: fishCount
       value: 
       objectReference: {fileID: 230394176}
-    m_RemovedComponents: []
+    - target: {fileID: 9086776264514137402, guid: 8d2a5d4a8425e4b43a3e63bec401874f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 42.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9086776264514137402, guid: 8d2a5d4a8425e4b43a3e63bec401874f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -145.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9086776264514137402, guid: 8d2a5d4a8425e4b43a3e63bec401874f,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -76.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9086776264514137402, guid: 8d2a5d4a8425e4b43a3e63bec401874f,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -165.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9086776264213531993, guid: 8d2a5d4a8425e4b43a3e63bec401874f,
+        type: 3}
+      propertyPath: m_Vertical
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9086776264213531993, guid: 8d2a5d4a8425e4b43a3e63bec401874f,
+        type: 3}
+      propertyPath: m_Content
+      value: 
+      objectReference: {fileID: 154628311}
+    - target: {fileID: 9086776263833126713, guid: 8d2a5d4a8425e4b43a3e63bec401874f,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 406.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 9086776263833126713, guid: 8d2a5d4a8425e4b43a3e63bec401874f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.0000306
+      objectReference: {fileID: 0}
+    - target: {fileID: 9086776263833126713, guid: 8d2a5d4a8425e4b43a3e63bec401874f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000059128
+      objectReference: {fileID: 0}
+    - target: {fileID: 9086776263833126713, guid: 8d2a5d4a8425e4b43a3e63bec401874f,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -0.000061035
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 9086776263833126711, guid: 8d2a5d4a8425e4b43a3e63bec401874f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8d2a5d4a8425e4b43a3e63bec401874f, type: 3}
 --- !u!1 &1822863179
 GameObject:
@@ -3466,6 +3547,7 @@ MonoBehaviour:
   itemList:
   - itemName: Crazy Stick
     isConsumable: 0
+    isEquipped: 0
     category: rod
     icon: {fileID: 0}
     price: 3
@@ -3473,6 +3555,7 @@ MonoBehaviour:
     multiplier: 2
   - itemName: Ancestral Obelisk
     isConsumable: 0
+    isEquipped: 0
     category: rod
     icon: {fileID: 0}
     price: 5
@@ -3480,6 +3563,7 @@ MonoBehaviour:
     multiplier: 3
   - itemName: Bait
     isConsumable: 1
+    isEquipped: 0
     category: bait
     icon: {fileID: 0}
     price: 1
@@ -3487,6 +3571,7 @@ MonoBehaviour:
     multiplier: 1
   - itemName: Synthetic Bait
     isConsumable: 1
+    isEquipped: 0
     category: bait
     icon: {fileID: 0}
     price: 2
@@ -3494,6 +3579,7 @@ MonoBehaviour:
     multiplier: 2
   - itemName: Worms
     isConsumable: 1
+    isEquipped: 0
     category: bait
     icon: {fileID: 0}
     price: 3
@@ -3501,6 +3587,7 @@ MonoBehaviour:
     multiplier: 3
   - itemName: Cannonball
     isConsumable: 1
+    isEquipped: 0
     category: cannonball
     icon: {fileID: 0}
     price: 1
@@ -3508,6 +3595,7 @@ MonoBehaviour:
     multiplier: 1
   - itemName: Golden Cannonball
     isConsumable: 1
+    isEquipped: 0
     category: cannonball
     icon: {fileID: 0}
     price: 2
@@ -3515,6 +3603,7 @@ MonoBehaviour:
     multiplier: 2
   - itemName: Cobalt Cannonball
     isConsumable: 1
+    isEquipped: 0
     category: cannonball
     icon: {fileID: 0}
     price: 3

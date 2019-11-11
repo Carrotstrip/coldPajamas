@@ -47,6 +47,7 @@ public class InventoryUI : MonoBehaviour
             newEntry.transform.SetParent(contentPanel);
             newEntry.transform.localScale = new Vector3(1f, 1f, 1f);
             InventoryEntry newInvEntry = newEntry.GetComponent<InventoryEntry>();
+            
             newInvEntry.Setup(item, this);
         }
     }

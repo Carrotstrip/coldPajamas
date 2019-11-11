@@ -56,6 +56,10 @@ public class GameManager : MonoBehaviour
             }
             Debug.Log("Joining " + Gamepad.current.name);
         }
+        if (Input.GetKeyDown("q"))
+        {
+            winState = true;
+        }
 
         if (start_mode && Gamepad.current.buttonWest.wasPressedThisFrame)
         {
