@@ -19,13 +19,9 @@ public class PlayerManager : MonoBehaviour
     public Canvas main_UI;
 
     // show pro shop
-    void OnX()
-    {
-        shopUI.SetActive(!shopUI.activeSelf);
-    }
 
     // show inventory
-    void OnB()
+    void OnX()
     {
         inventoryUI.SetActive(!inventoryUI.activeSelf);
     }
@@ -55,17 +51,17 @@ public class PlayerManager : MonoBehaviour
                 // set camera sizes to 1 and positions to 0,0
                 main_camera.rect = new Rect(0f, 0f, 1f, 1f);
                 fp_camera.rect = new Rect(0f, 0f, 1f, 1f);
-                main_UI.GetComponent<CanvasScaler>().scaleFactor = 1;
+                main_UI.GetComponent<CanvasScaler>().scaleFactor = 2;
             }
             if (num_screens == 2)
             {
                 main_camera.rect = new Rect(0f, (index - 1) * 0.5f, 1f, 0.5f);
                 fp_camera.rect = new Rect(0f, (index - 1) * 0.5f, 1f, 0.5f);
-                main_UI.GetComponent<CanvasScaler>().scaleFactor = 0.5f;
+                main_UI.GetComponent<CanvasScaler>().scaleFactor = 1f;
             }
             if (num_screens >= 3)
             {
-                main_UI.GetComponent<CanvasScaler>().scaleFactor = 0.5f;
+                main_UI.GetComponent<CanvasScaler>().scaleFactor = 1f;
                 if (index <= 2)
                 {
                     main_camera.rect = new Rect((index - 1) * 0.5f, 0f, 0.5f, 0.5f);

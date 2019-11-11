@@ -1966,11 +1966,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8205407519776410011}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 7, y: 8, z: 22}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!54 &8205407519776410023
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2034,6 +2034,7 @@ MonoBehaviour:
   turnSpeed: 100
   accelerateSpeed: 2000
   can_move: 0
+  shopUI: {fileID: 7337718362746633477}
 --- !u!1 &8205407519809741595
 GameObject:
   m_ObjectHideFlags: 0
@@ -2376,6 +2377,7 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+  m_CurrentSelected: {fileID: 0}
 --- !u!114 &7822469701722313020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3803,6 +3805,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 9086776264514137402, guid: 8d2a5d4a8425e4b43a3e63bec401874f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 42.800003
+      objectReference: {fileID: 0}
+    - target: {fileID: 9086776264514137402, guid: 8d2a5d4a8425e4b43a3e63bec401874f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -145.79999
       objectReference: {fileID: 0}
     - target: {fileID: 9086776264077303950, guid: 8d2a5d4a8425e4b43a3e63bec401874f,
         type: 3}
