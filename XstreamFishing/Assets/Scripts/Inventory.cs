@@ -134,7 +134,7 @@ public class Inventory : MonoBehaviour
             bool removedOld = false;
             for (int i = 0; i < itemList.Count; i++)
             {
-                if (itemList[i].category == item.category && itemList[i].multiplier <=  item.multiplier)
+                if (itemList[i].category == item.category && itemList[i].multiplier <= item.multiplier)
                 {
                     itemList.Remove(itemList[i]);
                     removedOld = true;
@@ -170,6 +170,7 @@ public class Inventory : MonoBehaviour
 
     public void GainFish(int numFishIn) {
         numFish += numFishIn;
+        OnInventoryChange();
     }
 
 }
