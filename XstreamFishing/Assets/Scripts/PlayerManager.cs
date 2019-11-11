@@ -17,6 +17,39 @@ public class PlayerManager : MonoBehaviour
     public Camera main_camera;
     public Camera fp_camera;
     public Canvas main_UI;
+    public GameObject boat;
+    private Material mat;
+    public GameObject sphere;
+
+
+    void Start()
+    {
+        // get material
+        mat = sphere.GetComponent<MeshRenderer>().materials[0];
+
+        // get index, and position based on this
+        int index = player_input.playerIndex;
+        if (index == 1)
+        {
+            boat.transform.position = new Vector3(-150f, 0f, 150f);
+            mat.color = Color.blue;
+        }
+        if (index == 2)
+        {
+            boat.transform.position = new Vector3(150f, 0f, 150f);
+            mat.color = Color.red;
+        }
+        if (index == 3)
+        {
+            boat.transform.position = new Vector3(150f, 0f, -150f);
+            mat.color = Color.yellow;
+        }
+        if (index == 4)
+        {
+            boat.transform.position = new Vector3(-150f, 0f, -150f);
+            mat.color = Color.green;
+        }
+    }
 
     // show pro shop
 
