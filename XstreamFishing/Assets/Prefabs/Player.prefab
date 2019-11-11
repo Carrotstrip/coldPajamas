@@ -1633,6 +1633,7 @@ MonoBehaviour:
   catchSlider: {fileID: 7942337187067750278}
   releaseSlider: {fileID: 701535261153908819}
   player_input: {fileID: 1072046423538352829}
+  inventory: {fileID: 8205407519776410008}
 --- !u!1 &8205407519639153502
 GameObject:
   m_ObjectHideFlags: 0
@@ -2375,7 +2376,6 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
-  m_CurrentSelected: {fileID: 0}
 --- !u!114 &7822469701722313020
 MonoBehaviour:
   m_ObjectHideFlags: 0

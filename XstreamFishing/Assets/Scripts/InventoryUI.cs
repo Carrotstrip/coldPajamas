@@ -15,8 +15,6 @@ public class InventoryUI : MonoBehaviour
     void Start()
     {
         RefreshDisplay();
-        inventory.OnNumFishChange += RefreshDisplay;
-        inventory.OnReceiveItem += RefreshDisplay;
         inventory.OnInventoryChange += RefreshDisplay;
     }
 

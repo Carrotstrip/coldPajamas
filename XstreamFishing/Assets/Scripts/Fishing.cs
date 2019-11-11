@@ -30,6 +30,7 @@ public class Fishing : MonoBehaviour
     private float minSpeedLimit = .01f;
     public PlayerInput player_input;
     private Vector2 rightStickInput;
+    public Inventory inventory;
 
     public event Action<int> OnCatchFish;
 
@@ -100,18 +101,18 @@ public class Fishing : MonoBehaviour
             releaseCounter = releaseCounter <= 0 ? 0 : --releaseCounter;
             releaseSlider.value = releaseCounter;
             catchSlider.value = catchCounter;
-            switch (catchCounter)
-            {
-                case 50:
-                case 75:
-                case 100:
-                case 150:
-                case 180:
-                    rod_clone.transform.Rotate(10, 0, 0, Space.Self);
-                    break;
-                default:
-                    break;
-            }
+            // switch (catchCounter)
+            // {
+            //     case 50:
+            //     case 75:
+            //     case 100:
+            //     case 150:
+            //     case 180:
+            //         rod_clone.transform.Rotate(10, 0, 0, Space.Self);
+            //         break;
+            //     default:
+            //         break;
+            // }
             if (catchCounter > catchCap)
                 CatchFish();
         }
@@ -121,15 +122,15 @@ public class Fishing : MonoBehaviour
             releaseSlider.value = releaseCounter;
             catchCounter = catchCounter <= 0 ? 0 : catchCounter - 2;
             catchSlider.value = catchCounter;
-            switch (releaseCounter)
-            {
-                case 30:
-                case 80:
-                    rod_clone.transform.Rotate(-10, 0, 0, Space.Self);
-                    break;
-                default:
-                    break;
-            }
+            // switch (releaseCounter)
+            // {
+            //     case 30:
+            //     case 80:
+            //         rod_clone.transform.Rotate(-10, 0, 0, Space.Self);
+            //         break;
+            //     default:
+            //         break;
+            // }
             if (releaseCounter > releaseCap)
                 endFish();
         }
@@ -138,8 +139,8 @@ public class Fishing : MonoBehaviour
     void CatchFish()
     {
         caught = true;
-        int rodMultiplier = 1;
-        int baitMultiplier = 1;
+        int rodMultiplier = inventory.rodMultiplier;
+        int baitMultiplier = inventory.baitMultiplier;
         int fishIndex = Random.Range(0, 18) % (2 * rodMultiplier * baitMultiplier);
         Debug.Log("You caught a " + fishArr[fishIndex] + "!");
         endFish();
