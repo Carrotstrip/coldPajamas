@@ -10,9 +10,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public static bool winState;
     public GameObject player_prefab;
-    private List<GameObject> players;
+    private List<PlayerInput> players;
     private List<string> controllers;
     public static bool start_mode;
+    public RectTransform panelRectTransform;
 
 
     void Awake()
@@ -52,15 +53,17 @@ public class GameManager : MonoBehaviour
             if (join)
             {
                 controllers.Add(Gamepad.current.name);
-                Debug.Log(PlayerInput.Instantiate(player_prefab, playerIndex: controllers.Count, pairWithDevice: Gamepad.current));
+                PlayerInput.Instantiate(player_prefab, playerIndex: controllers.Count, pairWithDevice: Gamepad.current);
+                if (controllers.Count >= 2)
+                {
+                    panelRectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+                    panelRectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+                    panelRectTransform.pivot = new Vector2(0.5f, 0.5f);
+                    panelRectTransform.anchoredPosition = Vector3.zero;
+                }
             }
             Debug.Log("Joining " + Gamepad.current.name);
         }
-        if (Input.GetKeyDown("q"))
-        {
-            winState = true;
-        }
-
         if (start_mode && Gamepad.current.buttonWest.wasPressedThisFrame)
         {
             start_mode = false;
@@ -72,15 +75,10 @@ public class GameManager : MonoBehaviour
             controllers.Clear();
             SceneManager.LoadScene("MainMenu");
         }
-
-        // if (inventory.numFish >= 9 && !winState)
-        // {
-        //     winState = true;
-        // }
-
     }
 
-    public static void SomeoneWon() {
+    public static void SomeoneWon()
+    {
         winState = true;
     }
 }

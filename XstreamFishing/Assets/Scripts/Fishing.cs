@@ -31,6 +31,7 @@ public class Fishing : MonoBehaviour
     public PlayerInput player_input;
     private Vector2 rightStickInput;
     public Inventory inventory;
+    public PlayerToastManager ptm;
 
     public event Action<int> OnCatchFish;
 
@@ -60,6 +61,7 @@ public class Fishing : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         catchSlider.maxValue = catchCap;
         releaseSlider.maxValue = releaseCap;
+        ptm = gameObject.GetComponentInParent(typeof(PlayerToastManager)) as PlayerToastManager;
         // Debug.Log(player_input.currentActionMap.name);
         // player_input.SwitchCurrentActionMap("Fishing");
         // Debug.Log(player_input.currentActionMap.name);
@@ -145,7 +147,7 @@ public class Fishing : MonoBehaviour
         Debug.Log("You caught a " + fishArr[fishIndex] + "!");
         OnCatchFish(fishIndex + 1);
         endFish();
-        ToastManager.OverwriteToast("You caught a " + fishArr[fishIndex] + "!");
+        ptm.OverwriteToast("You caught a " + fishArr[fishIndex] + "!");
     }
 
     void endFish()
@@ -202,7 +204,7 @@ public class Fishing : MonoBehaviour
         rb.freezeRotation = true;
         if (fishCount == 0)
         {
-            ToastManager.OverwriteToast("Looks like nothing's biting around here");
+            ptm.OverwriteToast("Looks like nothing's biting around here");
             endFish();
         }
         else

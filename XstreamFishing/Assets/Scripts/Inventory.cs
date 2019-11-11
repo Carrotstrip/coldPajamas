@@ -20,10 +20,12 @@ public class Inventory : MonoBehaviour
         fishing.OnCatchFish += HandleOnCatchFish;
     }
 
-    void Update() {
+    void Update()
+    {
     }
 
-    public bool GetHasCategoryEquipped(string category) {
+    public bool GetHasCategoryEquipped(string category)
+    {
         for (int i = 0; i < itemList.Count; i++)
         {
             if (itemList[i].category == category && itemList[i].isEquipped)
@@ -34,22 +36,32 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    public void DropItem() {
+    public void DropItem()
+    {
         int ixToDrop = UnityEngine.Random.Range(0, itemList.Count);
-        if(itemList.Count > 0) {
+        if (itemList.Count > 0)
+        {
             itemList.Remove(itemList[ixToDrop]);
         }
-        OnInventoryChange();
+        if (OnInventoryChange != null)
+        {
+            OnInventoryChange();
+        }
     }
 
-    public int DropFish(int multiplier) {
-        int numToDrop = UnityEngine.Random.Range(0, numFish/5*multiplier);
+    public int DropFish(int multiplier)
+    {
+        int numToDrop = UnityEngine.Random.Range(0, numFish / 5 * multiplier);
         numFish -= numToDrop;
-        OnInventoryChange();
+        if (OnInventoryChange != null)
+        {
+            OnInventoryChange();
+        }
         return numToDrop;
     }
-    
-    public Item GetEquippedOfCategory(string category) {
+
+    public Item GetEquippedOfCategory(string category)
+    {
         for (int i = 0; i < itemList.Count; i++)
         {
             if (itemList[i].category == category && itemList[i].isEquipped)
@@ -61,7 +73,8 @@ public class Inventory : MonoBehaviour
         return fillerItem;
     }
 
-    public void EquipItem(Item item, InventoryEntry ie) {
+    public void EquipItem(Item item, InventoryEntry ie)
+    {
         for (int i = 0; i < itemList.Count; i++)
         {
             if (itemList[i].category == item.category)
@@ -80,16 +93,19 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void UseCannonball() {
+    public void UseCannonball()
+    {
         for (int i = 0; i < itemList.Count; i++)
         {
             if (itemList[i].category == "cannonball")
             {
                 itemList[i].amount--;
-                if(itemList[i].amount <= 0) {
+                if (itemList[i].amount <= 0)
+                {
                     itemList.Remove(itemList[i]);
                 }
-                if(OnInventoryChange != null) {
+                if (OnInventoryChange != null)
+                {
                     OnInventoryChange();
                 }
             }
@@ -144,7 +160,8 @@ public class Inventory : MonoBehaviour
             itemList.Add(item);
         }
         // tell the inventory UI that we got this item
-        if(OnInventoryChange != null) {
+        if (OnInventoryChange != null)
+        {
             OnInventoryChange();
         }
     }
@@ -153,7 +170,8 @@ public class Inventory : MonoBehaviour
     {
         GainFish(numFishIn);
         Item bait = GetEquippedOfCategory("bait");
-        if(bait != null) {
+        if (bait != null)
+        {
             bait.amount -= 1;
         }
         if(OnInventoryChange != null) {
@@ -161,12 +179,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-
     public void GainFish(int numFishIn) {
         numFish += numFishIn;
-        if(OnInventoryChange != null) {
-            OnInventoryChange();
-        }
     }
-
 }

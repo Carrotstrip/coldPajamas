@@ -20,6 +20,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject boat;
     private Material mat;
     public GameObject sphere;
+    public PlayerToastManager ptm;
 
 
     void Start()
@@ -31,27 +32,34 @@ public class PlayerManager : MonoBehaviour
         int index = player_input.playerIndex;
         if (index == 1)
         {
-            boat.transform.position = new Vector3(-150f, 0f, 150f);
+            boat.transform.position = new Vector3(-200f, 0f, 200f);
             mat.color = Color.blue;
         }
         if (index == 2)
         {
-            boat.transform.position = new Vector3(150f, 0f, 150f);
+            boat.transform.position = new Vector3(200f, 0f, 200f);
             mat.color = Color.red;
         }
         if (index == 3)
         {
-            boat.transform.position = new Vector3(150f, 0f, -150f);
+            boat.transform.position = new Vector3(200f, 0f, -200f);
             mat.color = Color.yellow;
         }
         if (index == 4)
         {
-            boat.transform.position = new Vector3(-150f, 0f, -150f);
+            boat.transform.position = new Vector3(-200f, 0f, -200f);
             mat.color = Color.green;
         }
-    }
+        ptm = gameObject.GetComponentInParent(typeof(PlayerToastManager)) as PlayerToastManager;
+        timer = 0.0f;
+        timerRunning = true;
+        ptm.Toast("It's a nice day to be out fishing. \n free to come on down to the pro shop for supplies.\n Heck I'll even throw in some free advice.");
+        ptm.Toast("Press Y to get Fishin");
+        ptm.Toast("Press A to cast and reel in with the right stick");
+        ptm.Toast("My shop's on the island by the way");
+        ptm.Toast("For your inventory, go ahead and press X");
 
-    // show pro shop
+    }
 
     // show inventory
     void OnX()
@@ -112,29 +120,8 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         UpdateScreenSize();
-        if (startSequence)
+        if (inventory.numFish == 1)
         {
-            if (timerRunning)
-            {
-                timer += Time.deltaTime;
-                if (timer >= 4.0f)
-                {
-                    startSequence = false;
-                    ToastManager.setShowDuration(4.0f);
-                    ToastManager.Toast("Press Y to get Fishin");
-                    ToastManager.Toast("Press V to cast and B to reel in some dinner");
-                    ToastManager.Toast("Visit my shop by pressing X");
-                    ToastManager.Toast("For your inventory, go ahead and press the start button");
-                }
-            }
-            if (!timerRunning && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 || Input.GetKeyDown(KeyCode.Z)))
-            {
-                timer = 0.0f;
-                timerRunning = true;
-                ToastManager.Toast("It's a nice day to be out fishing. Feel free to come on down to the pro shop for supplies. Heck I'll even throw in some free advice.");
-            }
-        }
-        if(inventory.numFish >= 20){
             GameManager.SomeoneWon();
         }
     }
