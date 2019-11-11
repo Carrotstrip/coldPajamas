@@ -17,6 +17,39 @@ public class PlayerManager : MonoBehaviour
     public Camera main_camera;
     public Camera fp_camera;
     public Canvas main_UI;
+    public GameObject boat;
+    private Material mat;
+    public GameObject sphere;
+
+
+    void Start()
+    {
+        // get material
+        mat = sphere.GetComponent<MeshRenderer>().materials[0];
+
+        // get index, and position based on this
+        int index = player_input.playerIndex;
+        if (index == 1)
+        {
+            boat.transform.position = new Vector3(-150f, 0f, 150f);
+            mat.color = Color.blue;
+        }
+        if (index == 2)
+        {
+            boat.transform.position = new Vector3(150f, 0f, 150f);
+            mat.color = Color.red;
+        }
+        if (index == 3)
+        {
+            boat.transform.position = new Vector3(150f, 0f, -150f);
+            mat.color = Color.yellow;
+        }
+        if (index == 4)
+        {
+            boat.transform.position = new Vector3(-150f, 0f, -150f);
+            mat.color = Color.green;
+        }
+    }
 
     // show pro shop
     void OnX()
@@ -55,17 +88,17 @@ public class PlayerManager : MonoBehaviour
                 // set camera sizes to 1 and positions to 0,0
                 main_camera.rect = new Rect(0f, 0f, 1f, 1f);
                 fp_camera.rect = new Rect(0f, 0f, 1f, 1f);
-                main_UI.GetComponent<CanvasScaler>().scaleFactor = 1;
+                main_UI.GetComponent<CanvasScaler>().scaleFactor = 2;
             }
             if (num_screens == 2)
             {
                 main_camera.rect = new Rect(0f, (index - 1) * 0.5f, 1f, 0.5f);
                 fp_camera.rect = new Rect(0f, (index - 1) * 0.5f, 1f, 0.5f);
-                main_UI.GetComponent<CanvasScaler>().scaleFactor = 0.5f;
+                main_UI.GetComponent<CanvasScaler>().scaleFactor = 1f;
             }
             if (num_screens >= 3)
             {
-                main_UI.GetComponent<CanvasScaler>().scaleFactor = 0.5f;
+                main_UI.GetComponent<CanvasScaler>().scaleFactor = 1f;
                 if (index <= 2)
                 {
                     main_camera.rect = new Rect((index - 1) * 0.5f, 0f, 0.5f, 0.5f);
