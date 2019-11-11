@@ -23,7 +23,9 @@ public class ButtonManager : MonoBehaviour
         
     }
 
-   
+    void OnA(){
+        LoadMP();
+    }
 
     void LoadMP(){
     	SceneManager.LoadScene("MultiplayerScene");
