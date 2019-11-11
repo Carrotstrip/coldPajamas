@@ -14,6 +14,8 @@ public class Cannon : MonoBehaviour
     float fireTimer = -1;
     public float gimbalSpeed = 1;
     public Inventory inventory;
+    public bool gimbalingUp;
+    public bool gimbalingDown;
     
 
     void Start()
@@ -25,20 +27,16 @@ public class Cannon : MonoBehaviour
         if(fireTimer > 0) {
             fireTimer -= Time.deltaTime;
         }
-        if(Input.GetKeyDown("b")) {
-            Fire();
-        }
-        if(Input.GetKey("g")) {
-            GimbalDown();
-        }
-        if(Input.GetKey("h")) {
+        if(gimbalingUp) {
             GimbalUp();
         }
-
-
+        if(gimbalingDown) {
+            GimbalDown();
+        }
     }
 
-    void Fire() {
+
+    public void Fire() {
         // don't fire if we have no cannonball equipped or the delay timer hasn't run out
         if(!inventory.GetHasCategoryEquipped("cannonball") || fireTimer > 0) {
             return;
@@ -61,11 +59,11 @@ public class Cannon : MonoBehaviour
         inventory.UseCannonball();
     }
 
-    void GimbalUp() {
-        transform.Rotate(0, 0, -gimbalSpeed);
+    public void GimbalUp() {
+        transform.Rotate(-gimbalSpeed, 0, 0);
     }
 
-    void GimbalDown() {
-        transform.Rotate(0, 0, gimbalSpeed);
+    public void GimbalDown() {
+        transform.Rotate(gimbalSpeed, 0, 0);
     }
 }
