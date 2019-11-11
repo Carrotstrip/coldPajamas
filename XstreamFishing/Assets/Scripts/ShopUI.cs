@@ -53,15 +53,15 @@ public class ShopUI : MonoBehaviour
 
     void Update(){
         GameObject temp = EventSystem.current.currentSelectedGameObject;
-        if(temp != firstButton){
-            ShopButton tempShop = firstButton.GetComponent<ShopButton>();
-            Image im = tempShop.GetComponent<Image>();
-            im.color = new Color32(0xFF,0xFF,0xFF,0xFF);
-        }
-        if(temp.tag == "button"){
-            ShopButton btn = temp.GetComponent<ShopButton>();
-            Debug.Log(btn.nameLabel.text);
-        }
+        // if(temp != firstButton){
+        //     ShopButton tempShop = firstButton.GetComponent<ShopButton>();
+        //     Image im = tempShop.GetComponent<Image>();
+        //     im.color = new Color32(0xFF,0xFF,0xFF,0xFF);
+        // }
+        // if(temp.tag == "button"){
+        //     ShopButton btn = temp.GetComponent<ShopButton>();
+        //     Debug.Log(btn.nameLabel.text);
+        // }
     }
 
     public void TryTransferItemToInventory(Item item)

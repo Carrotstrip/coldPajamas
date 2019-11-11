@@ -22,7 +22,7 @@ public class BeachScript : MonoBehaviour
         GameObject obj = coll.gameObject;
         Debug.Log("Triggered");
         if(obj.tag == "Player"){
-            pc.can_move = false;
+            // pc.can_move = false;
             shopUI.SetActive(!shopUI.activeSelf);
         }
     }

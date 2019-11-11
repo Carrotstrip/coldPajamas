@@ -143,6 +143,7 @@ public class Fishing : MonoBehaviour
         int baitMultiplier = inventory.baitMultiplier;
         int fishIndex = Random.Range(0, 18) % (2 * rodMultiplier * baitMultiplier);
         Debug.Log("You caught a " + fishArr[fishIndex] + "!");
+        OnCatchFish(fishIndex);
         endFish();
         ToastManager.OverwriteToast("You caught a " + fishArr[fishIndex] + "!");
     }

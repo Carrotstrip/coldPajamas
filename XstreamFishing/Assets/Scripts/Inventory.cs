@@ -57,7 +57,8 @@ public class Inventory : MonoBehaviour
                 return itemList[i];
             }
         }
-        return itemList[0];
+        Item fillerItem = new Item();
+        return fillerItem;
     }
 
     public void EquipItem(Item item, InventoryEntry ie) {
