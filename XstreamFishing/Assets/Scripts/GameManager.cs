@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
         if (winState)
         {
             winState = false;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene("MainMenu");
         }
     }
 
