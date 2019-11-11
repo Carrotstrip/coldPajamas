@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject player_prefab;
     private List<GameObject> players;
     private List<string> controllers;
-    private bool start_mode;
+    public static bool start_mode;
 
 
     void Awake()
@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
         if (winState)
         {
             winState = false;
+            controllers.Clear();
             SceneManager.LoadScene("MainMenu");
         }
 
@@ -79,7 +80,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public static void SomeoneWon(){
+    public static void SomeoneWon() {
         winState = true;
     }
 }

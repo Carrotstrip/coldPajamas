@@ -11,10 +11,8 @@ public class ButtonManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-     
-
-		Button btn2 = b2.GetComponent<Button>();
-		btn2.onClick.AddListener(LoadMP);   
+      Button btn2 = b2.GetComponent<Button>();
+      btn2.onClick.AddListener(LoadMP);   
     }
 
     // Update is called once per frame
@@ -28,6 +26,7 @@ public class ButtonManager : MonoBehaviour
     }
 
     void LoadMP(){
+      GameManager.start_mode = true;
     	SceneManager.LoadScene("MultiplayerScene");
     }
 }
