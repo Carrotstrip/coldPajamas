@@ -81,6 +81,46 @@ public class InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""RT"",
+                    ""type"": ""Button"",
+                    ""id"": ""984386e1-d6a9-40ea-a420-f1f905654b9a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""LT"",
+                    ""type"": ""Button"",
+                    ""id"": ""7413fb19-e103-47d1-8bc0-c55ff8771c74"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""LB"",
+                    ""type"": ""Button"",
+                    ""id"": ""aae26291-28be-49af-b8e9-5cb041eb0b82"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""LTUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""5ae5a9c9-43e6-42fd-9eb6-11edef2dd432"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""LBUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""0cd4823e-4733-40d3-a83d-70179c439dac"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -180,6 +220,61 @@ public class InputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""StartButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f65754d6-644f-451c-bd3b-935b04a8bb47"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4df5befe-caf1-426a-91c3-929de89ed7a7"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""LT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c5414e07-8a5c-4aae-89bd-1a33d8dd7481"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""LB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""78228ec6-70f2-488b-93d5-d5be64ff27f9"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""LTUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1793c4fa-eabb-433c-8cdd-9cb61bed741e"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""LBUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -719,6 +814,11 @@ public class InputActions : IInputActionCollection, IDisposable
         m_Player_X = m_Player.FindAction("X", throwIfNotFound: true);
         m_Player_B = m_Player.FindAction("B", throwIfNotFound: true);
         m_Player_StartButton = m_Player.FindAction("StartButton", throwIfNotFound: true);
+        m_Player_RT = m_Player.FindAction("RT", throwIfNotFound: true);
+        m_Player_LT = m_Player.FindAction("LT", throwIfNotFound: true);
+        m_Player_LB = m_Player.FindAction("LB", throwIfNotFound: true);
+        m_Player_LTUp = m_Player.FindAction("LTUp", throwIfNotFound: true);
+        m_Player_LBUp = m_Player.FindAction("LBUp", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -798,6 +898,11 @@ public class InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_X;
     private readonly InputAction m_Player_B;
     private readonly InputAction m_Player_StartButton;
+    private readonly InputAction m_Player_RT;
+    private readonly InputAction m_Player_LT;
+    private readonly InputAction m_Player_LB;
+    private readonly InputAction m_Player_LTUp;
+    private readonly InputAction m_Player_LBUp;
     public struct PlayerActions
     {
         private InputActions m_Wrapper;
@@ -810,6 +915,11 @@ public class InputActions : IInputActionCollection, IDisposable
         public InputAction @X => m_Wrapper.m_Player_X;
         public InputAction @B => m_Wrapper.m_Player_B;
         public InputAction @StartButton => m_Wrapper.m_Player_StartButton;
+        public InputAction @RT => m_Wrapper.m_Player_RT;
+        public InputAction @LT => m_Wrapper.m_Player_LT;
+        public InputAction @LB => m_Wrapper.m_Player_LB;
+        public InputAction @LTUp => m_Wrapper.m_Player_LTUp;
+        public InputAction @LBUp => m_Wrapper.m_Player_LBUp;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -843,6 +953,21 @@ public class InputActions : IInputActionCollection, IDisposable
                 StartButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStartButton;
                 StartButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStartButton;
                 StartButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStartButton;
+                RT.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRT;
+                RT.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRT;
+                RT.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRT;
+                LT.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLT;
+                LT.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLT;
+                LT.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLT;
+                LB.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLB;
+                LB.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLB;
+                LB.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLB;
+                LTUp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLTUp;
+                LTUp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLTUp;
+                LTUp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLTUp;
+                LBUp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLBUp;
+                LBUp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLBUp;
+                LBUp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLBUp;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -871,6 +996,21 @@ public class InputActions : IInputActionCollection, IDisposable
                 StartButton.started += instance.OnStartButton;
                 StartButton.performed += instance.OnStartButton;
                 StartButton.canceled += instance.OnStartButton;
+                RT.started += instance.OnRT;
+                RT.performed += instance.OnRT;
+                RT.canceled += instance.OnRT;
+                LT.started += instance.OnLT;
+                LT.performed += instance.OnLT;
+                LT.canceled += instance.OnLT;
+                LB.started += instance.OnLB;
+                LB.performed += instance.OnLB;
+                LB.canceled += instance.OnLB;
+                LTUp.started += instance.OnLTUp;
+                LTUp.performed += instance.OnLTUp;
+                LTUp.canceled += instance.OnLTUp;
+                LBUp.started += instance.OnLBUp;
+                LBUp.performed += instance.OnLBUp;
+                LBUp.canceled += instance.OnLBUp;
             }
         }
     }
@@ -1124,6 +1264,11 @@ public class InputActions : IInputActionCollection, IDisposable
         void OnX(InputAction.CallbackContext context);
         void OnB(InputAction.CallbackContext context);
         void OnStartButton(InputAction.CallbackContext context);
+        void OnRT(InputAction.CallbackContext context);
+        void OnLT(InputAction.CallbackContext context);
+        void OnLB(InputAction.CallbackContext context);
+        void OnLTUp(InputAction.CallbackContext context);
+        void OnLBUp(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

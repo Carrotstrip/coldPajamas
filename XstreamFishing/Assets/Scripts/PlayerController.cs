@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     public GameObject shopUI;
     protected Vector2 move_vector;
+    public Cannon cannon;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,26 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue input)
     {
         move_vector = input.Get<Vector2>();
+    }
+
+    void OnRT() {
+        cannon.Fire();
+    }
+
+    void OnLT() {
+        cannon.gimbalingUp = true;
+    }
+
+    void OnLB() {
+        cannon.gimbalingDown = true;
+    }
+
+    void OnLTUp() {
+        cannon.gimbalingUp = false;
+    }
+
+    void OnLBUp() {
+        cannon.gimbalingDown = false;
     }
 
     void Update()

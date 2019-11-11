@@ -21,11 +21,6 @@ public class Inventory : MonoBehaviour
     }
 
     void Update() {
-        if(Input.GetKeyDown("k")) {
-            DropItem();
-			int numFishDropped = DropFish(2);
-			// GainFish(numFishDropped);
-        }
     }
 
     public bool GetHasCategoryEquipped(string category) {
@@ -134,19 +129,11 @@ public class Inventory : MonoBehaviour
             bool removedOld = false;
             for (int i = 0; i < itemList.Count; i++)
             {
-                if (itemList[i].category == item.category && itemList[i].multiplier <=  item.multiplier)
+                if (itemList[i].category == item.category && itemList[i].multiplier <= item.multiplier)
                 {
                     itemList.Remove(itemList[i]);
                     removedOld = true;
                     // set the proper multipliers
-                    if (item.category == "rod")
-                    {
-                        rodMultiplier = item.multiplier;
-                    }
-                    if (item.category == "bait")
-                    {
-                        baitMultiplier = item.multiplier;
-                    }
                     break;
                 }
             }
@@ -170,6 +157,7 @@ public class Inventory : MonoBehaviour
 
     public void GainFish(int numFishIn) {
         numFish += numFishIn;
+        OnInventoryChange();
     }
 
 }
