@@ -8,72 +8,35 @@ public class SwitchMode : MonoBehaviour
 {
     public GameObject boat;
     public GameObject boatCamera;
+    public Camera actualBoatCamera;
+    public Camera mainCamera;
+    public Canvas canvas;
     public GameObject player;
     public GameObject playerStartPos;
-    public string controller;
-    ShipRocker sr;
-    void Start()
-    {
-        sr = boat.GetComponent<ShipRocker>();
-    }
+    public ShipRocker sr;
 
     // Update is called once per frame
-    void Update()
+    void OnY()
     {
-        if(Input.GetKeyDown("y")){
-            if (boat.GetComponent<Rigidbody>().isKinematic)
-            {
-                boat.GetComponent<Rigidbody>().isKinematic = false;
-                boat.GetComponent<PlayerController>().enabled = true;
-                boatCamera.SetActive(true);
-                player.SetActive(false);
-                sr.enabled = true;
-            }
-            else
-            {
-                boat.GetComponent<Rigidbody>().isKinematic = true;
-                boat.GetComponent<PlayerController>().enabled = false;
-                boatCamera.SetActive(false);
-                player.transform.position = playerStartPos.transform.position;
-                player.SetActive(true);
-                sr.enabled = false;
-            }
-        }
-        if (Input.GetButtonDown(controller + "Y")/*Gamepad.current.buttonNorth.wasPressedThisFrame*/)
+        if (boat.GetComponent<Rigidbody>().isKinematic)
         {
-            if (boat.GetComponent<Rigidbody>().isKinematic)
-            {
-                boat.GetComponent<Rigidbody>().isKinematic = false;
-                boat.GetComponent<PlayerController>().enabled = true;
-                boatCamera.SetActive(true);
-                player.SetActive(false);
-                sr.enabled = true;
-            }
-            else
-            {
-                boat.GetComponent<Rigidbody>().isKinematic = true;
-                boat.GetComponent<PlayerController>().enabled = false;
-                boatCamera.SetActive(false);
-                player.transform.position = playerStartPos.transform.position;
-                player.SetActive(true);
-                sr.enabled = false;
-            }
+            boat.GetComponent<Rigidbody>().isKinematic = false;
+            boat.GetComponent<PlayerController>().enabled = true;
+            boatCamera.SetActive(true);
+            canvas.worldCamera = mainCamera;
+            player.SetActive(false);
+            sr.enabled = true;
         }
-        // if (Input.GetKey("1")){
-        //     boat.GetComponent<Rigidbody>().isKinematic = false;
-        //     boat.GetComponent<PlayerController>().enabled = true;
-        //     boatCamera.SetActive(true);
-        //     player.SetActive(false);
-        //     sr.enabled = true;
-        // }
-        // if (Input.GetKey("2")){
-        //     boat.GetComponent<Rigidbody>().isKinematic = true;
-        //     boat.GetComponent<PlayerController>().enabled = false;
-        //     boatCamera.SetActive(false);
-        //     player.transform.position = playerStartPos.transform.position;
-        //     player.SetActive(true);
-        //     sr.enabled = false;
-        // }
-
+        else
+        {
+            boat.GetComponent<Rigidbody>().isKinematic = true;
+            boat.GetComponent<PlayerController>().enabled = false;
+            boatCamera.SetActive(false);
+            canvas.worldCamera = actualBoatCamera;
+            //Vector3 x = new Vector3(playerStartPos.transform.position.x, playerStartPos.transform.position.y + 100, playerStartPos.transform.position.z);
+            player.transform.position = playerStartPos.transform.position;
+            player.SetActive(true);
+            sr.enabled = false;
+        }
     }
 }

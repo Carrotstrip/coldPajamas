@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
+using UnityEngine.InputSystem;
 
 namespace UnityStandardAssets.Characters.FirstPerson
 {
@@ -28,7 +29,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
 
-        private Camera m_Camera;
+        public Camera m_Camera;
         private bool m_Jump;
         private float m_YRotation;
         private Vector2 m_Input;
@@ -41,13 +42,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
-        public string controller;
+        protected Vector2 move_vector;
+        protected float yRot;
+        protected float xRot;
 
         // Use this for initialization
         private void Start()
         {
             m_CharacterController = GetComponent<CharacterController>();
-            m_Camera = Camera.main;
+            // m_Camera = Camera.main;
             m_OriginalCameraPosition = m_Camera.transform.localPosition;
             m_FovKick.Setup(m_Camera);
             m_HeadBob.Setup(m_Camera, m_StepInterval);
@@ -55,7 +58,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_NextStep = m_StepCycle / 2f;
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
-            m_MouseLook.Init(transform, m_Camera.transform, controller);
+            m_MouseLook.Init(transform, m_Camera.transform);
         }
 
 
@@ -197,11 +200,17 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
 
+        void OnMove(InputValue input)
+        {
+            move_vector = input.Get<Vector2>();
+        }
+
+
         private void GetInput(out float speed)
         {
             // Read input
-            float horizontal = Input.GetAxis(controller + "Horizontal");
-            float vertical = Input.GetAxis(controller + "Vertical");
+            float horizontal = move_vector.x;
+            float vertical = move_vector.y;
 
             bool waswalking = m_IsWalking;
 
@@ -230,9 +239,17 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
 
+        void OnLookStick(InputValue input)
+        {
+            Vector2 input_vec = input.Get<Vector2>();
+            yRot = input_vec.y;
+            xRot = input_vec.x;
+        }
+
+
         private void RotateView()
         {
-            m_MouseLook.LookRotation(transform, m_Camera.transform);
+            m_MouseLook.LookRotation(transform, m_Camera.transform, xRot, yRot);
         }
 
 
