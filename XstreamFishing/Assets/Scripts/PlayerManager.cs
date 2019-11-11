@@ -52,13 +52,9 @@ public class PlayerManager : MonoBehaviour
     }
 
     // show pro shop
-    void OnX()
-    {
-        shopUI.SetActive(!shopUI.activeSelf);
-    }
 
     // show inventory
-    void OnB()
+    void OnX()
     {
         inventoryUI.SetActive(!inventoryUI.activeSelf);
     }
@@ -137,6 +133,9 @@ public class PlayerManager : MonoBehaviour
                 timerRunning = true;
                 ToastManager.Toast("It's a nice day to be out fishing. Feel free to come on down to the pro shop for supplies. Heck I'll even throw in some free advice.");
             }
+        }
+        if(inventory.numFish == 1){
+            GameManager.SomeoneWon();
         }
     }
 }

@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float accelerateSpeed = 1000f;
     public bool can_move;
     private Rigidbody rb;
+    public GameObject shopUI;
     protected Vector2 move_vector;
 
     // Start is called before the first frame update
@@ -36,6 +37,13 @@ public class PlayerController : MonoBehaviour
         else
         {
             rb.velocity = new Vector3(0, 0, 0);
+        }
+    }
+
+    void OnB(){
+        if(!can_move && shopUI.activeSelf){
+            can_move = true;
+            shopUI.SetActive(!shopUI.activeSelf);
         }
     }
 
@@ -73,6 +81,16 @@ public class PlayerController : MonoBehaviour
     //         onGround = false;
     //     }
     // }
+
+    void OnTriggerEnter(Collider coll){
+        GameObject obj = coll.gameObject;
+        Debug.Log("Triggered: " + obj);
+        if(obj.tag == "Beach"){
+            Debug.Log("Triggered 2");
+            can_move = false;
+            shopUI.SetActive(!shopUI.activeSelf);
+        }
+    }
 
 
 }
