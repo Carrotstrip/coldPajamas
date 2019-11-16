@@ -121,6 +121,14 @@ public class InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""AUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""379ec654-2979-4edb-8845-44751f6a8dc5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -183,7 +191,7 @@ public class InputActions : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""e08b954d-f0f2-4b69-a108-6adf0e3f5fa1"",
                     ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""A"",
@@ -275,6 +283,17 @@ public class InputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""LBUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff98759b-1023-41f1-b200-312272bd1596"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -750,6 +769,33 @@ public class InputActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Menu"",
+            ""id"": ""c845c0e7-21dd-40f2-874c-7f8932c5a085"",
+            ""actions"": [
+                {
+                    ""name"": ""A"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd49db28-58de-44c0-927e-1fc984ffa214"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""7874dd3d-f176-47d2-aab7-92450a14d6e4"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""A"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -819,6 +865,7 @@ public class InputActions : IInputActionCollection, IDisposable
         m_Player_LB = m_Player.FindAction("LB", throwIfNotFound: true);
         m_Player_LTUp = m_Player.FindAction("LTUp", throwIfNotFound: true);
         m_Player_LBUp = m_Player.FindAction("LBUp", throwIfNotFound: true);
+        m_Player_AUp = m_Player.FindAction("AUp", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -841,6 +888,9 @@ public class InputActions : IInputActionCollection, IDisposable
         m_Join = asset.FindActionMap("Join", throwIfNotFound: true);
         m_Join_A = m_Join.FindAction("A", throwIfNotFound: true);
         m_Join_Start = m_Join.FindAction("Start", throwIfNotFound: true);
+        // Menu
+        m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+        m_Menu_A = m_Menu.FindAction("A", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -903,6 +953,7 @@ public class InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_LB;
     private readonly InputAction m_Player_LTUp;
     private readonly InputAction m_Player_LBUp;
+    private readonly InputAction m_Player_AUp;
     public struct PlayerActions
     {
         private InputActions m_Wrapper;
@@ -920,6 +971,7 @@ public class InputActions : IInputActionCollection, IDisposable
         public InputAction @LB => m_Wrapper.m_Player_LB;
         public InputAction @LTUp => m_Wrapper.m_Player_LTUp;
         public InputAction @LBUp => m_Wrapper.m_Player_LBUp;
+        public InputAction @AUp => m_Wrapper.m_Player_AUp;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -968,6 +1020,9 @@ public class InputActions : IInputActionCollection, IDisposable
                 LBUp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLBUp;
                 LBUp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLBUp;
                 LBUp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLBUp;
+                AUp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAUp;
+                AUp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAUp;
+                AUp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAUp;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1011,6 +1066,9 @@ public class InputActions : IInputActionCollection, IDisposable
                 LBUp.started += instance.OnLBUp;
                 LBUp.performed += instance.OnLBUp;
                 LBUp.canceled += instance.OnLBUp;
+                AUp.started += instance.OnAUp;
+                AUp.performed += instance.OnAUp;
+                AUp.canceled += instance.OnAUp;
             }
         }
     }
@@ -1218,6 +1276,39 @@ public class InputActions : IInputActionCollection, IDisposable
         }
     }
     public JoinActions @Join => new JoinActions(this);
+
+    // Menu
+    private readonly InputActionMap m_Menu;
+    private IMenuActions m_MenuActionsCallbackInterface;
+    private readonly InputAction m_Menu_A;
+    public struct MenuActions
+    {
+        private InputActions m_Wrapper;
+        public MenuActions(InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @A => m_Wrapper.m_Menu_A;
+        public InputActionMap Get() { return m_Wrapper.m_Menu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+        public void SetCallbacks(IMenuActions instance)
+        {
+            if (m_Wrapper.m_MenuActionsCallbackInterface != null)
+            {
+                A.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnA;
+                A.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnA;
+                A.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnA;
+            }
+            m_Wrapper.m_MenuActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                A.started += instance.OnA;
+                A.performed += instance.OnA;
+                A.canceled += instance.OnA;
+            }
+        }
+    }
+    public MenuActions @Menu => new MenuActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1269,6 +1360,7 @@ public class InputActions : IInputActionCollection, IDisposable
         void OnLB(InputAction.CallbackContext context);
         void OnLTUp(InputAction.CallbackContext context);
         void OnLBUp(InputAction.CallbackContext context);
+        void OnAUp(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -1294,5 +1386,9 @@ public class InputActions : IInputActionCollection, IDisposable
     {
         void OnA(InputAction.CallbackContext context);
         void OnStart(InputAction.CallbackContext context);
+    }
+    public interface IMenuActions
+    {
+        void OnA(InputAction.CallbackContext context);
     }
 }

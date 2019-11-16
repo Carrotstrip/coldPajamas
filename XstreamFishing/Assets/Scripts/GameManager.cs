@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
         {
             winState = false;
             controllers.Clear();
+            Destroy(gameObject);
             SceneManager.LoadScene("MainMenu");
         }
     }

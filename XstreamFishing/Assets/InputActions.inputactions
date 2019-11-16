@@ -108,6 +108,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "AUp",
+                    "type": "Button",
+                    "id": "379ec654-2979-4edb-8845-44751f6a8dc5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -170,7 +178,7 @@
                     "name": "",
                     "id": "e08b954d-f0f2-4b69-a108-6adf0e3f5fa1",
                     "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "A",
@@ -262,6 +270,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "LBUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ff98759b-1023-41f1-b200-312272bd1596",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "AUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -733,6 +752,33 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Start",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Menu",
+            "id": "c845c0e7-21dd-40f2-874c-7f8932c5a085",
+            "actions": [
+                {
+                    "name": "A",
+                    "type": "Button",
+                    "id": "dd49db28-58de-44c0-927e-1fc984ffa214",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7874dd3d-f176-47d2-aab7-92450a14d6e4",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "A",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

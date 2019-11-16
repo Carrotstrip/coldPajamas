@@ -22,6 +22,7 @@ public class ButtonManager : MonoBehaviour
     }
 
     void OnA(){
+        
         LoadMP();
     }
 
