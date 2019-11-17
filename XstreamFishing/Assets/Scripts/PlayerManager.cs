@@ -137,7 +137,7 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         UpdateScreenSize();
-        if (inventory.numFish == 1)
+        if (inventory.numFish == 100)
         {
             GameManager.SomeoneWon();
         }

@@ -671,6 +671,14 @@ public class InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""B"",
+                    ""type"": ""Button"",
+                    ""id"": ""50658e0d-3d89-4df7-91f2-3afee7e5a82a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -682,6 +690,17 @@ public class InputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""A"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""02b393a1-bf6b-4d12-b3bf-98b88702fee2"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""B"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -781,6 +800,7 @@ public class InputActions : IInputActionCollection, IDisposable
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_A = m_Menu.FindAction("A", throwIfNotFound: true);
+        m_Menu_B = m_Menu.FindAction("B", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1171,11 +1191,13 @@ public class InputActions : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Menu;
     private IMenuActions m_MenuActionsCallbackInterface;
     private readonly InputAction m_Menu_A;
+    private readonly InputAction m_Menu_B;
     public struct MenuActions
     {
         private InputActions m_Wrapper;
         public MenuActions(InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @A => m_Wrapper.m_Menu_A;
+        public InputAction @B => m_Wrapper.m_Menu_B;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1188,6 +1210,9 @@ public class InputActions : IInputActionCollection, IDisposable
                 A.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnA;
                 A.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnA;
                 A.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnA;
+                B.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnB;
+                B.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnB;
+                B.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnB;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
@@ -1195,6 +1220,9 @@ public class InputActions : IInputActionCollection, IDisposable
                 A.started += instance.OnA;
                 A.performed += instance.OnA;
                 A.canceled += instance.OnA;
+                B.started += instance.OnB;
+                B.performed += instance.OnB;
+                B.canceled += instance.OnB;
             }
         }
     }
@@ -1280,5 +1308,6 @@ public class InputActions : IInputActionCollection, IDisposable
     public interface IMenuActions
     {
         void OnA(InputAction.CallbackContext context);
+        void OnB(InputAction.CallbackContext context);
     }
 }

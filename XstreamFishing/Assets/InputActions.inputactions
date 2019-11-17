@@ -658,6 +658,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "B",
+                    "type": "Button",
+                    "id": "50658e0d-3d89-4df7-91f2-3afee7e5a82a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -669,6 +677,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "A",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "02b393a1-bf6b-4d12-b3bf-98b88702fee2",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "B",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
