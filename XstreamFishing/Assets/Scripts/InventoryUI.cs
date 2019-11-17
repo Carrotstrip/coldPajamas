@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -40,12 +41,11 @@ public class InventoryUI : MonoBehaviour
         {
             Debug.Log("adding entries");
             Item item = inventory.itemList[i];
-            Debug.Log(item.itemName);
             GameObject newEntry = Instantiate(inventoryEntry);
             newEntry.transform.SetParent(contentPanel);
+            newEntry.transform.localPosition = Vector3.zero;
             newEntry.transform.localScale = new Vector3(1f, 1f, 1f);
             InventoryEntry newInvEntry = newEntry.GetComponent<InventoryEntry>();
-            
             newInvEntry.Setup(item, this);
         }
     }

@@ -11,16 +11,19 @@ public class ShipRocker: MonoBehaviour
     public float bobbingMultiplier = .5f;
     //public float rollMultiplier = .4f;
     private Quaternion startRotation;
+
+    private PlayerController pc;
  
     void Start()
     {
         originalY = this.transform.position.y;
+        pc = GetComponent<PlayerController>();
         // startRotation = transform.rotation;
     }
  
     void Update()
     {
-        BobUpAndDown();
+        if(!pc.can_fly)BobUpAndDown();
         // RollFrontToBack();
         // RollSideToSide();
     }

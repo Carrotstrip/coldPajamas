@@ -175,7 +175,7 @@ public class Fishing : MonoBehaviour
         // I like the idea of fish being scared off
         // and decrementing number of fish even if they weren't caught
         int x = (int)(transform.position.x + 375) / 75;
-        int y = (int)(transform.position.y + 375) / 75;
+        int y = (int)(transform.position.z + 375) / 75;
         fishMap = GameObject.Find("Ocean").GetComponent<FishMap>();
         fishMap.decrementFish(x, y);
         Destroy(rod_clone);
@@ -187,7 +187,7 @@ public class Fishing : MonoBehaviour
         // ToastManager.OverwriteToast("Reel in with the right joystick");
         cast = true;
         int x = (int)(transform.position.x + 375) / 75;
-        int y = (int)(transform.position.y + 375) / 75;
+        int y = (int)(transform.position.z + 375) / 75;
         int fishCount = fishMap.getFishCount(x, y);
         releaseCounter = 0;
         catchCounter = 0;

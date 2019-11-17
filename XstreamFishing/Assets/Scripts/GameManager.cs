@@ -12,8 +12,11 @@ public class GameManager : MonoBehaviour
     public GameObject player_prefab;
     private List<PlayerInput> players;
     private List<string> controllers;
-    public static bool start_mode;
+    public static bool game_started;
     public RectTransform panelRectTransform;
+    public GameObject JoinCamera;
+    public GameObject JoinCanvas;
+    public GameObject Minimap;
 
 
     void Awake()
@@ -34,7 +37,7 @@ public class GameManager : MonoBehaviour
     {
         winState = false;
         controllers = new List<string>();
-        start_mode = true;
+        game_started = false;
     }
 
 
@@ -42,7 +45,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // if join button was pressed and this isn't in our list of players, add it
-        if (start_mode && Gamepad.current.buttonSouth.wasPressedThisFrame)
+        if (!game_started && Gamepad.current.buttonSouth.wasPressedThisFrame)
         {
             bool join = true;
             for (int i = 0; i < controllers.Count; i++)
@@ -64,15 +67,28 @@ public class GameManager : MonoBehaviour
             }
             Debug.Log("Joining " + Gamepad.current.name);
         }
-        if (start_mode && Gamepad.current.buttonWest.wasPressedThisFrame)
+        if (!game_started && Gamepad.current.buttonWest.wasPressedThisFrame)
         {
-            start_mode = false;
+            if (controllers.Count == 3)
+            {
+                panelRectTransform.anchorMin = new Vector2(1f, 0f);
+                panelRectTransform.anchorMax = new Vector2(1f, 0f);
+                panelRectTransform.pivot = new Vector2(0.5f, 0.5f);
+                panelRectTransform.anchoredPosition = new Vector3(-350f, 230f, 0);
+                panelRectTransform.localScale = new Vector3(4.6f, 4.6f, 1f);
+            }
+            // once someone starts the game, remove join ui and camera and allow players to start toasting and moving
+            game_started = true;
+            JoinCamera.SetActive(false);
+            JoinCanvas.SetActive(false);
+            Minimap.SetActive(true);
         }
 
         if (winState)
         {
             winState = false;
             controllers.Clear();
+            Destroy(gameObject);
             SceneManager.LoadScene("MainMenu");
         }
     }

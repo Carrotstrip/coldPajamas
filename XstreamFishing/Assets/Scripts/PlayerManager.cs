@@ -25,30 +25,39 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-        // get material
+        // get minimap sphere material
         mat = sphere.GetComponent<MeshRenderer>().materials[0];
 
-        // get index, and position based on this
+
+        // get index, and set position based on index
         int index = player_input.playerIndex;
+
+        // on join, turn text the right color and change text
+        Text player_join_text = GameObject.Find("PlayerJoinText" + index).GetComponent<Text>();
+        player_join_text.text = "Player " + index + " joined!";
         if (index == 1)
         {
             boat.transform.position = new Vector3(-200f, 0f, 200f);
             mat.color = Color.blue;
+            player_join_text.color = Color.blue;
         }
         if (index == 2)
         {
             boat.transform.position = new Vector3(200f, 0f, 200f);
             mat.color = Color.red;
+            player_join_text.color = Color.red;
         }
         if (index == 3)
         {
-            boat.transform.position = new Vector3(200f, 0f, -200f);
+            boat.transform.position = new Vector3(-200f, 0f, -200f);
             mat.color = Color.yellow;
+            player_join_text.color = Color.yellow;
         }
         if (index == 4)
         {
-            boat.transform.position = new Vector3(-200f, 0f, -200f);
+            boat.transform.position = new Vector3(200f, 0f, -200f);
             mat.color = Color.green;
+            player_join_text.color = Color.green;
         }
         ptm = gameObject.GetComponentInParent(typeof(PlayerToastManager)) as PlayerToastManager;
         timer = 0.0f;
@@ -96,8 +105,16 @@ public class PlayerManager : MonoBehaviour
             }
             if (num_screens == 2)
             {
-                main_camera.rect = new Rect(0f, (index - 1) * 0.5f, 1f, 0.5f);
-                fp_camera.rect = new Rect(0f, (index - 1) * 0.5f, 1f, 0.5f);
+                if (index == 1)
+                {
+                    main_camera.rect = new Rect(0f, 0.5f, 1f, 0.5f);
+                    fp_camera.rect = new Rect(0f, 0.5f, 1f, 0.5f);
+                }
+                else
+                {
+                    main_camera.rect = new Rect(0f, 0f, 1f, 0.5f);
+                    fp_camera.rect = new Rect(0f, 0f, 1f, 0.5f);
+                }
                 main_UI.GetComponent<CanvasScaler>().scaleFactor = 1f;
             }
             if (num_screens >= 3)
@@ -105,13 +122,13 @@ public class PlayerManager : MonoBehaviour
                 main_UI.GetComponent<CanvasScaler>().scaleFactor = 1f;
                 if (index <= 2)
                 {
-                    main_camera.rect = new Rect((index - 1) * 0.5f, 0f, 0.5f, 0.5f);
-                    fp_camera.rect = new Rect((index - 1) * 0.5f, 0f, 0.5f, 0.5f);
+                    main_camera.rect = new Rect((index - 1) * 0.5f, 0.5f, 0.5f, 0.5f);
+                    fp_camera.rect = new Rect((index - 1) * 0.5f, 0.5f, 0.5f, 0.5f);
                 }
                 else
                 {
-                    main_camera.rect = new Rect((index - 3) * 0.5f, 0.5f, 0.5f, 0.5f);
-                    fp_camera.rect = new Rect((index - 3) * 0.5f, 0.5f, 0.5f, 0.5f);
+                    main_camera.rect = new Rect((index - 3) * 0.5f, 0f, 0.5f, 0.5f);
+                    fp_camera.rect = new Rect((index - 3) * 0.5f, 0f, 0.5f, 0.5f);
                 }
             }
         }
@@ -120,7 +137,7 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         UpdateScreenSize();
-        if (inventory.numFish == 1)
+        if (inventory.numFish == 100)
         {
             GameManager.SomeoneWon();
         }

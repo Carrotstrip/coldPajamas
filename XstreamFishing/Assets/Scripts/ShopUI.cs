@@ -4,6 +4,7 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class ShopUI : MonoBehaviour
 {
@@ -12,7 +13,6 @@ public class ShopUI : MonoBehaviour
     public Transform contentPanel;
     public Inventory inventory;
     public static Action OnNotEnoughFish;
-    //public EventSystem es;
     
 
     public GameObject shopButton;
@@ -23,11 +23,11 @@ public class ShopUI : MonoBehaviour
     void Start()
     {
         AddButtons();
-        //EventSystem.current.SetSelectedGameObject(firstButton);
-        //StartCoroutine(SelectButton());
-        
-        
     }
+
+    // void OnEnable() {
+    //     EventSystem.current.SetSelectedGameObject(firstButton);
+    // }
 
     private void AddButtons()
     {
@@ -35,19 +35,17 @@ public class ShopUI : MonoBehaviour
         {
             Item item = itemList[i];
             GameObject newButton = Instantiate(shopButton);
-            newButton.transform.SetParent(contentPanel);
+            newButton.transform.SetParent(contentPanel, false);
             newButton.transform.localScale = new Vector3(1f, 1f, 1f);
+            newButton.transform.localPosition = Vector3.zero;
             ShopButton newShopButton = newButton.GetComponent<ShopButton>();
             newShopButton.Setup(item, this);
             if(i == 0){
                 Image im = newShopButton.GetComponent<Image>();
                 im.color = new Color32(0xC0,0x7D,0x30,0xFF);
                 firstButton = newButton;
-                //newShopButton.Color = #C07D30;
-               // StartCoroutine("SelectButton");
                 EventSystem.current.SetSelectedGameObject(firstButton);
             }
-           
         }
     }
 
