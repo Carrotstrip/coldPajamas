@@ -13,12 +13,17 @@ public class PlayerController : MonoBehaviour
     public GameObject shopUI;
     protected Vector2 move_vector;
     public Cannon cannon;
+    public bool can_fly;
+    private bool up;
+    private float initial_y_pos;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         can_move = true;
+        up = false;
+        initial_y_pos = transform.position.y;
     }
 
     void OnSail(InputValue input)
@@ -39,6 +44,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnLTUp() {
+
         cannon.gimbalingUp = false;
     }
 
@@ -54,11 +60,29 @@ public class PlayerController : MonoBehaviour
             float moveVertical = move_vector.y;
             rb.AddTorque(0f, moveHorizontal * turnSpeed * Time.deltaTime, 0f);
             rb.AddForce(transform.forward * moveVertical * accelerateSpeed * Time.deltaTime);
+            if(can_fly){
+                if(up){
+                    transform.Translate((Vector3.up*6f) * Time.deltaTime, Space.World);
+                }
+                else{
+                    if(transform.position.y > initial_y_pos){
+                        transform.Translate(Vector3.down * 10f * Time.deltaTime, Space.World);
+                    }
+                }
+            }
         }
         else
         {
             rb.velocity = new Vector3(0, 0, 0);
         }
+    }
+
+    void OnA(){
+        up = true;
+    }
+
+    void OnAUp(){
+        up = false;
     }
 
     void OnB(){

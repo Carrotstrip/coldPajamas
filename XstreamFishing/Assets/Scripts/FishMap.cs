@@ -14,7 +14,7 @@ public class FishMap : MonoBehaviour
     GradientAlphaKey[] alphaKey;
 
     public int chanceSize = 30;
-    public int num_start_fish = 5;
+    public int num_start_fish = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +24,8 @@ public class FishMap : MonoBehaviour
         colorKey = new GradientColorKey[2];
         colorKey[0].color = Color.black;
         colorKey[0].time = 0.0f;
-        colorKey[1].color = new Color(34f / 256f, 230f / 256f, 86f / 256f, 1);
+        colorKey[1].color = new Color(3f / 256f, 252f / 256f, 232f / 256f, 1);
+        // colorKey[1].color = new Color(34f / 256f, 230f / 256f, 86f / 256f, 1);
         colorKey[1].time = 1.0f;
 
         // Populate the alpha  keys at relative time 0 and 1  (0 and 100%)
