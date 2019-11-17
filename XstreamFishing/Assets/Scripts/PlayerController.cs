@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         can_move = true;
-        can_fly = true;
         up = false;
         initial_y_pos = transform.position.y;
     }
