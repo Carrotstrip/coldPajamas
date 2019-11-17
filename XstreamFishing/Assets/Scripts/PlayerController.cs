@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         can_move = true;
+        GetComponent<Rigidbody>().inertiaTensorRotation = Quaternion.identity;
     }
 
     void OnMove(InputValue input)
