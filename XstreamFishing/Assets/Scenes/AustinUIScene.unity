@@ -514,13 +514,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1495813628}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1655a07224f0430a9f82aaa099f559c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   arrSize: 10
+  FishCube: {fileID: 0}
   chanceSize: 30
+  num_start_fish: 5
 --- !u!65 &1495813630
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -672,6 +674,9 @@ MonoBehaviour:
   player_prefab: {fileID: 8205407519353637972, guid: d034ef73934c74261bcdfc643571da01,
     type: 3}
   panelRectTransform: {fileID: 1329597572}
+  JoinCamera: {fileID: 0}
+  JoinCanvas: {fileID: 0}
+  Minimap: {fileID: 0}
 --- !u!114 &1534730922
 MonoBehaviour:
   m_ObjectHideFlags: 0
