@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class InventoryEntry : MonoBehaviour {
 
@@ -15,7 +17,7 @@ public class InventoryEntry : MonoBehaviour {
     
     void Start () 
     {
-        buttonComponent.onClick.AddListener(HandleClick);
+        // buttonComponent.onClick.AddListener(HandleClick);
         image = GetComponent<Image>();
     }
 
@@ -25,6 +27,7 @@ public class InventoryEntry : MonoBehaviour {
         image.color = new Color32(200, 10, 10, 255);
         thisUI.RefreshDisplay();
     }
+
 
     public void Setup(Item currentItem, InventoryUI currentUI)
     {

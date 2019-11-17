@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class ShopButton : MonoBehaviour {
 
@@ -9,9 +10,6 @@ public class ShopButton : MonoBehaviour {
     public Text nameLabel;
     public Image iconImage;
     public Text priceText;
-    public EventSystem es;
-
-
     private Item item;
     private ShopUI scrollList;
 
@@ -28,11 +26,9 @@ public class ShopButton : MonoBehaviour {
         iconImage.sprite = item.icon;
         priceText.text = item.price.ToString();
         scrollList = currentScrollList;
-        
     }
 
     void Update(){
-        
         if(Input.GetKeyDown(KeyCode.T)){
             scrollList.TryTransferItemToInventory(item);
         }

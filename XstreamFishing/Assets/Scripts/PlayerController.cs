@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         can_move = true;
     }
 
-    void OnMove(InputValue input)
+    void OnSail(InputValue input)
     {
         move_vector = input.Get<Vector2>();
     }
