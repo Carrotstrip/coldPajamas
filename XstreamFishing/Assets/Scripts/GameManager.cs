@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
             }
             Debug.Log("Joining " + Gamepad.current.name);
         }
-        if (!game_started && Gamepad.current.buttonWest.wasPressedThisFrame)
+        if (!game_started && Gamepad.current.startButton.wasPressedThisFrame)
         {
             if (controllers.Count == 3)
             {

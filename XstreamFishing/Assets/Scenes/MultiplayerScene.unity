@@ -1719,7 +1719,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press X when everyone is ready!
+  m_Text: Press Start when everyone is ready!
 --- !u!222 &1881391391
 CanvasRenderer:
   m_ObjectHideFlags: 0

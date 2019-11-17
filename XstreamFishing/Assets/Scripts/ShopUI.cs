@@ -25,10 +25,6 @@ public class ShopUI : MonoBehaviour
         AddButtons();
     }
 
-    // void OnEnable() {
-    //     EventSystem.current.SetSelectedGameObject(firstButton);
-    // }
-
     private void AddButtons()
     {
         for (int i = 0; i < itemList.Count; i++)
