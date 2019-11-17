@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         initial_y_pos = transform.position.y;
     }
 
-    void OnMove(InputValue input)
+    void OnSail(InputValue input)
     {
         move_vector = input.Get<Vector2>();
     }
