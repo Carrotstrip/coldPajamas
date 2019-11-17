@@ -124,9 +124,9 @@ public class InputActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Sail"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""cba59853-cbd6-458d-a01f-91a0f9abe8a4"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
