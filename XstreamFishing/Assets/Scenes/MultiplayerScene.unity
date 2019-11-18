@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.36293474, g: 0.5661818, b: 0.84371066, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -416,7 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886086835ad344a92b5093db4bd06398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_prefab: {fileID: 8205407519353637972, guid: d034ef73934c74261bcdfc643571da01,
+  player_prefab: {fileID: 8205407519353637972, guid: 261f7205e0ccb4f7c855b098a182483a,
     type: 3}
   panelRectTransform: {fileID: 435965335}
   JoinCamera: {fileID: 154945049}
@@ -2264,3 +2264,5 @@ MonoBehaviour:
     type: 3}
   chanceSize: 30
   num_start_fish: 1
+  shark_pos: {x: 0, y: 0}
+  freeze_shark: 0
