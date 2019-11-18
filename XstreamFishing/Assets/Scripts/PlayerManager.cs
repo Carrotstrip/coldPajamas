@@ -9,8 +9,6 @@ public class PlayerManager : MonoBehaviour
     public Inventory inventory;
     public GameObject shopUI;
     public GameObject inventoryUI;
-    private float timer;
-    private bool timerRunning;
     private bool startSequence;
     private int num_screens;
     public PlayerInput player_input;
@@ -22,11 +20,13 @@ public class PlayerManager : MonoBehaviour
     public GameObject sphere;
     public PlayerToastManager ptm;
 
+    public int timer;
 
     void Start()
     {
         // get minimap sphere material
         mat = sphere.GetComponent<MeshRenderer>().materials[0];
+        timer = 0;
 
 
         // get index, and set position based on index
@@ -60,14 +60,7 @@ public class PlayerManager : MonoBehaviour
             player_join_text.color = Color.green;
         }
         ptm = gameObject.GetComponentInParent(typeof(PlayerToastManager)) as PlayerToastManager;
-        timer = 0.0f;
-        timerRunning = true;
-        ptm.Toast("It's a nice day to be out fishing. \n free to come on down to the pro shop for supplies.\n Heck I'll even throw in some free advice.");
-        ptm.Toast("Press Y to get Fishin");
-        ptm.Toast("Press A to cast and reel in with the right stick");
-        ptm.Toast("My shop's on the island by the way");
-        ptm.Toast("For your inventory, go ahead and press X");
-
+        ptm.Toast("It's a nice day to be out fishing. \n free to come on down to the island pro shop for supplies.\n Heck I'll even throw in some free advice.");
     }
 
     // show inventory
@@ -141,5 +134,10 @@ public class PlayerManager : MonoBehaviour
         {
             GameManager.SomeoneWon();
         }
+        if(timer >= 45*60){
+            ptm.Toast("I've been hearing about a SHARK thats eating all the fish in the lake.\n It sure would be wonderful for someone get out there \n and catch it with the GOLDEN ROD.");
+            timer = 0;
+        }
+        ++timer;
     }
 }

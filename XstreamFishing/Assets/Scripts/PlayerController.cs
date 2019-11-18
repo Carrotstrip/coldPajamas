@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
         if (can_move)
         {
             float moveHorizontal = move_vector.x;

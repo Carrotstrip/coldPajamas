@@ -37,6 +37,9 @@ public class Fishing : MonoBehaviour
 
     private Queue<float> reelQueue;
 
+    private bool hasFished;
+    private bool hasInventory;
+    private int timer = 6*60;
     void Start()
     {
         endFish();
@@ -68,6 +71,7 @@ public class Fishing : MonoBehaviour
         for (int i = 0; i < 5; ++i){
             reelQueue.Enqueue(0);
         }
+        hasFished = false;
     }
 
     void OnA()
@@ -82,6 +86,14 @@ public class Fishing : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        if(!hasFished && timer >= 6*60){
+            ptm.Toast("Press A to cast and reel in with the right stick");
+            timer = 0;
+        }
+        if (hasFished && timer == 6*60){
+            ptm.Toast("Press X for the inventory");
+        }
+        ++timer;
         if (cast && has_fish)
         {
             // Debug.Log(player_input.currentActionMap.name);
@@ -166,6 +178,7 @@ public class Fishing : MonoBehaviour
 
     void endFish()
     {
+        hasFished = true;
         caught = false;
         has_fish = false;
         cast = false;

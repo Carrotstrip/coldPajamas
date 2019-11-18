@@ -15,6 +15,7 @@ public class ShopUI : MonoBehaviour
     public static Action OnNotEnoughFish;
     public GameObject shopButton;
     private GameObject firstButton;
+    public PlayerToastManager ptm;
 
 
     // Use this for initialization
@@ -65,5 +66,8 @@ public class ShopUI : MonoBehaviour
                 OnNotEnoughFish();
             }
         }
+        // if (item.category == "cannonball"){
+        //     ptm.Toast("Cannnnonon");
+        // }
     }
 }

@@ -32,7 +32,7 @@ public class PlayerToastManager : MonoBehaviour
 
     // Duration controls.
     public float ease_duration = 0.5f;
-    public float show_duration = 2.0f;
+    public float show_duration = 6.0f;
 
     // public int hidden_y = 150;
     // public int visible_y = 150;
@@ -75,7 +75,7 @@ public class PlayerToastManager : MonoBehaviour
     }
     void startToastCoroutine()
     {
-        show_duration = 1.0f;
+        show_duration = 6.0f;
         PlayerToastRequest new_strong_request = strongRequests.Dequeue();
         toasting = true;
         this.toast_text.text = new_strong_request.message;
@@ -83,10 +83,10 @@ public class PlayerToastManager : MonoBehaviour
         coroutine = DoToast(this.ease_duration, this.show_duration);
         StartCoroutine(coroutine);
     }
-    public void setShowDuration(float seconds)
-    {
-        this.show_duration = seconds;
-    }
+    // public void setShowDuration(float seconds)
+    // {
+    //     this.show_duration = seconds;
+    // }
 
     // The Update function is responsible for monitoring the queue and executing requests
     void Update()

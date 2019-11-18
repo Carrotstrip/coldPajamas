@@ -14,10 +14,27 @@ public class SwitchMode : MonoBehaviour
     public GameObject player;
     public GameObject playerStartPos;
     public ShipRocker sr;
+    private bool hasSwitched;
+    public PlayerToastManager ptm;
+    private int timer = 6*60;
 
+    void Start(){
+        hasSwitched = false;
+        ptm = gameObject.GetComponentInParent(typeof(PlayerToastManager)) as PlayerToastManager;
+    }
+
+    void Update(){
+        if(!hasSwitched && timer >= 6*60){
+            ptm.Toast("Press Y to get Fishin");
+            timer = 0;
+        }
+        ++timer;
+        
+    }
     // Update is called once per frame
     void OnY()
     {
+        hasSwitched = true;
         if (boat.GetComponent<Rigidbody>().isKinematic)
         {
             boat.GetComponent<Rigidbody>().isKinematic = false;
