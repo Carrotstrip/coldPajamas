@@ -28,15 +28,10 @@ public class ShopButton : MonoBehaviour {
         scrollList = currentScrollList;
     }
 
-    void Update(){
-        if(Input.GetKeyDown(KeyCode.T)){
-            scrollList.TryTransferItemToInventory(item);
-        }
-    }
 
     public void HandleClick()
     {
-        Debug.Log("Clicked " + item.itemName);
+        scrollList.inventory.UnselectAll();
         scrollList.TryTransferItemToInventory(item);
     }
 }

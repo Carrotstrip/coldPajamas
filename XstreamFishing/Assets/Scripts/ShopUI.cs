@@ -13,8 +13,6 @@ public class ShopUI : MonoBehaviour
     public Transform contentPanel;
     public Inventory inventory;
     public static Action OnNotEnoughFish;
-    
-
     public GameObject shopButton;
     private GameObject firstButton;
 
@@ -22,6 +20,10 @@ public class ShopUI : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        
+    }
+
+    void OnEnable() {
         AddButtons();
     }
 
@@ -34,28 +36,17 @@ public class ShopUI : MonoBehaviour
             newButton.transform.SetParent(contentPanel, false);
             newButton.transform.localScale = new Vector3(1f, 1f, 1f);
             newButton.transform.localPosition = Vector3.zero;
+            newButton.transform.localRotation = Quaternion.identity;
             ShopButton newShopButton = newButton.GetComponent<ShopButton>();
             newShopButton.Setup(item, this);
-            if(i == 0){
-                Image im = newShopButton.GetComponent<Image>();
-                im.color = new Color32(0xC0,0x7D,0x30,0xFF);
-                firstButton = newButton;
-                EventSystem.current.SetSelectedGameObject(firstButton);
+            if(i == 0) {
+                EventSystem.current.SetSelectedGameObject(newButton);
             }
         }
     }
 
-    void Update(){
-        GameObject temp = EventSystem.current.currentSelectedGameObject;
-        // if(temp != firstButton){
-        //     ShopButton tempShop = firstButton.GetComponent<ShopButton>();
-        //     Image im = tempShop.GetComponent<Image>();
-        //     im.color = new Color32(0xFF,0xFF,0xFF,0xFF);
-        // }
-        // if(temp.tag == "button"){
-        //     ShopButton btn = temp.GetComponent<ShopButton>();
-        //     Debug.Log(btn.nameLabel.text);
-        // }
+    public void SetSelected() {
+
     }
 
     public void TryTransferItemToInventory(Item item)

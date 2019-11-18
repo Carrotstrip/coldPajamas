@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class InventoryEntry : MonoBehaviour {
 
     public Button buttonComponent;
-    // public Text nameLabel;
+    public bool isSelected;
     public Text amountLabel;
     public Image iconImage;
     public Image image;
@@ -17,14 +17,15 @@ public class InventoryEntry : MonoBehaviour {
     
     void Start () 
     {
-        // buttonComponent.onClick.AddListener(HandleClick);
+        buttonComponent.onClick.AddListener(HandleClick);
         image = GetComponent<Image>();
     }
 
     public void HandleClick()
     {
         thisUI.inventory.EquipItem(item, this);
-        image.color = new Color32(200, 10, 10, 255);
+        thisUI.inventory.UnselectAll();
+        thisUI.inventory.SetSelected(item);
         thisUI.RefreshDisplay();
     }
 
@@ -32,7 +33,7 @@ public class InventoryEntry : MonoBehaviour {
     public void Setup(Item currentItem, InventoryUI currentUI)
     {
         item = currentItem;
-        // nameLabel.text = item.itemName;
+        isSelected = item.isSelected;
         amountLabel.text = currentItem.amount.ToString();
         iconImage.sprite = item.icon;
         thisUI = currentUI;
