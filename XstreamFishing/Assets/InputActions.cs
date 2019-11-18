@@ -463,6 +463,14 @@ public class InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""X"",
+                    ""type"": ""Button"",
+                    ""id"": ""6493de21-3c5b-4739-8eff-a1ee4a01777b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -628,6 +636,17 @@ public class InputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""17fb0344-b2a4-426a-adf6-cacd430b395e"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""X"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -813,6 +832,7 @@ public class InputActions : IInputActionCollection, IDisposable
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         m_UI_TrackedDeviceSelect = m_UI.FindAction("TrackedDeviceSelect", throwIfNotFound: true);
         m_UI_Move = m_UI.FindAction("Move", throwIfNotFound: true);
+        m_UI_X = m_UI.FindAction("X", throwIfNotFound: true);
         // Join
         m_Join = asset.FindActionMap("Join", throwIfNotFound: true);
         m_Join_A = m_Join.FindAction("A", throwIfNotFound: true);
@@ -1068,6 +1088,7 @@ public class InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_TrackedDeviceOrientation;
     private readonly InputAction m_UI_TrackedDeviceSelect;
     private readonly InputAction m_UI_Move;
+    private readonly InputAction m_UI_X;
     public struct UIActions
     {
         private InputActions m_Wrapper;
@@ -1084,6 +1105,7 @@ public class InputActions : IInputActionCollection, IDisposable
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
         public InputAction @TrackedDeviceSelect => m_Wrapper.m_UI_TrackedDeviceSelect;
         public InputAction @Move => m_Wrapper.m_UI_Move;
+        public InputAction @X => m_Wrapper.m_UI_X;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1129,6 +1151,9 @@ public class InputActions : IInputActionCollection, IDisposable
                 Move.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMove;
                 Move.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMove;
                 Move.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMove;
+                X.started -= m_Wrapper.m_UIActionsCallbackInterface.OnX;
+                X.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnX;
+                X.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnX;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1169,6 +1194,9 @@ public class InputActions : IInputActionCollection, IDisposable
                 Move.started += instance.OnMove;
                 Move.performed += instance.OnMove;
                 Move.canceled += instance.OnMove;
+                X.started += instance.OnX;
+                X.performed += instance.OnX;
+                X.canceled += instance.OnX;
             }
         }
     }
@@ -1328,6 +1356,7 @@ public class InputActions : IInputActionCollection, IDisposable
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         void OnTrackedDeviceSelect(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
+        void OnX(InputAction.CallbackContext context);
     }
     public interface IJoinActions
     {
