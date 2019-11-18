@@ -68,7 +68,8 @@ public class Fishing : MonoBehaviour
         releaseSlider.maxValue = releaseCap;
         ptm = gameObject.GetComponentInParent(typeof(PlayerToastManager)) as PlayerToastManager;
         reelQueue = new Queue<float>();
-        for (int i = 0; i < 5; ++i){
+        for (int i = 0; i < 5; ++i)
+        {
             reelQueue.Enqueue(0);
         }
         hasFished = false;
@@ -116,13 +117,14 @@ public class Fishing : MonoBehaviour
         reelQueue.Dequeue();
         reelQueue.Enqueue(distFromPrev);
         float average = 0;
-        foreach (float dist in reelQueue){
+        foreach (float dist in reelQueue)
+        {
             average += dist;
         }
         average /= 5;
 
         reelingSlider.value = average;
-        
+
         if (average > minSpeedLimit && average < maxSpeedLimit)
         {
             ++catchCounter;
@@ -171,9 +173,30 @@ public class Fishing : MonoBehaviour
         int rodMultiplier = inventory.rodMultiplier;
         int baitMultiplier = inventory.baitMultiplier;
         int fishIndex = Random.Range(0, 18) % (2 * rodMultiplier * baitMultiplier);
-        OnCatchFish(fishIndex + 1);
-        endFish();
-        ptm.OverwriteToast("You caught a " + fishArr[fishIndex] + "!");
+        // if rodMultiplier is 100, check if there is a shark
+        if (rodMultiplier == 100)
+        {
+            int x = (int)(transform.position.x + 375) / 75;
+            int y = (int)(transform.position.z + 375) / 75;
+            if (fishMap.shark_pos.x == x && fishMap.shark_pos.y == y)
+            {
+                // catch the shark!
+                ptm.OverwriteToast("You caught the shark and won the game!");
+                GameManager.SomeoneWon();
+                endFish();
+            }
+            else
+            {
+                ptm.OverwriteToast("Looks like the shark isn't here...");
+                endFish();
+            }
+        }
+        else
+        {
+            OnCatchFish(fishIndex + 1);
+            endFish();
+            ptm.OverwriteToast("You caught a " + fishArr[fishIndex] + "!");
+        }
     }
 
     void endFish()
@@ -190,18 +213,34 @@ public class Fishing : MonoBehaviour
         int x = (int)(transform.position.x + 375) / 75;
         int y = (int)(transform.position.z + 375) / 75;
         fishMap = GameObject.Find("Ocean").GetComponent<FishMap>();
+        int rodMultiplier = inventory.rodMultiplier;
+        // if rodMultiplier is 100, this is a golden rod, so check if there is a shark
+        if (rodMultiplier == 100 && fishMap.shark_pos.x == x && fishMap.shark_pos.y == y)
+        {
+            fishMap.freeze_shark = false;
+        }
         fishMap.decrementFish(x, y);
         Destroy(rod_clone);
         panel.SetActive(false);
         player_input.SwitchCurrentActionMap("Player");
     }
+
     IEnumerator WaitForFish()
     {
         // ToastManager.OverwriteToast("Reel in with the right joystick");
         cast = true;
+        bool has_shark = false;
         int x = (int)(transform.position.x + 375) / 75;
         int y = (int)(transform.position.z + 375) / 75;
         int fishCount = fishMap.getFishCount(x, y);
+        // if goldenRod is equipped and we're on shark spot, freeze the shark
+        int rodMultiplier = inventory.rodMultiplier;
+        // if rodMultiplier is 100, this is a golden rod, so check if there is a shark
+        if (rodMultiplier == 100 && fishMap.shark_pos.x == x && fishMap.shark_pos.y == y)
+        {
+            fishMap.freeze_shark = true;
+            has_shark = true;
+        }
         releaseCounter = 0;
         catchCounter = 0;
         Vector3 playerPos = transform.position;
@@ -213,18 +252,20 @@ public class Fishing : MonoBehaviour
         rod_clone.transform.LookAt(transform);
         rod_clone.transform.Rotate(-40, 0, 0, Space.Self);
         rod_clone.GetComponent<Renderer>().material.color = Color.red;
-        for (int i = 0; i < 30; ++i){
+        for (int i = 0; i < 30; ++i)
+        {
             rod_clone.transform.Rotate(3.0f, 0, 0, Space.Self);
             yield return new WaitForSeconds(.00000001f);
         }
-        for (int i = 0; i < 25; ++i){
+        for (int i = 0; i < 25; ++i)
+        {
             rod_clone.transform.Rotate(-4, 0, 0, Space.Self);
             yield return new WaitForSeconds(.001f);
         }
         float num_seconds = Random.Range(2.0f, 4.0f);
         yield return new WaitForSeconds(num_seconds);
         rb.freezeRotation = true;
-        if (fishCount == 0)
+        if (fishCount == 0 && !has_shark)
         {
             ptm.OverwriteToast("Looks like nothing's biting around here");
             endFish();

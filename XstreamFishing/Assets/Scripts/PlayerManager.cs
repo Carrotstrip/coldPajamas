@@ -67,6 +67,16 @@ public class PlayerManager : MonoBehaviour
     void OnX()
     {
         inventoryUI.SetActive(!inventoryUI.activeSelf);
+        if (inventoryUI.activeSelf)
+        {
+            Debug.Log("switch to ui");
+            //player_input.SwitchCurrentActionMap("UI");
+        }
+        else
+        {
+            Debug.Log("switch to player");
+            //player_input.SwitchCurrentActionMap("Player");
+        }
     }
 
     int PlayerCount()
@@ -130,6 +140,7 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         UpdateScreenSize();
+<<<<<<< HEAD
         if (inventory.numFish == 100)
         {
             GameManager.SomeoneWon();
@@ -139,5 +150,11 @@ public class PlayerManager : MonoBehaviour
             timer = 0;
         }
         ++timer;
+=======
+        // if (inventory.numFish == 100)
+        // {
+        //     GameManager.SomeoneWon();
+        // }
+>>>>>>> 689c82917d48ea4353c966e8e931badc6a91451f
     }
 }
