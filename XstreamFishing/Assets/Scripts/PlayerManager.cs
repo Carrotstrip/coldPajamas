@@ -140,21 +140,11 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         UpdateScreenSize();
-<<<<<<< HEAD
-        if (inventory.numFish == 100)
+        if (timer >= 45 * 60)
         {
-            GameManager.SomeoneWon();
-        }
-        if(timer >= 45*60){
             ptm.Toast("I've been hearing about a SHARK thats eating all the fish in the lake.\n It sure would be wonderful for someone get out there \n and catch it with the GOLDEN ROD.");
             timer = 0;
         }
         ++timer;
-=======
-        // if (inventory.numFish == 100)
-        // {
-        //     GameManager.SomeoneWon();
-        // }
->>>>>>> 689c82917d48ea4353c966e8e931badc6a91451f
     }
 }
