@@ -22,18 +22,20 @@ public class Fishing : MonoBehaviour
     private IEnumerator coroutine;
     private string[] fishArr;
     private Vector2 lastStickLocation;
-    private int releaseCap = 200;
-    private int catchCap = 300;
+    private int releaseCap = 300;
+    private int catchCap = 100;
     private int releaseCounter = 0;
     private int catchCounter = 0;
-    private float maxSpeedLimit = .1f;
-    private float minSpeedLimit = .01f;
+    private float maxSpeedLimit = .5f;
+    private float minSpeedLimit = .25f;
     public PlayerInput player_input;
     private Vector2 rightStickInput;
     public Inventory inventory;
     public PlayerToastManager ptm;
 
     public event Action<int> OnCatchFish;
+
+    private Queue<float> reelQueue;
 
     void Start()
     {
@@ -62,9 +64,10 @@ public class Fishing : MonoBehaviour
         catchSlider.maxValue = catchCap;
         releaseSlider.maxValue = releaseCap;
         ptm = gameObject.GetComponentInParent(typeof(PlayerToastManager)) as PlayerToastManager;
-        // Debug.Log(player_input.currentActionMap.name);
-        // player_input.SwitchCurrentActionMap("Fishing");
-        // Debug.Log(player_input.currentActionMap.name);
+        reelQueue = new Queue<float>();
+        for (int i = 0; i < 5; ++i){
+            reelQueue.Enqueue(0);
+        }
     }
 
     void OnA()
@@ -81,8 +84,8 @@ public class Fishing : MonoBehaviour
     {
         if (cast && has_fish)
         {
-            Debug.Log(player_input.currentActionMap.name);
-            Debug.Log(rightStickInput);
+            // Debug.Log(player_input.currentActionMap.name);
+            // Debug.Log(rightStickInput);
             reel(rightStickInput);
         }
     }
@@ -94,10 +97,21 @@ public class Fishing : MonoBehaviour
 
     void reel(Vector2 input)
     {
-        float distFromPrev = Mathf.Sqrt(Mathf.Pow(input.x - lastStickLocation.x, 2) + Mathf.Pow(input.y - lastStickLocation.y, 2));
-        reelingSlider.value = distFromPrev;
+        float distFromPrev = Mathf.Sqrt(Mathf.Pow(input.x - lastStickLocation.x, 2)
+                             + Mathf.Pow(input.y - lastStickLocation.y, 2));
         lastStickLocation = input;
-        if (distFromPrev > minSpeedLimit && distFromPrev < maxSpeedLimit)
+        // Add dist to the the reel queue and take average to find a dampened speed
+        reelQueue.Dequeue();
+        reelQueue.Enqueue(distFromPrev);
+        float average = 0;
+        foreach (float dist in reelQueue){
+            average += dist;
+        }
+        average /= 5;
+
+        reelingSlider.value = average;
+        
+        if (average > minSpeedLimit && average < maxSpeedLimit)
         {
             ++catchCounter;
             releaseCounter = releaseCounter <= 0 ? 0 : --releaseCounter;
@@ -124,15 +138,16 @@ public class Fishing : MonoBehaviour
             releaseSlider.value = releaseCounter;
             catchCounter = catchCounter <= 0 ? 0 : catchCounter - 2;
             catchSlider.value = catchCounter;
-            // switch (releaseCounter)
-            // {
-            //     case 30:
-            //     case 80:
-            //         rod_clone.transform.Rotate(-10, 0, 0, Space.Self);
-            //         break;
-            //     default:
-            //         break;
-            // }
+            switch (releaseCounter)
+            {
+                case 30:
+                case 80:
+                    ptm.OverwriteToast("Use the right stick to reel.");
+                    //rod_clone.transform.Rotate(-10, 0, 0, Space.Self);
+                    break;
+                default:
+                    break;
+            }
             if (releaseCounter > releaseCap)
                 endFish();
         }
@@ -144,7 +159,6 @@ public class Fishing : MonoBehaviour
         int rodMultiplier = inventory.rodMultiplier;
         int baitMultiplier = inventory.baitMultiplier;
         int fishIndex = Random.Range(0, 18) % (2 * rodMultiplier * baitMultiplier);
-        Debug.Log("You caught a " + fishArr[fishIndex] + "!");
         OnCatchFish(fishIndex + 1);
         endFish();
         ptm.OverwriteToast("You caught a " + fishArr[fishIndex] + "!");
@@ -186,18 +200,13 @@ public class Fishing : MonoBehaviour
         rod_clone.transform.LookAt(transform);
         rod_clone.transform.Rotate(-40, 0, 0, Space.Self);
         rod_clone.GetComponent<Renderer>().material.color = Color.red;
-        for (int i = 0; i < 50; ++i)
-        {
-            if (i < 25)
-            {
-                rod_clone.transform.Rotate(1, 0, 0, Space.Self);
-                yield return new WaitForSeconds(.00001f);
-            }
-            else
-            {
-                rod_clone.transform.Rotate(-1, 0, 0, Space.Self);
-                yield return new WaitForSeconds(.01f);
-            }
+        for (int i = 0; i < 30; ++i){
+            rod_clone.transform.Rotate(3.0f, 0, 0, Space.Self);
+            yield return new WaitForSeconds(.00000001f);
+        }
+        for (int i = 0; i < 25; ++i){
+            rod_clone.transform.Rotate(-4, 0, 0, Space.Self);
+            yield return new WaitForSeconds(.001f);
         }
         float num_seconds = Random.Range(2.0f, 4.0f);
         yield return new WaitForSeconds(num_seconds);

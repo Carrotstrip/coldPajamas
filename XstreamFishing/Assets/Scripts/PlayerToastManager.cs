@@ -67,7 +67,6 @@ public class PlayerToastManager : MonoBehaviour
     // note that it does not actually launch a toast operation-- it just throws it on the queue for later execution.
     public void Toast(string msg)
     {
-        Debug.Log("TEST");
         this.requests.Enqueue(new PlayerToastRequest(msg));
     }
     public void OverwriteToast(string msg)

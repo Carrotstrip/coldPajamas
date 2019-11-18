@@ -62,7 +62,7 @@ public class PlayerManager : MonoBehaviour
         ptm = gameObject.GetComponentInParent(typeof(PlayerToastManager)) as PlayerToastManager;
         timer = 0.0f;
         timerRunning = true;
-        ptm.Toast("It's a nice day to be out fishing. \n free to come on down to the pro shop for supplies.\n Heck I'll even throw in some free advice.");
+        ptm.Toast("It's a nice day to be out fishing. \n Feel free to come on down to the pro shop for supplies.\n Heck I'll even throw in some free advice.");
         ptm.Toast("Press Y to get Fishin");
         ptm.Toast("Press A to cast and reel in with the right stick");
         ptm.Toast("My shop's on the island by the way");

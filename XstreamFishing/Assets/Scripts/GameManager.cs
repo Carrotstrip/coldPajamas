@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        game_started = false;
         if (Instance == null)
         {
             Instance = this;
@@ -67,7 +68,7 @@ public class GameManager : MonoBehaviour
             }
             Debug.Log("Joining " + Gamepad.current.name);
         }
-        if (!game_started && Gamepad.current.buttonWest.wasPressedThisFrame)
+        if (!game_started && Gamepad.current.startButton.wasPressedThisFrame)
         {
             if (controllers.Count == 3)
             {
