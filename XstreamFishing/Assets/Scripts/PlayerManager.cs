@@ -74,6 +74,8 @@ public class PlayerManager : MonoBehaviour
     void OnX()
     {
         inventoryUI.SetActive(!inventoryUI.activeSelf);
+        if(inventoryUI.activeSelf) player_input.SwitchCurrentActionMap("UI");
+        else player_input.SwitchCurrentActionMap("Player");
     }
 
     int PlayerCount()

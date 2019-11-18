@@ -102,18 +102,16 @@
                     "interactions": ""
                 },
                 {
+<<<<<<< HEAD
                     "name": "AUp",
                     "type": "Button",
                     "id": "379ec654-2979-4edb-8845-44751f6a8dc5",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
+=======
                     "name": "Sail",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "cba59853-cbd6-458d-a01f-91a0f9abe8a4",
-                    "expectedControlType": "Vector2",
+>>>>>>> 88207386700e48c48e4d57072f4cc05cfaf63f32
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
                 }
@@ -264,17 +262,14 @@
                 },
                 {
                     "name": "",
+<<<<<<< HEAD
                     "id": "ff98759b-1023-41f1-b200-312272bd1596",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "AUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
+=======
                     "id": "e85d1e6a-af88-4b91-9799-f513b842a06f",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
@@ -346,6 +341,7 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "StartButton",
+>>>>>>> 88207386700e48c48e4d57072f4cc05cfaf63f32
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -442,14 +438,6 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
-                },
-                {
-                    "name": "Move",
-                    "type": "Button",
-                    "id": "6d1e7530-077b-4019-b5f2-f37ab23b52c0",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -478,10 +466,10 @@
                 {
                     "name": "",
                     "id": "4bd7221b-35bb-4dea-8b66-bd79ee3f9d94",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "*/{Cancel}",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
+                    "groups": "",
                     "action": "Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -606,17 +594,6 @@
                     "action": "TrackedDeviceSelect",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6ed84e5a-9576-41eb-a48e-0cce0d234c81",
-                    "path": "<Gamepad>/dpad",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
@@ -677,14 +654,6 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
-                },
-                {
-                    "name": "B",
-                    "type": "Button",
-                    "id": "50658e0d-3d89-4df7-91f2-3afee7e5a82a",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -696,17 +665,6 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "A",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "02b393a1-bf6b-4d12-b3bf-98b88702fee2",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "B",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

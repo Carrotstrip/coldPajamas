@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
@@ -16,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public bool can_fly;
     private bool up;
     private float initial_y_pos;
+    public PlayerInput player_input;
+
 
     // Start is called before the first frame update
     void Start()
@@ -90,6 +94,7 @@ public class PlayerController : MonoBehaviour
         if(!can_move && shopUI.activeSelf){
             can_move = true;
             shopUI.SetActive(!shopUI.activeSelf);
+            player_input.SwitchCurrentActionMap("Player");
         }
     }
 

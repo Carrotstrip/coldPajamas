@@ -1,9 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class BeachScript : MonoBehaviour
 {
+    public PlayerInput player_input;
+
     public PlayerController pc;
     public GameObject shopUI;
     // Start is called before the first frame update
@@ -23,6 +29,7 @@ public class BeachScript : MonoBehaviour
         Debug.Log("Triggered");
         if(obj.tag == "Player"){
             // pc.can_move = false;
+            player_input.SwitchCurrentActionMap("UI");
             shopUI.SetActive(!shopUI.activeSelf);
         }
     }

@@ -15,9 +15,16 @@ public class FishMap : MonoBehaviour
 
     public int chanceSize = 30;
     public int num_start_fish = 0;
+    bool eating;
+    int fish_eaten;
+    Vector2 shark_pos;
+
     // Start is called before the first frame update
     void Start()
     {
+        shark_pos = new Vector2(0, 0);
+        eating = false;
+        fish_eaten = 0;
         gradient = new Gradient();
 
         // Populate the color keys at the relative time 0 and 1 (0 and 100%)
@@ -25,7 +32,6 @@ public class FishMap : MonoBehaviour
         colorKey[0].color = Color.black;
         colorKey[0].time = 0.0f;
         colorKey[1].color = new Color(3f / 256f, 252f / 256f, 232f / 256f, 1);
-        // colorKey[1].color = new Color(34f / 256f, 230f / 256f, 86f / 256f, 1);
         colorKey[1].time = 1.0f;
 
         // Populate the alpha  keys at relative time 0 and 1  (0 and 100%)
@@ -61,12 +67,63 @@ public class FishMap : MonoBehaviour
         if (chance == 0)
         {
             ++fishCountArray[i, j];
+            // update color of tile
             Material mat = fishCubes[i, j].GetComponent<MeshRenderer>().materials[0];
             mat.color = gradient.Evaluate(0.1f * fishCountArray[i, j]);
         }
 
-        // update color of tile
+        // eat three fish, then move
+        if (!eating)
+        {
+            // if shark has eaten 3 fish, move one tile
+            if (fish_eaten == 3)
+            {
+                fish_eaten = 0;
+                // move one tile within range
+                // randomly decide which direction, and then if we're on the edge and that would take us out of bounds, negate
+                int move_num = Random.Range(0, 3);
+                if (move_num == 0)
+                {
+                    DecideMove(new Vector2(1, 0));
+                }
+                if (move_num == 1)
+                {
+                    DecideMove(new Vector2(-1, 0));
+                }
+                if (move_num == 2)
+                {
+                    DecideMove(new Vector2(0, 1));
+                }
+                if (move_num == 3)
+                {
+                    DecideMove(new Vector2(0, -1));
+                }
+            }
+            eating = true;
+            Debug.Log("eating a fish at " + (int)shark_pos.x + ", " + (int)shark_pos.y);
+            decrementFish((int)shark_pos.x, (int)shark_pos.y);
+            StartCoroutine(EatFish());
+        }
     }
+
+    void DecideMove(Vector2 move)
+    {
+        Vector2 temp = move + shark_pos;
+        if (temp.x >= 10 || temp.y >= 10 || temp.x < 0 || temp.y < 0)
+        {
+            move = move * -1;
+            temp = move + shark_pos;
+        }
+        shark_pos = temp;
+    }
+
+    IEnumerator EatFish()
+    {
+        yield return new WaitForSeconds(1f);
+        eating = false;
+        fish_eaten += 1;
+    }
+
     public int getFishCount(int x, int y)
     {
         return fishCountArray[x, y];
