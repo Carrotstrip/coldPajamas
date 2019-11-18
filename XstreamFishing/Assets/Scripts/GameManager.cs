@@ -86,11 +86,18 @@ public class GameManager : MonoBehaviour
 
         if (winState)
         {
-            winState = false;
-            controllers.Clear();
-            Destroy(gameObject);
-            SceneManager.LoadScene("MainMenu");
+            // wait a sec
+            StartCoroutine(WaitToEndGame());
         }
+    }
+
+    IEnumerator WaitToEndGame()
+    {
+        yield return new WaitForSeconds(5f);
+        winState = false;
+        controllers.Clear();
+        Destroy(gameObject);
+        SceneManager.LoadScene("MainMenu");
     }
 
     public static void SomeoneWon()

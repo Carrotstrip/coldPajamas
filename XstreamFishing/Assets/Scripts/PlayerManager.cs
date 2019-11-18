@@ -74,11 +74,13 @@ public class PlayerManager : MonoBehaviour
     void OnX()
     {
         inventoryUI.SetActive(!inventoryUI.activeSelf);
-        if(inventoryUI.activeSelf) {
+        if (inventoryUI.activeSelf)
+        {
             Debug.Log("switch to ui");
             player_input.SwitchCurrentActionMap("UI");
         }
-        else {
+        else
+        {
             Debug.Log("switch to player");
             player_input.SwitchCurrentActionMap("Player");
         }
@@ -145,9 +147,9 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         UpdateScreenSize();
-        if (inventory.numFish == 100)
-        {
-            GameManager.SomeoneWon();
-        }
+        // if (inventory.numFish == 100)
+        // {
+        //     GameManager.SomeoneWon();
+        // }
     }
 }
