@@ -83,6 +83,7 @@ public class Inventory : MonoBehaviour
             }
         }
         item.isEquipped = true;
+        ie.image.color = new Color32(200, 10, 10, 255);
         if (item.category == "rod")
         {
             rodMultiplier = item.multiplier;
@@ -91,6 +92,20 @@ public class Inventory : MonoBehaviour
         {
             baitMultiplier = item.multiplier;
         }
+        if (OnInventoryChange != null)
+        {
+            OnInventoryChange();
+        }
+    }
+
+    public void UnselectAll() {
+        for (int i = 0; i < itemList.Count; i++) {
+            itemList[i].isSelected = false;
+        }
+    }
+
+    public void SetSelected(Item item) {
+        item.isSelected = true;
     }
 
     public void UseCannonball()

@@ -15,14 +15,9 @@ public class FishMap : MonoBehaviour
 
     public int chanceSize = 30;
     public int num_start_fish = 0;
-    bool eating;
-    int fish_eaten;
-
     // Start is called before the first frame update
     void Start()
     {
-        eating = false;
-        fish_eaten = 0;
         gradient = new Gradient();
 
         // Populate the color keys at the relative time 0 and 1 (0 and 100%)
@@ -30,6 +25,7 @@ public class FishMap : MonoBehaviour
         colorKey[0].color = Color.black;
         colorKey[0].time = 0.0f;
         colorKey[1].color = new Color(3f / 256f, 252f / 256f, 232f / 256f, 1);
+        // colorKey[1].color = new Color(34f / 256f, 230f / 256f, 86f / 256f, 1);
         colorKey[1].time = 1.0f;
 
         // Populate the alpha  keys at relative time 0 and 1  (0 and 100%)
@@ -65,25 +61,12 @@ public class FishMap : MonoBehaviour
         if (chance == 0)
         {
             ++fishCountArray[i, j];
-            // update color of tile
             Material mat = fishCubes[i, j].GetComponent<MeshRenderer>().materials[0];
             mat.color = gradient.Evaluate(0.1f * fishCountArray[i, j]);
         }
 
-        // eat three fish, then move
-        if (!eating)
-        {
-            eating = true;
-            StartCoroutine(EatFish());
-        }
+        // update color of tile
     }
-
-    IEnumerator EatFish()
-    {
-        yield return new WaitForSeconds(1f);
-        eating = false;
-    }
-
     public int getFishCount(int x, int y)
     {
         return fishCountArray[x, y];
