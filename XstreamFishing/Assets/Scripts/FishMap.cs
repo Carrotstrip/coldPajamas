@@ -17,11 +17,13 @@ public class FishMap : MonoBehaviour
     public int num_start_fish = 0;
     bool eating;
     int fish_eaten;
-    Vector2 shark_pos;
+    public Vector2 shark_pos;
+    public bool freeze_shark;
 
     // Start is called before the first frame update
     void Start()
     {
+        freeze_shark = false;
         shark_pos = new Vector2(0, 0);
         eating = false;
         fish_eaten = 0;
@@ -76,7 +78,7 @@ public class FishMap : MonoBehaviour
         if (!eating)
         {
             // if shark has eaten 3 fish, move one tile
-            if (fish_eaten == 3)
+            if (fish_eaten >= 4 && !freeze_shark)
             {
                 fish_eaten = 0;
                 // move one tile within range
@@ -119,7 +121,7 @@ public class FishMap : MonoBehaviour
 
     IEnumerator EatFish()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         eating = false;
         fish_eaten += 1;
     }
@@ -131,7 +133,8 @@ public class FishMap : MonoBehaviour
 
     public void decrementFish(int x, int y)
     {
-        --fishCountArray[x, y];
+        if (fishCountArray[x, y] >= 1)
+            --fishCountArray[x, y];
         Material mat = fishCubes[x, y].GetComponent<MeshRenderer>().materials[0];
         mat.color = gradient.Evaluate(0.1f * fishCountArray[x, y]);
         return;
