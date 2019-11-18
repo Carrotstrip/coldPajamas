@@ -29,7 +29,7 @@ public class BeachScript : MonoBehaviour
         Debug.Log("Triggered");
         if(obj.tag == "Player"){
             // pc.can_move = false;
-            player_input.SwitchCurrentActionMap("UI");
+            //player_input.SwitchCurrentActionMap("UI");
             shopUI.SetActive(!shopUI.activeSelf);
         }
     }

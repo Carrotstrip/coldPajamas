@@ -77,12 +77,12 @@ public class PlayerManager : MonoBehaviour
         if (inventoryUI.activeSelf)
         {
             Debug.Log("switch to ui");
-            player_input.SwitchCurrentActionMap("UI");
+            //player_input.SwitchCurrentActionMap("UI");
         }
         else
         {
             Debug.Log("switch to player");
-            player_input.SwitchCurrentActionMap("Player");
+            //player_input.SwitchCurrentActionMap("Player");
         }
     }
 
