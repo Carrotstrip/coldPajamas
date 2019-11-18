@@ -54,9 +54,6 @@ public class ShopUI : MonoBehaviour
         }
     }
 
-    public void SetSelected() {
-
-    }
 
     public void TryTransferItemToInventory(Item item)
     {
