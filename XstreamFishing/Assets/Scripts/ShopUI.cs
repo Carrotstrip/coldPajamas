@@ -24,7 +24,16 @@ public class ShopUI : MonoBehaviour
     }
 
     void OnEnable() {
+        RemoveButtons();
         AddButtons();
+    }
+
+    private void RemoveButtons()
+    {
+        foreach (Transform child in contentPanel.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
     }
 
     private void AddButtons()

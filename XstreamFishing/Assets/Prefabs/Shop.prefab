@@ -149,22 +149,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemList:
   - itemName: Crazy Stick
+    isSelected: 0
     isConsumable: 0
     isEquipped: 0
     category: rod
-    icon: {fileID: 0}
+    icon: {fileID: 7737449626985026946, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
     price: 3
     amount: 1
     multiplier: 2
   - itemName: Ancestral Obelisk
+    isSelected: 0
     isConsumable: 0
     isEquipped: 0
     category: rod
-    icon: {fileID: 0}
+    icon: {fileID: -1199251295059341621, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
     price: 5
     amount: 1
     multiplier: 3
   - itemName: Bait
+    isSelected: 0
     isConsumable: 1
     isEquipped: 0
     category: bait
@@ -173,6 +176,7 @@ MonoBehaviour:
     amount: 1
     multiplier: 1
   - itemName: Synthetic Bait
+    isSelected: 0
     isConsumable: 1
     isEquipped: 0
     category: bait
@@ -181,6 +185,7 @@ MonoBehaviour:
     amount: 1
     multiplier: 2
   - itemName: Worms
+    isSelected: 0
     isConsumable: 1
     isEquipped: 0
     category: bait
@@ -189,26 +194,29 @@ MonoBehaviour:
     amount: 1
     multiplier: 3
   - itemName: Cannonball
+    isSelected: 0
     isConsumable: 1
     isEquipped: 0
     category: cannonball
-    icon: {fileID: 0}
+    icon: {fileID: 5596361543026112581, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 1
     amount: 1
     multiplier: 1
   - itemName: Golden Cannonball
+    isSelected: 0
     isConsumable: 1
     isEquipped: 0
     category: cannonball
-    icon: {fileID: 0}
+    icon: {fileID: 7199686104288873141, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 2
     amount: 1
     multiplier: 2
   - itemName: Cobalt Cannonball
+    isSelected: 0
     isConsumable: 1
     isEquipped: 0
     category: cannonball
-    icon: {fileID: 0}
+    icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 3
     amount: 1
     multiplier: 3
