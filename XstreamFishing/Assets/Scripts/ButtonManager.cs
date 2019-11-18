@@ -33,8 +33,7 @@ public class ButtonManager : MonoBehaviour
         quitGame();
     }
 
-    void quitGame()
-    {
+    void quitGame(){
         Application.Quit();
     }
 

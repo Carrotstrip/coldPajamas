@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886086835ad344a92b5093db4bd06398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_prefab: {fileID: 8205407519353637972, guid: d034ef73934c74261bcdfc643571da01,
+  player_prefab: {fileID: 5224782359459712924, guid: d034ef73934c74261bcdfc643571da01,
     type: 3}
   panelRectTransform: {fileID: 647291730}
   JoinCamera: {fileID: 1830937232}
@@ -218,7 +218,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 8205407519353637972, guid: d034ef73934c74261bcdfc643571da01,
+  m_PlayerPrefab: {fileID: 5224782359459712924, guid: d034ef73934c74261bcdfc643571da01,
     type: 3}
   m_SplitScreen: 1
   m_MaintainAspectRatioInSplitScreen: 0

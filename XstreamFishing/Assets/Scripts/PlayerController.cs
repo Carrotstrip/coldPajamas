@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         can_move = true;
-        //GetComponent<Rigidbody>().inertiaTensorRotation = Quaternion.identity;
+        GetComponent<Rigidbody>().inertiaTensorRotation = Quaternion.identity;
         up = false;
         initial_y_pos = transform.position.y;
     }
@@ -32,29 +32,24 @@ public class PlayerController : MonoBehaviour
         move_vector = input.Get<Vector2>();
     }
 
-    void OnRT()
-    {
+    void OnRT() {
         cannon.Fire();
     }
 
-    void OnLT()
-    {
+    void OnLT() {
         cannon.gimbalingUp = true;
     }
 
-    void OnLB()
-    {
+    void OnLB() {
         cannon.gimbalingDown = true;
     }
 
-    void OnLTUp()
-    {
+    void OnLTUp() {
 
         cannon.gimbalingUp = false;
     }
 
-    void OnLBUp()
-    {
+    void OnLBUp() {
         cannon.gimbalingDown = false;
     }
 
@@ -66,16 +61,12 @@ public class PlayerController : MonoBehaviour
             float moveVertical = move_vector.y;
             rb.AddTorque(0f, moveHorizontal * turnSpeed * Time.deltaTime, 0f);
             rb.AddForce(transform.forward * moveVertical * accelerateSpeed * Time.deltaTime);
-            if (can_fly)
-            {
-                if (up)
-                {
-                    transform.Translate((Vector3.up * 6f) * Time.deltaTime, Space.World);
+            if(can_fly){
+                if(up){
+                    transform.Translate((Vector3.up*6f) * Time.deltaTime, Space.World);
                 }
-                else
-                {
-                    if (transform.position.y > initial_y_pos)
-                    {
+                else{
+                    if(transform.position.y > initial_y_pos){
                         transform.Translate(Vector3.down * 10f * Time.deltaTime, Space.World);
                     }
                 }
@@ -87,20 +78,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnA()
-    {
+    void OnA(){
         up = true;
     }
 
-    void OnAUp()
-    {
+    void OnAUp(){
         up = false;
     }
 
-    void OnB()
-    {
-        if (!can_move && shopUI.activeSelf)
-        {
+    void OnB(){
+        if(!can_move && shopUI.activeSelf){
             can_move = true;
             shopUI.SetActive(!shopUI.activeSelf);
         }
@@ -141,12 +128,10 @@ public class PlayerController : MonoBehaviour
     //     }
     // }
 
-    void OnTriggerEnter(Collider coll)
-    {
+    void OnTriggerEnter(Collider coll){
         GameObject obj = coll.gameObject;
         Debug.Log("Triggered: " + obj);
-        if (obj.tag == "Beach")
-        {
+        if(obj.tag == "Beach"){
             Debug.Log("Triggered 2");
             can_move = false;
             shopUI.SetActive(!shopUI.activeSelf);
