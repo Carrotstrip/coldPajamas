@@ -55,7 +55,7 @@ public class FishMap : MonoBehaviour
                 // instantiate a fish cube on each tile
                 fishCubes[i, j] = GameObject.Instantiate(FishCube, new Vector3(i * 75 - 340, 0, j * 75 - 340), Quaternion.identity);
                 Material mat = fishCubes[i, j].GetComponent<MeshRenderer>().materials[0];
-                mat.color = gradient.Evaluate(0.1f * num_start_fish);
+                mat.color = gradient.Evaluate(0.2f * num_start_fish);
             }
         }
     }
@@ -68,40 +68,22 @@ public class FishMap : MonoBehaviour
         int chance = Random.Range(0, chanceSize);
         if (chance == 0)
         {
-            ++fishCountArray[i, j];
+            if (getFishCount(i, j) < 5)
+                ++fishCountArray[i, j];
             // update color of tile
             Material mat = fishCubes[i, j].GetComponent<MeshRenderer>().materials[0];
-            mat.color = gradient.Evaluate(0.1f * fishCountArray[i, j]);
+            mat.color = gradient.Evaluate(0.2f * fishCountArray[i, j]);
         }
 
         // eat three fish, then move
         if (!eating)
         {
             // if shark has eaten 3 fish, move one tile
-            if (numFish((int)shark_pos.x,(int)shark_pos.y) <= 0 && !freeze_shark)
+            if (numFish((int)shark_pos.x, (int)shark_pos.y) <= 0 && !freeze_shark)
             {
 
                 fish_eaten = 0;
                 DecideMove();
-                // move one tile within range
-                // randomly decide which direction, and then if we're on the edge and that would take us out of bounds, negate
-                // int move_num = Random.Range(0, 3);
-                // if (move_num == 0)
-                // {
-                //     DecideMove(new Vector2(1, 0));
-                // }
-                // if (move_num == 1)
-                // {
-                //     DecideMove(new Vector2(-1, 0));
-                // }
-                // if (move_num == 2)
-                // {
-                //     DecideMove(new Vector2(0, 1));
-                // }
-                // if (move_num == 3)
-                // {
-                //     DecideMove(new Vector2(0, -1));
-                // }
             }
             eating = true;
             Debug.Log("eating a fish at " + (int)shark_pos.x + ", " + (int)shark_pos.y);
@@ -112,11 +94,14 @@ public class FishMap : MonoBehaviour
 
     void DecideMove()
     {
-        Vector2 bestLocation = shark_pos;
+        // Vector2 bestLocation = shark_pos;
+        List<Vector2> valid_locations = new List<Vector2>();
         int maxFish = 0;
-        for(int i = 0; i < 3; ++i){
+        for (int i = 0; i <= 3; ++i)
+        {
             Vector2 dir;
-            switch(i){
+            switch (i)
+            {
                 case 0:
                     dir = new Vector2(1, 0);
                     break;
@@ -133,12 +118,28 @@ public class FishMap : MonoBehaviour
             Vector2 temp = dir + shark_pos;
             if (temp.x >= 10 || temp.y >= 10 || temp.x < 0 || temp.y < 0)
                 continue;
-            if (numFish((int)temp.x,(int)temp.y) > maxFish){
-                maxFish = fishCountArray[(int)temp.x,(int)temp.y];
-                bestLocation = temp;
+
+            // if max is strictly higher, delete rest of array and only append this pos
+            if (numFish((int)temp.x, (int)temp.y) > maxFish)
+            {
+                maxFish = fishCountArray[(int)temp.x, (int)temp.y];
+                // bestLocation = temp;
+                valid_locations.Clear();
+                valid_locations.Add(temp);
+            }
+
+            // if fish is equal to max, add to array
+            if (numFish((int)temp.x, (int)temp.y) == maxFish)
+            {
+                maxFish = fishCountArray[(int)temp.x, (int)temp.y];
+                // bestLocation = temp;
+                valid_locations.Add(temp);
             }
         }
-        shark_pos = bestLocation;
+
+        // select random int within index, and set shark pos to that vec
+        int index = Random.Range(0, valid_locations.Count - 1);
+        shark_pos = valid_locations[index];
     }
 
     IEnumerator EatFish()
@@ -163,7 +164,7 @@ public class FishMap : MonoBehaviour
             --fishCountArray[x, y];
 
         Material mat = fishCubes[x, y].GetComponent<MeshRenderer>().materials[0];
-        mat.color = gradient.Evaluate(0.1f * fishCountArray[x, y]);
+        mat.color = gradient.Evaluate(0.2f * fishCountArray[x, y]);
         return;
     }
 }
