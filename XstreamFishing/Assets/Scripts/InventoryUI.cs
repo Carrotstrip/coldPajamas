@@ -12,6 +12,7 @@ public class InventoryUI : MonoBehaviour
     public Transform contentPanel;
     public GameObject inventoryEntry;
     public Text fishCount;
+    EventSystem es;
 
     // Use this for initialization
     void Start()
