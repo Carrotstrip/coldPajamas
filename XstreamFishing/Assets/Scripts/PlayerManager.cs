@@ -16,7 +16,7 @@ public class PlayerManager : MonoBehaviour
     public Camera fp_camera;
     public Canvas main_UI;
     public GameObject boat;
-    private Material mat;
+    private SpriteRenderer mat;
     public GameObject sphere;
     public PlayerToastManager ptm;
 
@@ -25,9 +25,8 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         // get minimap sphere material
-        mat = sphere.GetComponent<MeshRenderer>().materials[0];
+        mat = sphere.GetComponent<SpriteRenderer>();
         timer = 0;
-
 
         // get index, and set position based on index
         int index = player_input.playerIndex;
