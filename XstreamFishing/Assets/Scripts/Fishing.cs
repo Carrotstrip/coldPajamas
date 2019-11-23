@@ -40,6 +40,27 @@ public class Fishing : MonoBehaviour
     private bool hasFished;
     private bool hasInventory;
     private int timer = 6*60;
+    IDictionary<int, int> fishToValueDict = new Dictionary<int, int>() {
+        {0, 1},
+        {1, 2},
+        {2, 3},
+        {3, 4},
+        {4, 5},
+        {5, 7},
+        {6, 8},
+        {7, 10},
+        {8, 12},
+        {9, 15},
+        {10, 20},
+        {11, 30},
+        {12, 40},
+        {13, 50},
+        {14, 75},
+        {15, 100},
+        {16, 500},
+        {17, 1000}
+    };
+
     void Start()
     {
         endFish();
@@ -63,6 +84,10 @@ public class Fishing : MonoBehaviour
             "Atlantic Salmon",
             "Lake Sturgeon"
         };
+
+
+
+
         rb = GetComponent<Rigidbody>();
         catchSlider.maxValue = catchCap;
         releaseSlider.maxValue = releaseCap;
@@ -193,7 +218,8 @@ public class Fishing : MonoBehaviour
         }
         else
         {
-            OnCatchFish(fishIndex + 1);
+            Debug.Log("fish index " + fishIndex);
+            OnCatchFish(fishToValueDict[fishIndex]);
             endFish();
             ptm.OverwriteToast("You caught a " + fishArr[fishIndex] + "!");
         }

@@ -86,7 +86,7 @@ public class FishMap : MonoBehaviour
                 DecideMove();
             }
             eating = true;
-            Debug.Log("eating a fish at " + (int)shark_pos.x + ", " + (int)shark_pos.y);
+            // Debug.Log("eating a fish at " + (int)shark_pos.x + ", " + (int)shark_pos.y);
             decrementFish((int)shark_pos.x, (int)shark_pos.y);
             StartCoroutine(EatFish());
         }

@@ -88,8 +88,8 @@ GameObject:
   - component: {fileID: 2409473881141113519}
   - component: {fileID: 2409473881141113522}
   - component: {fileID: 2409473881141113517}
-  - component: {fileID: 2409473881141113516}
   - component: {fileID: 119452594399656187}
+  - component: {fileID: 4510096422578452381}
   m_Layer: 5
   m_Name: ShopButton
   m_TagString: button
@@ -156,7 +156,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2409473881141113516
+--- !u!114 &119452594399656187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2409473881141113518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13679be06ac6e45d9ab4c95daf0783f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonComponent: {fileID: 4510096422578452381}
+  nameLabel: {fileID: 2409473880968352361}
+  iconImage: {fileID: 2258089844036875844}
+  priceText: {fileID: 6422606283397621280}
+--- !u!114 &4510096422578452381
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,9 +193,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9245283, g: 0.19624424, b: 0.19624424, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.754717, g: 0.49188694, b: 0.18867925, a: 1}
+    m_HighlightedColor: {r: 0.9716981, g: 0.28875935, b: 0.28875935, a: 1}
+    m_PressedColor: {r: 0.9622642, g: 0.11347453, b: 0.11347453, a: 1}
+    m_SelectedColor: {r: 0.49817964, g: 0.8867924, b: 0.24679601, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -199,22 +215,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &119452594399656187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2409473881141113518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13679be06ac6e45d9ab4c95daf0783f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonComponent: {fileID: 2409473881141113516}
-  nameLabel: {fileID: 2409473880968352361}
-  iconImage: {fileID: 2258089844036875844}
-  priceText: {fileID: 6422606283397621280}
 --- !u!1 &2710699068588981211
 GameObject:
   m_ObjectHideFlags: 0
