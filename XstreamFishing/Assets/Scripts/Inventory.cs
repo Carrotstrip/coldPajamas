@@ -77,10 +77,10 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < itemList.Count; i++)
         {
-            if (itemList[i].category == item.category)
-            {
+            // if (itemList[i].category == item.category)
+            // {
                 itemList[i].isEquipped = false;
-            }
+            // }
         }
         item.isEquipped = true;
         ie.image.color = new Color32(200, 10, 10, 255);

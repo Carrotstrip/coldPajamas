@@ -21,7 +21,6 @@ public class ShopUI : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        
     }
 
     void OnEnable() {
@@ -50,6 +49,7 @@ public class ShopUI : MonoBehaviour
             ShopButton newShopButton = newButton.GetComponent<ShopButton>();
             newShopButton.Setup(item, this);
             if(i == 0) {
+                Debug.Log("setting newButton " + newButton);
                 EventSystem.current.SetSelectedGameObject(newButton);
             }
         }

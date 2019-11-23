@@ -8,13 +8,14 @@ using UnityEngine.InputSystem;
 
 public class BeachScript : MonoBehaviour
 {
-    public PlayerInput player_input;
+    // public PlayerInput player_input;
 
-    public PlayerController pc;
-    public GameObject shopUI;
-    void OnCollisionEnter(Collision coll){
-        if(coll.gameObject.tag == "Player"){
-            shopUI.SetActive(!shopUI.activeSelf);
-        }
-    }
+        // public PlayerController pc;
+    // public GameObject shopUI;
+    // void OnCollisionEnter(Collision coll){
+    //     if(coll.gameObject.tag == "Player"){
+    //         pc.can_move = false;
+    //         shopUI.SetActive(true);
+    //     }
+    // }
 }

@@ -32,6 +32,7 @@ public class ShopButton : MonoBehaviour {
     public void HandleClick()
     {
         scrollList.inventory.UnselectAll();
+        scrollList.inventory.SetSelected(item);
         scrollList.TryTransferItemToInventory(item);
     }
 }
