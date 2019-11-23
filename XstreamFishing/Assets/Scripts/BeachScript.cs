@@ -12,24 +12,8 @@ public class BeachScript : MonoBehaviour
 
     public PlayerController pc;
     public GameObject shopUI;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void OnTriggerEnter(Collider coll){
-        GameObject obj = coll.gameObject;
-        Debug.Log("Triggered");
-        if(obj.tag == "Player"){
-            // pc.can_move = false;
-            //player_input.SwitchCurrentActionMap("UI");
+    void OnCollisionEnter(Collision coll){
+        if(coll.gameObject.tag == "Player"){
             shopUI.SetActive(!shopUI.activeSelf);
         }
     }
