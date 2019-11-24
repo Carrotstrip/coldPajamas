@@ -21,12 +21,10 @@ public class Fishing : MonoBehaviour
     private IEnumerator coroutine;
     private string[] fishArr;
     private Vector2 lastStickLocation;
-    private int releaseCap = 300;
-    private int catchCap = 400;
-    private int releaseCounter = 0;
     private int catchCounter = 0;
-    private float maxSpeedLimit = .5f;
-    private float minSpeedLimit = .01f;
+
+    Fish fishOnLine;
+    //Fish fishOnLine = new Fish(0,"",.0f,.0f,0);
     public PlayerInput player_input;
     private Vector2 rightStickInput;
     public Inventory inventory;
@@ -64,51 +62,34 @@ public class Fishing : MonoBehaviour
         {17, 1000}
     };
     IDictionary<int, Fish> indexToFishDict = new Dictionary<int, Fish>() {
-        {0, new Fish(0,"minnow",200,.01f,.6f,1)},
-        {1, new Fish(1,"Smallmouth Bass",250,.05f,.5f,2)},
-        {2, new Fish(2,"Largemouth Bass",250,.05f,.5f,3)},
-        {3, new Fish(3,"Lake Trout",250,.05f,.5f,4)},
-        {4, new Fish(4,"White Bass",250,.05f,.5f,5)},
-        {5, new Fish(5,"Carp",250,.05f,.5f,7)},
-        {6, new Fish(6,"Yellow Carp",250,.05f,.5f,8)},
-        {7, new Fish(7,"WhiteFish",250,.05f,.5f,10)},
-        {8, new Fish(8,"Steelhead Trout",250,.05f,.5f,12)},
-        {9, new Fish(9,"Sunfish",250,.05f,.5f,15)},
-        {10, new Fish(10,"Walleye",250,.05f,.5f,20)},
-        {11, new Fish(11,"Northern Pike",250,.05f,.5f,30)},
-        {12, new Fish(12,"Muskelunge",250,.05f,.5f,40)},
-        {13, new Fish(13,"Crappie",250,.05f,.5f,50)},
-        {14, new Fish(14,"Brook Trout",250,.05f,.5f,75)},
-        {15, new Fish(15,"Coho Salmon",250,.05f,.5f,100)},
-        {16, new Fish(16,"Atlantic Salmon",250,.05f,.5f,500)},
-        {17, new Fish(17,"Lake Sturgeon",250,.05f,.5f,1000)},
+        {0, new Fish(0,"Minnow",200,1,.01f,.6f,1)},
+        {1, new Fish(1,"Smallmouth Bass",250,2,.05f,.5f,2)},
+        {2, new Fish(2,"Largemouth Bass",270,2,.05f,.5f,3)},
+        {3, new Fish(3,"Lake Trout",300,3,.05f,.5f,4)},
+        {4, new Fish(4,"White Bass",350,3,.05f,.5f,5)},
+        {5, new Fish(5,"Carp",370,4,.05f,.5f,7)},
+        {6, new Fish(6,"Yellow Carp",400,4,.05f,.5f,8)},
+        {7, new Fish(7,"WhiteFish",425,4,.05f,.5f,10)},
+        {8, new Fish(8,"Steelhead Trout",450,4,.05f,.5f,12)},
+        {9, new Fish(9,"Sunfish",475,5,.05f,.5f,15)},
+        {10, new Fish(10,"Walleye",475,6,.05f,.5f,20)},
+        {11, new Fish(11,"Northern Pike",475,7,.05f,.5f,30)},
+        {12, new Fish(12,"Muskelunge",500,10,.05f,.5f,40)},
+        {13, new Fish(13,"Crappie",520,10,.05f,.5f,50)},
+        {14, new Fish(14,"Brook Trout",550,10,.05f,.5f,75)},
+        {15, new Fish(15,"Coho Salmon",600,12,.05f,.5f,100)},
+        {16, new Fish(16,"Atlantic Salmon",700,18,.05f,.5f,500)},
+        {17, new Fish(17,"Lake Sturgeon",800,20,.05f,.5f,1000)},
+        {18, new Fish(18,"Shark",1000,20,.05f,.5f,1000)},
     };
+
 
     void Start()
     {
         fishMap = GameObject.Find("Ocean").GetComponent<FishMap>();
-        //endFish();
-        fishArr = new string[18]{
-            "Minnow",
-            "Smallmouth Bass",
-            "Largemouth Bass",
-            "Lake Trout",
-            "White Bass",
-            "Carp",
-            "Yellow Perch",
-            "Whitefish",
-            "Steelhead Trout",
-            "Sunfish",
-            "Walleye",
-            "Muskelunge",
-            "Northern Pike",
-            "Crappie",
-            "Brook Trout",
-            "Coho Salmon ",
-            "Atlantic Salmon",
-            "Lake Sturgeon"
-        };
-
+        rb = GetComponent<Rigidbody>();
+        ptm = gameObject.GetComponentInParent(typeof(PlayerToastManager)) as PlayerToastManager;
+        hasFished = false;
 
         gradient_test = new Gradient();
 
@@ -130,16 +111,11 @@ public class Fishing : MonoBehaviour
         alphaKey[2].time = 0.7f;
 
         gradient_test.SetKeys(colorKey, alphaKey);
-
-        rb = GetComponent<Rigidbody>();
-        catchSlider.maxValue = catchCap;
-        ptm = gameObject.GetComponentInParent(typeof(PlayerToastManager)) as PlayerToastManager;
+        // setup the reelQueue with 0's
         reelQueue = new Queue<float>();
-        for (int i = 0; i < 5; ++i)
-        {
+        for (int i = 0; i < 10; ++i){
             reelQueue.Enqueue(0);
         }
-        hasFished = false;
     }
 
     void OnA()
@@ -155,28 +131,23 @@ public class Fishing : MonoBehaviour
     void LateUpdate()
     {
         if(!hasFished && timer >= 6*60){
-            ptm.Toast("Press A to cast and reel in with the right stick");
+            ptm.Toast("Press A to cast,\n Reel in with the right stick");
             timer = 0;
         }
         if (hasFished && timer == 6*60){
             ptm.Toast("Press X for the inventory");
         }
         ++timer;
-        if (cast && has_fish)
-        {
-            // Debug.Log(player_input.currentActionMap.name);
-            // Debug.Log(rightStickInput);
+        if (cast && has_fish){
             reel(rightStickInput);
         }
     }
 
-    void OnRightStick(InputValue input)
-    {
+    void OnRightStick(InputValue input){
         rightStickInput = input.Get<Vector2>();
     }
 
-    void reel(Vector2 input)
-    {
+    void reel(Vector2 input){
         float distFromPrev = Mathf.Sqrt(Mathf.Pow(input.x - lastStickLocation.x, 2)
                              + Mathf.Pow(input.y - lastStickLocation.y, 2));
         lastStickLocation = input;
@@ -185,73 +156,87 @@ public class Fishing : MonoBehaviour
         reelQueue.Enqueue(distFromPrev);
         float average = 0;
         foreach (float dist in reelQueue)
-        {
             average += dist;
-        }
-        average /= 5;
+        average /= 10;
 
         reelingSlider.value = average;
         // Set speed slider to red if outside the limits of the fish
-        if (reelingSlider.value <= maxSpeedLimit && reelingSlider.value >= minSpeedLimit)
+        if (reelingSlider.value <= fishOnLine.maxSpeedLimit && reelingSlider.value >= fishOnLine.minSpeedLimit)
             reelingSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = Color.blue;
         else
             reelingSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = Color.red;
 
-        if (average > minSpeedLimit && average < maxSpeedLimit)
-        {
+        // Adjust catch counter based on current reel Speed
+        if (average > fishOnLine.minSpeedLimit && average < fishOnLine.maxSpeedLimit){
             ++catchCounter;
             catchSlider.value = catchCounter;
-            if (catchCounter >= catchCap)
+            if (catchCounter >= fishOnLine.catchCap)
                 CatchFish();
-        }
-        else
-        {
-            --catchCounter;
-            catchSlider.value = catchCounter;
-            if (catchCounter == 0)
+        } else {
+            catchCounter -= fishOnLine.decrementStep;
+            if (catchCounter <= 0){
                 endFish();
+                return;
+            }
+            catchSlider.value = catchCounter;
         }
         catchSlider.gameObject.transform
             .Find("Fill Area").Find("Fill")
-            .GetComponent<Image>().color = gradient_test.Evaluate((float)catchCounter/(float)catchCap);
+            .GetComponent<Image>().color = gradient_test.Evaluate((float)catchCounter/(float)fishOnLine.catchCap);
     }
 
-    void CatchFish()
-    {
+    void CatchFish(){
         caught = true;
         int rodMultiplier = inventory.rodMultiplier;
         int baitMultiplier = inventory.baitMultiplier;
-        int fishIndex = Random.Range(0, 18) % (2 * rodMultiplier * baitMultiplier);
         // if rodMultiplier is 100, check if there is a shark
         if (rodMultiplier == 100)
         {
-            int x = (int)(transform.position.x + 375) / 75;
-            int y = (int)(transform.position.z + 375) / 75;
-            if (fishMap.shark_pos.x == x && fishMap.shark_pos.y == y)
-            {
+            (int x, int y) = FindLocation();
+            if (fishMap.shark_pos.x == x && fishMap.shark_pos.y == y){
                 // catch the shark!
                 ptm.OverwriteToast("You caught the shark and won the game!");
                 GameManager.SomeoneWon();
                 endFish();
-            }
-            else
-            {
+            } else {
                 ptm.OverwriteToast("Looks like the shark isn't here...");
                 endFish();
             }
-        }
-        else
-        {
-            Debug.Log("fish index " + fishIndex);
-            OnCatchFish(fishToValueDict[fishIndex]);
+        } else {
+            OnCatchFish(fishOnLine.value);
             endFish();
-            ptm.OverwriteToast("You caught a " + fishArr[fishIndex] + "!");
-            fD.sendFish(fishIndex);
+            ptm.OverwriteToast("You caught a " + fishOnLine.species + "!\n That's worth " + fishOnLine.value + " Representative Currency!");
+            fD.sendFish(fishOnLine.index);
         }
     }
+    void findFish(int fishCount, bool isShark){
+        if (fishCount == 0 && !isShark){
+            ptm.OverwriteToast("Nothing's biting around here,\n I've set you up with minimap fish finder.");
+            endFish();
+            return;
+        }
+        rod_clone.transform.Rotate(-40, 0, 0, Space.Self);
+        rod_clone.GetComponent<Renderer>().material.color = Color.green;
+        int rodMultiplier = inventory.rodMultiplier;
+        int baitMultiplier = inventory.baitMultiplier;
+        int rodMinRange = 0;
+        if (rodMultiplier == 5)
+            rodMinRange = 1;
+        else if (rodMultiplier == 13)
+            rodMinRange = 6;
+        int fishIndex = Random.Range(rodMinRange + baitMultiplier,rodMultiplier + baitMultiplier);
+        fishOnLine = indexToFishDict[fishIndex];
+        // Get the shark on the line.
+        if (isShark){
+            fishOnLine = indexToFishDict[18];
+        }
+        catchSlider.maxValue = fishOnLine.catchCap;
+        catchCounter = fishOnLine.catchCap/2;
+        catchSlider.value = catchCounter;
+        has_fish = true;
+    }
 
-    void endFish()
-    {
+    void endFish(){
         hasFished = true;
         caught = false;
         has_fish = false;
@@ -259,39 +244,34 @@ public class Fishing : MonoBehaviour
         catchSlider.value = 0;
         // I like the idea of fish being scared off
         // and decrementing number of fish even if they weren't caught
-        int x = (int)(transform.position.x + 375) / 75;
-        int y = (int)(transform.position.z + 375) / 75;
-
+        (int x, int y) = FindLocation();
         int rodMultiplier = inventory.rodMultiplier;
         // if rodMultiplier is 100, this is a golden rod, so check if there is a shark
         if (rodMultiplier == 100 && fishMap.shark_pos.x == x && fishMap.shark_pos.y == y)
-        {
             fishMap.freeze_shark = false;
-        }
         fishMap.decrementFish(x, y);
         Destroy(rod_clone);
         panel.SetActive(false);
         player_input.SwitchCurrentActionMap("Player");
     }
 
-    IEnumerator WaitForFish()
-    {
-        // ToastManager.OverwriteToast("Reel in with the right joystick");
+    IEnumerator WaitForFish(){
         cast = true;
         bool has_shark = false;
-        int x = (int)(transform.position.x + 375) / 75;
-        int y = (int)(transform.position.z + 375) / 75;
+        (int x, int y) = FindLocation();
         int fishCount = fishMap.getFishCount(x, y);
         // if goldenRod is equipped and we're on shark spot, freeze the shark
         int rodMultiplier = inventory.rodMultiplier;
         // if rodMultiplier is 100, this is a golden rod, so check if there is a shark
-        if (rodMultiplier == 100 && fishMap.shark_pos.x == x && fishMap.shark_pos.y == y)
-        {
+        if (rodMultiplier == 100 && fishMap.shark_pos.x == x && fishMap.shark_pos.y == y){
             fishMap.freeze_shark = true;
             has_shark = true;
         }
-        catchCounter = catchCap/2;
-        catchSlider.value = catchCounter;
+        //Set CatchSLider to center to match up with the starting value once fish is found
+        catchSlider.maxValue = 2;
+        catchSlider.value = 1;
+        reelingSlider.value = 0;
+        // Rod Instantiation
         Vector3 playerPos = transform.position;
         Vector3 playerDirection = transform.forward;
         Quaternion playerRotation = transform.rotation;
@@ -301,45 +281,43 @@ public class Fishing : MonoBehaviour
         rod_clone.transform.LookAt(transform);
         rod_clone.transform.Rotate(-40, 0, 0, Space.Self);
         rod_clone.GetComponent<Renderer>().material.color = Color.red;
-        for (int i = 0; i < 30; ++i)
-        {
+        // Casting Animation
+        for (int i = 0; i < 30; ++i){
             rod_clone.transform.Rotate(3.0f, 0, 0, Space.Self);
             yield return new WaitForSeconds(.00000001f);
         }
-        for (int i = 0; i < 25; ++i)
-        {
+        for (int i = 0; i < 25; ++i){
             rod_clone.transform.Rotate(-4, 0, 0, Space.Self);
             yield return new WaitForSeconds(.001f);
         }
+        // Wait for Fish for some number of seconds
         float num_seconds = Random.Range(2.0f, 4.0f);
         yield return new WaitForSeconds(num_seconds);
         rb.freezeRotation = true;
-        if (fishCount == 0 && !has_shark)
-        {
-            ptm.OverwriteToast("Looks like nothing's biting around here");
-            endFish();
-        }
-        else
-        {
-            has_fish = true;
-            rod_clone.transform.Rotate(-40, 0, 0, Space.Self);
-            rod_clone.GetComponent<Renderer>().material.color = Color.green;
-        }
+        findFish(fishCount, has_shark);
+    }
+    
+    (int, int) FindLocation(){
+        int x = (int)(transform.position.x + 375) / 75;
+        int y = (int)(transform.position.z + 375) / 75;
+        return (x,y);
     }
 }
 public class Fish {
-    int index;
-    string species;
-    int catchCap;
-    float minSpeed;
-    float maxSpeed;
-    int value;
-    public Fish(int index, string species, int catchCap, float minSpeed, float maxSpeed, int value){
+    public int index;
+    public string species;
+    public int catchCap;
+    public float minSpeedLimit;
+    public float maxSpeedLimit;
+    public int value;
+    public int decrementStep;
+    public Fish(int index, string species, int catchCap, int decrementStep, float minSpeed, float maxSpeed, int value ){
         this.index = index;
         this.species = species;
         this.catchCap = catchCap;
-        this.minSpeed = minSpeed;
-        this.maxSpeed = maxSpeed;
+        this.decrementStep = decrementStep;
+        this.minSpeedLimit = minSpeed;
+        this.maxSpeedLimit = maxSpeed;
         this.value = value;
     }
 }
