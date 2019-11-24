@@ -14,7 +14,6 @@ public class Fishing : MonoBehaviour
     public GameObject panel;
     public Slider reelingSlider;
     public Slider catchSlider;
-    public Slider releaseSlider;
     private FishMap fishMap;
     bool has_fish;
     bool cast;
@@ -23,16 +22,19 @@ public class Fishing : MonoBehaviour
     private string[] fishArr;
     private Vector2 lastStickLocation;
     private int releaseCap = 300;
-    private int catchCap = 100;
+    private int catchCap = 400;
     private int releaseCounter = 0;
     private int catchCounter = 0;
     private float maxSpeedLimit = .5f;
-    private float minSpeedLimit = .25f;
+    private float minSpeedLimit = .01f;
     public PlayerInput player_input;
     private Vector2 rightStickInput;
     public Inventory inventory;
     public PlayerToastManager ptm;
 
+    Gradient gradient_test;
+    GradientColorKey[] colorKey;
+    GradientAlphaKey[] alphaKey;
     public event Action<int> OnCatchFish;
 
     private Queue<float> reelQueue;
@@ -60,10 +62,31 @@ public class Fishing : MonoBehaviour
         {16, 500},
         {17, 1000}
     };
+    IDictionary<int, Fish> indexToFishDict = new Dictionary<int, Fish>() {
+        {0, new Fish(0,"minnow",200,.01f,.6f,1)},
+        {1, new Fish(1,"Smallmouth Bass",250,.05f,.5f,2)},
+        {2, new Fish(2,"Largemouth Bass",250,.05f,.5f,3)},
+        {3, new Fish(3,"Lake Trout",250,.05f,.5f,4)},
+        {4, new Fish(4,"White Bass",250,.05f,.5f,5)},
+        {5, new Fish(5,"Carp",250,.05f,.5f,7)},
+        {6, new Fish(6,"Yellow Carp",250,.05f,.5f,8)},
+        {7, new Fish(7,"WhiteFish",250,.05f,.5f,10)},
+        {8, new Fish(8,"Steelhead Trout",250,.05f,.5f,12)},
+        {9, new Fish(9,"Sunfish",250,.05f,.5f,15)},
+        {10, new Fish(10,"Walleye",250,.05f,.5f,20)},
+        {11, new Fish(11,"Northern Pike",250,.05f,.5f,30)},
+        {12, new Fish(12,"Muskelunge",250,.05f,.5f,40)},
+        {13, new Fish(13,"Crappie",250,.05f,.5f,50)},
+        {14, new Fish(14,"Brook Trout",250,.05f,.5f,75)},
+        {15, new Fish(15,"Coho Salmon",250,.05f,.5f,100)},
+        {16, new Fish(16,"Atlantic Salmon",250,.05f,.5f,500)},
+        {17, new Fish(17,"Lake Sturgeon",250,.05f,.5f,1000)},
+    };
 
     void Start()
     {
-        endFish();
+        fishMap = GameObject.Find("Ocean").GetComponent<FishMap>();
+        //endFish();
         fishArr = new string[18]{
             "Minnow",
             "Smallmouth Bass",
@@ -86,11 +109,29 @@ public class Fishing : MonoBehaviour
         };
 
 
+        gradient_test = new Gradient();
 
-        fishMap = GameObject.Find("Ocean").GetComponent<FishMap>();
+        // Populate the color keys at the relative time 0 and 1 (0 and 100%)
+        colorKey = new GradientColorKey[3];
+        colorKey[0].color = Color.red;
+        colorKey[0].time = 0.3f;
+        colorKey[1].color = new Color(255f / 256f, 255f / 256f, 0f / 256f, 1);
+        colorKey[1].time = 0.5f;
+        colorKey[2].color = new Color(0f / 256f, 128f / 256f, 0f / 256f, 1);
+        colorKey[2].time = 0.7f;
+        // Populate the alpha  keys at relative time 0 and 1  (0 and 100%)
+        alphaKey = new GradientAlphaKey[3];
+        alphaKey[0].alpha = 1.0f;
+        alphaKey[0].time = 0.3f;
+        alphaKey[1].alpha = 1.0f;
+        alphaKey[1].time = 0.5f;
+        alphaKey[2].alpha = 1.0f;
+        alphaKey[2].time = 0.7f;
+
+        gradient_test.SetKeys(colorKey, alphaKey);
+
         rb = GetComponent<Rigidbody>();
         catchSlider.maxValue = catchCap;
-        releaseSlider.maxValue = releaseCap;
         ptm = gameObject.GetComponentInParent(typeof(PlayerToastManager)) as PlayerToastManager;
         reelQueue = new Queue<float>();
         for (int i = 0; i < 5; ++i)
@@ -149,47 +190,29 @@ public class Fishing : MonoBehaviour
         average /= 5;
 
         reelingSlider.value = average;
+        // Set speed slider to red if outside the limits of the fish
+        if (reelingSlider.value <= maxSpeedLimit && reelingSlider.value >= minSpeedLimit)
+            reelingSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = Color.blue;
+        else
+            reelingSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = Color.red;
 
         if (average > minSpeedLimit && average < maxSpeedLimit)
         {
             ++catchCounter;
-            releaseCounter = releaseCounter <= 0 ? 0 : --releaseCounter;
-            releaseSlider.value = releaseCounter;
             catchSlider.value = catchCounter;
-            // switch (catchCounter)
-            // {
-            //     case 50:
-            //     case 75:
-            //     case 100:
-            //     case 150:
-            //     case 180:
-            //         rod_clone.transform.Rotate(10, 0, 0, Space.Self);
-            //         break;
-            //     default:
-            //         break;
-            // }
-            if (catchCounter > catchCap)
+            if (catchCounter >= catchCap)
                 CatchFish();
         }
         else
         {
-            ++releaseCounter;
-            releaseSlider.value = releaseCounter;
-            catchCounter = catchCounter <= 0 ? 0 : catchCounter - 2;
+            --catchCounter;
             catchSlider.value = catchCounter;
-            switch (releaseCounter)
-            {
-                case 30:
-                case 80:
-                    ptm.OverwriteToast("Use the right stick to reel.");
-                    //rod_clone.transform.Rotate(-10, 0, 0, Space.Self);
-                    break;
-                default:
-                    break;
-            }
-            if (releaseCounter > releaseCap)
+            if (catchCounter == 0)
                 endFish();
         }
+        catchSlider.gameObject.transform
+            .Find("Fill Area").Find("Fill")
+            .GetComponent<Image>().color = gradient_test.Evaluate((float)catchCounter/(float)catchCap);
     }
 
     void CatchFish()
@@ -232,8 +255,6 @@ public class Fishing : MonoBehaviour
         has_fish = false;
         cast = false;
         catchSlider.value = 0;
-        releaseSlider.value = 0;
-        reelingSlider.value = 0;
         // I like the idea of fish being scared off
         // and decrementing number of fish even if they weren't caught
         int x = (int)(transform.position.x + 375) / 75;
@@ -267,8 +288,8 @@ public class Fishing : MonoBehaviour
             fishMap.freeze_shark = true;
             has_shark = true;
         }
-        releaseCounter = 0;
-        catchCounter = 0;
+        catchCounter = catchCap/2;
+        catchSlider.value = catchCounter;
         Vector3 playerPos = transform.position;
         Vector3 playerDirection = transform.forward;
         Quaternion playerRotation = transform.rotation;
@@ -302,5 +323,21 @@ public class Fishing : MonoBehaviour
             rod_clone.transform.Rotate(-40, 0, 0, Space.Self);
             rod_clone.GetComponent<Renderer>().material.color = Color.green;
         }
+    }
+}
+public class Fish {
+    int index;
+    string species;
+    int catchCap;
+    float minSpeed;
+    float maxSpeed;
+    int value;
+    public Fish(int index, string species, int catchCap, float minSpeed, float maxSpeed, int value){
+        this.index = index;
+        this.species = species;
+        this.catchCap = catchCap;
+        this.minSpeed = minSpeed;
+        this.maxSpeed = maxSpeed;
+        this.value = value;
     }
 }

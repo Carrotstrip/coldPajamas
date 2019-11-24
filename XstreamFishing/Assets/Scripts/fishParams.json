@@ -1,0 +1,166 @@
+{
+  "fish": [
+    {
+      "index": 0,
+      "species": "Minnow",
+      "catchCap": 100,
+      "releaseCap": 300,
+      "minSpeed": ".25",
+      "maxSpeed": ".5",
+      "value": "1"
+    },
+    {
+      "index": 1,
+      "species": "Smallmouth Bass",
+      "catchCap": 100,
+      "releaseCap": 300,
+      "minSpeed": ".25",
+      "maxSpeed": ".5",
+      "value": "2"
+    },
+    {
+      "index": 2,
+      "species": "Minnow",
+      "catchCap": 100,
+      "releaseCap": 300,
+      "minSpeed": ".25",
+      "maxSpeed": ".5",
+      "value": "3"
+    },
+    {
+      "index": 3,
+      "species": "Minnow",
+      "catchCap": 100,
+      "releaseCap": 300,
+      "minSpeed": ".25",
+      "maxSpeed": ".5",
+      "value": "4"
+    },
+    {
+      "index": 4,
+      "species": "Minnow",
+      "catchCap": 100,
+      "releaseCap": 300,
+      "minSpeed": ".25",
+      "maxSpeed": ".5",
+      "value": "5"
+    },
+    {
+      "index": 5,
+      "species": "Minnow",
+      "catchCap": 100,
+      "releaseCap": 300,
+      "minSpeed": ".25",
+      "maxSpeed": ".5",
+      "value": "7"
+    },
+    {
+      "index": 6,
+      "species": "Minnow",
+      "catchCap": 100,
+      "releaseCap": 300,
+      "minSpeed": ".25",
+      "maxSpeed": ".5",
+      "value": "8"
+    },
+    {
+      "index": 7,
+      "species": "Minnow",
+      "catchCap": 100,
+      "releaseCap": 300,
+      "minSpeed": ".25",
+      "maxSpeed": ".5",
+      "value": "10"
+    },
+    {
+      "index": 8,
+      "species": "Minnow",
+      "catchCap": 100,
+      "releaseCap": 300,
+      "minSpeed": ".25",
+      "maxSpeed": ".5",
+      "value": "12"
+    },
+    {
+      "index": 9,
+      "species": "Minnow",
+      "catchCap": 100,
+      "releaseCap": 300,
+      "minSpeed": ".25",
+      "maxSpeed": ".5",
+      "value": "15"
+    },
+    {
+      "index": 10,
+      "species": "Minnow",
+      "catchCap": 100,
+      "releaseCap": 300,
+      "minSpeed": ".25",
+      "maxSpeed": ".5",
+      "value": "20"
+    },
+    {
+      "index": 11,
+      "species": "Minnow",
+      "catchCap": 100,
+      "releaseCap": 300,
+      "minSpeed": ".25",
+      "maxSpeed": ".5",
+      "value": "30"
+    },
+    {
+      "index": 12,
+      "species": "Minnow",
+      "catchCap": 100,
+      "releaseCap": 300,
+      "minSpeed": ".25",
+      "maxSpeed": ".5",
+      "value": "40"
+    },
+    {
+      "index": 13,
+      "species": "Minnow",
+      "catchCap": 100,
+      "releaseCap": 300,
+      "minSpeed": ".25",
+      "maxSpeed": ".5",
+      "value": "50"
+    },
+    {
+      "index": 14,
+      "species": "Minnow",
+      "catchCap": 100,
+      "releaseCap": 300,
+      "minSpeed": ".25",
+      "maxSpeed": ".5",
+      "value": "75"
+    },
+    {
+      "index": 15,
+      "species": "Minnow",
+      "catchCap": 100,
+      "releaseCap": 300,
+      "minSpeed": ".25",
+      "maxSpeed": ".5",
+      "value": "100"
+    },
+    {
+      "index": 16,
+      "species": "Minnow",
+      "catchCap": 100,
+      "releaseCap": 300,
+      "minSpeed": ".25",
+      "maxSpeed": ".5",
+      "value": "500"
+    },
+    {
+      "index":17,
+      "species": "Minnow",
+      "catchCap": 100,
+      "releaseCap": 300,
+      "minSpeed": ".25",
+      "maxSpeed": ".5",
+      "value": "1000"
+    }
+  ]
+}
