@@ -16,6 +16,7 @@ public class Cannon : MonoBehaviour
     public Inventory inventory;
     public bool gimbalingUp;
     public bool gimbalingDown;
+    public AudioClip cannonSound;
     
 
     void Start()
@@ -52,9 +53,10 @@ public class Cannon : MonoBehaviour
         // use ship rb, child rb's calculate velocity wrt the parent, no good
         Rigidbody rbShip = transform.parent.GetComponent<Rigidbody>();
         Vector3 unitBarrelDir = new Vector3(Mathf.Cos(transform.rotation.z), Mathf.Sin(transform.rotation.z), 0f);
-        newCannonball.transform.position = transform.position;        
+        newCannonball.transform.position = transform.position;
         rb.velocity = rbShip.velocity;
         rb.AddForce(transform.rotation*Vector3.up*barrelSpeed);
+        AudioManager.instance.Play(cannonSound);
         // take cannonball from inventory
         inventory.UseCannonball();
     }

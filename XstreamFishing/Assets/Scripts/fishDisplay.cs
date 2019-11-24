@@ -1,0 +1,71 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class fishDisplay : MonoBehaviour
+{
+	public Sprite minnow, smallmouthbass, largemouthbass, laketrout, whitebass, carp, yellowperch, whitefish, steelheadtrout, sunfish, walleye, muskelunge, northernpike, crappie, brooktrout, cohosalmon, atlanticsalmon, lakesturgeon;
+	
+	Image im;
+
+	RectTransform rt;
+
+	IDictionary<int, Sprite> fishToSpriteDict;
+    // Start is called before the first frame update
+    void Start()
+    {
+    	im = GetComponent<Image>();
+    	im.preserveAspect = true;
+    	rt = GetComponent<RectTransform>();
+        fishToSpriteDict = new Dictionary<int, Sprite>() {
+	        {0, minnow},
+	        {1, smallmouthbass},
+	        {2, largemouthbass},
+	        {3, laketrout},
+	        {4, whitebass},
+	        {5, carp},
+	        {6, yellowperch},
+	        {7, whitefish},
+	        {8, steelheadtrout},
+	        {9, sunfish},
+	        {10, walleye},
+	        {11, muskelunge},
+	        {12, northernpike},
+	        {13, crappie},
+	        {14, brooktrout},
+	        {15, cohosalmon},
+	        {16, atlanticsalmon},
+	        {17, lakesturgeon}
+    	};
+    	Color c = im.color;
+    	c.a = 0;
+    	im.color = c;
+    	
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+     	Debug.Log(fishToSpriteDict[0]);   
+    }
+
+    public void sendFish(int index){
+    	Sprite temp = fishToSpriteDict[index];
+
+    	rt.sizeDelta = new Vector2(temp.rect.x * 4f, temp.rect.y * 4f);
+    	im.sprite = temp;
+    	Color c = im.color;
+    	c.a = 100;
+    	im.color = c;
+    	StartCoroutine(ShowFish());
+    }
+
+    IEnumerator ShowFish(){
+    	yield return new WaitForSeconds(2f);
+    	Color c = im.color;
+    	c.a = 0;
+    	im.color = c;
+
+    }
+}

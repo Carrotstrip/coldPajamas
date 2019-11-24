@@ -31,6 +31,7 @@ public class Fishing : MonoBehaviour
     private Vector2 rightStickInput;
     public Inventory inventory;
     public PlayerToastManager ptm;
+    public fishDisplay fD;
 
     Gradient gradient_test;
     GradientColorKey[] colorKey;
@@ -245,6 +246,7 @@ public class Fishing : MonoBehaviour
             OnCatchFish(fishToValueDict[fishIndex]);
             endFish();
             ptm.OverwriteToast("You caught a " + fishArr[fishIndex] + "!");
+            fD.sendFish(fishIndex);
         }
     }
 

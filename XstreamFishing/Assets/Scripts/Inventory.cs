@@ -11,9 +11,8 @@ public class Inventory : MonoBehaviour
 
     public event Action OnNumFishChange;
     public event Action OnReceiveItem;
-    public event Action OnInventoryChange;
+    public event Action<bool> OnInventoryChange;
     public List<Item> itemList;
-    public List<Item> equippedList;
 
     void Start()
     {
@@ -45,7 +44,7 @@ public class Inventory : MonoBehaviour
         }
         if (OnInventoryChange != null)
         {
-            OnInventoryChange();
+            OnInventoryChange(false);
         }
     }
 
@@ -55,7 +54,7 @@ public class Inventory : MonoBehaviour
         numFish -= numToDrop;
         if (OnInventoryChange != null)
         {
-            OnInventoryChange();
+            OnInventoryChange(false);
         }
         return numToDrop;
     }
@@ -77,10 +76,7 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < itemList.Count; i++)
         {
-            // if (itemList[i].category == item.category)
-            // {
-                itemList[i].isEquipped = false;
-            // }
+            itemList[i].isEquipped = false;
         }
         item.isEquipped = true;
         ie.image.color = new Color32(200, 10, 10, 255);
@@ -94,7 +90,7 @@ public class Inventory : MonoBehaviour
         }
         if (OnInventoryChange != null)
         {
-            OnInventoryChange();
+            OnInventoryChange(false);
         }
     }
 
@@ -112,7 +108,7 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < itemList.Count; i++)
         {
-            if (itemList[i].category == "cannonball")
+            if (itemList[i].category == "cannonball" && itemList[i].isEquipped)
             {
                 itemList[i].amount--;
                 if (itemList[i].amount <= 0)
@@ -121,14 +117,14 @@ public class Inventory : MonoBehaviour
                 }
                 if (OnInventoryChange != null)
                 {
-                    OnInventoryChange();
+                    OnInventoryChange(false);
                 }
             }
         }
     }
 
 
-    public void AddItem(Item item)
+    public void AddItem(Item item, bool fromShop)
     {
         bool alreadyInList = false;
         Item foundItem = null;
@@ -177,7 +173,8 @@ public class Inventory : MonoBehaviour
         // tell the inventory UI that we got this item
         if (OnInventoryChange != null)
         {
-            OnInventoryChange();
+            // request came from shop
+            OnInventoryChange(fromShop);
         }
     }
 
@@ -188,9 +185,12 @@ public class Inventory : MonoBehaviour
         if (bait != null)
         {
             bait.amount -= 1;
+            if(bait.amount <= 0) {
+                itemList.Remove(bait);
+            }
         }
         if(OnInventoryChange != null) {
-            OnInventoryChange();
+            OnInventoryChange(false);
         }
     }
 

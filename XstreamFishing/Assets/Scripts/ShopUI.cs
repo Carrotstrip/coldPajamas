@@ -16,6 +16,7 @@ public class ShopUI : MonoBehaviour
     public GameObject shopButton;
     private GameObject firstButton;
     public PlayerToastManager ptm;
+    public Text description;
 
 
     // Use this for initialization
@@ -49,7 +50,6 @@ public class ShopUI : MonoBehaviour
             ShopButton newShopButton = newButton.GetComponent<ShopButton>();
             newShopButton.Setup(item, this);
             if(i == 0) {
-                Debug.Log("setting newButton " + newButton);
                 EventSystem.current.SetSelectedGameObject(newButton);
             }
         }
@@ -61,9 +61,12 @@ public class ShopUI : MonoBehaviour
         // if you have enough fish to buy
         if (inventory.numFish >= item.price)
         {
+            item.isSelected = false;
+            item.isEquipped = false;
             // subtract funds and give item
             inventory.numFish -= item.price;
-            inventory.AddItem(item);
+            // yes came from shop
+            inventory.AddItem(item, true);
         }
         // if not enough fish
         else {
@@ -72,8 +75,5 @@ public class ShopUI : MonoBehaviour
                 OnNotEnoughFish();
             }
         }
-        // if (item.category == "cannonball"){
-        //     ptm.Toast("Cannnnonon");
-        // }
     }
 }

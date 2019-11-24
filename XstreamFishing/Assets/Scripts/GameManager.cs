@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         winState = false;
-        AudioManager.instance.PlayMusic(mainTheme);
+        //AudioManager.instance.PlayMusic(mainTheme);
         controllers = new List<string>();
         game_started = false;
     }
