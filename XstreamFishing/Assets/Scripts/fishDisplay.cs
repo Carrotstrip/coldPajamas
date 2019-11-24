@@ -11,6 +11,8 @@ public class fishDisplay : MonoBehaviour
 
 	RectTransform rt;
 
+	Sprite temp;
+
 	IDictionary<int, Sprite> fishToSpriteDict;
     // Start is called before the first frame update
     void Start()
@@ -47,13 +49,13 @@ public class fishDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     	Debug.Log(fishToSpriteDict[0]);   
+     	  
     }
 
     public void sendFish(int index){
-    	Sprite temp = fishToSpriteDict[index];
+    	temp = fishToSpriteDict[index];
 
-    	rt.sizeDelta = new Vector2(temp.rect.x * 4f, temp.rect.y * 4f);
+    	//rt.sizeDelta = new Vector2(temp.rect.x * 2f, temp.rect.y * 2f);
     	im.sprite = temp;
     	Color c = im.color;
     	c.a = 100;
