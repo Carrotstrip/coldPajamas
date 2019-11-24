@@ -1,43 +1,16 @@
 fileFormatVersion: 2
-guid: 5df9149245d0f4ffaadea05eaf37313a
+guid: ca3d8067c079c4a55abfd9085be24f36
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -631023095337379593
-    second: rod_standard_0
+      213: -2741604302042374173
+    second: bait_0
   - first:
-      213: 7737449626985026946
-    second: rod_standard_1
+      213: 4450842075532100876
+    second: bait_1
   - first:
-      213: -1199251295059341621
-    second: rod_standard_2
-  - first:
-      213: -2604225463047987414
-    second: rod_standard_3
-  - first:
-      213: 8025239884211579853
-    second: rod_standard_4
-  - first:
-      213: 1373852499874875083
-    second: rod_standard_5
-  - first:
-      213: 3262932418798678894
-    second: rod_standard_6
-  - first:
-      213: 7123536331506067284
-    second: rod_standard_7
-  - first:
-      213: 600987924538880203
-    second: rod_standard_8
-  - first:
-      213: -6916039391609330114
-    second: rod_standard_9
-  - first:
-      213: -4557417788750302627
-    second: rod_standard_10
-  - first:
-      213: -3684289974344539796
-    second: rod_standard_11
+      213: 8674628343370034503
+    second: bait_2
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -81,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -96,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -108,7 +81,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 8192
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -122,13 +95,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rod_standard_0
+      name: bait_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 99
-        width: 27
-        height: 27
+        x: 9
+        y: 117
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -136,20 +109,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d2e007e437ab41c189a32f44aba7a17
-      internalID: -631023095337379593
+      spriteID: d7aba622466c64382a28c2dc0abd6265
+      internalID: -2741604302042374173
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rod_standard_1
+      name: bait_1
       rect:
         serializedVersion: 2
-        x: 40
-        y: 105
-        width: 21
-        height: 21
+        x: 59
+        y: 112
+        width: 14
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,20 +130,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba46a8186cfe842a09afebb57386fb01
-      internalID: 7737449626985026946
+      spriteID: abd619dd3d4f64b2288e294d45bf98e9
+      internalID: 4450842075532100876
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rod_standard_2
+      name: bait_2
       rect:
         serializedVersion: 2
-        x: 37
-        y: 63
-        width: 32
-        height: 32
+        x: 29
+        y: 109
+        width: 19
+        height: 19
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,29 +151,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 692ea194ca125463895e3cb26cde3f7a
-      internalID: -1199251295059341621
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rod_standard_3
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 61
-        width: 30
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e5eca198797824dbcaf8796661329980
-      internalID: -2604225463047987414
+      spriteID: e29d62e392e534ad2bc4d5e861c9747d
+      internalID: 8674628343370034503
       vertices: []
       indices: 
       edges: []
@@ -208,7 +160,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e5e5e0064823f40028060f367d6d1724
+    spriteID: 6cacee90d27284e5caa2cb065cf65697
     internalID: 0
     vertices: []
     indices: 
