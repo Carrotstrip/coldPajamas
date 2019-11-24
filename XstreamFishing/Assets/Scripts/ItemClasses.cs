@@ -8,6 +8,7 @@ using System.Collections.Generic;
 public class Item
 {
     public string itemName;
+    public string description;
     public bool isSelected;
     public bool isConsumable = true;
     public bool isEquipped = false;

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class ShopButton : MonoBehaviour {
+public class ShopButton : MonoBehaviour, ISelectHandler {
 
     public Button buttonComponent;
     public Text nameLabel;
@@ -28,6 +28,10 @@ public class ShopButton : MonoBehaviour {
         scrollList = currentScrollList;
     }
 
+    public void OnSelect(BaseEventData eventData)
+    {
+        scrollList.description.text = item.description;
+    }
 
     public void HandleClick()
     {

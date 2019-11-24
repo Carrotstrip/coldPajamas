@@ -98,6 +98,12 @@ public class PlayerController : MonoBehaviour
             player_input.SwitchCurrentActionMap("Player");
         }
     }
+    void OnCollisionEnter(Collision coll){
+        if(coll.gameObject.tag == "Beach"){
+            can_move = false;
+            shopUI.SetActive(true);
+        }
+    }
 
     // void FixedUpdate()
     // {
