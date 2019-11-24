@@ -115,6 +115,7 @@ MonoBehaviour:
   inventory: {fileID: 0}
   gimbalingUp: 0
   gimbalingDown: 0
+  cannonSound: {fileID: 8300000, guid: ee5aa2aafd9e04749887f36b62c194d8, type: 3}
 --- !u!54 &7683367960711907054
 Rigidbody:
   m_ObjectHideFlags: 0

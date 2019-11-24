@@ -15,7 +15,7 @@ public class InventoryEntry : MonoBehaviour {
     private InventoryUI thisUI;
 
     
-    void Start () 
+    void Start ()
     {
         buttonComponent.onClick.AddListener(HandleClick);
         image = GetComponent<Image>();
@@ -26,7 +26,7 @@ public class InventoryEntry : MonoBehaviour {
         thisUI.inventory.EquipItem(item, this);
         thisUI.inventory.UnselectAll();
         thisUI.inventory.SetSelected(item);
-        thisUI.RefreshDisplay();
+        thisUI.RefreshDisplay(false);
     }
 
 
