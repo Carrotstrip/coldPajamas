@@ -1286,6 +1286,7 @@ MonoBehaviour:
   boat: {fileID: 8205407519776410011}
   sphere: {fileID: 1862873091960561850}
   ptm: {fileID: 0}
+  boat_mesh: {fileID: 8205407520128290212}
   timer: 0
 --- !u!114 &3785103662729459601
 MonoBehaviour:
@@ -3161,6 +3162,12 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 8205407519382001538}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &8205407519381867778 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8205407519382001538}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8205407520130586052
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3229,6 +3236,12 @@ PrefabInstance:
 --- !u!4 &8205407520130715460 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 4ec936a9b1599694cbdea7af2df0115d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8205407520130586052}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &8205407520128290212 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2300000, guid: 4ec936a9b1599694cbdea7af2df0115d,
     type: 3}
   m_PrefabInstance: {fileID: 8205407520130586052}
   m_PrefabAsset: {fileID: 0}
@@ -3311,15 +3324,15 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 8205407520345528858}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &8205407520345653406 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400004, guid: baec086904791744185aaa07a6cf55c2,
-    type: 3}
-  m_PrefabInstance: {fileID: 8205407520345528858}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8205407520345431230 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100004, guid: baec086904791744185aaa07a6cf55c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8205407520345528858}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8205407520345653406 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400004, guid: baec086904791744185aaa07a6cf55c2,
     type: 3}
   m_PrefabInstance: {fileID: 8205407520345528858}
   m_PrefabAsset: {fileID: 0}
