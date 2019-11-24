@@ -422,6 +422,7 @@ MonoBehaviour:
   JoinCamera: {fileID: 154945049}
   JoinCanvas: {fileID: 1207808262}
   Minimap: {fileID: 435965334}
+  mainTheme: {fileID: 0}
 --- !u!1001 &419580679
 PrefabInstance:
   m_ObjectHideFlags: 0

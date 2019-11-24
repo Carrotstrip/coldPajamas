@@ -32,6 +32,7 @@ public class Fishing : MonoBehaviour
     private Vector2 rightStickInput;
     public Inventory inventory;
     public PlayerToastManager ptm;
+    public fishDisplay fD;
 
     public event Action<int> OnCatchFish;
 
@@ -222,6 +223,7 @@ public class Fishing : MonoBehaviour
             OnCatchFish(fishToValueDict[fishIndex]);
             endFish();
             ptm.OverwriteToast("You caught a " + fishArr[fishIndex] + "!");
+            fD.sendFish(fishIndex);
         }
     }
 
