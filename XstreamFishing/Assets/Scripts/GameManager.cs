@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public static bool winState;
     public GameObject player_prefab;
     private List<PlayerInput> players;
-    private List<string> controllers;
+    private List<Gamepad> controllers;
     public static bool game_started;
     public RectTransform panelRectTransform;
     public GameObject JoinCamera;
@@ -37,8 +37,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         winState = false;
-        AudioManager.instance.PlayMusic(mainTheme);
-        controllers = new List<string>();
+        // AudioManager.instance.PlayMusic(mainTheme);
+        controllers = new List<Gamepad>();
         game_started = false;
     }
 
@@ -52,24 +52,24 @@ public class GameManager : MonoBehaviour
             bool join = true;
             for (int i = 0; i < controllers.Count; i++)
             {
-                if (controllers[i] == Gamepad.current.name)
+                if (controllers[i] == Gamepad.current)
                     join = false;
             }
             if (join)
             {
-                controllers.Add(Gamepad.current.name);
+                controllers.Add(Gamepad.current);
                 PlayerInput.Instantiate(player_prefab, playerIndex: controllers.Count, pairWithDevice: Gamepad.current);
                 if (controllers.Count >= 2)
                 {
-                    panelRectTransform.anchorMin = new Vector2(0.5f, 0.5f);
-                    panelRectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+                    panelRectTransform.anchorMin = new Vector2(0f, 0.5f);
+                    panelRectTransform.anchorMax = new Vector2(0f, 0.5f);
                     panelRectTransform.pivot = new Vector2(0.5f, 0.5f);
-                    panelRectTransform.anchoredPosition = Vector3.zero;
+                    panelRectTransform.anchoredPosition = new Vector3(200f, 0, 0);
                 }
             }
             Debug.Log("Joining " + Gamepad.current.name);
         }
-        if (!game_started && Gamepad.current.startButton.wasPressedThisFrame)
+        if (!game_started && controllers.Count > 0 && Gamepad.current.startButton.wasPressedThisFrame)
         {
             if (controllers.Count == 3)
             {

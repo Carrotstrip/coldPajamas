@@ -19,6 +19,7 @@ public class PlayerManager : MonoBehaviour
     private SpriteRenderer mat;
     public GameObject sphere;
     public PlayerToastManager ptm;
+    public MeshRenderer boat_mesh;
 
     public int timer;
 
@@ -37,26 +38,34 @@ public class PlayerManager : MonoBehaviour
         if (index == 1)
         {
             boat.transform.position = new Vector3(-200f, 0f, 200f);
-            mat.color = Color.blue;
-            player_join_text.color = Color.blue;
+            boat_mesh.materials[0].color = new Color(66 / 265f, 135 / 265f, 245 / 265f, 1);
+            mat.color = new Color(66 / 265f, 135 / 265f, 245 / 265f, 1);
+            player_join_text.color = new Color(66 / 265f, 135 / 265f, 245 / 265f, 1);
+            boat.transform.rotation = new Quaternion(0, 140, 0, 0);
         }
         if (index == 2)
         {
             boat.transform.position = new Vector3(200f, 0f, 200f);
+            boat_mesh.materials[0].color = Color.red;
             mat.color = Color.red;
             player_join_text.color = Color.red;
+            boat.transform.rotation = new Quaternion(0, 230, 0, 0);
         }
         if (index == 3)
         {
             boat.transform.position = new Vector3(-200f, 0f, -200f);
             mat.color = Color.yellow;
+            boat_mesh.materials[0].color = Color.yellow;
             player_join_text.color = Color.yellow;
+            boat.transform.rotation = new Quaternion(0, 320, 0, 0);
         }
         if (index == 4)
         {
             boat.transform.position = new Vector3(200f, 0f, -200f);
             mat.color = Color.green;
+            boat_mesh.materials[0].color = Color.green;
             player_join_text.color = Color.green;
+            boat.transform.rotation = new Quaternion(0, 50, 0, 0);
         }
         ptm = gameObject.GetComponentInParent(typeof(PlayerToastManager)) as PlayerToastManager;
         ptm.Toast("It's a nice day to be out fishing. \n free to come on down to the island pro shop for supplies.\n Heck I'll even throw in some free advice.");

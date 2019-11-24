@@ -422,6 +422,7 @@ MonoBehaviour:
   JoinCamera: {fileID: 154945049}
   JoinCanvas: {fileID: 1207808262}
   Minimap: {fileID: 435965334}
+  mainTheme: {fileID: 8300000, guid: 3350389ef47404c428f8984233a0b2b6, type: 3}
 --- !u!1001 &419580679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -952,8 +953,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 921348759}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 7.4, y: 97.5, z: 4.4}
-  m_LocalScale: {x: 600, y: 510, z: 1}
+  m_LocalPosition: {x: 32, y: 97.5, z: -42}
+  m_LocalScale: {x: 47.9, y: 46.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1554047985}
   m_RootOrder: 1
@@ -996,8 +997,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.3207547, g: 0.21431743, b: 0.11347455, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 5b623938512df4005bce31d9386702fb, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
