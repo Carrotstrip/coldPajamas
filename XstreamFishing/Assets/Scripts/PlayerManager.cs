@@ -20,6 +20,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject sphere;
     public PlayerToastManager ptm;
     public MeshRenderer boat_mesh;
+    public int index = -1;
 
     public int timer;
 
@@ -30,7 +31,7 @@ public class PlayerManager : MonoBehaviour
         timer = 0;
 
         // get index, and set position based on index
-        int index = player_input.playerIndex;
+        index = player_input.playerIndex;
 
         // on join, turn text the right color and change text
         Text player_join_text = GameObject.Find("PlayerJoinText" + index).GetComponent<Text>();
