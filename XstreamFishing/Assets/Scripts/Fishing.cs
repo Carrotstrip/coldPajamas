@@ -41,46 +41,26 @@ public class Fishing : MonoBehaviour
     private bool hasFished;
     private bool hasInventory;
     private int timer = 6*60;
-    IDictionary<int, int> fishToValueDict = new Dictionary<int, int>() {
-        {0, 1},
-        {1, 2},
-        {2, 3},
-        {3, 4},
-        {4, 5},
-        {5, 7},
-        {6, 8},
-        {7, 10},
-        {8, 12},
-        {9, 15},
-        {10, 20},
-        {11, 30},
-        {12, 40},
-        {13, 50},
-        {14, 75},
-        {15, 100},
-        {16, 500},
-        {17, 1000}
-    };
     IDictionary<int, Fish> indexToFishDict = new Dictionary<int, Fish>() {
         {0, new Fish(0,"Minnow",200,1,.01f,.6f,1)},
-        {1, new Fish(1,"Smallmouth Bass",250,2,.05f,.5f,2)},
-        {2, new Fish(2,"Largemouth Bass",270,2,.05f,.5f,3)},
-        {3, new Fish(3,"Lake Trout",300,3,.05f,.5f,4)},
-        {4, new Fish(4,"White Bass",350,3,.05f,.5f,5)},
-        {5, new Fish(5,"Carp",370,4,.05f,.5f,7)},
-        {6, new Fish(6,"Yellow Carp",400,4,.05f,.5f,8)},
-        {7, new Fish(7,"WhiteFish",425,4,.05f,.5f,10)},
-        {8, new Fish(8,"Steelhead Trout",450,4,.05f,.5f,12)},
-        {9, new Fish(9,"Sunfish",475,5,.05f,.5f,15)},
-        {10, new Fish(10,"Walleye",475,6,.05f,.5f,20)},
-        {11, new Fish(11,"Northern Pike",475,7,.05f,.5f,30)},
-        {12, new Fish(12,"Muskelunge",500,10,.05f,.5f,40)},
-        {13, new Fish(13,"Crappie",520,10,.05f,.5f,50)},
-        {14, new Fish(14,"Brook Trout",550,10,.05f,.5f,75)},
-        {15, new Fish(15,"Coho Salmon",600,12,.05f,.5f,100)},
-        {16, new Fish(16,"Atlantic Salmon",700,18,.05f,.5f,500)},
-        {17, new Fish(17,"Lake Sturgeon",800,20,.05f,.5f,1000)},
-        {18, new Fish(18,"Shark",1000,20,.05f,.5f,1000)},
+        {1, new Fish(1,"Smallmouth Bass",250,1,.05f,.5f,2)},
+        {2, new Fish(2,"Largemouth Bass",270,2,.35f,.9f,3)},
+        {3, new Fish(3,"Lake Trout",300,3,.1f,.5f,4)},
+        {4, new Fish(4,"White Bass",350,3,.1f,.45f,5)},
+        {5, new Fish(5,"Carp",370,4,.35f,.9f,7)},
+        {6, new Fish(6,"Yellow Carp",400,4,.35f,.9f,8)},
+        {7, new Fish(7,"WhiteFish",425,4,.15f,.45f,10)},
+        {8, new Fish(8,"Steelhead Trout",450,4,.15f,.45f,12)},
+        {9, new Fish(9,"Sunfish",475,5,.2f,.45f,15)},
+        {10, new Fish(10,"Walleye",475,6,.2f,.4f,20)},
+        {11, new Fish(11,"Northern Pike",475,7,.2f,.5f,30)},
+        {12, new Fish(12,"Muskelunge",500,10,.2f,.5f,40)},
+        {13, new Fish(13,"Crappie",520,10,.3f,.5f,50)},
+        {14, new Fish(14,"Brook Trout",550,10,.35f,.9f,75)},
+        {15, new Fish(15,"Coho Salmon",600,12,.25f,.5f,100)},
+        {16, new Fish(16,"Atlantic Salmon",700,15,.25f,.9f,500)},
+        {17, new Fish(17,"Lake Sturgeon",800,15,.25f,.5f,1000)},
+        {18, new Fish(18,"Shark",500,10,.25f,.5f,1000)},
     };
 
 
@@ -175,6 +155,9 @@ public class Fishing : MonoBehaviour
         } else {
             catchCounter -= fishOnLine.decrementStep;
             if (catchCounter <= 0){
+                if (fishOnLine.species == "Shark"){
+                    ptm.OverwriteToast("Damn, you nearly got 'im.");
+                }
                 endFish();
                 return;
             }
@@ -210,10 +193,16 @@ public class Fishing : MonoBehaviour
         }
     }
     void findFish(int fishCount, bool isShark){
-        if (fishCount == 0 && !isShark){
-            ptm.OverwriteToast("Nothing's biting around here,\n I've set you up with minimap fish finder.");
-            endFish();
-            return;
+        if (!isShark){
+            if (inventory.rodMultiplier == 100){
+                ptm.OverwriteToast("Looks like the shark isn't here...");
+                endFish();
+                return;
+            } else if (fishCount == 0){
+                ptm.OverwriteToast("Nothing's biting around here,\n I've set you up with minimap fish finder.");
+                endFish();
+                return;
+            }
         }
         rod_clone.transform.Rotate(-40, 0, 0, Space.Self);
         rod_clone.GetComponent<Renderer>().material.color = Color.green;
@@ -225,11 +214,12 @@ public class Fishing : MonoBehaviour
         else if (rodMultiplier == 13)
             rodMinRange = 6;
         int fishIndex = Random.Range(rodMinRange + baitMultiplier,rodMultiplier + baitMultiplier);
-        fishOnLine = indexToFishDict[fishIndex];
-        // Get the shark on the line.
         if (isShark){
             fishOnLine = indexToFishDict[18];
+        } else {
+            fishOnLine = indexToFishDict[fishIndex];
         }
+        // Get the shark on the line.
         catchSlider.maxValue = fishOnLine.catchCap;
         catchCounter = fishOnLine.catchCap/2;
         catchSlider.value = catchCounter;
@@ -271,6 +261,9 @@ public class Fishing : MonoBehaviour
         catchSlider.maxValue = 2;
         catchSlider.value = 1;
         reelingSlider.value = 0;
+        catchSlider.gameObject.transform
+            .Find("Fill Area").Find("Fill")
+            .GetComponent<Image>().color = gradient_test.Evaluate(1);
         // Rod Instantiation
         Vector3 playerPos = transform.position;
         Vector3 playerDirection = transform.forward;
