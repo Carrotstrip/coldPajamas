@@ -50,7 +50,11 @@ public class Inventory : MonoBehaviour
 
     public int DropFish(int multiplier)
     {
-        int numToDrop = UnityEngine.Random.Range(0, numFish / 5 * multiplier);
+        int numToDrop = 0;
+        if (numFish > 0)
+        {
+            numToDrop = UnityEngine.Random.Range(1, numFish / 5 * multiplier);
+        }
         numFish -= numToDrop;
         if (OnInventoryChange != null)
         {
@@ -94,13 +98,16 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void UnselectAll() {
-        for (int i = 0; i < itemList.Count; i++) {
+    public void UnselectAll()
+    {
+        for (int i = 0; i < itemList.Count; i++)
+        {
             itemList[i].isSelected = false;
         }
     }
 
-    public void SetSelected(Item item) {
+    public void SetSelected(Item item)
+    {
         item.isSelected = true;
     }
 
@@ -185,16 +192,19 @@ public class Inventory : MonoBehaviour
         if (bait != null)
         {
             bait.amount -= 1;
-            if(bait.amount <= 0) {
+            if (bait.amount <= 0)
+            {
                 itemList.Remove(bait);
             }
         }
-        if(OnInventoryChange != null) {
+        if (OnInventoryChange != null)
+        {
             OnInventoryChange(false);
         }
     }
 
-    public void GainFish(int numFishIn) {
+    public void GainFish(int numFishIn)
+    {
         numFish += numFishIn;
     }
 }
