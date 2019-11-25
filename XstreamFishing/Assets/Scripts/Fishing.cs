@@ -49,17 +49,17 @@ public class Fishing : MonoBehaviour
         {4, new Fish(4,"White Bass",350,3,.1f,.45f,5)},
         {5, new Fish(5,"Carp",370,4,.35f,.9f,7)},
         {6, new Fish(6,"Yellow Carp",400,4,.35f,.9f,8)},
-        {7, new Fish(7,"WhiteFish",425,4,.15f,.45f,10)},
-        {8, new Fish(8,"Steelhead Trout",450,4,.15f,.45f,12)},
-        {9, new Fish(9,"Sunfish",475,5,.2f,.45f,15)},
-        {10, new Fish(10,"Walleye",475,6,.2f,.4f,20)},
-        {11, new Fish(11,"Northern Pike",475,7,.2f,.5f,30)},
-        {12, new Fish(12,"Muskelunge",500,10,.2f,.5f,40)},
-        {13, new Fish(13,"Crappie",520,10,.3f,.5f,50)},
+        {7, new Fish(7,"WhiteFish",425,4,.15f,.60f,10)},
+        {8, new Fish(8,"Steelhead Trout",450,4,.15f,.70f,12)},
+        {9, new Fish(9,"Sunfish",475,5,.2f,.70f,15)},
+        {10, new Fish(10,"Walleye",475,6,.2f,.70f,20)},
+        {11, new Fish(11,"Northern Pike",475,7,.2f,.6f,30)},
+        {12, new Fish(12,"Muskelunge",500,10,.2f,.8f,40)},
+        {13, new Fish(13,"Crappie",520,10,.3f,.9f,50)},
         {14, new Fish(14,"Brook Trout",550,10,.35f,.9f,75)},
         {15, new Fish(15,"Coho Salmon",600,12,.25f,.5f,100)},
         {16, new Fish(16,"Atlantic Salmon",700,15,.25f,.9f,500)},
-        {17, new Fish(17,"Lake Sturgeon",800,15,.25f,.5f,1000)},
+        {17, new Fish(17,"Lake Sturgeon",500,15,.25f,.5f,1000)},
         {18, new Fish(18,"Shark",500,10,.25f,.5f,1000)},
     };
 
@@ -157,6 +157,8 @@ public class Fishing : MonoBehaviour
             if (catchCounter <= 0){
                 if (fishOnLine.species == "Shark"){
                     ptm.OverwriteToast("Damn, you nearly got 'im.");
+                } else {
+                    ptm.OverwriteToast("They got away\nTry turning the controller sideways to reel.");
                 }
                 endFish();
                 return;
