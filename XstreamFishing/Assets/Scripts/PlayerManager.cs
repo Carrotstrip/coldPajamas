@@ -21,6 +21,9 @@ public class PlayerManager : MonoBehaviour
     public PlayerToastManager ptm;
     public MeshRenderer boat_mesh;
     public int index = -1;
+    public bool inventory_on_screen = false;
+    public AudioClip inventory_open;
+    public AudioClip inventory_close;
 
     public int timer;
 
@@ -72,19 +75,35 @@ public class PlayerManager : MonoBehaviour
         ptm.Toast("It's a nice day to be out fishing. \n free to come on down to the island pro shop for supplies.\n Heck I'll even throw in some free advice.");
     }
 
-    // show inventory
+    // toggle inventory
     void OnX()
     {
-        inventoryUI.SetActive(!inventoryUI.activeSelf);
-        if (inventoryUI.activeSelf)
+        if (inventory_on_screen)
         {
-            Debug.Log("switch to ui");
-            //player_input.SwitchCurrentActionMap("UI");
+            // move inventory back off of screen
+            AudioManager.instance.Play(inventory_open);
+            RectTransform rect = inventoryUI.GetComponent<RectTransform>();
+            StartCoroutine(LerpInventory(rect, rect.anchoredPosition, new Vector3(-200, 0, -2), 0.3f));
         }
         else
         {
-            Debug.Log("switch to player");
-            //player_input.SwitchCurrentActionMap("Player");
+            // move inventory onto screen
+            AudioManager.instance.Play(inventory_close);
+            RectTransform rect = inventoryUI.GetComponent<RectTransform>();
+            StartCoroutine(LerpInventory(rect, rect.anchoredPosition, new Vector3(200, 0, -2), 0.3f));
+        }
+        inventory_on_screen = !inventory_on_screen;
+    }
+
+    IEnumerator LerpInventory(RectTransform rect, Vector3 startPos, Vector3 endPos, float totalTime)
+    {
+        float currentTime = 0;
+        while (currentTime <= totalTime)
+        {
+            currentTime += Time.deltaTime;
+            float normalized = currentTime / totalTime;
+            rect.anchoredPosition = Vector3.Lerp(startPos, endPos, normalized);
+            yield return null;
         }
     }
 

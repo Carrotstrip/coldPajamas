@@ -1303,6 +1303,9 @@ MonoBehaviour:
   ptm: {fileID: 0}
   boat_mesh: {fileID: 8205407520128290212}
   index: -1
+  inventory_on_screen: 0
+  inventory_open: {fileID: 8300000, guid: 146952deb1efa4eccbcfb9460886f16e, type: 3}
+  inventory_close: {fileID: 8300000, guid: d60fd5565e0b04e62b7c8325390d7bb0, type: 3}
   timer: 0
 --- !u!114 &3785103662729459601
 MonoBehaviour:
@@ -2064,7 +2067,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 500.00006}
+  m_AnchoredPosition: {x: 0, y: 500.0001}
   m_SizeDelta: {x: 800, y: 700}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &8205407520523006318
@@ -3437,7 +3440,7 @@ PrefabInstance:
     - target: {fileID: 9086776264319647242, guid: 8d2a5d4a8425e4b43a3e63bec401874f,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9086776264319647241, guid: 8d2a5d4a8425e4b43a3e63bec401874f,
         type: 3}
@@ -3497,12 +3500,12 @@ PrefabInstance:
     - target: {fileID: 9086776264319647241, guid: 8d2a5d4a8425e4b43a3e63bec401874f,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 198.90002
+      value: -200
       objectReference: {fileID: 0}
     - target: {fileID: 9086776264319647241, guid: 8d2a5d4a8425e4b43a3e63bec401874f,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2.0999756
+      value: -2.4249878
       objectReference: {fileID: 0}
     - target: {fileID: 9086776264319647241, guid: 8d2a5d4a8425e4b43a3e63bec401874f,
         type: 3}
@@ -3512,7 +3515,7 @@ PrefabInstance:
     - target: {fileID: 9086776264319647241, guid: 8d2a5d4a8425e4b43a3e63bec401874f,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: -54.5
+      value: -55.150024
       objectReference: {fileID: 0}
     - target: {fileID: 9086776264319647241, guid: 8d2a5d4a8425e4b43a3e63bec401874f,
         type: 3}
