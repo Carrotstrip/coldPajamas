@@ -83,7 +83,7 @@ public class PlayerManager : MonoBehaviour
             // move inventory back off of screen
             AudioManager.instance.Play(inventory_open);
             RectTransform rect = inventoryUI.GetComponent<RectTransform>();
-            StartCoroutine(LerpInventory(rect, rect.anchoredPosition, new Vector3(-200, 0, -2), 0.3f));
+            StartCoroutine(LerpInventory(rect, rect.anchoredPosition, new Vector3(-80, 0, -2), 0.3f));
         }
         else
         {
