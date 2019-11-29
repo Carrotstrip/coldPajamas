@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerManager : MonoBehaviour
 {
     public Inventory inventory;
+    public Text actionText;
     public GameObject shopUI;
     public GameObject inventoryUI;
     private bool startSequence;
@@ -76,7 +77,7 @@ public class PlayerManager : MonoBehaviour
     }
 
     // toggle inventory
-    void OnX()
+    public void OnX()
     {
         if (inventory_on_screen)
         {
@@ -168,11 +169,24 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         UpdateScreenSize();
-        if (timer >= 45 * 60)
+
+        // if in third-person check what we have equipped, if cannon give cannon mappings, if rod give fish mappings
+        if (!boat.GetComponent<Rigidbody>().isKinematic)
         {
-            ptm.Toast("I've been hearing about a SHARK thats eating all the fish in the lake.\n It sure would be wonderful for someone get out there \n and catch it with the GOLDEN ROD.");
-            timer = 0;
+            if (inventory.GetHasCategoryEquipped("rod"))
+            {
+                actionText.text = "Y: Get Fishin'";
+            }
+            else
+            {
+                actionText.text = "RT: Shoot\nLT: Gimbal Up\nLB: Gimbal Down";
+            }
         }
-        ++timer;
+        // if (timer >= 45 * 60)
+        // {
+        //     ptm.Toast("I've been hearing about a SHARK thats eating all the fish in the lake.\n It sure would be wonderful for someone get out there \n and catch it with the GOLDEN ROD.");
+        //     timer = 0;
+        // }
+        // ++timer;
     }
 }

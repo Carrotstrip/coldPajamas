@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 
@@ -14,27 +15,9 @@ public class SwitchMode : MonoBehaviour
     public GameObject player;
     public GameObject playerStartPos;
     public ShipRocker sr;
-    private bool hasSwitched;
-    public PlayerToastManager ptm;
-    private int timer = 6*60;
-
-    void Start(){
-        hasSwitched = false;
-        ptm = gameObject.GetComponentInParent(typeof(PlayerToastManager)) as PlayerToastManager;
-    }
-
-    void Update(){
-        if(!hasSwitched && timer >= 6*60){
-            ptm.Toast("Press Y to get Fishin");
-            timer = 0;
-        }
-        ++timer;
-        
-    }
-    // Update is called once per frame
+    public Text actionText;
     void OnY()
     {
-        hasSwitched = true;
         if (boat.GetComponent<Rigidbody>().isKinematic)
         {
             boat.GetComponent<Rigidbody>().isKinematic = false;
@@ -43,6 +26,7 @@ public class SwitchMode : MonoBehaviour
             canvas.worldCamera = mainCamera;
             player.SetActive(false);
             sr.enabled = true;
+            actionText.text = "Y: Get Fishin'";
         }
         else
         {
@@ -54,6 +38,7 @@ public class SwitchMode : MonoBehaviour
             player.transform.position = playerStartPos.transform.position;
             player.SetActive(true);
             sr.enabled = false;
+            actionText.text = "A: Cast";
         }
     }
 }

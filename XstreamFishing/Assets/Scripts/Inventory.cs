@@ -163,17 +163,11 @@ public class Inventory : MonoBehaviour
         else if (!item.isConsumable)
         {
             // delete the one of the same category (don't let them buy a worse one)
-            bool removedOld = false;
             for (int i = 0; i < itemList.Count; i++)
             {
                 if (itemList[i].category == item.category && itemList[i].multiplier <= item.multiplier)
                 {
                     itemList.Remove(itemList[i]);
-                    removedOld = true;
-
-                    // TODO: also remove old from shop!!
-
-
                     // set the proper multipliers
                     break;
                 }
