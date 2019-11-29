@@ -170,6 +170,10 @@ public class Inventory : MonoBehaviour
                 {
                     itemList.Remove(itemList[i]);
                     removedOld = true;
+
+                    // TODO: also remove old from shop!!
+
+
                     // set the proper multipliers
                     break;
                 }
