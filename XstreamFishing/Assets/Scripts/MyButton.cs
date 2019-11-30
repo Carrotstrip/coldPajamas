@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 
-public class MultiplayerButton : Button
+public class MyButton : Button
 {
     public EventSystem eventSystem;
  
@@ -24,11 +24,14 @@ public class MultiplayerButton : Button
     protected override void Awake()
     {
         base.Awake();
-        eventSystem = GetComponent<EventSystemProvider>().eventSystem;
+        eventSystem = GameObject.Find("MyEventSystem").GetComponent<EventSystem>();
+        Debug.Log(eventSystem);
+        // eventSystem = GetComponent<MyEventSystem>
     }
  
     public override void Select()
     {
+        Debug.Log("selecting");
         if (eventSystem.alreadySelecting)
             return;
  

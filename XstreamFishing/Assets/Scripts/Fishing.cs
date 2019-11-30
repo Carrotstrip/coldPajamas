@@ -177,10 +177,8 @@ public class Fishing : MonoBehaviour
                 if (fishOnLine.species == "Shark")
                 {
                     ptm.OverwriteToast("Damn, you nearly got 'im.");
-                }
-                else
-                {
-                    ptm.OverwriteToast("They got away\nTry turning the controller sideways to reel.");
+                } else {
+                    ptm.OverwriteToast("Shoot Partner look's like ya let that " + fishOnLine.species + " walk off with your lunch\nTry turning the controller sideways to reel.");
                 }
                 endFish();
                 return;

@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 
 public class InventoryEntry : MonoBehaviour {
 
-    public Button buttonComponent;
     public bool isSelected;
     public Text amountLabel;
     public Image iconImage;
@@ -17,16 +16,20 @@ public class InventoryEntry : MonoBehaviour {
     
     void Start ()
     {
-        buttonComponent.onClick.AddListener(HandleClick);
         image = GetComponent<Image>();
     }
 
     public void HandleClick()
     {
+        Debug.Log("eatmyass.ppm");
         thisUI.inventory.EquipItem(item, this);
         thisUI.inventory.UnselectAll();
         thisUI.inventory.SetSelected(item);
         thisUI.RefreshDisplay(false);
+    }
+
+    public void OnSubmit() {
+        Debug.Log("eatmyass.png");
     }
 
 

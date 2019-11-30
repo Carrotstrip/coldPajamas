@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     private bool up;
     private float initial_y_pos;
     public PlayerInput player_input;
+    public GameObject cursor;
+    Inventory inventory;
 
 
     // Start is called before the first frame update
@@ -29,6 +31,8 @@ public class PlayerController : MonoBehaviour
         GetComponent<Rigidbody>().inertiaTensorRotation = Quaternion.identity;
         up = false;
         initial_y_pos = transform.position.y;
+        inventory = GetComponent<Inventory>();
+        inventory.GotPropeller += EnableFlight;
     }
 
     void OnSail(InputValue input)
@@ -95,6 +99,7 @@ public class PlayerController : MonoBehaviour
         if(!can_move && shopUI.activeSelf){
             can_move = true;
             shopUI.SetActive(!shopUI.activeSelf);
+            cursor.SetActive(false);
             player_input.SwitchCurrentActionMap("Player");
         }
     }
@@ -102,6 +107,8 @@ public class PlayerController : MonoBehaviour
         if(coll.gameObject.tag == "Beach"){
             can_move = false;
             shopUI.SetActive(true);
+            cursor.SetActive(true);
+            player_input.SwitchCurrentActionMap("UI");
         }
     }
 
@@ -148,6 +155,10 @@ public class PlayerController : MonoBehaviour
             can_move = false;
             shopUI.SetActive(!shopUI.activeSelf);
         }
+    }
+
+    void EnableFlight() {
+        can_fly = true;
     }
 
 

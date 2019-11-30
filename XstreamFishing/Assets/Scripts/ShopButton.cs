@@ -4,19 +4,21 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class ShopButton : MonoBehaviour, ISelectHandler {
+public class ShopButton : MonoBehaviour {
 
-    public Button buttonComponent;
+    // public Button buttonComponent;
     public Text nameLabel;
     public Image iconImage;
     public Text priceText;
-    private Item item;
+    public Item item;
     private ShopUI scrollList;
+    public bool hovered;
 
     // Use this for initialization
     void Start () 
     {
-        buttonComponent.onClick.AddListener(HandleClick);
+        // buttonComponent.onClick.AddListener(HandleClick);
+
     }
 
     public void Setup(Item currentItem, ShopUI currentScrollList)
@@ -28,7 +30,7 @@ public class ShopButton : MonoBehaviour, ISelectHandler {
         scrollList = currentScrollList;
     }
 
-    public void OnSelect(BaseEventData eventData)
+    public void OnHover()
     {
         scrollList.description.text = item.description;
     }
