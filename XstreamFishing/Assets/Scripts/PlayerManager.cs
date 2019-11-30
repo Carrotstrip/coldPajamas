@@ -21,6 +21,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject sphere;
     public PlayerToastManager ptm;
     public MeshRenderer boat_mesh;
+    public GameObject cursor;
     public int index = -1;
     public bool inventory_on_screen = false;
     public AudioClip inventory_open;

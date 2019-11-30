@@ -102,16 +102,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444451873169316024}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -14}
+  m_LocalPosition: {x: 0, y: 0, z: -13.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1444451873049501311}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 8.8988, y: -149}
-  m_SizeDelta: {x: 460.01, y: -444.9}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 276.1, y: -618.9}
+  m_SizeDelta: {x: 449.7, y: 467}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1444451872294923307
 MonoBehaviour:
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 150, y: 100}
+  m_CellSize: {x: 140, y: 100}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -158,18 +158,20 @@ MonoBehaviour:
     category: rod
     icon: {fileID: 7737449626985026946, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
     price: 3
-    amount: 1
-    multiplier: 2
+    amount: 0
+    shopAmount: 1
+    multiplier: 5
   - itemName: Ancestral Obelisk
     description: Made from the bones of deceased fishing tournament winners.
     isSelected: 0
     isConsumable: 0
     isEquipped: 0
     category: rod
-    icon: {fileID: -631023095337379593, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
+    icon: {fileID: -1199251295059341621, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
     price: 5
-    amount: 1
-    multiplier: 3
+    amount: 0
+    shopAmount: 1
+    multiplier: 13
   - itemName: Bait
     description: They just look like leftovers from Jimbo's breakfast...
     isSelected: 0
@@ -178,7 +180,8 @@ MonoBehaviour:
     category: bait
     icon: {fileID: -2741604302042374173, guid: ca3d8067c079c4a55abfd9085be24f36, type: 3}
     price: 1
-    amount: 1
+    amount: 0
+    shopAmount: 5
     multiplier: 1
   - itemName: Synthetic Bait
     description: It may be fake but those dumbass fish don't know the difference.
@@ -188,7 +191,8 @@ MonoBehaviour:
     category: bait
     icon: {fileID: 8674628343370034503, guid: ca3d8067c079c4a55abfd9085be24f36, type: 3}
     price: 2
-    amount: 1
+    amount: 0
+    shopAmount: 5
     multiplier: 2
   - itemName: Worms
     description: These little buggers have been in Jimbos fridge at home for weeks
@@ -199,8 +203,9 @@ MonoBehaviour:
     category: bait
     icon: {fileID: 4450842075532100876, guid: ca3d8067c079c4a55abfd9085be24f36, type: 3}
     price: 3
-    amount: 1
-    multiplier: 3
+    amount: 5
+    shopAmount: 0
+    multiplier: 4
   - itemName: Cannonball
     description: Might just be a particularly round rock.
     isSelected: 0
@@ -209,7 +214,8 @@ MonoBehaviour:
     category: cannonball
     icon: {fileID: 5596361543026112581, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 1
-    amount: 1
+    amount: 0
+    shopAmount: 5
     multiplier: 1
   - itemName: Golden Cannonball
     description: Jimbo doesn't believe in representative currency, so he may as well
@@ -220,7 +226,8 @@ MonoBehaviour:
     category: cannonball
     icon: {fileID: 7199686104288873141, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 2
-    amount: 1
+    amount: 0
+    shopAmount: 5
     multiplier: 2
   - itemName: Cobalt Cannonball
     description: Locally sourced from organic, gluten free, non-GMO Cobalt.
@@ -230,7 +237,8 @@ MonoBehaviour:
     category: cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
     price: 3
-    amount: 1
+    amount: 0
+    shopAmount: 5
     multiplier: 3
   - itemName: Goldenrod
     description: The result of intense scientific study by Jimbo in his basement.
@@ -238,9 +246,10 @@ MonoBehaviour:
     isConsumable: 0
     isEquipped: 0
     category: rod
-    icon: {fileID: -1199251295059341621, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
+    icon: {fileID: -2604225463047987414, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
     price: 20
-    amount: 1
+    amount: 0
+    shopAmount: 1
     multiplier: 100
   contentPanel: {fileID: 1444451873169316025}
   inventory: {fileID: 0}
@@ -324,6 +333,6 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Mingus Pingus
+  m_Text: 'Welcome to Jimbo''s Pro Shop
 
 '

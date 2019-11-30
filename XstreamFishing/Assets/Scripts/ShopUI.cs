@@ -39,6 +39,9 @@ public class ShopUI : MonoBehaviour
         }
     }
 
+    void Update() {
+    }
+
     private void AddButtons()
     {
         for (int i = 0; i < itemList.Count; i++)
@@ -51,10 +54,6 @@ public class ShopUI : MonoBehaviour
             newButton.transform.localRotation = Quaternion.identity;
             ShopButton newShopButton = newButton.GetComponent<ShopButton>();
             newShopButton.Setup(item, this);
-            if (i == 0)
-            {
-                EventSystem.current.SetSelectedGameObject(newButton);
-            }
         }
     }
 

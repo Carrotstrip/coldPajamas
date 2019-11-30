@@ -457,17 +457,25 @@ public class InputActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""X"",
                     ""type"": ""Button"",
-                    ""id"": ""6d1e7530-077b-4019-b5f2-f37ab23b52c0"",
+                    ""id"": ""6493de21-3c5b-4739-8eff-a1ee4a01777b"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""X"",
+                    ""name"": ""B"",
                     ""type"": ""Button"",
-                    ""id"": ""6493de21-3c5b-4739-8eff-a1ee4a01777b"",
+                    ""id"": ""352c8b3f-5d89-4145-8cc7-b120763dabda"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MoveCursor"",
+                    ""type"": ""Button"",
+                    ""id"": ""474fbd92-8ead-4b6f-a770-5450e00999ea"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
@@ -630,23 +638,34 @@ public class InputActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6ed84e5a-9576-41eb-a48e-0cce0d234c81"",
-                    ""path"": ""<Gamepad>/dpad"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""17fb0344-b2a4-426a-adf6-cacd430b395e"",
                     ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""X"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8494969e-bcd2-4f76-a61b-40e3606deaa0"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""B"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e814539-1600-4d0a-895f-70a546454a2e"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""MoveCursor"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -831,8 +850,9 @@ public class InputActions : IInputActionCollection, IDisposable
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         m_UI_TrackedDeviceSelect = m_UI.FindAction("TrackedDeviceSelect", throwIfNotFound: true);
-        m_UI_Move = m_UI.FindAction("Move", throwIfNotFound: true);
         m_UI_X = m_UI.FindAction("X", throwIfNotFound: true);
+        m_UI_B = m_UI.FindAction("B", throwIfNotFound: true);
+        m_UI_MoveCursor = m_UI.FindAction("MoveCursor", throwIfNotFound: true);
         // Join
         m_Join = asset.FindActionMap("Join", throwIfNotFound: true);
         m_Join_A = m_Join.FindAction("A", throwIfNotFound: true);
@@ -1087,8 +1107,9 @@ public class InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
     private readonly InputAction m_UI_TrackedDeviceSelect;
-    private readonly InputAction m_UI_Move;
     private readonly InputAction m_UI_X;
+    private readonly InputAction m_UI_B;
+    private readonly InputAction m_UI_MoveCursor;
     public struct UIActions
     {
         private InputActions m_Wrapper;
@@ -1104,8 +1125,9 @@ public class InputActions : IInputActionCollection, IDisposable
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
         public InputAction @TrackedDeviceSelect => m_Wrapper.m_UI_TrackedDeviceSelect;
-        public InputAction @Move => m_Wrapper.m_UI_Move;
         public InputAction @X => m_Wrapper.m_UI_X;
+        public InputAction @B => m_Wrapper.m_UI_B;
+        public InputAction @MoveCursor => m_Wrapper.m_UI_MoveCursor;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1148,12 +1170,15 @@ public class InputActions : IInputActionCollection, IDisposable
                 TrackedDeviceSelect.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceSelect;
                 TrackedDeviceSelect.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceSelect;
                 TrackedDeviceSelect.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceSelect;
-                Move.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMove;
-                Move.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMove;
-                Move.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMove;
                 X.started -= m_Wrapper.m_UIActionsCallbackInterface.OnX;
                 X.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnX;
                 X.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnX;
+                B.started -= m_Wrapper.m_UIActionsCallbackInterface.OnB;
+                B.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnB;
+                B.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnB;
+                MoveCursor.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMoveCursor;
+                MoveCursor.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMoveCursor;
+                MoveCursor.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMoveCursor;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1191,12 +1216,15 @@ public class InputActions : IInputActionCollection, IDisposable
                 TrackedDeviceSelect.started += instance.OnTrackedDeviceSelect;
                 TrackedDeviceSelect.performed += instance.OnTrackedDeviceSelect;
                 TrackedDeviceSelect.canceled += instance.OnTrackedDeviceSelect;
-                Move.started += instance.OnMove;
-                Move.performed += instance.OnMove;
-                Move.canceled += instance.OnMove;
                 X.started += instance.OnX;
                 X.performed += instance.OnX;
                 X.canceled += instance.OnX;
+                B.started += instance.OnB;
+                B.performed += instance.OnB;
+                B.canceled += instance.OnB;
+                MoveCursor.started += instance.OnMoveCursor;
+                MoveCursor.performed += instance.OnMoveCursor;
+                MoveCursor.canceled += instance.OnMoveCursor;
             }
         }
     }
@@ -1355,8 +1383,9 @@ public class InputActions : IInputActionCollection, IDisposable
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         void OnTrackedDeviceSelect(InputAction.CallbackContext context);
-        void OnMove(InputAction.CallbackContext context);
         void OnX(InputAction.CallbackContext context);
+        void OnB(InputAction.CallbackContext context);
+        void OnMoveCursor(InputAction.CallbackContext context);
     }
     public interface IJoinActions
     {

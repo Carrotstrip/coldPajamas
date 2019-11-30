@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 32.99, y: 3.77}
-  m_SizeDelta: {x: -104.82, y: -56.8}
+  m_AnchoredPosition: {x: 30.54, y: 4.2}
+  m_SizeDelta: {x: -97.2, y: -55.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7271727015809543467
 CanvasRenderer:
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 1936277211172167567}
   - component: {fileID: 7589506704070082288}
   m_Layer: 5
-  m_Name: NameText
+  m_Name: PriceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +99,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869084641054963534}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.000000048429}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2409473881141113519}
@@ -107,8 +107,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -28, y: -4.267502}
-  m_SizeDelta: {x: -94.04, y: -67.24}
+  m_AnchoredPosition: {x: -23.94, y: -10.6}
+  m_SizeDelta: {x: -81.49, y: -67.24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1936277211172167567
 CanvasRenderer:
@@ -138,7 +138,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 10
+    m_FontSize: 24
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 2409473881141113522}
   - component: {fileID: 2409473881141113517}
   - component: {fileID: 119452594399656187}
-  - component: {fileID: 4510096422578452381}
+  - component: {fileID: 1481873744946924829}
   m_Layer: 5
   m_Name: ShopButton
   m_TagString: button
@@ -177,7 +177,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2409473881141113518}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.008711438, y: 3.779694e-10, z: -0.000533753, w: 0.9999619}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -186,11 +186,11 @@ RectTransform:
   - {fileID: 2310697137146972112}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.998, y: 0.001, z: -0.061000004}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 250.49, y: -198.23}
-  m_SizeDelta: {x: 150, y: 100}
+  m_SizeDelta: {x: 140, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &2409473881141113522
 CanvasRenderer:
@@ -241,53 +241,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13679be06ac6e45d9ab4c95daf0783f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonComponent: {fileID: 4510096422578452381}
-  nameLabel: {fileID: 7589506704070082288}
+  nameLabel: {fileID: 6491158679848568589}
   iconImage: {fileID: 4124961556525025438}
-  priceText: {fileID: 6491158679848568589}
---- !u!114 &4510096422578452381
-MonoBehaviour:
+  priceText: {fileID: 7589506704070082288}
+  item:
+    itemName: 
+    description: 
+    isSelected: 0
+    isConsumable: 1
+    isEquipped: 0
+    category: 
+    icon: {fileID: 0}
+    price: 1
+    amount: 1
+    shopAmount: 0
+    multiplier: 0
+  hovered: 0
+--- !u!65 &1481873744946924829
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2409473881141113518}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9716981, g: 0.28875935, b: 0.28875935, a: 1}
-    m_PressedColor: {r: 0.9622642, g: 0.11347453, b: 0.11347453, a: 1}
-    m_SelectedColor: {r: 0.49817964, g: 0.8867924, b: 0.24679601, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 2409473881141113517}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
+  serializedVersion: 2
+  m_Size: {x: 143.68811, y: 87.82352, z: 100}
+  m_Center: {x: -1.9801178, y: -41.74089, z: 0}
 --- !u!1 &3247768341038180680
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +282,7 @@ GameObject:
   - component: {fileID: 6792694650783662114}
   - component: {fileID: 6491158679848568589}
   m_Layer: 5
-  m_Name: PriceText
+  m_Name: NameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -322,8 +304,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -28, y: 18.444}
-  m_SizeDelta: {x: -94.04, y: -67.7}
+  m_AnchoredPosition: {x: -23.94, y: 19.02}
+  m_SizeDelta: {x: -63.1, y: -63.91}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6792694650783662114
 CanvasRenderer:
@@ -353,7 +335,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 10
+    m_FontSize: 12
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
