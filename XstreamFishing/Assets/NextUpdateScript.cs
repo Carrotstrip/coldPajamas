@@ -24,6 +24,6 @@ public class NextUpdateScript : MonoBehaviour
             Destroy(gameObject);
         }
         gameObject.GetComponent<Image>().sprite = nextItem.icon;
-        nextItemText.text = (nextItem.price - inventory.numFish) + " RC";
+        nextItemText.text = (nextItem.price - inventory.numFish) + "";
     }
 }

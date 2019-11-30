@@ -218,7 +218,7 @@ public class Fishing : MonoBehaviour
         {
             OnCatchFish(fishOnLine.value);
             endFish();
-            ptm.OverwriteToast("You caught a " + fishOnLine.species + "!\n That's worth " + fishOnLine.value + " Representative Currency!");
+            ptm.OverwriteToast("You caught a " + fishOnLine.species + "!\n That's worth " + fishOnLine.value + " Finjamins!");
             fD.sendFish(fishOnLine.index);
         }
     }
