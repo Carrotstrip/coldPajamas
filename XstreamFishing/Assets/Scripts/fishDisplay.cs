@@ -13,49 +13,42 @@ public class fishDisplay : MonoBehaviour
 
 	Sprite temp;
 
-	IDictionary<int, Sprite> fishToSpriteDict;
+	Dictionary<int, Sprite> fishToSpriteDict;
     // Start is called before the first frame update
     void Start()
     {
-    	im = GetComponent<Image>();
+			im = GetComponent<Image>();
     	im.preserveAspect = true;
     	rt = GetComponent<RectTransform>();
-        fishToSpriteDict = new Dictionary<int, Sprite>() {
-	        {0, minnow},
-	        {1, smallmouthbass},
-	        {2, largemouthbass},
-	        {3, laketrout},
-	        {4, whitebass},
-	        {5, carp},
-	        {6, yellowperch},
-	        {7, whitefish},
-	        {8, steelheadtrout},
-	        {9, sunfish},
-	        {10, walleye},
-	        {11, muskelunge},
-	        {12, northernpike},
-	        {13, crappie},
-	        {14, brooktrout},
-	        {15, cohosalmon},
-	        {16, atlanticsalmon},
-	        {17, lakesturgeon}
-    	};
+
     	Color c = im.color;
     	c.a = 0;
     	im.color = c;
+			fishToSpriteDict = new Dictionary<int, Sprite>() {
+				{0, minnow},
+				{1, smallmouthbass},
+				{2, largemouthbass},
+				{3, laketrout},
+				{4, whitebass},
+				{5, carp},
+				{6, yellowperch},
+				{7, whitefish},
+				{8, steelheadtrout},
+				{9, sunfish},
+				{10, walleye},
+				{11, muskelunge},
+				{12, northernpike},
+				{13, crappie},
+				{14, brooktrout},
+				{15, cohosalmon},
+				{16, atlanticsalmon},
+				{17, lakesturgeon}
+    	};
     	
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-     	  
     }
 
     public void sendFish(int index){
     	temp = fishToSpriteDict[index];
-
-    	//rt.sizeDelta = new Vector2(temp.rect.x * 2f, temp.rect.y * 2f);
     	im.sprite = temp;
     	Color c = im.color;
     	c.a = 100;

@@ -233,7 +233,13 @@ public class Fishing : MonoBehaviour
         }
         else
         {
-            OnCatchFish(fishOnLine.value);
+            if(OnCatchFish != null) {
+                Debug.Log("caught");
+                OnCatchFish(fishOnLine.value);
+            }
+            else {
+                Debug.Log("null");
+            }
             endFish();
             ptm.OverwriteToast("You caught a " + fishOnLine.species + "!\n That's worth " + fishOnLine.value + " Finjamins!");
             fD.sendFish(fishOnLine.index);
