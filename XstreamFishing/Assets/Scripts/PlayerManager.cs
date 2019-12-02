@@ -83,6 +83,8 @@ public class PlayerManager : MonoBehaviour
         if (inventory_on_screen)
         {
             // move inventory back off of screen
+            cursor.SetActive(false);
+            player_input.SwitchCurrentActionMap("Player");
             AudioManager.instance.Play(inventory_open);
             RectTransform rect = inventoryUI.GetComponent<RectTransform>();
             StartCoroutine(LerpInventory(rect, rect.anchoredPosition, new Vector3(-80, 0, -2), 0.3f));
@@ -90,6 +92,8 @@ public class PlayerManager : MonoBehaviour
         else
         {
             // move inventory onto screen
+            cursor.SetActive(true);
+            player_input.SwitchCurrentActionMap("UI");
             AudioManager.instance.Play(inventory_close);
             RectTransform rect = inventoryUI.GetComponent<RectTransform>();
             StartCoroutine(LerpInventory(rect, rect.anchoredPosition, new Vector3(200, 0, -2), 0.3f));
