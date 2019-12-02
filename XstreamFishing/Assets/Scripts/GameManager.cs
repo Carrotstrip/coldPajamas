@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //UnityEditor.PlayerSettings.SetAspectRatio(UnityEditor.Enumerations.AspectRatio.Aspect5by4, true);
-        Screen.SetResolution((int)(Screen.height * (5f/4f)), Screen.height, true);
+        Screen.SetResolution((int)(Screen.height * (5f / 4f)), Screen.height, true);
         winState = false;
         AudioManager.instance.PlayMusic(mainTheme);
         controllers = new List<Gamepad>();
@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
                 }
             }
             Debug.Log("Joining " + Gamepad.current.name);
+            Debug.Log(controllers);
         }
         if (!game_started && controllers.Count > 0 && Gamepad.current.startButton.wasPressedThisFrame)
         {

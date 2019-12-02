@@ -1648,7 +1648,7 @@ MonoBehaviour:
   reelingSlider: {fileID: 3187499748127415699}
   catchSlider: {fileID: 7942337187067750278}
   actionText: {fileID: 2841608817701508874}
-  InventoryUI: {fileID: 1136526086176231458}
+  InventoryUI: {fileID: 0}
   playerManager: {fileID: 3839157623359467783}
   player_input: {fileID: 1072046423538352829}
   inventory: {fileID: 8205407519776410008}
@@ -3833,6 +3833,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+--- !u!20 &8205407519381377794 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2000000, guid: 5e9e851c0e142814dac026a256ba2ac0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8205407519382001538}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8205407519381867778 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0,
@@ -3842,12 +3848,6 @@ Transform:
 --- !u!1 &8205407519381967138 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0,
-    type: 3}
-  m_PrefabInstance: {fileID: 8205407519382001538}
-  m_PrefabAsset: {fileID: 0}
---- !u!20 &8205407519381377794 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 2000000, guid: 5e9e851c0e142814dac026a256ba2ac0,
     type: 3}
   m_PrefabInstance: {fileID: 8205407519382001538}
   m_PrefabAsset: {fileID: 0}
