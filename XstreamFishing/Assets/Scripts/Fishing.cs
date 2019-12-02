@@ -45,6 +45,10 @@ public class Fishing : MonoBehaviour
     private bool hasFished;
     private bool hasInventory;
     private int timer = 6 * 60;
+   
+    public GameObject bobberPrefab;
+    private GameObject bobber;
+    private Vector3 BobberInWaterPosition;
     IDictionary<int, Fish> indexToFishDict = new Dictionary<int, Fish>() {
         {0, new Fish(0,"Minnow",200,1,.01f,.6f,1)},
         {1, new Fish(1,"Smallmouth Bass",250,1,.05f,.5f,2)},
@@ -168,16 +172,23 @@ public class Fishing : MonoBehaviour
             reelingSlider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = Color.red;
 
         // Adjust catch counter based on current reel Speed
+        float progress = 0.0f;
+        Vector3 finalPos = rod_clone.transform.position + (transform.forward * 6);
+        // + (transform.up * 7) + (transform.right*2);
         if (average > fishOnLine.minSpeedLimit && average < fishOnLine.maxSpeedLimit)
         {
             ++catchCounter;
             catchSlider.value = catchCounter;
+            progress = (float)catchCounter/(float)fishOnLine.catchCap;
+            bobber.transform.position = Vector3.Lerp(BobberInWaterPosition, finalPos, progress);
             if (catchCounter >= fishOnLine.catchCap)
                 CatchFish();
         }
         else
         {
             catchCounter -= fishOnLine.decrementStep;
+            progress = (float)catchCounter/(float)fishOnLine.catchCap;
+            bobber.transform.position = Vector3.Lerp(BobberInWaterPosition, finalPos, progress);
             if (catchCounter <= 0)
             {
                 if (fishOnLine.species == "Shark")
@@ -245,7 +256,7 @@ public class Fishing : MonoBehaviour
                 return;
             }
         }
-        rod_clone.transform.Rotate(-40, 0, 0, Space.Self);
+        rod_clone.transform.Rotate(-30, 0, 0, Space.Self);
         rod_clone.GetComponent<Renderer>().material.color = Color.green;
         int rodMultiplier = inventory.rodMultiplier;
         int baitMultiplier = inventory.baitMultiplier;
@@ -254,9 +265,8 @@ public class Fishing : MonoBehaviour
             rodMinRange = 1;
         else if (rodMultiplier == 13)
             rodMinRange = 6;
-        int fishIndex = Random.Range(rodMinRange + baitMultiplier, rodMultiplier + baitMultiplier);
-        if (isShark)
-        {
+        int fishIndex = Random.Range(rodMinRange + baitMultiplier,rodMultiplier + baitMultiplier + 1);
+        if (isShark){
             fishOnLine = indexToFishDict[18];
         }
         else
@@ -267,11 +277,13 @@ public class Fishing : MonoBehaviour
         catchSlider.maxValue = fishOnLine.catchCap;
         catchCounter = fishOnLine.catchCap / 2;
         catchSlider.value = catchCounter;
+        BobberInWaterPosition = bobber.transform.position;
         has_fish = true;
     }
 
     void endFish()
     {
+        Destroy(bobber);
         hasFished = true;
         caught = false;
         has_fish = false;
@@ -320,19 +332,50 @@ public class Fishing : MonoBehaviour
         rod_clone = Instantiate(rod, spawnPos, Quaternion.identity);
         rod_clone.transform.parent = transform;
         rod_clone.transform.LookAt(transform);
-        rod_clone.transform.Rotate(-40, 0, 0, Space.Self);
+        rod_clone.transform.Rotate(-80, 0, 0, Space.Self);
         rod_clone.GetComponent<Renderer>().material.color = Color.red;
         // Casting Animation
-        for (int i = 0; i < 30; ++i)
+        float elapsedTime = 0;
+        float waitTime = 0.60f;
+        float startRotate = .50f;
+        float stopRotate = 8.0f;
+        while (elapsedTime < waitTime)
         {
-            rod_clone.transform.Rotate(3.0f, 0, 0, Space.Self);
-            yield return new WaitForSeconds(.00000001f);
-        }
-        for (int i = 0; i < 25; ++i)
+            float rotateValue = Mathf.Lerp(startRotate, stopRotate, (elapsedTime / waitTime));
+            rod_clone.transform.Rotate(rotateValue, 0, 0, Space.Self);
+            elapsedTime += Time.deltaTime;
+        
+            // Yield here
+            yield return null;
+        } 
+        elapsedTime = 0;
+        waitTime = 0.30f;
+        startRotate = -12.50f;
+        stopRotate = -0.50f;
+        while (elapsedTime < waitTime)
         {
-            rod_clone.transform.Rotate(-4, 0, 0, Space.Self);
-            yield return new WaitForSeconds(.001f);
-        }
+            float rotateValue = Mathf.Lerp(startRotate, stopRotate, (elapsedTime / waitTime));
+            rod_clone.transform.Rotate(rotateValue, 0, 0, Space.Self);
+            elapsedTime += Time.deltaTime;
+        
+            // Yield here
+            yield return null;
+        } 
+        Vector3 bobberSpawnPosition = rod_clone.transform.position + (transform.forward * 6) + (transform.up * 7) + (transform.right*2);
+
+        //bobberSpawnPosition[1] = bobberSpawnPosition[1] + 5;
+        bobber = Instantiate(bobberPrefab, bobberSpawnPosition, Quaternion.identity) as GameObject;
+        bobber.GetComponent<Rigidbody>().AddForce(transform.forward * 1500 + transform.right * 2);
+        var bobberRenderer = bobber.GetComponent<Renderer>();
+        bobberRenderer.material.SetColor("_Color", Color.red);
+        // for (int i = 0; i < 30; ++i){
+        //     rod_clone.transform.Rotate(3.0f, 0, 0, Space.Self);
+        //     yield return new WaitForSeconds(.00000001f);
+        // }
+        // for (int i = 0; i < 25; ++i){
+        //     rod_clone.transform.Rotate(-4, 0, 0, Space.Self);
+        //     yield return new WaitForSeconds(.001f);
+        // }
         // Wait for Fish for some number of seconds
         float num_seconds = Random.Range(2.0f, 4.0f);
         yield return new WaitForSeconds(num_seconds);

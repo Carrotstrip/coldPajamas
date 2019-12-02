@@ -1562,7 +1562,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8205407519353637972}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -44, y: -35.26482, z: 43.23288}
+  m_LocalPosition: {x: -45.6, y: -35, z: 43.23288}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8205407519776410021}
@@ -1634,7 +1634,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   ease_duration: 0.5
   show_duration: 5
---- !u!114 &1954013907826305597
+--- !u!114 &1366595580365202859
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1647,16 +1647,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rod: {fileID: 7225878842896087267, guid: 2dbabd8c142814ad6ba9ca53f226b873, type: 3}
-  panel: {fileID: 1393159616035128825}
-  reelingSlider: {fileID: 3187499748127415699}
-  catchSlider: {fileID: 7942337187067750278}
+  panel: {fileID: 0}
+  reelingSlider: {fileID: 0}
+  catchSlider: {fileID: 0}
   actionText: {fileID: 0}
-  InventoryUI: {fileID: 1136526086176231458}
-  playerManager: {fileID: 3839157623359467783}
-  player_input: {fileID: 1072046423538352829}
+  InventoryUI: {fileID: 0}
+  playerManager: {fileID: 0}
+  player_input: {fileID: 0}
   inventory: {fileID: 0}
-  ptm: {fileID: 5662186026671540682}
+  ptm: {fileID: 0}
   fD: {fileID: 0}
+  bobberPrefab: {fileID: 0}
 --- !u!1 &8205407519639153502
 GameObject:
   m_ObjectHideFlags: 0
@@ -4537,3 +4538,5 @@ MonoBehaviour:
   inventory: {fileID: 8205407519776410008}
   ptm: {fileID: 5662186026671540682}
   fD: {fileID: 5677333847395773203}
+  bobberPrefab: {fileID: 1994018001832071823, guid: a91fa1083fab549eeaa12c0c0e60308e,
+    type: 3}
