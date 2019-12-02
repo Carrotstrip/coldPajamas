@@ -26,6 +26,7 @@ public class PlayerManager : MonoBehaviour
     public bool inventory_on_screen = false;
     public AudioClip inventory_open;
     public AudioClip inventory_close;
+    public GameObject switcher;
 
     public int timer;
 
@@ -74,7 +75,7 @@ public class PlayerManager : MonoBehaviour
             boat.transform.rotation = new Quaternion(0, 50, 0, 0);
         }
         ptm = gameObject.GetComponentInParent(typeof(PlayerToastManager)) as PlayerToastManager;
-        ptm.Toast("It's a nice day to be out fishing. \n free to come on down to the island pro shop for supplies.\n Heck I'll even throw in some free advice.");
+        ptm.Toast("It's a nice day to be out fishing. \n You'll need a rod to get started, head on over to Jimbo's");
     }
 
     // toggle inventory
@@ -174,6 +175,11 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         UpdateScreenSize();
+        // if game started, enable switching
+        if (GameManager.game_started)
+        {
+            switcher.SetActive(true);
+        }
 
         // if in third-person check what we have equipped, if cannon give cannon mappings, if rod give fish mappings
         if (!boat.GetComponent<Rigidbody>().isKinematic)
@@ -182,16 +188,10 @@ public class PlayerManager : MonoBehaviour
             {
                 actionText.text = "Y: Get Fishin'";
             }
-            else
+            else if (inventory.GetHasCategoryEquipped("cannonball"))
             {
                 actionText.text = "RT: Shoot\nLT: Gimbal Up\nLB: Gimbal Down";
             }
         }
-        // if (timer >= 45 * 60)
-        // {
-        //     ptm.Toast("I've been hearing about a SHARK thats eating all the fish in the lake.\n It sure would be wonderful for someone get out there \n and catch it with the GOLDEN ROD.");
-        //     timer = 0;
-        // }
-        // ++timer;
     }
 }

@@ -39,7 +39,8 @@ public class ShopUI : MonoBehaviour
         }
     }
 
-    void Update() {
+    void Update()
+    {
     }
 
     private void AddButtons()

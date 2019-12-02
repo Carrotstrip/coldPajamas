@@ -39,13 +39,13 @@ public class Cannonball : PooledObject
                 int numFishDropped = otherInventory.DropFish(multiplier);
                 if (numFishDropped > 0)
                 {
-                    this_ptm.OverwriteToast("Stole " + numFishDropped + " Representative Currency from player");
-                    other_ptm.OverwriteToast("A player stole " + numFishDropped + " Representative Currency from you!");
+                    this_ptm.OverwriteToast("Stole " + numFishDropped + " Finjamins from player");
+                    other_ptm.OverwriteToast("A player stole " + numFishDropped + " Finjamins from you!");
                     firerInventory.GainFish(numFishDropped);
                 }
                 else
                 {
-                    this_ptm.OverwriteToast("Player had no Representative Currency to steal!");
+                    this_ptm.OverwriteToast("Player had no Finjamins to steal!");
                 }
             }
         }
