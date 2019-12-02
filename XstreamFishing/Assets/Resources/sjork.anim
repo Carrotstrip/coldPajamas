@@ -67,7 +67,7 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
+        time: 9
         value: 73
         inSlope: 0
         outSlope: 0
@@ -95,7 +95,7 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
+        time: 9
         value: 59
         inSlope: 0
         outSlope: 0
@@ -123,7 +123,7 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
+        time: 9
         value: -26
         inSlope: 0
         outSlope: 0
@@ -151,7 +151,7 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
+        time: 9
         value: -4
         inSlope: 0
         outSlope: 0
@@ -179,7 +179,7 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
+        time: 9
         value: -26
         inSlope: 0
         outSlope: 0
@@ -325,7 +325,7 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
+        time: 9
         value: 73
         inSlope: 0
         outSlope: 0
@@ -353,7 +353,7 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
+        time: 9
         value: 59
         inSlope: 0
         outSlope: 0
@@ -381,7 +381,7 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
+        time: 9
         value: -26
         inSlope: 0
         outSlope: 0
@@ -409,7 +409,7 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
+        time: 9
         value: -4
         inSlope: 0
         outSlope: 0
@@ -437,7 +437,7 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
+        time: 9
         value: -26
         inSlope: 0
         outSlope: 0
