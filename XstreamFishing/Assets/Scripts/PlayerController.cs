@@ -104,8 +104,10 @@ public class PlayerController : MonoBehaviour
         if(!can_move && shopUI.activeSelf){
             can_move = true;
             shopUI.SetActive(!shopUI.activeSelf);
-            if(!inv_active) cursor.SetActive(false);
-            player_input.SwitchCurrentActionMap("Player");
+            if(!inv_active) {
+                cursor.SetActive(false);
+                player_input.SwitchCurrentActionMap("Player");
+            }
         }
     }
     void OnCollisionEnter(Collision coll){

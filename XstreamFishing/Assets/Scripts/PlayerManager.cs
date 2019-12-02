@@ -84,8 +84,10 @@ public class PlayerManager : MonoBehaviour
         if (inventory_on_screen)
         {
             // move inventory back off of screen
-            if(!shopUI.activeSelf) cursor.SetActive(false);
-            player_input.SwitchCurrentActionMap("Player");
+            if(!shopUI.activeSelf) {
+                cursor.SetActive(false);
+                player_input.SwitchCurrentActionMap("Player");
+            }
             AudioManager.instance.Play(inventory_open);
             RectTransform rect = inventoryUI.GetComponent<RectTransform>();
             StartCoroutine(LerpInventory(rect, rect.anchoredPosition, new Vector3(-80, 0, -2), 0.3f));

@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
                 panelRectTransform.anchorMin = new Vector2(1f, 0f);
                 panelRectTransform.anchorMax = new Vector2(1f, 0f);
                 panelRectTransform.pivot = new Vector2(0.5f, 0.5f);
-                panelRectTransform.anchoredPosition = new Vector3(-350f, 230f, 0);
+                panelRectTransform.anchoredPosition = new Vector3(-250f, 200f, 0);
                 panelRectTransform.localScale = new Vector3(4.6f, 4.6f, 1f);
             }
             // once someone starts the game, remove join ui and camera and allow players to start toasting and moving

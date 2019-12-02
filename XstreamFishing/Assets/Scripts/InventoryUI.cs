@@ -29,7 +29,7 @@ public class InventoryUI : MonoBehaviour
 
     public void RefreshDisplay(bool fromShop)
     {
-        fishCount.text = "RC: " + inventory.numFish.ToString();
+        fishCount.text = inventory.numFish.ToString();
         RemoveEntries();
         AddEntries(fromShop);
     }
