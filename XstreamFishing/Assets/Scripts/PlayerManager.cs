@@ -26,6 +26,7 @@ public class PlayerManager : MonoBehaviour
     public bool inventory_on_screen = false;
     public AudioClip inventory_open;
     public AudioClip inventory_close;
+    public GameObject switcher;
 
     public int timer;
 
@@ -174,6 +175,11 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         UpdateScreenSize();
+        // if game started, enable switching
+        if (GameManager.game_started)
+        {
+            switcher.SetActive(true);
+        }
 
         // if in third-person check what we have equipped, if cannon give cannon mappings, if rod give fish mappings
         if (!boat.GetComponent<Rigidbody>().isKinematic)
