@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 public class CursorController : MonoBehaviour
 {
     RectTransform rt;
+    RectTransform crt;
     Vector2 move_vector;
     float speed = .02f;
     ShopButton button;
@@ -20,6 +21,7 @@ public class CursorController : MonoBehaviour
     void Start()
     {   
         canvas = transform.parent.GetComponent<Canvas>();
+        crt = canvas.GetComponent<RectTransform>();
     }
 
     void OnEnable() {
@@ -81,7 +83,23 @@ public class CursorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rt.Translate(move_vector);
+        if(rt.anchoredPosition.x < crt.rect.width && rt.anchoredPosition.x > 0 && rt.anchoredPosition.y > -crt.rect.height && rt.anchoredPosition.y < 0){
+             rt.Translate(move_vector);
+        }
+
+        if(rt.anchoredPosition.x <= 0){
+            rt.anchoredPosition = new Vector2(10, rt.anchoredPosition.y);
+        }
+        else if(rt.anchoredPosition.x >= crt.rect.width){
+            rt.anchoredPosition = new Vector2(crt.rect.width - 10, rt.anchoredPosition.y);
+        }
+        
+        if(rt.anchoredPosition.y >= 0){
+            rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -10);
+        }
+        else if(rt.anchoredPosition.y <= -crt.rect.height){
+            rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -crt.rect.height + 10);
+        }
         if(Input.GetAxis("Horizontal") < .1 && Input.GetAxis("Vertical") < .1 ) {
             move_vector = Vector2.zero;
         }

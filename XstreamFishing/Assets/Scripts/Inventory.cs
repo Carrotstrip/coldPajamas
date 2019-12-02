@@ -81,9 +81,11 @@ public class Inventory : MonoBehaviour
 
     public void EquipItem(Item item, InventoryEntry ie)
     {
+        // un-equip other items of this category
         for (int i = 0; i < itemList.Count; i++)
         {
-            if(itemList[i].category == item.category) {
+            if (itemList[i].category == item.category)
+            {
                 itemList[i].isEquipped = false;
             }
         }
@@ -153,18 +155,19 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        if(!GetHasCategoryEquipped(item.category)) {
-            if(item.category == "bait") {
-                ptm.Toast("Go ahead and equip your bait in the inventory,\nyou might land yourself a real lunker hoss!");
-            }
-            else if(item.category == "cannonball") {
-                ptm.Toast("Whoa there, looks like you're trying to get into sum trouble!\nHit the right trigger to fire.\n Use the left trigger and bumper to adjust your angle.");
-            }
-        }
+        // if(!GetHasCategoryEquipped(item.category)) {
+        //     if(item.category == "bait") {
+        //         ptm.Toast("Go ahead and equip your bait in the inventory,\nyou might land yourself a real lunker hoss!");
+        //     }
+        //     else if(item.category == "cannonball") {
+        //         ptm.Toast("Whoa there, looks like you're trying to get into sum trouble!\nHit the right trigger to fire.\n Use the left trigger and bumper to adjust your angle.");
+        //     }
+        // }
 
-        if(item.itemName == "Mysterious Propeller") {
+        if (item.itemName == "Mysterious Propeller")
+        {
             GotPropeller();
-            ptm.Toast("Got that from my grandpa back in forty-thrinty-91. Not sure what it does,\nbut that old guy sure loved holding the A button!");
+            ptm.Toast("Got that from my grandpa back in 1491. Not sure what it does,\nbut that old guy sure loved holding the A button!");
         }
 
         // if it's a consumable
@@ -197,7 +200,9 @@ public class Inventory : MonoBehaviour
             }
             // add the new item
             itemList.Add(item);
+            item.amount += item.shopAmount;
         }
+
         // tell the inventory UI that we got this item
         if (OnInventoryChange != null)
         {

@@ -117,6 +117,7 @@ public class Fishing : MonoBehaviour
         }
         else
         {
+            ptm.Toast("Reel in with the right stick");
             coroutine = WaitForFish();
             StartCoroutine(coroutine);
             player_input.SwitchCurrentActionMap("Fishing");
@@ -133,12 +134,12 @@ public class Fishing : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (!hasFished && timer >= 6 * 60)
-        {
-            ptm.Toast("Press A to cast,\n Reel in with the right stick");
-            timer = 0;
-        }
-        ++timer;
+        // if (!hasFished && timer >= 6 * 60)
+        // {
+        //     ptm.Toast("Reel in with the right stick");
+        //     timer = 0;
+        // }
+        // ++timer;
         if (cast && has_fish)
         {
             reel(rightStickInput);
@@ -196,7 +197,7 @@ public class Fishing : MonoBehaviour
                 }
                 else
                 {
-                    ptm.OverwriteToast("Shoot Partner look's like ya let that " + fishOnLine.species + " walk off with your lunch\nTry turning the controller sideways to reel.");
+                    ptm.OverwriteToast("Shoot Partner looks like ya let that " + fishOnLine.species + " walk off with your lunch\nTry turning the controller sideways to reel.");
                 }
                 endFish();
                 return;
@@ -299,7 +300,7 @@ public class Fishing : MonoBehaviour
         Destroy(rod_clone);
         panel.SetActive(false);
         player_input.SwitchCurrentActionMap("Player");
-        actionText.text = "Cast: A";
+        actionText.text = "Cast: A\n Sail: Y";
     }
 
     IEnumerator WaitForFish()

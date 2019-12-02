@@ -149,7 +149,6 @@ GameObject:
   m_Component:
   - component: {fileID: 154945052}
   - component: {fileID: 154945051}
-  - component: {fileID: 154945050}
   m_Layer: 0
   m_Name: JoinCamera
   m_TagString: Untagged
@@ -157,14 +156,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &154945050
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 154945049}
-  m_Enabled: 1
 --- !u!20 &154945051
 Camera:
   m_ObjectHideFlags: 0
