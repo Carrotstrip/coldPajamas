@@ -109,7 +109,23 @@ public class Fishing : MonoBehaviour
         // if player has no rod, just toast
         if (inventory.rodMultiplier == 0)
         {
+            // bool has_rod = false;
+            // // check if it's in their inventory just not equipped
+            // for (int i = 0; i < inventory.itemList.Count; i++)
+            // {
+            //     if (inventory.itemList[i].category == "rod")
+            //     {
+            //         has_rod = true;
+            //     }
+            // }
+            // Debug.Log(inventory.itemList);
+            // if (!has_rod)
+            // {
             ptm.OverwriteToast("Woah partner, looks like you don't have a rod!\nHead on over to Jimbo's to pick up an old rod!");
+            // }
+            // else {
+            //     ptm.OverwriteToast("Looks like you haven't equipped your rod!\nOpen up the hold to ");
+            // }
         }
         else
         {
@@ -185,7 +201,7 @@ public class Fishing : MonoBehaviour
                 }
                 else
                 {
-                    ptm.OverwriteToast("Shoot Partner look's like ya let that " + fishOnLine.species + " walk off with your lunch\nTry turning the controller sideways to reel.");
+                    ptm.OverwriteToast("Shoot Partner looks like ya let that " + fishOnLine.species + " walk off with your lunch\nTry turning the controller sideways to reel.");
                 }
                 endFish();
                 return;

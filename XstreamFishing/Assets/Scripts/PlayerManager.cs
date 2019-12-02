@@ -74,7 +74,7 @@ public class PlayerManager : MonoBehaviour
             boat.transform.rotation = new Quaternion(0, 50, 0, 0);
         }
         ptm = gameObject.GetComponentInParent(typeof(PlayerToastManager)) as PlayerToastManager;
-        ptm.Toast("It's a nice day to be out fishing. \n free to come on down to the island pro shop for supplies.\n Heck I'll even throw in some free advice.");
+        ptm.Toast("It's a nice day to be out fishing. \n You'll need a rod to get started, head on over to Jimbo's");
     }
 
     // toggle inventory
@@ -182,16 +182,10 @@ public class PlayerManager : MonoBehaviour
             {
                 actionText.text = "Y: Get Fishin'";
             }
-            else
+            else if (inventory.GetHasCategoryEquipped("cannonball"))
             {
                 actionText.text = "RT: Shoot\nLT: Gimbal Up\nLB: Gimbal Down";
             }
         }
-        // if (timer >= 45 * 60)
-        // {
-        //     ptm.Toast("I've been hearing about a SHARK thats eating all the fish in the lake.\n It sure would be wonderful for someone get out there \n and catch it with the GOLDEN ROD.");
-        //     timer = 0;
-        // }
-        // ++timer;
     }
 }
