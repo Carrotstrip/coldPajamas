@@ -73,6 +73,9 @@ public class CursorController : MonoBehaviour
         else if(entry) {
             entry.HandleClick();
         }
+        else {
+            Debug.Log("nothing to click");
+        }
     }
 
     // Update is called once per frame
