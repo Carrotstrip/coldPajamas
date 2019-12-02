@@ -106,19 +106,24 @@ public class Fishing : MonoBehaviour
     void OnA()
     {
         // CAST
-        coroutine = WaitForFish();
-        StartCoroutine(coroutine);
-        player_input.SwitchCurrentActionMap("Fishing");
-
-        // show fishing panel, hide inventory and action text
-        panel.SetActive(true);
-        // RectTransform rect = InventoryUI.GetComponent<RectTransform>();
-        // rect.anchoredPosition = new Vector3(-80, 0, -2);
-        if (playerManager.inventory_on_screen)
+        // if player has no rod, just toast
+        if (inventory.rodMultiplier == 0)
         {
-            playerManager.OnX();
+            ptm.OverwriteToast("Woah partner, looks like you don't have a rod!\nHead on over to Jimbo's to pick up an old rod!");
         }
-        actionText.text = "";
+        else
+        {
+            coroutine = WaitForFish();
+            StartCoroutine(coroutine);
+            player_input.SwitchCurrentActionMap("Fishing");
+            // show fishing panel, hide inventory and action text
+            panel.SetActive(true);
+            if (playerManager.inventory_on_screen)
+            {
+                playerManager.OnX();
+            }
+            actionText.text = "";
+        }
     }
 
     // Update is called once per frame
@@ -177,7 +182,9 @@ public class Fishing : MonoBehaviour
                 if (fishOnLine.species == "Shark")
                 {
                     ptm.OverwriteToast("Damn, you nearly got 'im.");
-                } else {
+                }
+                else
+                {
                     ptm.OverwriteToast("Shoot Partner look's like ya let that " + fishOnLine.species + " walk off with your lunch\nTry turning the controller sideways to reel.");
                 }
                 endFish();
