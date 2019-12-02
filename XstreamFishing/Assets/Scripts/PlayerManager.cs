@@ -84,7 +84,7 @@ public class PlayerManager : MonoBehaviour
         if (inventory_on_screen)
         {
             // move inventory back off of screen
-            cursor.SetActive(false);
+            if(!shopUI.activeSelf) cursor.SetActive(false);
             player_input.SwitchCurrentActionMap("Player");
             AudioManager.instance.Play(inventory_open);
             RectTransform rect = inventoryUI.GetComponent<RectTransform>();
@@ -93,7 +93,7 @@ public class PlayerManager : MonoBehaviour
         else
         {
             // move inventory onto screen
-            cursor.SetActive(true);
+            if(!shopUI.activeSelf) cursor.SetActive(true);
             player_input.SwitchCurrentActionMap("UI");
             AudioManager.instance.Play(inventory_close);
             RectTransform rect = inventoryUI.GetComponent<RectTransform>();
