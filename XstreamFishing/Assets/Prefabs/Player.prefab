@@ -3409,6 +3409,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shop
       objectReference: {fileID: 0}
+    - target: {fileID: 1444451873049501310, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1444451873049501311, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3516,15 +3521,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
+      propertyPath: itemList.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
       propertyPath: inventory
       value: 
       objectReference: {fileID: 8205407519776410008}
     - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
-      propertyPath: nextUpgrade
+      propertyPath: itemList.Array.data[9].itemName
+      value: Cannoli Recipe
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[9].description
+      value: A cannoli recipe of such elegance to make men weep. Jimbo made this for
+        his wife on their first date way back in 19-eleventy-forty-eleven.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[9].category
+      value: misc
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[9].icon
       value: 
-      objectReference: {fileID: 4910465780170939560}
-    - target: {fileID: 1116640435779810831, guid: 18a8140dace6c4fb9b3cb11d06650156,
       objectReference: {fileID: 0}
     - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
@@ -3554,24 +3578,43 @@ PrefabInstance:
     - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: itemList.Array.data[10].category
-      value: propeller
+      value: misc
       objectReference: {fileID: 0}
     - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
-      propertyPath: inventory
+      propertyPath: itemList.Array.data[10].icon
       value: 
-      objectReference: {fileID: 8205407519776410008}
-    - target: {fileID: 1116640435779810831, guid: 18a8140dace6c4fb9b3cb11d06650156,
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[10].price
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[10].shopAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[10].multiplier
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[9].isConsumable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[4].multiplier
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: nextUpgrade
       value: 
       objectReference: {fileID: 4910465780170939560}
-    - target: {fileID: 4323689400931615609, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: inventory
-      value: 
-      objectReference: {fileID: 8205407519776410008}
-    - target: {fileID: 4323689400931615609, guid: 18a8140dace6c4fb9b3cb11d06650156,
     - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: itemList.Array.data[11].itemName
@@ -3600,19 +3643,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
-      propertyPath: nextUpgrade
-      value: 
-      objectReference: {fileID: 4910465780170939560}
-    - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
+      propertyPath: itemList.Array.data[11].multiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
-      propertyPath: inventory
+      propertyPath: itemList.Array.data[11].icon
       value: 
-      objectReference: {fileID: 8205407519776410008}
-    - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
+      objectReference: {fileID: -631023095337379593, guid: 5df9149245d0f4ffaadea05eaf37313a,
         type: 3}
-      propertyPath: nextUpgrade
-      value: 
-      objectReference: {fileID: 4910465780170939560}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18a8140dace6c4fb9b3cb11d06650156, type: 3}
 --- !u!1 &7337718362746633477 stripped
@@ -3815,21 +3854,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
---- !u!1 &8205407519381967138 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0,
-    type: 3}
-  m_PrefabInstance: {fileID: 8205407519382001538}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8205407519381867778 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0,
-    type: 3}
-  m_PrefabInstance: {fileID: 8205407519382001538}
-  m_PrefabAsset: {fileID: 0}
---- !u!20 &8205407519381377794 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 2000000, guid: 5e9e851c0e142814dac026a256ba2ac0,
     type: 3}
   m_PrefabInstance: {fileID: 8205407519382001538}
   m_PrefabAsset: {fileID: 0}
