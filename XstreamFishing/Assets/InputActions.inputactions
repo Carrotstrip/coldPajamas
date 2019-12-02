@@ -444,17 +444,25 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Move",
+                    "name": "X",
                     "type": "Button",
-                    "id": "6d1e7530-077b-4019-b5f2-f37ab23b52c0",
+                    "id": "6493de21-3c5b-4739-8eff-a1ee4a01777b",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
                 },
                 {
-                    "name": "X",
+                    "name": "B",
                     "type": "Button",
-                    "id": "6493de21-3c5b-4739-8eff-a1ee4a01777b",
+                    "id": "352c8b3f-5d89-4145-8cc7-b120763dabda",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MoveCursor",
+                    "type": "Button",
+                    "id": "474fbd92-8ead-4b6f-a770-5450e00999ea",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -617,23 +625,34 @@
                 },
                 {
                     "name": "",
-                    "id": "6ed84e5a-9576-41eb-a48e-0cce0d234c81",
-                    "path": "<Gamepad>/dpad",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "17fb0344-b2a4-426a-adf6-cacd430b395e",
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "X",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8494969e-bcd2-4f76-a61b-40e3606deaa0",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "B",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e814539-1600-4d0a-895f-70a546454a2e",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "MoveCursor",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

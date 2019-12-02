@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerManager : MonoBehaviour
 {
     public Inventory inventory;
+    public Text actionText;
     public GameObject shopUI;
     public GameObject inventoryUI;
     private bool startSequence;
@@ -20,7 +21,11 @@ public class PlayerManager : MonoBehaviour
     public GameObject sphere;
     public PlayerToastManager ptm;
     public MeshRenderer boat_mesh;
+    public GameObject cursor;
     public int index = -1;
+    public bool inventory_on_screen = false;
+    public AudioClip inventory_open;
+    public AudioClip inventory_close;
 
     public int timer;
 
@@ -72,19 +77,39 @@ public class PlayerManager : MonoBehaviour
         ptm.Toast("It's a nice day to be out fishing. \n free to come on down to the island pro shop for supplies.\n Heck I'll even throw in some free advice.");
     }
 
-    // show inventory
-    void OnX()
+    // toggle inventory
+    public void OnX()
     {
-        inventoryUI.SetActive(!inventoryUI.activeSelf);
-        if (inventoryUI.activeSelf)
+        if (inventory_on_screen)
         {
-            Debug.Log("switch to ui");
-            //player_input.SwitchCurrentActionMap("UI");
+            // move inventory back off of screen
+            cursor.SetActive(false);
+            player_input.SwitchCurrentActionMap("Player");
+            AudioManager.instance.Play(inventory_open);
+            RectTransform rect = inventoryUI.GetComponent<RectTransform>();
+            StartCoroutine(LerpInventory(rect, rect.anchoredPosition, new Vector3(-80, 0, -2), 0.3f));
         }
         else
         {
-            Debug.Log("switch to player");
-            //player_input.SwitchCurrentActionMap("Player");
+            // move inventory onto screen
+            cursor.SetActive(true);
+            player_input.SwitchCurrentActionMap("UI");
+            AudioManager.instance.Play(inventory_close);
+            RectTransform rect = inventoryUI.GetComponent<RectTransform>();
+            StartCoroutine(LerpInventory(rect, rect.anchoredPosition, new Vector3(200, 0, -2), 0.3f));
+        }
+        inventory_on_screen = !inventory_on_screen;
+    }
+
+    IEnumerator LerpInventory(RectTransform rect, Vector3 startPos, Vector3 endPos, float totalTime)
+    {
+        float currentTime = 0;
+        while (currentTime <= totalTime)
+        {
+            currentTime += Time.deltaTime;
+            float normalized = currentTime / totalTime;
+            rect.anchoredPosition = Vector3.Lerp(startPos, endPos, normalized);
+            yield return null;
         }
     }
 
@@ -149,11 +174,24 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         UpdateScreenSize();
-        if (timer >= 45 * 60)
+
+        // if in third-person check what we have equipped, if cannon give cannon mappings, if rod give fish mappings
+        if (!boat.GetComponent<Rigidbody>().isKinematic)
         {
-            ptm.Toast("I've been hearing about a SHARK thats eating all the fish in the lake.\n It sure would be wonderful for someone get out there \n and catch it with the GOLDEN ROD.");
-            timer = 0;
+            if (inventory.GetHasCategoryEquipped("rod"))
+            {
+                actionText.text = "Y: Get Fishin'";
+            }
+            else
+            {
+                actionText.text = "RT: Shoot\nLT: Gimbal Up\nLB: Gimbal Down";
+            }
         }
-        ++timer;
+        // if (timer >= 45 * 60)
+        // {
+        //     ptm.Toast("I've been hearing about a SHARK thats eating all the fish in the lake.\n It sure would be wonderful for someone get out there \n and catch it with the GOLDEN ROD.");
+        //     timer = 0;
+        // }
+        // ++timer;
     }
 }

@@ -17,6 +17,7 @@ public class ShopUI : MonoBehaviour
     private GameObject firstButton;
     public PlayerToastManager ptm;
     public Text description;
+    public NextUpdateScript nextUpgrade;
 
 
     // Use this for initialization
@@ -24,7 +25,8 @@ public class ShopUI : MonoBehaviour
     {
     }
 
-    void OnEnable() {
+    void OnEnable()
+    {
         RemoveButtons();
         AddButtons();
     }
@@ -35,6 +37,9 @@ public class ShopUI : MonoBehaviour
         {
             GameObject.Destroy(child.gameObject);
         }
+    }
+
+    void Update() {
     }
 
     private void AddButtons()
@@ -49,9 +54,6 @@ public class ShopUI : MonoBehaviour
             newButton.transform.localRotation = Quaternion.identity;
             ShopButton newShopButton = newButton.GetComponent<ShopButton>();
             newShopButton.Setup(item, this);
-            if(i == 0) {
-                EventSystem.current.SetSelectedGameObject(newButton);
-            }
         }
     }
 
@@ -67,11 +69,41 @@ public class ShopUI : MonoBehaviour
             inventory.numFish -= item.price;
             // yes came from shop
             inventory.AddItem(item, true);
+
+            // delete all worse things and self from store if not consumable
+            if (!item.isConsumable)
+            {
+                // placeholder large number
+                int nextMultiplier = 300;
+                Item nextItem = null;
+                for (int i = 0; i < itemList.Count; i++)
+                {
+                    if (itemList[i].category == item.category && itemList[i].multiplier <= item.multiplier)
+                    {
+                        itemList.Remove(itemList[i]);
+                    }
+
+                    // find next object of this category, put the sprite in the panel, and set price in playermanager
+                    if (itemList[i].category == item.category && itemList[i].multiplier > item.multiplier && itemList[i].multiplier < nextMultiplier)
+                    {
+                        nextItem = itemList[i];
+                        nextMultiplier = nextItem.multiplier;
+                    }
+                }
+                nextUpgrade.nextItem = nextItem;
+                itemList.Remove(item);
+            }
+
+            // re-render
+            RemoveButtons();
+            AddButtons();
         }
         // if not enough fish
-        else {
+        else
+        {
             // emit not enough fish event
-            if(OnNotEnoughFish != null) {
+            if (OnNotEnoughFish != null)
+            {
                 OnNotEnoughFish();
             }
         }

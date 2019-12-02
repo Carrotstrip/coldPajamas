@@ -12,11 +12,14 @@ public class Inventory : MonoBehaviour
     public event Action OnNumFishChange;
     public event Action OnReceiveItem;
     public event Action<bool> OnInventoryChange;
+    public event Action GotPropeller;
     public List<Item> itemList;
+    private PlayerToastManager ptm;
 
     void Start()
     {
         fishing.OnCatchFish += HandleOnCatchFish;
+        ptm = gameObject.GetComponentInParent(typeof(PlayerToastManager)) as PlayerToastManager;
     }
 
     void Update()
@@ -80,10 +83,14 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < itemList.Count; i++)
         {
-            itemList[i].isEquipped = false;
+            if(itemList[i].category == item.category) {
+                itemList[i].isEquipped = false;
+            }
         }
+
         item.isEquipped = true;
         ie.image.color = new Color32(200, 10, 10, 255);
+
         if (item.category == "rod")
         {
             rodMultiplier = item.multiplier;
@@ -92,6 +99,7 @@ public class Inventory : MonoBehaviour
         {
             baitMultiplier = item.multiplier;
         }
+
         if (OnInventoryChange != null)
         {
             OnInventoryChange(false);
@@ -145,31 +153,44 @@ public class Inventory : MonoBehaviour
             }
         }
 
+        if(!GetHasCategoryEquipped(item.category)) {
+            if(item.category == "bait") {
+                ptm.Toast("Go ahead and equip your bait in the inventory,\nyou might land yourself a real lunker hoss!");
+            }
+            else if(item.category == "cannonball") {
+                ptm.Toast("Whoa there, looks like you're trying to get into sum trouble!\nHit the right trigger to fire.\n Use the left trigger and bumper to adjust your angle.");
+            }
+        }
+
+        if(item.itemName == "Mysterious Propeller") {
+            GotPropeller();
+            ptm.Toast("Got that from my grandpa back in forty-thrinty-91. Not sure what it does,\nbut that old guy sure loved holding the A button!");
+        }
+
         // if it's a consumable
         if (item.isConsumable)
         {
             // if we already have it, increment amount
             if (alreadyInList)
             {
-                foundItem.amount++;
+                foundItem.amount += item.shopAmount;
             }
             // if we don't, add it to inventory
             else
             {
                 itemList.Add(item);
+                item.amount += item.shopAmount;
             }
         }
         // if it's an upgrade
         else if (!item.isConsumable)
         {
             // delete the one of the same category (don't let them buy a worse one)
-            bool removedOld = false;
             for (int i = 0; i < itemList.Count; i++)
             {
                 if (itemList[i].category == item.category && itemList[i].multiplier <= item.multiplier)
                 {
                     itemList.Remove(itemList[i]);
-                    removedOld = true;
                     // set the proper multipliers
                     break;
                 }
@@ -195,6 +216,8 @@ public class Inventory : MonoBehaviour
             if (bait.amount <= 0)
             {
                 itemList.Remove(bait);
+                bait.isEquipped = false;
+                baitMultiplier = 0;
             }
         }
         if (OnInventoryChange != null)

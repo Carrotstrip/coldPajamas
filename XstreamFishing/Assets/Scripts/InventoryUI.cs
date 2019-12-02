@@ -12,6 +12,7 @@ public class InventoryUI : MonoBehaviour
     public Transform contentPanel;
     public GameObject inventoryEntry;
     public Text fishCount;
+    // public EventSystem es;
 
     // Use this for initialization
     void Start()
@@ -27,7 +28,7 @@ public class InventoryUI : MonoBehaviour
 
     public void RefreshDisplay(bool fromShop)
     {
-        fishCount.text = "Fish: " + inventory.numFish.ToString();
+        fishCount.text = "RC: " + inventory.numFish.ToString();
         RemoveEntries();
         AddEntries(fromShop);
     }
@@ -52,9 +53,9 @@ public class InventoryUI : MonoBehaviour
             newEntry.transform.localScale = new Vector3(1f, 1f, 1f);
             InventoryEntry newInvEntry = newEntry.GetComponent<InventoryEntry>();
             newInvEntry.Setup(item, this);
-            if(!fromShop && (i == 0 || item.isSelected)) {
-                EventSystem.current.SetSelectedGameObject(newEntry);
-            }
+            // if(!fromShop && (i == 0 || item.isSelected)) {
+            //     es.SetSelectedGameObject(newEntry);
+            // }
         }
     }
 

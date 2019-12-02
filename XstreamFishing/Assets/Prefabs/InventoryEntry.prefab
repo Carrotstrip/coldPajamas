@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 8941288698712949274}
   - component: {fileID: 8941288698712949253}
   - component: {fileID: 7315861062246947818}
-  - component: {fileID: 1874269455426893539}
+  - component: {fileID: 4654350407532652655}
   m_Layer: 5
   m_Name: InventoryEntry
   m_TagString: Untagged
@@ -242,51 +242,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b46df7d58ca84dc48d3dd0b49a38191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonComponent: {fileID: 1874269455426893539}
   isSelected: 0
   amountLabel: {fileID: 307462392183527048}
   iconImage: {fileID: 4770338638351517420}
   image: {fileID: 0}
---- !u!114 &1874269455426893539
-MonoBehaviour:
+--- !u!65 &4654350407532652655
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8941288698712949254}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9811321, g: 0.31007475, b: 0.31007475, a: 1}
-    m_PressedColor: {r: 0.9528302, g: 0, b: 0, a: 1}
-    m_SelectedColor: {r: 0.3996823, g: 0.8679245, b: 0.20879315, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 8941288698712949253}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
+  serializedVersion: 2
+  m_Size: {x: 73.4656, y: 78.51932, z: 100}
+  m_Center: {x: 1.895565, y: -38.537674, z: 0}

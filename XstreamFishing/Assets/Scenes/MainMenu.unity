@@ -1941,7 +1941,6 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
-  m_CurrentSelected: {fileID: 0}
 --- !u!4 &1823550067
 Transform:
   m_ObjectHideFlags: 0
@@ -2115,7 +2114,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Quit Game
+  m_Text: Press B To Quit
 --- !u!222 &1851333698
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2519,7 +2518,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Play Game
+  m_Text: Press A To Play
 --- !u!222 &2013795248
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2558,6 +2557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa9714a75049453282d99468717f27b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  b1: {fileID: 0}
   b2: {fileID: 1343327420}
 --- !u!4 &2122422326
 Transform:
