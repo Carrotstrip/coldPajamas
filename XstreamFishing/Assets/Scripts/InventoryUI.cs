@@ -21,7 +21,8 @@ public class InventoryUI : MonoBehaviour
         inventory.OnInventoryChange += RefreshDisplay;
     }
 
-    void OnEnable() {
+    void OnEnable()
+    {
 
     }
 
@@ -53,6 +54,11 @@ public class InventoryUI : MonoBehaviour
             newEntry.transform.localScale = new Vector3(1f, 1f, 1f);
             InventoryEntry newInvEntry = newEntry.GetComponent<InventoryEntry>();
             newInvEntry.Setup(item, this);
+            // equip entries when theyr'e added from shop
+            if (fromShop)
+            {
+                inventory.EquipItem(item, newInvEntry);
+            }
             // if(!fromShop && (i == 0 || item.isSelected)) {
             //     es.SetSelectedGameObject(newEntry);
             // }

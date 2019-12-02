@@ -40,6 +40,6 @@ public class ButtonManager : MonoBehaviour
     void LoadMP()
     {
         GameManager.game_started = false;
-        SceneManager.LoadScene("MultiplayerScene");
+        SceneManager.LoadScene("Cutscene");
     }
 }

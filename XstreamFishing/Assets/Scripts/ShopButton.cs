@@ -13,12 +13,15 @@ public class ShopButton : MonoBehaviour {
     public Item item;
     private ShopUI scrollList;
     public bool hovered;
+    private Image im;
+    private Color og;
 
     // Use this for initialization
     void Start () 
     {
         // buttonComponent.onClick.AddListener(HandleClick);
-
+        im = GetComponent<Image>();
+        og = im.color;
     }
 
     public void Setup(Item currentItem, ShopUI currentScrollList)
@@ -35,6 +38,15 @@ public class ShopButton : MonoBehaviour {
         scrollList.description.text = item.description;
         scrollList.nameText.text = item.itemName.ToString();
         scrollList.priceText.text = item.price.ToString();
+    }
+
+    public void OnTriggerExit(Collider coll){
+        im.color = og;
+    }
+
+    public void OnTriggerEnter(Collider coll){
+        Color c = new Color(0.66f, 0.58f, 0.53f, 1f);
+        im.color = c;
     }
 
     public void HandleClick()

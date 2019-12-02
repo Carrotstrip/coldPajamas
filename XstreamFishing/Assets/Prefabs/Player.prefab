@@ -901,7 +901,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7737449626985026946, guid: 5df9149245d0f4ffaadea05eaf37313a,
+  m_Sprite: {fileID: -631023095337379593, guid: 5df9149245d0f4ffaadea05eaf37313a,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -925,17 +925,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextItem:
-    itemName: Crazy Stick
+    itemName: Jimbo's Rugged Rod
     description: no
     isSelected: 0
     isConsumable: 0
     isEquipped: 0
     category: rod
-    icon: {fileID: 7737449626985026946, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
-    price: 3
-    amount: 1
-    shopAmount: 0
-    multiplier: 2
+    icon: {fileID: -631023095337379593, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
+    price: 0
+    amount: 0
+    shopAmount: 1
+    multiplier: 1
   nextItemSprite: {fileID: 5003784184884877807}
   nextItemText: {fileID: 6468966821681871204}
   inventory: {fileID: 8205407519776410008}
@@ -1016,7 +1016,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Y: Get Fishin'''
+  m_Text: 
 --- !u!114 &6032274629043827590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1172,6 +1172,7 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+  m_CurrentSelected: {fileID: 0}
 --- !u!114 &4166195926025827095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1309,13 +1310,14 @@ GameObject:
   - component: {fileID: 6938817287245555889}
   - component: {fileID: 5345905567101986903}
   - component: {fileID: 3505719547029480234}
+  - component: {fileID: 3655157839847554556}
   m_Layer: 5
   m_Name: Cursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3000947485790527717
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1356,7 +1358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1395,8 +1397,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 10, z: 200}
-  m_Center: {x: -42.2223, y: 42.770775, z: 0.000000088098346}
+  m_Size: {x: 1, y: 1, z: 200}
+  m_Center: {x: -48, y: 48, z: 0.000000088098346}
 --- !u!54 &3505719547029480234
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1413,6 +1415,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3655157839847554556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7845460719153836384}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0, b: 0, a: 0.35686275}
+  m_EffectDistance: {x: 4, y: -5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &8205407519251580827
 GameObject:
   m_ObjectHideFlags: 0
@@ -1807,6 +1824,7 @@ MonoBehaviour:
   inventory_on_screen: 0
   inventory_open: {fileID: 8300000, guid: 146952deb1efa4eccbcfb9460886f16e, type: 3}
   inventory_close: {fileID: 8300000, guid: d60fd5565e0b04e62b7c8325390d7bb0, type: 3}
+  switcher: {fileID: 8205407519724984254}
   timer: 0
 --- !u!114 &3785103662729459601
 MonoBehaviour:
@@ -1891,7 +1909,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8205407519724984255
 Transform:
   m_ObjectHideFlags: 0
@@ -2365,6 +2383,7 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 0
   m_DragThreshold: 10
+  m_CurrentSelected: {fileID: 0}
 --- !u!114 &7822469701722313020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2560,7 +2579,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 500.00012}
+  m_AnchoredPosition: {x: 0, y: 500.0001}
   m_SizeDelta: {x: 800, y: 700}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &8205407520523006318
@@ -2867,6 +2886,7 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+  m_CurrentSelected: {fileID: 0}
 --- !u!114 &4028804092663957811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3072,6 +3092,12 @@ PrefabInstance:
       objectReference: {fileID: 8205407519776410008}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7998ad5a9a44e42a2963b172660bad1b, type: 3}
+--- !u!4 &1136263272653782509 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2079574644665926501, guid: 7998ad5a9a44e42a2963b172660bad1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1376117357832912520}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1136263272653782510 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2079574644665926502, guid: 7998ad5a9a44e42a2963b172660bad1b,
@@ -3084,12 +3110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901ae81a57d2c4f2c94c65220cbd332c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1136263272653782509 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2079574644665926501, guid: 7998ad5a9a44e42a2963b172660bad1b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1376117357832912520}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1637023797113923718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3505,6 +3525,38 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4910465780170939560}
     - target: {fileID: 1116640435779810831, guid: 18a8140dace6c4fb9b3cb11d06650156,
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[9].price
+      value: 1001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[9].shopAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[9].multiplier
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[10].itemName
+      value: Mysterious Propeller
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[10].description
+      value: A hand me down from Jimbo's grandpa. He can't find any use for it.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[10].category
+      value: propeller
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: inventory
       value: 
@@ -3520,6 +3572,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8205407519776410008}
     - target: {fileID: 4323689400931615609, guid: 18a8140dace6c4fb9b3cb11d06650156,
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[11].itemName
+      value: Jimbo's Rugged Rod
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[11].description
+      value: Jimbo carves these out of an old hickory tree that fell in his yard during
+        The Storm.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[11].category
+      value: rod
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[11].price
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[11].shopAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: nextUpgrade
       value: 
@@ -3536,15 +3615,15 @@ PrefabInstance:
       objectReference: {fileID: 4910465780170939560}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18a8140dace6c4fb9b3cb11d06650156, type: 3}
---- !u!224 &7337718362746633476 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1444451873049501311, guid: 18a8140dace6c4fb9b3cb11d06650156,
-    type: 3}
-  m_PrefabInstance: {fileID: 8205407518828847995}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7337718362746633477 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1444451873049501310, guid: 18a8140dace6c4fb9b3cb11d06650156,
+    type: 3}
+  m_PrefabInstance: {fileID: 8205407518828847995}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &7337718362746633476 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1444451873049501311, guid: 18a8140dace6c4fb9b3cb11d06650156,
     type: 3}
   m_PrefabInstance: {fileID: 8205407518828847995}
   m_PrefabAsset: {fileID: 0}
@@ -3736,15 +3815,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+--- !u!1 &8205407519381967138 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8205407519382001538}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8205407519381867778 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0,
     type: 3}
   m_PrefabInstance: {fileID: 8205407519382001538}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8205407519381967138 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0,
+--- !u!20 &8205407519381377794 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2000000, guid: 5e9e851c0e142814dac026a256ba2ac0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8205407519382001538}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &8205407519381377794 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2000000, guid: 5e9e851c0e142814dac026a256ba2ac0,
     type: 3}
   m_PrefabInstance: {fileID: 8205407519382001538}
   m_PrefabAsset: {fileID: 0}

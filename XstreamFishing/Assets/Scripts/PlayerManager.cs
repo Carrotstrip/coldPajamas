@@ -26,6 +26,7 @@ public class PlayerManager : MonoBehaviour
     public bool inventory_on_screen = false;
     public AudioClip inventory_open;
     public AudioClip inventory_close;
+    public GameObject switcher;
 
     public int timer;
 
@@ -74,7 +75,7 @@ public class PlayerManager : MonoBehaviour
             boat.transform.rotation = new Quaternion(0, 50, 0, 0);
         }
         ptm = gameObject.GetComponentInParent(typeof(PlayerToastManager)) as PlayerToastManager;
-        ptm.Toast("It's a nice day to be out fishing. \n free to come on down to the island pro shop for supplies.\n Heck I'll even throw in some free advice.");
+        ptm.Toast("It's a nice day to be out fishing. \n You'll need a rod to get started, head on over to Jimbo's");
     }
 
     // toggle inventory
@@ -83,7 +84,7 @@ public class PlayerManager : MonoBehaviour
         if (inventory_on_screen)
         {
             // move inventory back off of screen
-            cursor.SetActive(false);
+            if(!shopUI.activeSelf) cursor.SetActive(false);
             player_input.SwitchCurrentActionMap("Player");
             AudioManager.instance.Play(inventory_open);
             RectTransform rect = inventoryUI.GetComponent<RectTransform>();
@@ -92,7 +93,7 @@ public class PlayerManager : MonoBehaviour
         else
         {
             // move inventory onto screen
-            cursor.SetActive(true);
+            if(!shopUI.activeSelf) cursor.SetActive(true);
             player_input.SwitchCurrentActionMap("UI");
             AudioManager.instance.Play(inventory_close);
             RectTransform rect = inventoryUI.GetComponent<RectTransform>();
@@ -174,24 +175,28 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         UpdateScreenSize();
+        // if game started, enable switching
+        if (GameManager.game_started)
+        {
+            switcher.SetActive(true);
+        }
 
         // if in third-person check what we have equipped, if cannon give cannon mappings, if rod give fish mappings
         if (!boat.GetComponent<Rigidbody>().isKinematic)
         {
+            actionText.text = "";
             if (inventory.GetHasCategoryEquipped("rod"))
             {
-                actionText.text = "Y: Get Fishin'";
+                actionText.text += "Y: Get Fishin'\n";
             }
-            else
+            if (inventory.GetHasCategoryEquipped("cannonball"))
             {
-                actionText.text = "RT: Shoot\nLT: Gimbal Up\nLB: Gimbal Down";
+                actionText.text += "RT: Shoot\nLT: Gimbal Up\nLB: Gimbal Down\n";
+            }
+            if (inventory.GetHasCategoryEquipped("propeller"))
+            {
+                actionText.text += "A: Ascend";
             }
         }
-        // if (timer >= 45 * 60)
-        // {
-        //     ptm.Toast("I've been hearing about a SHARK thats eating all the fish in the lake.\n It sure would be wonderful for someone get out there \n and catch it with the GOLDEN ROD.");
-        //     timer = 0;
-        // }
-        // ++timer;
     }
 }

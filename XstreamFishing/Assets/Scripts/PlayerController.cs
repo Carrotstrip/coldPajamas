@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public PlayerInput player_input;
     public GameObject cursor;
     Inventory inventory;
+    private bool inv_active = false;
 
 
     // Start is called before the first frame update
@@ -95,11 +96,15 @@ public class PlayerController : MonoBehaviour
         up = false;
     }
 
+    void OnX(){
+        inv_active = !inv_active;
+    }
+
     void OnB(){
         if(!can_move && shopUI.activeSelf){
             can_move = true;
             shopUI.SetActive(!shopUI.activeSelf);
-            cursor.SetActive(false);
+            if(!inv_active) cursor.SetActive(false);
             player_input.SwitchCurrentActionMap("Player");
         }
     }

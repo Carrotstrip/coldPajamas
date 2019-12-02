@@ -70,7 +70,6 @@ public class GameManager : MonoBehaviour
                 }
             }
             Debug.Log("Joining " + Gamepad.current.name);
-            Debug.Log(controllers);
         }
         if (!game_started && controllers.Count > 0 && Gamepad.current.startButton.wasPressedThisFrame)
         {
