@@ -197,6 +197,7 @@ public class Inventory : MonoBehaviour
             }
             // add the new item
             itemList.Add(item);
+            item.amount += item.shopAmount;
         }
         // tell the inventory UI that we got this item
         if (OnInventoryChange != null)

@@ -29,8 +29,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children:
-  - {fileID: 1444451873169316025}
   - {fileID: 3024623347819098847}
+  - {fileID: 1444451873169316025}
+  - {fileID: 1427842354032089016}
+  - {fileID: 9044586164703184772}
+  - {fileID: 6553967292547856274}
+  - {fileID: 6689289435704229590}
+  - {fileID: 6601449101775841849}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -85,10 +90,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1444451873169316025}
-  - component: {fileID: 1444451872294923307}
   - component: {fileID: 7040715281381287154}
+  - component: {fileID: 1444451872294923307}
   m_Layer: 5
-  m_Name: Content
+  m_Name: Rods
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,37 +111,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1444451873049501311}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 276.1, y: -618.9}
-  m_SizeDelta: {x: 449.7, y: 467}
+  m_AnchoredPosition: {x: 104, y: -620.7}
+  m_SizeDelta: {x: 105, y: 470.5}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1444451872294923307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1444451873169316024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 0
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 140, y: 100}
-  m_Spacing: {x: 0, y: 0}
-  m_Constraint: 0
-  m_ConstraintCount: 2
 --- !u!114 &7040715281381287154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +131,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemList:
+  - itemName: Jimbo's Rugged Rod
+    description: An old rod Jimbo had laying around. He probably won't use it anyway.
+      This one's on the house.
+    isSelected: 0
+    isConsumable: 0
+    isEquipped: 0
+    category: rod
+    icon: {fileID: -631023095337379593, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
+    price: 0
+    amount: 0
+    shopAmount: 1
+    multiplier: 1
   - itemName: Crazy Stick
     description: Jimbo once caught a man on this rod... ah just kidding! Unless...
     isSelected: 0
@@ -172,6 +165,124 @@ MonoBehaviour:
     amount: 0
     shopAmount: 1
     multiplier: 13
+  - itemName: Goldenrod
+    description: The result of intense scientific study by Jimbo in his basement.
+    isSelected: 0
+    isConsumable: 0
+    isEquipped: 0
+    category: rod
+    icon: {fileID: -2604225463047987414, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
+    price: 20
+    amount: 0
+    shopAmount: 1
+    multiplier: 100
+  contentPanel: {fileID: 1444451873169316025}
+  inventory: {fileID: 0}
+  shopButton: {fileID: 2409473881141113518, guid: 4c8a4ca783afa4d9d87fe96d469c110d,
+    type: 3}
+  ptm: {fileID: 0}
+  description: {fileID: 946639834853302875}
+  nameText: {fileID: 7461611296603189017}
+  priceText: {fileID: 1359168282922427994}
+  nextUpgrade: {fileID: 0}
+--- !u!114 &1444451872294923307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444451873169316024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 98, y: 119}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
+--- !u!1 &1895796736159318165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1427842354032089016}
+  - component: {fileID: 3473140959494125174}
+  - component: {fileID: 1116640435779810831}
+  m_Layer: 5
+  m_Name: Bait
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1427842354032089016
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895796736159318165}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -13.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1444451873049501311}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 209, y: -620.7}
+  m_SizeDelta: {x: 105, y: 470.5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3473140959494125174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895796736159318165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 98, y: 119}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
+--- !u!114 &1116640435779810831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895796736159318165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92f8d28a122d1443c8634385ec4b8af9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemList:
   - itemName: Bait
     description: They just look like leftovers from Jimbo's breakfast...
     isSelected: 0
@@ -189,7 +300,7 @@ MonoBehaviour:
     isConsumable: 1
     isEquipped: 0
     category: bait
-    icon: {fileID: 8674628343370034503, guid: ca3d8067c079c4a55abfd9085be24f36, type: 3}
+    icon: {fileID: 4450842075532100876, guid: ca3d8067c079c4a55abfd9085be24f36, type: 3}
     price: 2
     amount: 0
     shopAmount: 5
@@ -201,11 +312,94 @@ MonoBehaviour:
     isConsumable: 1
     isEquipped: 0
     category: bait
-    icon: {fileID: 4450842075532100876, guid: ca3d8067c079c4a55abfd9085be24f36, type: 3}
+    icon: {fileID: 8674628343370034503, guid: ca3d8067c079c4a55abfd9085be24f36, type: 3}
     price: 3
     amount: 5
     shopAmount: 0
     multiplier: 4
+  contentPanel: {fileID: 1427842354032089016}
+  inventory: {fileID: 0}
+  shopButton: {fileID: 2409473881141113518, guid: 4c8a4ca783afa4d9d87fe96d469c110d,
+    type: 3}
+  ptm: {fileID: 0}
+  description: {fileID: 946639834853302875}
+  nameText: {fileID: 7461611296603189017}
+  priceText: {fileID: 1359168282922427994}
+  nextUpgrade: {fileID: 0}
+--- !u!1 &2935773029646359238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9044586164703184772}
+  - component: {fileID: 630809233700853267}
+  - component: {fileID: 4323689400931615609}
+  m_Layer: 5
+  m_Name: Cannonballs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &9044586164703184772
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2935773029646359238}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -13.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1444451873049501311}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 314, y: -620.7}
+  m_SizeDelta: {x: 105, y: 470.5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &630809233700853267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2935773029646359238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 98, y: 119}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
+--- !u!114 &4323689400931615609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2935773029646359238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92f8d28a122d1443c8634385ec4b8af9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemList:
   - itemName: Cannonball
     description: Might just be a particularly round rock.
     isSelected: 0
@@ -240,35 +434,210 @@ MonoBehaviour:
     amount: 0
     shopAmount: 5
     multiplier: 3
-  - itemName: Goldenrod
-    description: The result of intense scientific study by Jimbo in his basement.
-    isSelected: 0
-    isConsumable: 0
-    isEquipped: 0
-    category: rod
-    icon: {fileID: -2604225463047987414, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
-    price: 20
-    amount: 0
-    shopAmount: 1
-    multiplier: 100
-  - itemName: Old Rod
-    description: 'An old rod Jimbo had laying around. '
-    isSelected: 0
-    isConsumable: 0
-    isEquipped: 0
-    category: rod
-    icon: {fileID: -2604225463047987414, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
-    price: 20
-    amount: 0
-    shopAmount: 0
-    multiplier: 100
-  contentPanel: {fileID: 1444451873169316025}
+  contentPanel: {fileID: 9044586164703184772}
   inventory: {fileID: 0}
   shopButton: {fileID: 2409473881141113518, guid: 4c8a4ca783afa4d9d87fe96d469c110d,
     type: 3}
   ptm: {fileID: 0}
   description: {fileID: 946639834853302875}
+  nameText: {fileID: 7461611296603189017}
+  priceText: {fileID: 1359168282922427994}
   nextUpgrade: {fileID: 0}
+--- !u!1 &3558444791845612782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6553967292547856274}
+  - component: {fileID: 1513452318702042639}
+  - component: {fileID: 8701386559999482644}
+  m_Layer: 5
+  m_Name: Misc
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6553967292547856274
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3558444791845612782}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -13.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1444451873049501311}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 419, y: -620.7}
+  m_SizeDelta: {x: 105, y: 470.5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1513452318702042639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3558444791845612782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 98, y: 119}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
+--- !u!114 &8701386559999482644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3558444791845612782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92f8d28a122d1443c8634385ec4b8af9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemList:
+  - itemName: Cannoli Recipe
+    description: A cannoli recipe of such elegance to make a stoic weep. Jimbo made
+      this for his wife on their first date way back in... nevermind.
+    isSelected: 0
+    isConsumable: 0
+    isEquipped: 0
+    category: misc
+    icon: {fileID: 3445910035351170775, guid: 9d6ca0fbc65874538bc03d0952823d8b, type: 3}
+    price: 1001
+    amount: 0
+    shopAmount: 1
+    multiplier: 100
+  - itemName: Mysterious Propeller
+    description: A hand me down from Jimbo's grandpa. He can't find any use for it.
+    isSelected: 0
+    isConsumable: 0
+    isEquipped: 0
+    category: misc
+    icon: {fileID: -9177418277584700315, guid: 9d6ca0fbc65874538bc03d0952823d8b, type: 3}
+    price: 1000
+    amount: 0
+    shopAmount: 1
+    multiplier: 100
+  - itemName: Jimbo Positioning System
+    description: Jimbos threw up some satellites a couple of years ago. Should be
+      able to pin you down on the map there.
+    isSelected: 0
+    isConsumable: 0
+    isEquipped: 0
+    category: misc
+    icon: {fileID: -9177418277584700315, guid: 9d6ca0fbc65874538bc03d0952823d8b, type: 3}
+    price: 1000
+    amount: 0
+    shopAmount: 1
+    multiplier: 100
+  contentPanel: {fileID: 6553967292547856274}
+  inventory: {fileID: 0}
+  shopButton: {fileID: 2409473881141113518, guid: 4c8a4ca783afa4d9d87fe96d469c110d,
+    type: 3}
+  ptm: {fileID: 0}
+  description: {fileID: 946639834853302875}
+  nameText: {fileID: 0}
+  priceText: {fileID: 0}
+  nextUpgrade: {fileID: 0}
+--- !u!1 &3875069066950395959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6689289435704229590}
+  - component: {fileID: 7759976520774740921}
+  - component: {fileID: 7461611296603189017}
+  m_Layer: 5
+  m_Name: NameText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6689289435704229590
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3875069066950395959}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.000064864}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1444451873049501311}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 220.3, y: -244.27}
+  m_SizeDelta: {x: 365.2, y: 73.662}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7759976520774740921
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3875069066950395959}
+  m_CullTransparentMesh: 0
+--- !u!114 &7461611296603189017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3875069066950395959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 87c316b602156405d92e616621658222, type: 3}
+    m_FontSize: 36
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 
 --- !u!1 &4092529172493187853
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,17 +663,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4092529172493187853}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1444451873049501311}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 182}
-  m_SizeDelta: {x: 477.8, y: -744.1}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 264.8, y: -330.1}
+  m_SizeDelta: {x: 462.9, y: 98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &441093660600757957
 CanvasRenderer:
@@ -334,7 +703,84 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 87c316b602156405d92e616621658222, type: 3}
-    m_FontSize: 32
+    m_FontSize: 22
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 0
+    m_AlignByGeometry: 1
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!1 &7998528964678180105
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6601449101775841849}
+  - component: {fileID: 475896157361771591}
+  - component: {fileID: 1359168282922427994}
+  m_Layer: 5
+  m_Name: PriceText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6601449101775841849
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7998528964678180105}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00095464}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1444451873049501311}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 461.6, y: -244.27}
+  m_SizeDelta: {x: 100.2, y: 73.66}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &475896157361771591
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7998528964678180105}
+  m_CullTransparentMesh: 0
+--- !u!114 &1359168282922427994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7998528964678180105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 87c316b602156405d92e616621658222, type: 3}
+    m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -345,6 +791,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Welcome to Jimbo''s Pro Shop
-
-'
+  m_Text: 

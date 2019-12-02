@@ -33,6 +33,8 @@ public class ShopButton : MonoBehaviour {
     public void OnHover()
     {
         scrollList.description.text = item.description;
+        scrollList.nameText.text = item.itemName.ToString();
+        scrollList.priceText.text = item.price.ToString();
     }
 
     public void HandleClick()

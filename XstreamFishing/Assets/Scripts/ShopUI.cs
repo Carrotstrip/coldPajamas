@@ -17,6 +17,8 @@ public class ShopUI : MonoBehaviour
     private GameObject firstButton;
     public PlayerToastManager ptm;
     public Text description;
+    public Text nameText;
+    public Text priceText;
     public NextUpdateScript nextUpgrade;
 
 
