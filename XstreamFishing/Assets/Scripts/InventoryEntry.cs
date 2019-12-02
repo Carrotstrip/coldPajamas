@@ -21,7 +21,6 @@ public class InventoryEntry : MonoBehaviour {
 
     public void HandleClick()
     {
-        Debug.Log("eatmyass.ppm");
         thisUI.inventory.EquipItem(item, this);
         thisUI.inventory.UnselectAll();
         thisUI.inventory.SetSelected(item);
@@ -29,7 +28,7 @@ public class InventoryEntry : MonoBehaviour {
     }
 
     public void OnSubmit() {
-        Debug.Log("eatmyass.png");
+
     }
 
     public void OnTriggerEnter(Collider coll){

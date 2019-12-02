@@ -155,19 +155,26 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        // if(!GetHasCategoryEquipped(item.category)) {
-        //     if(item.category == "bait") {
-        //         ptm.Toast("Go ahead and equip your bait in the inventory,\nyou might land yourself a real lunker hoss!");
-        //     }
-        //     else if(item.category == "cannonball") {
-        //         ptm.Toast("Whoa there, looks like you're trying to get into sum trouble!\nHit the right trigger to fire.\n Use the left trigger and bumper to adjust your angle.");
-        //     }
-        // }
+        if(!GetHasCategoryEquipped(item.category)) {
+            if(item.category == "bait") {
+                ptm.Toast("Now that you got yourself some bait,\nyou might land a real lunker hoss!");
+            }
+            else if(item.category == "cannonball") {
+                ptm.Toast("Whoa there, looks like you're trying to get into sum trouble!\nHit the right trigger to fire.\n Use the left trigger and bumper to adjust your angle.");
+            }
+        }
 
         if (item.itemName == "Mysterious Propeller")
         {
             GotPropeller();
             ptm.Toast("Got that from my grandpa back in 1491. Not sure what it does,\nbut that old guy sure loved holding the A button!");
+        }
+
+        if (item.itemName == "GPS")
+        {
+            Transform minimapIcon = transform.Find("minimap_icon");
+            minimapIcon.gameObject.SetActive(true);
+            ptm.Toast("You should see yourself on the minimap down there!");
         }
 
         // if it's a consumable
