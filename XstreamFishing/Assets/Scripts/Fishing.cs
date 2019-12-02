@@ -109,26 +109,11 @@ public class Fishing : MonoBehaviour
         // if player has no rod, just toast
         if (inventory.rodMultiplier == 0)
         {
-            // bool has_rod = false;
-            // // check if it's in their inventory just not equipped
-            // for (int i = 0; i < inventory.itemList.Count; i++)
-            // {
-            //     if (inventory.itemList[i].category == "rod")
-            //     {
-            //         has_rod = true;
-            //     }
-            // }
-            // Debug.Log(inventory.itemList);
-            // if (!has_rod)
-            // {
             ptm.OverwriteToast("Woah partner, looks like you don't have a rod!\nHead on over to Jimbo's to pick up an old rod!");
-            // }
-            // else {
-            //     ptm.OverwriteToast("Looks like you haven't equipped your rod!\nOpen up the hold to ");
-            // }
         }
         else
         {
+            ptm.Toast("Reel in with the right stick");
             coroutine = WaitForFish();
             StartCoroutine(coroutine);
             player_input.SwitchCurrentActionMap("Fishing");
@@ -145,12 +130,12 @@ public class Fishing : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (!hasFished && timer >= 6 * 60)
-        {
-            ptm.Toast("Press A to cast,\n Reel in with the right stick");
-            timer = 0;
-        }
-        ++timer;
+        // if (!hasFished && timer >= 6 * 60)
+        // {
+        //     ptm.Toast("Reel in with the right stick");
+        //     timer = 0;
+        // }
+        // ++timer;
         if (cast && has_fish)
         {
             reel(rightStickInput);
@@ -303,7 +288,7 @@ public class Fishing : MonoBehaviour
         Destroy(rod_clone);
         panel.SetActive(false);
         player_input.SwitchCurrentActionMap("Player");
-        actionText.text = "Cast: A";
+        actionText.text = "Cast: A\n Sail: Y";
     }
 
     IEnumerator WaitForFish()
