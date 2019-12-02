@@ -251,12 +251,24 @@ MonoBehaviour:
     amount: 0
     shopAmount: 1
     multiplier: 100
+  - itemName: Old Rod
+    description: 'An old rod Jimbo had laying around. '
+    isSelected: 0
+    isConsumable: 0
+    isEquipped: 0
+    category: rod
+    icon: {fileID: -2604225463047987414, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
+    price: 20
+    amount: 0
+    shopAmount: 0
+    multiplier: 100
   contentPanel: {fileID: 1444451873169316025}
   inventory: {fileID: 0}
   shopButton: {fileID: 2409473881141113518, guid: 4c8a4ca783afa4d9d87fe96d469c110d,
     type: 3}
   ptm: {fileID: 0}
   description: {fileID: 946639834853302875}
+  nextUpgrade: {fileID: 0}
 --- !u!1 &4092529172493187853
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,7 +303,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 175.5}
+  m_AnchoredPosition: {x: 0, y: 182}
   m_SizeDelta: {x: 477.8, y: -744.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &441093660600757957
