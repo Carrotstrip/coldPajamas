@@ -32,6 +32,20 @@ public class InventoryEntry : MonoBehaviour {
         Debug.Log("eatmyass.png");
     }
 
+    public void OnTriggerEnter(Collider coll){
+        image = GetComponent<Image>();
+        if(!item.isEquipped) image.color = new Color32(200, 150, 150, 255);
+    }
+
+    public void OnTriggerExit(Collider coll){
+        image = GetComponent<Image>();
+        if(item.isEquipped) {
+            image.color = new Color32(200, 10, 10, 255);
+        }
+        else {
+            image.color = new Color32(255, 255, 255, 255);
+        }
+    }
 
     public void Setup(Item currentItem, InventoryUI currentUI)
     {
