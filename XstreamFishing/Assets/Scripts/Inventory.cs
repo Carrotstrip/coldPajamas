@@ -167,7 +167,7 @@ public class Inventory : MonoBehaviour
         if (item.itemName == "Mysterious Propeller")
         {
             GotPropeller();
-            ptm.Toast("Got that from my grandpa back in forty-thrinty-91. Not sure what it does,\nbut that old guy sure loved holding the A button!");
+            ptm.Toast("Got that from my grandpa back in 1491. Not sure what it does,\nbut that old guy sure loved holding the A button!");
         }
 
         // if it's a consumable

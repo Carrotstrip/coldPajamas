@@ -184,13 +184,18 @@ public class PlayerManager : MonoBehaviour
         // if in third-person check what we have equipped, if cannon give cannon mappings, if rod give fish mappings
         if (!boat.GetComponent<Rigidbody>().isKinematic)
         {
+            actionText.text = "";
             if (inventory.GetHasCategoryEquipped("rod"))
             {
-                actionText.text = "Y: Get Fishin'";
+                actionText.text += "Y: Get Fishin'\n";
             }
-            else if (inventory.GetHasCategoryEquipped("cannonball"))
+            if (inventory.GetHasCategoryEquipped("cannonball"))
             {
-                actionText.text = "RT: Shoot\nLT: Gimbal Up\nLB: Gimbal Down";
+                actionText.text += "RT: Shoot\nLT: Gimbal Up\nLB: Gimbal Down\n";
+            }
+            if (inventory.GetHasCategoryEquipped("propeller"))
+            {
+                actionText.text += "A: Ascend";
             }
         }
     }
