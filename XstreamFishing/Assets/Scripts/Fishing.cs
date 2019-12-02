@@ -215,7 +215,7 @@ public class Fishing : MonoBehaviour
             rodMinRange = 1;
         else if (rodMultiplier == 13)
             rodMinRange = 6;
-        int fishIndex = Random.Range(rodMinRange + baitMultiplier,rodMultiplier + baitMultiplier);
+        int fishIndex = Random.Range(rodMinRange + baitMultiplier,rodMultiplier + baitMultiplier + 1);
         if (isShark){
             fishOnLine = indexToFishDict[18];
         } else {
@@ -274,17 +274,43 @@ public class Fishing : MonoBehaviour
         rod_clone = Instantiate(rod, spawnPos, Quaternion.identity);
         rod_clone.transform.parent = transform;
         rod_clone.transform.LookAt(transform);
-        rod_clone.transform.Rotate(-40, 0, 0, Space.Self);
+        rod_clone.transform.Rotate(-60, 0, 0, Space.Self);
         rod_clone.GetComponent<Renderer>().material.color = Color.red;
         // Casting Animation
-        for (int i = 0; i < 30; ++i){
-            rod_clone.transform.Rotate(3.0f, 0, 0, Space.Self);
-            yield return new WaitForSeconds(.00000001f);
-        }
-        for (int i = 0; i < 25; ++i){
-            rod_clone.transform.Rotate(-4, 0, 0, Space.Self);
-            yield return new WaitForSeconds(.001f);
-        }
+        float elapsedTime = 0;
+        float waitTime = 0.50f;
+        float startRotate = -.50f;
+        float stopRotate = -9.0f;
+        while (elapsedTime < waitTime)
+        {
+            float rotateValue = Mathf.Lerp(startRotate, stopRotate, 1-(elapsedTime / waitTime));
+            rod_clone.transform.Rotate(rotateValue, 0, 0, Space.Self);
+            elapsedTime += Time.deltaTime;
+        
+            // Yield here
+            yield return null;
+        } 
+        elapsedTime = 0;
+        waitTime = 0.50f;
+        startRotate = 9.50f;
+        stopRotate = 0.50f;
+        while (elapsedTime < waitTime)
+        {
+            float rotateValue = Mathf.Lerp(startRotate, stopRotate, 1-(elapsedTime / waitTime));
+            rod_clone.transform.Rotate(rotateValue, 0, 0, Space.Self);
+            elapsedTime += Time.deltaTime;
+        
+            // Yield here
+            yield return null;
+        } 
+        // for (int i = 0; i < 30; ++i){
+        //     rod_clone.transform.Rotate(3.0f, 0, 0, Space.Self);
+        //     yield return new WaitForSeconds(.00000001f);
+        // }
+        // for (int i = 0; i < 25; ++i){
+        //     rod_clone.transform.Rotate(-4, 0, 0, Space.Self);
+        //     yield return new WaitForSeconds(.001f);
+        // }
         // Wait for Fish for some number of seconds
         float num_seconds = Random.Range(2.0f, 4.0f);
         yield return new WaitForSeconds(num_seconds);
