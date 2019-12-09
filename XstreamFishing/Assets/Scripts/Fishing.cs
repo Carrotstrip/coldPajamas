@@ -222,7 +222,7 @@ public class Fishing : MonoBehaviour
             {
                 // catch the shark!
                 ptm.OverwriteToast("You caught the shark and won the game!");
-                GameManager.SomeoneWon();
+                GameManager.SomeoneWon(playerManager.index);
                 endFish();
             }
             else

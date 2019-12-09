@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public GameObject JoinCanvas;
     public GameObject Minimap;
     public AudioClip mainTheme;
+    public static int numPlayers = 0;
+    public static int winningPlayer = -1;
 
 
     void Awake()
@@ -88,7 +90,7 @@ public class GameManager : MonoBehaviour
             Minimap.SetActive(true);
         }
 
-        if (winState)
+        if (winState || Input.GetKeyDown(KeyCode.E))
         {
             // wait a sec
             StartCoroutine(WaitToEndGame());
@@ -99,13 +101,16 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         winState = false;
+        winningPlayer = 1;
+        numPlayers = controllers.Count;
         controllers.Clear();
         Destroy(gameObject);
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("EndCutscene");
     }
 
-    public static void SomeoneWon()
+    public static void SomeoneWon(int winner)
     {
+        winningPlayer = winner;
         winState = true;
     }
 }
