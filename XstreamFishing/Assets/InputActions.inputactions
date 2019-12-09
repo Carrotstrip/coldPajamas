@@ -299,6 +299,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "B",
+                    "type": "Button",
+                    "id": "955e7198-3183-43b0-84f2-6d74c287b97c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "RightStick",
                     "type": "Value",
                     "id": "bbc94337-c256-43d8-b883-115d7f46d069",
@@ -346,6 +354,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "StartButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "72d75ad6-36fd-43df-8241-1a8b3d229691",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "B",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

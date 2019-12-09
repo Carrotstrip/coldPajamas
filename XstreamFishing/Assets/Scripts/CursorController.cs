@@ -47,25 +47,25 @@ public class CursorController : MonoBehaviour
         button = collider.gameObject.GetComponent<ShopButton>();
         entry = collider.gameObject.GetComponent<InventoryEntry>();
 
-        if(button) {
-            Debug.Log("button " + button.item.itemName);
-        }
-        else if(entry) {
-            Debug.Log("entry " + entry);
-        }
+        // if(button) {
+        //     Debug.Log("button " + button.item.itemName);
+        // }
+        // else if(entry) {
+        //     Debug.Log("entry " + entry);
+        // }
     }
 
     void OnTriggerEnter(Collider collider) {
         button = collider.gameObject.GetComponent<ShopButton>();
         entry = collider.gameObject.GetComponent<InventoryEntry>();
 
-        if(button) {
-            Debug.Log("button " + button.item.itemName);
-            button.OnHover();
-        }
-        else if(entry) {
-            Debug.Log("entry " + entry);
-        }
+        // if(button) {
+        //     Debug.Log("button " + button.item.itemName);
+        //     button.OnHover();
+        // }
+        // else if(entry) {
+        //     Debug.Log("entry " + entry);
+        // }
     }
 
     void OnSubmit() {
@@ -76,7 +76,7 @@ public class CursorController : MonoBehaviour
             entry.HandleClick();
         }
         else {
-            Debug.Log("nothing to click");
+            // Debug.Log("nothing to click");
         }
     }
 
