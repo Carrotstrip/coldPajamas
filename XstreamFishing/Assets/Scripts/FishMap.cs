@@ -63,38 +63,69 @@ public class FishMap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int i = Random.Range(0, arrSize);
-        int j = Random.Range(0, arrSize);
-        int chance = Random.Range(0, chanceSize);
-        if (chance == 0)
+        // if tutorial is still active, don't do anything
+        if (!GameManager.minimap_tutorial)
         {
-            if (getFishCount(i, j) < 5)
-                ++fishCountArray[i, j];
-            // update color of tile
-            Material mat = fishCubes[i, j].GetComponent<MeshRenderer>().materials[0];
-            mat.color = gradient.Evaluate(0.2f * fishCountArray[i, j]);
-        }
-
-        // eat three fish, then move
-        if (!eating)
-        {
-            // if shark has eaten 3 fish, move one tile
-            if (numFish((int)shark_pos.x, (int)shark_pos.y) <= 0 && !freeze_shark)
+            int i = Random.Range(0, arrSize);
+            int j = Random.Range(0, arrSize);
+            int chance = Random.Range(0, chanceSize);
+            if (chance == 0)
             {
-
-                fish_eaten = 0;
-                DecideMove();
+                if (getFishCount(i, j) < 5)
+                    ++fishCountArray[i, j];
+                // update color of tile
+                Material mat = fishCubes[i, j].GetComponent<MeshRenderer>().materials[0];
+                mat.color = gradient.Evaluate(0.2f * fishCountArray[i, j]);
             }
-            eating = true;
-            // Debug.Log("eating a fish at " + (int)shark_pos.x + ", " + (int)shark_pos.y);
-            decrementFish((int)shark_pos.x, (int)shark_pos.y);
-            StartCoroutine(EatFish());
+
+            // eat three fish, then move
+            if (!eating)
+            {
+                // if shark has eaten 3 fish, move one tile
+                if (numFish((int)shark_pos.x, (int)shark_pos.y) <= 0 && !freeze_shark)
+                {
+
+                    fish_eaten = 0;
+                    DecideMove();
+                }
+                eating = true;
+                // Debug.Log("eating a fish at " + (int)shark_pos.x + ", " + (int)shark_pos.y);
+                decrementFish((int)shark_pos.x, (int)shark_pos.y);
+                StartCoroutine(EatFish());
+            }
+        }
+        else
+        {
+            // put a fish in each player's corner
+            if (GameManager.numPlayers >= 1)
+            {
+                fishCountArray[2, 7] = 1;
+                Material mat = fishCubes[2, 7].GetComponent<MeshRenderer>().materials[0];
+                mat.color = gradient.Evaluate(0.2f * 1);
+            }
+            if (GameManager.numPlayers >= 2)
+            {
+                fishCountArray[7, 7] = 1;
+                Material mat = fishCubes[7, 7].GetComponent<MeshRenderer>().materials[0];
+                mat.color = gradient.Evaluate(0.2f * 1);
+            }
+            if (GameManager.numPlayers >= 3)
+            {
+                fishCountArray[2, 2] = 1;
+                Material mat = fishCubes[2, 2].GetComponent<MeshRenderer>().materials[0];
+                mat.color = gradient.Evaluate(0.2f * 1);
+            }
+            if (GameManager.numPlayers >= 4)
+            {
+                fishCountArray[7, 2] = 1;
+                Material mat = fishCubes[7, 2].GetComponent<MeshRenderer>().materials[0];
+                mat.color = gradient.Evaluate(0.2f * 1);
+            }
         }
     }
 
     void DecideMove()
     {
-        // Vector2 bestLocation = shark_pos;
         List<Vector2> valid_locations = new List<Vector2>();
         int maxFish = 0;
         for (int i = 0; i <= 3; ++i)

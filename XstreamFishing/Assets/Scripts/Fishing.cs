@@ -44,7 +44,7 @@ public class Fishing : MonoBehaviour
 
     private bool hasInventory;
     private int timer = 6 * 60;
-   
+
     public GameObject bobberPrefab;
     private GameObject bobber;
     private Vector3 BobberInWaterPosition;
@@ -187,7 +187,7 @@ public class Fishing : MonoBehaviour
         {
             ++catchCounter;
             catchSlider.value = catchCounter;
-            progress = (float)catchCounter/(float)fishOnLine.catchCap;
+            progress = (float)catchCounter / (float)fishOnLine.catchCap;
             bobber.transform.position = Vector3.Lerp(BobberInWaterPosition, finalPos, progress);
             if (catchCounter >= fishOnLine.catchCap)
                 CatchFish();
@@ -195,7 +195,7 @@ public class Fishing : MonoBehaviour
         else
         {
             catchCounter -= fishOnLine.decrementStep;
-            progress = (float)catchCounter/(float)fishOnLine.catchCap;
+            progress = (float)catchCounter / (float)fishOnLine.catchCap;
             bobber.transform.position = Vector3.Lerp(BobberInWaterPosition, finalPos, progress);
             if (catchCounter <= 0)
             {
@@ -219,6 +219,23 @@ public class Fishing : MonoBehaviour
 
     void CatchFish()
     {
+        // tell GameManager that this player has caught a fish
+        if (!GameManager.fish_caught[playerManager.index - 1])
+        {
+            GameManager.fish_caught[playerManager.index - 1] = true;
+            // check if everyone has caught a fish, and if so turn off GameManager's tutorial
+            // (should be done in GameManager probably but I don't want to keep adding things in update and this doesn't run as frequently)
+            bool all_caught = true;
+            for (int i = 0; i < GameManager.numPlayers; i++)
+            {
+                all_caught = all_caught && GameManager.fish_caught[i];
+            }
+            if (all_caught)
+            {
+                GameManager.minimap_tutorial = false;
+            }
+        }
+
         caught = true;
         int rodMultiplier = inventory.rodMultiplier;
         int baitMultiplier = inventory.baitMultiplier;
@@ -228,7 +245,7 @@ public class Fishing : MonoBehaviour
             if (fishMap.shark_pos.x == x && fishMap.shark_pos.y == y) {
                 // catch the shark!
                 ptm.OverwriteToast("You caught the shark and won the game!");
-                GameManager.SomeoneWon();
+                GameManager.SomeoneWon(playerManager.index);
                 endFish();
             }
             else {
@@ -275,8 +292,9 @@ public class Fishing : MonoBehaviour
             rodMinRange = 1;
         else if (rodMultiplier == 13)
             rodMinRange = 6;
-        int fishIndex = Random.Range(rodMinRange + baitMultiplier,rodMultiplier + baitMultiplier + 1);
-        if (isShark){
+        int fishIndex = Random.Range(rodMinRange + baitMultiplier, rodMultiplier + baitMultiplier + 1);
+        if (isShark)
+        {
             fishOnLine = indexToFishDict[18];
         }
         else {

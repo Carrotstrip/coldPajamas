@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
     public GameObject JoinCanvas;
     public GameObject Minimap;
     public AudioClip mainTheme;
+    public static int numPlayers = 0;
+    public static int winningPlayer = -1;
+    public static bool minimap_tutorial;
+    public static List<bool> fish_caught;
 
 
     void Awake()
@@ -41,7 +45,9 @@ public class GameManager : MonoBehaviour
         winState = false;
         AudioManager.instance.PlayMusic(mainTheme);
         controllers = new List<Gamepad>();
+        fish_caught = new List<bool>();
         game_started = false;
+        minimap_tutorial = true;
     }
 
 
@@ -59,7 +65,9 @@ public class GameManager : MonoBehaviour
             }
             if (join)
             {
+                numPlayers += 1;
                 controllers.Add(Gamepad.current);
+                fish_caught.Add(false);
                 PlayerInput.Instantiate(player_prefab, playerIndex: controllers.Count, pairWithDevice: Gamepad.current);
                 if (controllers.Count >= 2)
                 {
@@ -88,7 +96,7 @@ public class GameManager : MonoBehaviour
             Minimap.SetActive(true);
         }
 
-        if (winState)
+        if (winState || Input.GetKeyDown(KeyCode.E))
         {
             // wait a sec
             StartCoroutine(WaitToEndGame());
@@ -99,13 +107,16 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         winState = false;
+        winningPlayer = 1;
+        numPlayers = controllers.Count;
         controllers.Clear();
         Destroy(gameObject);
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("EndCutscene");
     }
 
-    public static void SomeoneWon()
+    public static void SomeoneWon(int winner)
     {
+        winningPlayer = winner;
         winState = true;
     }
 }
