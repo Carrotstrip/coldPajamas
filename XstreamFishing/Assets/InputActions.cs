@@ -312,6 +312,14 @@ public class InputActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""B"",
+                    ""type"": ""Button"",
+                    ""id"": ""955e7198-3183-43b0-84f2-6d74c287b97c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""RightStick"",
                     ""type"": ""Value"",
                     ""id"": ""bbc94337-c256-43d8-b883-115d7f46d069"",
@@ -359,6 +367,17 @@ public class InputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""StartButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""72d75ad6-36fd-43df-8241-1a8b3d229691"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""B"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -835,6 +854,7 @@ public class InputActions : IInputActionCollection, IDisposable
         // Fishing
         m_Fishing = asset.FindActionMap("Fishing", throwIfNotFound: true);
         m_Fishing_RightStick2 = m_Fishing.FindAction("RightStick2", throwIfNotFound: true);
+        m_Fishing_B = m_Fishing.FindAction("B", throwIfNotFound: true);
         m_Fishing_RightStick = m_Fishing.FindAction("RightStick", throwIfNotFound: true);
         m_Fishing_StartButton = m_Fishing.FindAction("StartButton", throwIfNotFound: true);
         // UI
@@ -1048,6 +1068,7 @@ public class InputActions : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Fishing;
     private IFishingActions m_FishingActionsCallbackInterface;
     private readonly InputAction m_Fishing_RightStick2;
+    private readonly InputAction m_Fishing_B;
     private readonly InputAction m_Fishing_RightStick;
     private readonly InputAction m_Fishing_StartButton;
     public struct FishingActions
@@ -1055,6 +1076,7 @@ public class InputActions : IInputActionCollection, IDisposable
         private InputActions m_Wrapper;
         public FishingActions(InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @RightStick2 => m_Wrapper.m_Fishing_RightStick2;
+        public InputAction @B => m_Wrapper.m_Fishing_B;
         public InputAction @RightStick => m_Wrapper.m_Fishing_RightStick;
         public InputAction @StartButton => m_Wrapper.m_Fishing_StartButton;
         public InputActionMap Get() { return m_Wrapper.m_Fishing; }
@@ -1069,6 +1091,9 @@ public class InputActions : IInputActionCollection, IDisposable
                 RightStick2.started -= m_Wrapper.m_FishingActionsCallbackInterface.OnRightStick2;
                 RightStick2.performed -= m_Wrapper.m_FishingActionsCallbackInterface.OnRightStick2;
                 RightStick2.canceled -= m_Wrapper.m_FishingActionsCallbackInterface.OnRightStick2;
+                B.started -= m_Wrapper.m_FishingActionsCallbackInterface.OnB;
+                B.performed -= m_Wrapper.m_FishingActionsCallbackInterface.OnB;
+                B.canceled -= m_Wrapper.m_FishingActionsCallbackInterface.OnB;
                 RightStick.started -= m_Wrapper.m_FishingActionsCallbackInterface.OnRightStick;
                 RightStick.performed -= m_Wrapper.m_FishingActionsCallbackInterface.OnRightStick;
                 RightStick.canceled -= m_Wrapper.m_FishingActionsCallbackInterface.OnRightStick;
@@ -1082,6 +1107,9 @@ public class InputActions : IInputActionCollection, IDisposable
                 RightStick2.started += instance.OnRightStick2;
                 RightStick2.performed += instance.OnRightStick2;
                 RightStick2.canceled += instance.OnRightStick2;
+                B.started += instance.OnB;
+                B.performed += instance.OnB;
+                B.canceled += instance.OnB;
                 RightStick.started += instance.OnRightStick;
                 RightStick.performed += instance.OnRightStick;
                 RightStick.canceled += instance.OnRightStick;
@@ -1367,6 +1395,7 @@ public class InputActions : IInputActionCollection, IDisposable
     public interface IFishingActions
     {
         void OnRightStick2(InputAction.CallbackContext context);
+        void OnB(InputAction.CallbackContext context);
         void OnRightStick(InputAction.CallbackContext context);
         void OnStartButton(InputAction.CallbackContext context);
     }

@@ -25,7 +25,7 @@ public class Fishing : MonoBehaviour
     private IEnumerator coroutine;
     private string[] fishArr;
     private Vector2 lastStickLocation;
-    private int catchCounter = 0;
+    private float catchCounter = 0;
 
     Fish fishOnLine;
     //Fish fishOnLine = new Fish(0,"",.0f,.0f,0);
@@ -42,21 +42,22 @@ public class Fishing : MonoBehaviour
 
     private Queue<float> reelQueue;
 
-    private bool hasFished;
     private bool hasInventory;
     private int timer = 6 * 60;
 
     public GameObject bobberPrefab;
     private GameObject bobber;
     private Vector3 BobberInWaterPosition;
+
+    private float max = 0.0f;
     IDictionary<int, Fish> indexToFishDict = new Dictionary<int, Fish>() {
-        {0, new Fish(0,"Minnow",200,1,.01f,.6f,1)},
-        {1, new Fish(1,"Smallmouth Bass",250,1,.05f,.5f,2)},
+        {0, new Fish(0,"Minnow",80,0.5f,.01f,.4f,1)},
+        {1, new Fish(1,"Smallmouth Bass",100,0.5f,.05f,.5f,2)},
         {2, new Fish(2,"Largemouth Bass",270,2,.35f,.9f,3)},
         {3, new Fish(3,"Lake Trout",300,3,.1f,.5f,4)},
         {4, new Fish(4,"White Bass",350,3,.1f,.45f,5)},
         {5, new Fish(5,"Carp",370,4,.35f,.9f,7)},
-        {6, new Fish(6,"Yellow Carp",400,4,.35f,.9f,8)},
+        {6, new Fish(6,"Yellow Carp",400,4,.30f,.9f,8)},
         {7, new Fish(7,"WhiteFish",425,4,.15f,.60f,10)},
         {8, new Fish(8,"Steelhead Trout",450,4,.15f,.70f,12)},
         {9, new Fish(9,"Sunfish",475,5,.2f,.70f,15)},
@@ -71,13 +72,16 @@ public class Fishing : MonoBehaviour
         {18, new Fish(18,"Shark",500,10,.25f,.5f,1000)},
     };
 
+    Color paleGreen = new Color(119.0f, 221.0f, 119.0f, 255.0f);
+    Color green = new Color(0.0f/256f, 152.0f/256f, 23.0f/256f, 255.0f/255f);
+    Color red = new Color(161.0f/256f, 0.0f/256f, 12.0f/256f, 255.0f/255f);
+    private LineRenderer line;
 
     void Start()
     {
         fishMap = GameObject.Find("Ocean").GetComponent<FishMap>();
         rb = GetComponent<Rigidbody>();
         ptm = gameObject.GetComponentInParent(typeof(PlayerToastManager)) as PlayerToastManager;
-        hasFished = false;
 
         gradient_test = new Gradient();
 
@@ -106,7 +110,25 @@ public class Fishing : MonoBehaviour
             reelQueue.Enqueue(0);
         }
     }
-
+    // Update is called once per frame
+    void LateUpdate()
+    {
+        if (cast && has_fish)
+        {
+            reel(rightStickInput);
+        }
+        if (line != null && bobber != null && rod_clone != null){
+            line.SetPosition(0, bobber.transform.position);
+            line.SetPosition(1, rod_clone.gameObject.transform.Find("Sphere").gameObject.transform.position);
+            line.material.color = new Color(0.0f, 0.0f,0.0f, 35.0f);
+        }
+    }
+    void OnB(){
+        if (cast)
+        {
+            endFish();
+        }
+    }
     void OnA()
     {
         // CAST
@@ -131,20 +153,6 @@ public class Fishing : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void LateUpdate()
-    {
-        // if (!hasFished && timer >= 6 * 60)
-        // {
-        //     ptm.Toast("Reel in with the right stick");
-        //     timer = 0;
-        // }
-        // ++timer;
-        if (cast && has_fish)
-        {
-            reel(rightStickInput);
-        }
-    }
 
     void OnRightStick(InputValue input)
     {
@@ -232,32 +240,23 @@ public class Fishing : MonoBehaviour
         int rodMultiplier = inventory.rodMultiplier;
         int baitMultiplier = inventory.baitMultiplier;
         // if rodMultiplier is 100, check if there is a shark
-        if (rodMultiplier == 100)
-        {
+        if (rodMultiplier == 100) {
             (int x, int y) = FindLocation();
-            if (fishMap.shark_pos.x == x && fishMap.shark_pos.y == y)
-            {
+            if (fishMap.shark_pos.x == x && fishMap.shark_pos.y == y) {
                 // catch the shark!
                 ptm.OverwriteToast("You caught the shark and won the game!");
                 GameManager.SomeoneWon(playerManager.index);
                 endFish();
             }
-            else
-            {
+            else {
                 ptm.OverwriteToast("Looks like the shark isn't here...");
                 endFish();
             }
         }
         else
         {
-            if (OnCatchFish != null)
-            {
-                Debug.Log("caught");
+            if(OnCatchFish != null) {
                 OnCatchFish(fishOnLine.value);
-            }
-            else
-            {
-                Debug.Log("null");
             }
             endFish();
             ptm.OverwriteToast("You caught a " + fishOnLine.species + "!\n That's worth " + fishOnLine.value + " Finjamins!");
@@ -282,7 +281,10 @@ public class Fishing : MonoBehaviour
             }
         }
         rod_clone.transform.Rotate(-30, 0, 0, Space.Self);
-        rod_clone.GetComponent<Renderer>().material.color = Color.green;
+        rod_clone.GetComponent<Renderer>().material.color = green;
+        /* (Hacky) Each rod creates a span that are randomly sampled to find the fish
+        * RodMultiplier : the highest index that can be sampled
+        * baitMultiplier : a Shifts the span by this value */
         int rodMultiplier = inventory.rodMultiplier;
         int baitMultiplier = inventory.baitMultiplier;
         int rodMinRange = 0;
@@ -295,28 +297,36 @@ public class Fishing : MonoBehaviour
         {
             fishOnLine = indexToFishDict[18];
         }
-        else
-        {
+        else {
             fishOnLine = indexToFishDict[fishIndex];
         }
         // Get the shark on the line.
         catchSlider.maxValue = fishOnLine.catchCap;
         catchCounter = fishOnLine.catchCap / 2;
         catchSlider.value = catchCounter;
+        // Reel Slider horizontal bars activation and adjustment
+        reelingSlider.gameObject.transform.Find("Max").gameObject.SetActive(true);
+        reelingSlider.gameObject.transform.Find("Min").gameObject.SetActive(true);
+        RectTransform rtMax = reelingSlider.gameObject.transform.Find("Max").GetComponent<RectTransform>();
+        RectTransform rtMin = reelingSlider.gameObject.transform.Find("Min").GetComponent<RectTransform>();
+        rtMax.anchoredPosition = new Vector3(0.0f, fishOnLine.maxSpeedLimit * 100);
+        rtMin.anchoredPosition = new Vector3(0.0f, fishOnLine.minSpeedLimit * 100);
+        rtMax.GetComponent<Renderer>().material.color = Color.red;
+        rtMin.GetComponent<Renderer>().material.color = Color.red;
+        
         BobberInWaterPosition = bobber.transform.position;
         has_fish = true;
     }
 
     void endFish()
     {
+        Destroy(line);
         Destroy(bobber);
-        hasFished = true;
         caught = false;
         has_fish = false;
         cast = false;
         catchSlider.value = 0;
-        // I like the idea of fish being scared off
-        // and decrementing number of fish even if they weren't caught
+        // Decrementing number of fish even if they weren't caught
         (int x, int y) = FindLocation();
         int rodMultiplier = inventory.rodMultiplier;
         // if rodMultiplier is 100, this is a golden rod, so check if there is a shark
@@ -327,6 +337,8 @@ public class Fishing : MonoBehaviour
         panel.SetActive(false);
         player_input.SwitchCurrentActionMap("Player");
         actionText.text = "Cast: A\n Sail: Y";
+        reelingSlider.gameObject.transform.Find("Max").gameObject.SetActive(false);
+        reelingSlider.gameObject.transform.Find("Min").gameObject.SetActive(false);
     }
 
     IEnumerator WaitForFish()
@@ -338,12 +350,11 @@ public class Fishing : MonoBehaviour
         // if goldenRod is equipped and we're on shark spot, freeze the shark
         int rodMultiplier = inventory.rodMultiplier;
         // if rodMultiplier is 100, this is a golden rod, so check if there is a shark
-        if (rodMultiplier == 100 && fishMap.shark_pos.x == x && fishMap.shark_pos.y == y)
-        {
+        if (rodMultiplier == 100 && fishMap.shark_pos.x == x && fishMap.shark_pos.y == y) {
             fishMap.freeze_shark = true;
             has_shark = true;
         }
-        //Set CatchSLider to center to match up with the starting value once fish is found
+        // Set CatchSLider to center to match up with the starting value once fish is found
         catchSlider.maxValue = 2;
         catchSlider.value = 1;
         reelingSlider.value = 0;
@@ -359,49 +370,41 @@ public class Fishing : MonoBehaviour
         rod_clone.transform.parent = transform;
         rod_clone.transform.LookAt(transform);
         rod_clone.transform.Rotate(-80, 0, 0, Space.Self);
-        rod_clone.GetComponent<Renderer>().material.color = Color.red;
+        rod_clone.GetComponent<Renderer>().material.color = red;
         // Casting Animation
         float elapsedTime = 0;
         float waitTime = 0.60f;
         float startRotate = .50f;
         float stopRotate = 8.0f;
-        while (elapsedTime < waitTime)
-        {
+        while (elapsedTime < waitTime){
             float rotateValue = Mathf.Lerp(startRotate, stopRotate, (elapsedTime / waitTime));
             rod_clone.transform.Rotate(rotateValue, 0, 0, Space.Self);
             elapsedTime += Time.deltaTime;
-
-            // Yield here
             yield return null;
-        }
+        } 
+        rod_clone.gameObject.transform.Find("Bobber").gameObject.SetActive(false);
+        // Set fishing line
+        line = this.gameObject.AddComponent<LineRenderer>();
+        line.SetWidth(0.02f, 0.02f);
+        line.SetVertexCount(2);
+
         elapsedTime = 0;
         waitTime = 0.30f;
         startRotate = -12.50f;
         stopRotate = -0.50f;
-        while (elapsedTime < waitTime)
-        {
+        while (elapsedTime < waitTime){
             float rotateValue = Mathf.Lerp(startRotate, stopRotate, (elapsedTime / waitTime));
             rod_clone.transform.Rotate(rotateValue, 0, 0, Space.Self);
             elapsedTime += Time.deltaTime;
-
-            // Yield here
             yield return null;
-        }
-        Vector3 bobberSpawnPosition = rod_clone.transform.position + (transform.forward * 6) + (transform.up * 7) + (transform.right * 2);
-
+        } 
+        Vector3 bobberSpawnPosition = rod_clone.transform.position + (transform.forward * 6) + (transform.up * 7) + (transform.right*2);
+        //Vector3 bobberSpawnPosition = rod_clone.gameObject.transform.Find("Sphere").transform.position;
         //bobberSpawnPosition[1] = bobberSpawnPosition[1] + 5;
         bobber = Instantiate(bobberPrefab, bobberSpawnPosition, Quaternion.identity) as GameObject;
         bobber.GetComponent<Rigidbody>().AddForce(transform.forward * 1500 + transform.right * 2);
         var bobberRenderer = bobber.GetComponent<Renderer>();
-        bobberRenderer.material.SetColor("_Color", Color.red);
-        // for (int i = 0; i < 30; ++i){
-        //     rod_clone.transform.Rotate(3.0f, 0, 0, Space.Self);
-        //     yield return new WaitForSeconds(.00000001f);
-        // }
-        // for (int i = 0; i < 25; ++i){
-        //     rod_clone.transform.Rotate(-4, 0, 0, Space.Self);
-        //     yield return new WaitForSeconds(.001f);
-        // }
+        bobberRenderer.material.SetColor("_Color", red);
         // Wait for Fish for some number of seconds
         float num_seconds = Random.Range(2.0f, 4.0f);
         yield return new WaitForSeconds(num_seconds);
@@ -424,8 +427,8 @@ public class Fish
     public float minSpeedLimit;
     public float maxSpeedLimit;
     public int value;
-    public int decrementStep;
-    public Fish(int index, string species, int catchCap, int decrementStep, float minSpeed, float maxSpeed, int value)
+    public float decrementStep;
+    public Fish(int index, string species, int catchCap, float decrementStep, float minSpeed, float maxSpeed, int value)
     {
         this.index = index;
         this.species = species;
