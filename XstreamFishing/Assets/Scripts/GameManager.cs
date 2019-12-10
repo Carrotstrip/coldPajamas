@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     public AudioClip mainTheme;
     public static int numPlayers = 0;
     public static int winningPlayer = -1;
+    public static bool minimap_tutorial;
+    public static List<bool> fish_caught;
 
 
     void Awake()
@@ -43,7 +45,9 @@ public class GameManager : MonoBehaviour
         winState = false;
         AudioManager.instance.PlayMusic(mainTheme);
         controllers = new List<Gamepad>();
+        fish_caught = new List<bool>();
         game_started = false;
+        minimap_tutorial = true;
     }
 
 
@@ -61,7 +65,9 @@ public class GameManager : MonoBehaviour
             }
             if (join)
             {
+                numPlayers += 1;
                 controllers.Add(Gamepad.current);
+                fish_caught.Add(false);
                 PlayerInput.Instantiate(player_prefab, playerIndex: controllers.Count, pairWithDevice: Gamepad.current);
                 if (controllers.Count >= 2)
                 {

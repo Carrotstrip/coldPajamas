@@ -45,7 +45,7 @@ public class Fishing : MonoBehaviour
     private bool hasFished;
     private bool hasInventory;
     private int timer = 6 * 60;
-   
+
     public GameObject bobberPrefab;
     private GameObject bobber;
     private Vector3 BobberInWaterPosition;
@@ -179,7 +179,7 @@ public class Fishing : MonoBehaviour
         {
             ++catchCounter;
             catchSlider.value = catchCounter;
-            progress = (float)catchCounter/(float)fishOnLine.catchCap;
+            progress = (float)catchCounter / (float)fishOnLine.catchCap;
             bobber.transform.position = Vector3.Lerp(BobberInWaterPosition, finalPos, progress);
             if (catchCounter >= fishOnLine.catchCap)
                 CatchFish();
@@ -187,7 +187,7 @@ public class Fishing : MonoBehaviour
         else
         {
             catchCounter -= fishOnLine.decrementStep;
-            progress = (float)catchCounter/(float)fishOnLine.catchCap;
+            progress = (float)catchCounter / (float)fishOnLine.catchCap;
             bobber.transform.position = Vector3.Lerp(BobberInWaterPosition, finalPos, progress);
             if (catchCounter <= 0)
             {
@@ -211,6 +211,23 @@ public class Fishing : MonoBehaviour
 
     void CatchFish()
     {
+        // tell GameManager that this player has caught a fish
+        if (!GameManager.fish_caught[playerManager.index - 1])
+        {
+            GameManager.fish_caught[playerManager.index - 1] = true;
+            // check if everyone has caught a fish, and if so turn off GameManager's tutorial
+            // (should be done in GameManager probably but I don't want to keep adding things in update and this doesn't run as frequently)
+            bool all_caught = true;
+            for (int i = 0; i < GameManager.numPlayers; i++)
+            {
+                all_caught = all_caught && GameManager.fish_caught[i];
+            }
+            if (all_caught)
+            {
+                GameManager.minimap_tutorial = false;
+            }
+        }
+
         caught = true;
         int rodMultiplier = inventory.rodMultiplier;
         int baitMultiplier = inventory.baitMultiplier;
@@ -233,11 +250,13 @@ public class Fishing : MonoBehaviour
         }
         else
         {
-            if(OnCatchFish != null) {
+            if (OnCatchFish != null)
+            {
                 Debug.Log("caught");
                 OnCatchFish(fishOnLine.value);
             }
-            else {
+            else
+            {
                 Debug.Log("null");
             }
             endFish();
@@ -271,8 +290,9 @@ public class Fishing : MonoBehaviour
             rodMinRange = 1;
         else if (rodMultiplier == 13)
             rodMinRange = 6;
-        int fishIndex = Random.Range(rodMinRange + baitMultiplier,rodMultiplier + baitMultiplier + 1);
-        if (isShark){
+        int fishIndex = Random.Range(rodMinRange + baitMultiplier, rodMultiplier + baitMultiplier + 1);
+        if (isShark)
+        {
             fishOnLine = indexToFishDict[18];
         }
         else
@@ -350,10 +370,10 @@ public class Fishing : MonoBehaviour
             float rotateValue = Mathf.Lerp(startRotate, stopRotate, (elapsedTime / waitTime));
             rod_clone.transform.Rotate(rotateValue, 0, 0, Space.Self);
             elapsedTime += Time.deltaTime;
-        
+
             // Yield here
             yield return null;
-        } 
+        }
         elapsedTime = 0;
         waitTime = 0.30f;
         startRotate = -12.50f;
@@ -363,11 +383,11 @@ public class Fishing : MonoBehaviour
             float rotateValue = Mathf.Lerp(startRotate, stopRotate, (elapsedTime / waitTime));
             rod_clone.transform.Rotate(rotateValue, 0, 0, Space.Self);
             elapsedTime += Time.deltaTime;
-        
+
             // Yield here
             yield return null;
-        } 
-        Vector3 bobberSpawnPosition = rod_clone.transform.position + (transform.forward * 6) + (transform.up * 7) + (transform.right*2);
+        }
+        Vector3 bobberSpawnPosition = rod_clone.transform.position + (transform.forward * 6) + (transform.up * 7) + (transform.right * 2);
 
         //bobberSpawnPosition[1] = bobberSpawnPosition[1] + 5;
         bobber = Instantiate(bobberPrefab, bobberSpawnPosition, Quaternion.identity) as GameObject;
