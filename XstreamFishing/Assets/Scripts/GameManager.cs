@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
             JoinCamera.SetActive(false);
             JoinCanvas.SetActive(false);
             Minimap.SetActive(true);
+            AudioManager.instance.PlayMusic(mainTheme);
         }
 
         if (winState || Input.GetKeyDown(KeyCode.E))
@@ -104,7 +105,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static void SomeoneHasGoldenrod() 
+    public static void SomeoneHasGoldenrod()
     {
         AudioManager.instance.PlayMusic(sharkTune);
     }
@@ -113,10 +114,12 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         winState = false;
-        winningPlayer = 1;
         numPlayers = controllers.Count;
         controllers.Clear();
-        Destroy(gameObject);
+        AudioManager.instance.PlayMusic(mainTheme);
+        fish_caught.Clear();
+        game_started = false;
+        minimap_tutorial = true;
         SceneManager.LoadScene("EndCutscene");
     }
 
