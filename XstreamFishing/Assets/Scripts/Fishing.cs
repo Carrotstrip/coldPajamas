@@ -77,8 +77,13 @@ public class Fishing : MonoBehaviour
     Color red = new Color(161.0f / 256f, 0.0f / 256f, 12.0f / 256f, 255.0f / 255f);
     private LineRenderer line;
 
+    public AudioClip reelingSound;
+    public AudioClip castingSound;
+    AudioSource audioSource;
+
     void Start()
     {
+        audioSource = GetComponent<AudioSource>(); 
         fishMap = GameObject.Find("Ocean").GetComponent<FishMap>();
         rb = GetComponent<Rigidbody>();
         ptm = gameObject.GetComponentInParent(typeof(PlayerToastManager)) as PlayerToastManager;
@@ -207,7 +212,7 @@ public class Fishing : MonoBehaviour
                 }
                 else
                 {
-                    ptm.OverwriteToast("Shoot Partner looks like ya let that " + fishOnLine.species + " walk off with your lunch\nTry turning the controller sideways to reel.");
+                    ptm.OverwriteToast("Shoot Partner looks like ya \n let that " + fishOnLine.species + " walk off with your lunch\nTry turning the controller sideways to reel.");
                 }
                 endFish();
                 return;
@@ -327,6 +332,7 @@ public class Fishing : MonoBehaviour
 
     void endFish()
     {
+        AudioManager.instance.Stop(playerManager.index);
         Destroy(line);
         Destroy(bobber);
         caught = false;
@@ -392,6 +398,7 @@ public class Fishing : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+        AudioManager.instance.PlaySoundEffect(castingSound, playerManager.index);
         rod_clone.gameObject.transform.Find("Bobber").gameObject.SetActive(false);
         // Set fishing line
         line = this.gameObject.AddComponent<LineRenderer>();
@@ -421,6 +428,10 @@ public class Fishing : MonoBehaviour
         yield return new WaitForSeconds(num_seconds);
         rb.freezeRotation = true;
         findFish(fishCount, has_shark);
+        //audioSource.PlayOneShot(reelingSound, 1.0f);
+        if (has_fish){
+            AudioManager.instance.PlaySoundEffect(reelingSound, playerManager.index);
+        }
     }
 
     (int, int) FindLocation()

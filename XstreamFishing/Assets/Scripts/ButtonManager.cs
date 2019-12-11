@@ -15,6 +15,7 @@ public class ButtonManager : MonoBehaviour
         Button btn2 = b2.GetComponent<Button>();
         btn1.onClick.AddListener(quitGame);
         btn2.onClick.AddListener(LoadMP);
+        Screen.SetResolution((int)(Screen.height * (5f / 4f)), Screen.height, true);
     }
 
     // Update is called once per frame
