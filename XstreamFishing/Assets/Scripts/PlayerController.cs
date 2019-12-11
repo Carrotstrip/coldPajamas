@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public float accelerateSpeed = 1000f;
     public bool can_move;
     private Rigidbody rb;
-    public Text actionText;
+    public ActionTextManager atm;
     private string cacheMichael;
     public GameObject shopUI;
     public PlayerManager pm;
@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviour
         initial_y_pos = transform.position.y;
         inventory = GetComponent<Inventory>();
         inventory.GotPropeller += EnableFlight;
-        actionText.text = "FASDFASF";
     }
 
     void OnSail(InputValue input)
@@ -46,24 +45,29 @@ public class PlayerController : MonoBehaviour
         move_vector = input.Get<Vector2>();
     }
 
-    void OnRT() {
+    void OnRT()
+    {
         cannon.Fire();
     }
 
-    void OnLT() {
+    void OnLT()
+    {
         cannon.gimbalingUp = true;
     }
 
-    void OnLB() {
+    void OnLB()
+    {
         cannon.gimbalingDown = true;
     }
 
-    void OnLTUp() {
+    void OnLTUp()
+    {
 
         cannon.gimbalingUp = false;
     }
 
-    void OnLBUp() {
+    void OnLBUp()
+    {
         cannon.gimbalingDown = false;
     }
 
@@ -76,12 +80,16 @@ public class PlayerController : MonoBehaviour
             float moveVertical = move_vector.y;
             rb.AddTorque(0f, moveHorizontal * turnSpeed * Time.deltaTime, 0f);
             rb.AddForce(transform.forward * moveVertical * accelerateSpeed * Time.deltaTime);
-            if(can_fly){
-                if(up){
-                    transform.Translate((Vector3.up*6f) * Time.deltaTime, Space.World);
+            if (can_fly)
+            {
+                if (up)
+                {
+                    transform.Translate((Vector3.up * 6f) * Time.deltaTime, Space.World);
                 }
-                else{
-                    if(transform.position.y > initial_y_pos){
+                else
+                {
+                    if (transform.position.y > initial_y_pos)
+                    {
                         transform.Translate(Vector3.down * 10f * Time.deltaTime, Space.World);
                     }
                 }
@@ -93,57 +101,70 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnA(){
-        if(in_shop_zone){
+    void OnA()
+    {
+        if (in_shop_zone)
+        {
             can_move = false;
             shopUI.SetActive(true);
             cursor.SetActive(true);
-            if(!inv_active){
+            if (!inv_active)
+            {
                 pm.OnX();
                 inv_active = !inv_active;
             }
             player_input.SwitchCurrentActionMap("UI");
         }
-        else{
+        else
+        {
             up = true;
         }
     }
 
-    void OnAUp(){
+    void OnAUp()
+    {
         up = false;
     }
 
-    void OnX(){
+    void OnX()
+    {
         inv_active = !inv_active;
     }
 
-    void OnB(){
-        if(!can_move && shopUI.activeSelf){
+    void OnB()
+    {
+        if (!can_move && shopUI.activeSelf)
+        {
             can_move = true;
             shopUI.SetActive(!shopUI.activeSelf);
-            if(!inv_active) {
+            if (!inv_active)
+            {
                 cursor.SetActive(false);
                 player_input.SwitchCurrentActionMap("Player");
             }
-            else{
+            else
+            {
                 pm.OnX();
                 inv_active = !inv_active;
             }
         }
     }
-    void OnTriggerEnter(Collider coll){
-        if(coll.gameObject.tag == "Beach"){
+    void OnTriggerEnter(Collider coll)
+    {
+        if (coll.gameObject.tag == "Beach")
+        {
             in_shop_zone = true;
             Debug.Log("FIUCK 2");
-            //cacheMichael = actionText.text;
-            actionText.text = "A: Open Shop\n";
+            atm.ClearActions();
+            atm.AddLine("A", "Open Shop");
         }
     }
-    void OnTriggerExit(Collider coll){
-        if(coll.gameObject.tag == "Beach"){
+    void OnTriggerExit(Collider coll)
+    {
+        if (coll.gameObject.tag == "Beach")
+        {
             Debug.Log("FIUCK 3");
             in_shop_zone = false;
-            //actionText.text = cacheMichael;
         }
     }
 
@@ -192,7 +213,8 @@ public class PlayerController : MonoBehaviour
         }
     }*/
 
-    void EnableFlight() {
+    void EnableFlight()
+    {
         can_fly = true;
     }
 
