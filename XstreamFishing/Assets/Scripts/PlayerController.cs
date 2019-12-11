@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public Text actionText;
     private string cacheMichael;
     public GameObject shopUI;
+    public PlayerManager pm;
     protected Vector2 move_vector;
     public Cannon cannon;
     public bool can_fly;
@@ -97,6 +98,10 @@ public class PlayerController : MonoBehaviour
             can_move = false;
             shopUI.SetActive(true);
             cursor.SetActive(true);
+            if(!inv_active){
+                pm.OnX();
+                inv_active = !inv_active;
+            }
             player_input.SwitchCurrentActionMap("UI");
         }
         else{
@@ -120,9 +125,13 @@ public class PlayerController : MonoBehaviour
                 cursor.SetActive(false);
                 player_input.SwitchCurrentActionMap("Player");
             }
+            else{
+                pm.OnX();
+                inv_active = !inv_active;
+            }
         }
     }
-    void OnCollisionEnter(Collision coll){
+    void OnTriggerEnter(Collider coll){
         if(coll.gameObject.tag == "Beach"){
             in_shop_zone = true;
             Debug.Log("FIUCK 2");
@@ -130,7 +139,7 @@ public class PlayerController : MonoBehaviour
             actionText.text = "A: Open Shop\n";
         }
     }
-    void OnCollisionExit(Collision coll){
+    void OnTriggerExit(Collider coll){
         if(coll.gameObject.tag == "Beach"){
             Debug.Log("FIUCK 3");
             in_shop_zone = false;
@@ -173,7 +182,7 @@ public class PlayerController : MonoBehaviour
     //     }
     // }
 
-    void OnTriggerEnter(Collider coll){
+    /*void OnTriggerEnter(Collider coll){
         GameObject obj = coll.gameObject;
         Debug.Log("Triggered: " + obj);
         if(obj.tag == "Beach"){
@@ -181,7 +190,7 @@ public class PlayerController : MonoBehaviour
             can_move = false;
             shopUI.SetActive(!shopUI.activeSelf);
         }
-    }
+    }*/
 
     void EnableFlight() {
         can_fly = true;
