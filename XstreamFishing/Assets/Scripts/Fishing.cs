@@ -14,7 +14,7 @@ public class Fishing : MonoBehaviour
     public GameObject panel;
     public Slider reelingSlider;
     public Slider catchSlider;
-    public Text actionText;
+    public ActionTextManager atm;
     public GameObject InventoryUI;
     public PlayerManager playerManager;
 
@@ -73,8 +73,8 @@ public class Fishing : MonoBehaviour
     };
 
     Color paleGreen = new Color(119.0f, 221.0f, 119.0f, 255.0f);
-    Color green = new Color(0.0f/256f, 152.0f/256f, 23.0f/256f, 255.0f/255f);
-    Color red = new Color(161.0f/256f, 0.0f/256f, 12.0f/256f, 255.0f/255f);
+    Color green = new Color(0.0f / 256f, 152.0f / 256f, 23.0f / 256f, 255.0f / 255f);
+    Color red = new Color(161.0f / 256f, 0.0f / 256f, 12.0f / 256f, 255.0f / 255f);
     private LineRenderer line;
 
     void Start()
@@ -117,13 +117,15 @@ public class Fishing : MonoBehaviour
         {
             reel(rightStickInput);
         }
-        if (line != null && bobber != null && rod_clone != null){
+        if (line != null && bobber != null && rod_clone != null)
+        {
             line.SetPosition(0, bobber.transform.position);
             line.SetPosition(1, rod_clone.gameObject.transform.Find("Sphere").gameObject.transform.position);
-            line.material.color = new Color(0.0f, 0.0f,0.0f, 35.0f);
+            line.material.color = new Color(0.0f, 0.0f, 0.0f, 35.0f);
         }
     }
-    void OnB(){
+    void OnB()
+    {
         if (cast)
         {
             endFish();
@@ -149,7 +151,7 @@ public class Fishing : MonoBehaviour
             {
                 playerManager.OnX();
             }
-            actionText.text = "";
+            atm.ClearActions();
         }
     }
 
@@ -240,22 +242,26 @@ public class Fishing : MonoBehaviour
         int rodMultiplier = inventory.rodMultiplier;
         int baitMultiplier = inventory.baitMultiplier;
         // if rodMultiplier is 100, check if there is a shark
-        if (rodMultiplier == 100) {
+        if (rodMultiplier == 100)
+        {
             (int x, int y) = FindLocation();
-            if (fishMap.shark_pos.x == x && fishMap.shark_pos.y == y) {
+            if (fishMap.shark_pos.x == x && fishMap.shark_pos.y == y)
+            {
                 // catch the shark!
                 ptm.OverwriteToast("You caught the shark and won the game!");
                 GameManager.SomeoneWon(playerManager.index);
                 endFish();
             }
-            else {
+            else
+            {
                 ptm.OverwriteToast("Looks like the shark isn't here...");
                 endFish();
             }
         }
         else
         {
-            if(OnCatchFish != null) {
+            if (OnCatchFish != null)
+            {
                 OnCatchFish(fishOnLine.value);
             }
             endFish();
@@ -297,7 +303,8 @@ public class Fishing : MonoBehaviour
         {
             fishOnLine = indexToFishDict[18];
         }
-        else {
+        else
+        {
             fishOnLine = indexToFishDict[fishIndex];
         }
         // Get the shark on the line.
@@ -313,7 +320,7 @@ public class Fishing : MonoBehaviour
         rtMin.anchoredPosition = new Vector3(0.0f, fishOnLine.minSpeedLimit * 100);
         rtMax.GetComponent<Renderer>().material.color = Color.red;
         rtMin.GetComponent<Renderer>().material.color = Color.red;
-        
+
         BobberInWaterPosition = bobber.transform.position;
         has_fish = true;
     }
@@ -336,7 +343,8 @@ public class Fishing : MonoBehaviour
         Destroy(rod_clone);
         panel.SetActive(false);
         player_input.SwitchCurrentActionMap("Player");
-        actionText.text = "Cast: A\n Sail: Y";
+        atm.AddLine("A", "Cast");
+        atm.AddLine("Y", "Sail");
         reelingSlider.gameObject.transform.Find("Max").gameObject.SetActive(false);
         reelingSlider.gameObject.transform.Find("Min").gameObject.SetActive(false);
     }
@@ -350,7 +358,8 @@ public class Fishing : MonoBehaviour
         // if goldenRod is equipped and we're on shark spot, freeze the shark
         int rodMultiplier = inventory.rodMultiplier;
         // if rodMultiplier is 100, this is a golden rod, so check if there is a shark
-        if (rodMultiplier == 100 && fishMap.shark_pos.x == x && fishMap.shark_pos.y == y) {
+        if (rodMultiplier == 100 && fishMap.shark_pos.x == x && fishMap.shark_pos.y == y)
+        {
             fishMap.freeze_shark = true;
             has_shark = true;
         }
@@ -376,12 +385,13 @@ public class Fishing : MonoBehaviour
         float waitTime = 0.60f;
         float startRotate = .50f;
         float stopRotate = 8.0f;
-        while (elapsedTime < waitTime){
+        while (elapsedTime < waitTime)
+        {
             float rotateValue = Mathf.Lerp(startRotate, stopRotate, (elapsedTime / waitTime));
             rod_clone.transform.Rotate(rotateValue, 0, 0, Space.Self);
             elapsedTime += Time.deltaTime;
             yield return null;
-        } 
+        }
         rod_clone.gameObject.transform.Find("Bobber").gameObject.SetActive(false);
         // Set fishing line
         line = this.gameObject.AddComponent<LineRenderer>();
@@ -392,13 +402,14 @@ public class Fishing : MonoBehaviour
         waitTime = 0.30f;
         startRotate = -12.50f;
         stopRotate = -0.50f;
-        while (elapsedTime < waitTime){
+        while (elapsedTime < waitTime)
+        {
             float rotateValue = Mathf.Lerp(startRotate, stopRotate, (elapsedTime / waitTime));
             rod_clone.transform.Rotate(rotateValue, 0, 0, Space.Self);
             elapsedTime += Time.deltaTime;
             yield return null;
-        } 
-        Vector3 bobberSpawnPosition = rod_clone.transform.position + (transform.forward * 6) + (transform.up * 7) + (transform.right*2);
+        }
+        Vector3 bobberSpawnPosition = rod_clone.transform.position + (transform.forward * 6) + (transform.up * 7) + (transform.right * 2);
         //Vector3 bobberSpawnPosition = rod_clone.gameObject.transform.Find("Sphere").transform.position;
         //bobberSpawnPosition[1] = bobberSpawnPosition[1] + 5;
         bobber = Instantiate(bobberPrefab, bobberSpawnPosition, Quaternion.identity) as GameObject;
