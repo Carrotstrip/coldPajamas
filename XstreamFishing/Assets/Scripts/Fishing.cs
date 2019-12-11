@@ -254,7 +254,7 @@ public class Fishing : MonoBehaviour
             }
             else
             {
-                ptm.OverwriteToast("Looks like the shark isn't here...");
+                ptm.OverwriteToast("Looks like the shark isn't here.\nCheck out the minimap for a clue...");
                 endFish();
             }
         }
@@ -275,7 +275,7 @@ public class Fishing : MonoBehaviour
         {
             if (inventory.rodMultiplier == 100)
             {
-                ptm.OverwriteToast("Looks like the shark isn't here...");
+                ptm.OverwriteToast("Looks like the shark isn't here.\nCheck out the minimap for a clue...");
                 endFish();
                 return;
             }

@@ -28,6 +28,7 @@ public class NextUpdateScript : MonoBehaviour
             nextItemText.text = "Find the shark!";
             fin_sprite.SetActive(true);
             finjamin_sprite.SetActive(false);
+            gameObject.GetComponent<Image>().sprite = null;
             // Destroy(gameObject);
         }
         gameObject.GetComponent<Image>().sprite = nextItem.icon;
