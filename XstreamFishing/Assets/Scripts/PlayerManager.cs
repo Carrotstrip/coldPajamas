@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerManager : MonoBehaviour
 {
     public Inventory inventory;
-    public Text actionText;
+    public ActionTextManager atm;
     public GameObject shopUI;
     public GameObject inventoryUI;
     private bool startSequence;
@@ -82,6 +82,8 @@ public class PlayerManager : MonoBehaviour
     // toggle inventory
     public void OnX()
     {
+        Debug.Log("inv " + inventory_on_screen);
+        Debug.Log("shop " + shopUI.activeSelf);
         if (inventory_on_screen)
         {
             // move inventory back off of screen
@@ -94,7 +96,10 @@ public class PlayerManager : MonoBehaviour
         else
         {
             // move inventory onto screen
-            if(!shopUI.activeSelf) cursor.SetActive(true);
+            if (!shopUI.activeSelf)
+            {
+                cursor.SetActive(true);
+            }
             player_input.SwitchCurrentActionMap("UI");
             AudioManager.instance.PlaySoundEffect(inventory_close, index);
             RectTransform rect = inventoryUI.GetComponent<RectTransform>();
@@ -185,21 +190,25 @@ public class PlayerManager : MonoBehaviour
         // if in third-person check what we have equipped, if cannon give cannon mappings, if rod give fish mappings
         if (!boat.GetComponent<Rigidbody>().isKinematic)
         {
-            actionText.text = "";
+            atm.ClearActions();
             if (inventory.GetHasCategoryEquipped("rod"))
             {
-                actionText.text += "Y: Get Fishin'\n";
+                atm.AddLine("Y", "Get Fishin'");
             }
             if (inventory.GetHasCategoryEquipped("cannonball"))
             {
-                actionText.text += "RT: Shoot\nLT: Gimbal Up\nLB: Gimbal Down\n";
+                atm.AddLine("RT", "Shoot");
+                atm.AddLine("LT", "Gimbal Up");
+                atm.AddLine("LB", "Gimbal Down");
             }
             if (inventory.GetHasCategoryEquipped("propeller"))
             {
-                actionText.text += "A: Ascend";
+                atm.AddLine("A", "Ascend");
             }
-            if(pc.in_shop_zone){
-                actionText.text = "A: Open Shop\n";
+            if (pc.in_shop_zone)
+            {
+                atm.ClearActions();
+                atm.AddLine("A", "Open Shop");
             }
         }
     }

@@ -15,7 +15,7 @@ public class SwitchMode : MonoBehaviour
     public GameObject player;
     public GameObject playerStartPos;
     public ShipRocker sr;
-    public Text actionText;
+    public ActionTextManager atm;
     void OnY()
     {
         if (boat.GetComponent<Rigidbody>().isKinematic)
@@ -26,7 +26,8 @@ public class SwitchMode : MonoBehaviour
             canvas.worldCamera = mainCamera;
             player.SetActive(false);
             sr.enabled = true;
-            actionText.text = "Y: Get Fishin'";
+            atm.ClearActions();
+            atm.AddLine("Y", "Get Fishin'");
         }
         else
         {
@@ -38,7 +39,9 @@ public class SwitchMode : MonoBehaviour
             player.transform.position = playerStartPos.transform.position;
             player.SetActive(true);
             sr.enabled = false;
-            actionText.text = "A: Cast";
+            atm.ClearActions();
+            atm.AddLine("A", "Cast");
+            atm.AddLine("Y", "Sail");
         }
     }
 }
