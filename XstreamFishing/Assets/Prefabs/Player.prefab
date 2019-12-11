@@ -2833,7 +2833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  bobbingMultiplier: 0.8
+  bobbingMultiplier: 0.5
 --- !u!114 &8205407519776410008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4013,6 +4013,11 @@ PrefabInstance:
       propertyPath: fireDelay
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2079574644665926502, guid: 7998ad5a9a44e42a2963b172660bad1b,
+        type: 3}
+      propertyPath: playerManager
+      value: 
+      objectReference: {fileID: 3839157623359467783}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7998ad5a9a44e42a2963b172660bad1b, type: 3}
 --- !u!4 &1136263272653782509 stripped
