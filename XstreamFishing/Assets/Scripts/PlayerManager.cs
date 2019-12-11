@@ -82,11 +82,15 @@ public class PlayerManager : MonoBehaviour
     // toggle inventory
     public void OnX()
     {
+        Debug.Log("inv " + inventory_on_screen);
+        Debug.Log("shop " + shopUI.activeSelf);
         if (inventory_on_screen)
         {
             // move inventory back off of screen
-            if(!shopUI.activeSelf) cursor.SetActive(false);
-            player_input.SwitchCurrentActionMap("Player");
+            if(!shopUI.activeSelf) {
+                cursor.SetActive(false);
+                player_input.SwitchCurrentActionMap("Player");
+            }
             AudioManager.instance.Play(inventory_open);
             RectTransform rect = inventoryUI.GetComponent<RectTransform>();
             StartCoroutine(LerpInventory(rect, rect.anchoredPosition, new Vector3(-80, 0, -2), 0.3f));
@@ -94,7 +98,9 @@ public class PlayerManager : MonoBehaviour
         else
         {
             // move inventory onto screen
-            if(!shopUI.activeSelf) cursor.SetActive(true);
+            if(!shopUI.activeSelf) {
+                cursor.SetActive(true);
+            }
             player_input.SwitchCurrentActionMap("UI");
             AudioManager.instance.Play(inventory_close);
             RectTransform rect = inventoryUI.GetComponent<RectTransform>();
