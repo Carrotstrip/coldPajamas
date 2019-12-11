@@ -17,6 +17,7 @@ public class Cannon : MonoBehaviour
     public bool gimbalingUp;
     public bool gimbalingDown;
     public AudioClip cannonSound;
+    public PlayerManager playerManager;
     
 
     void Start()
@@ -56,7 +57,7 @@ public class Cannon : MonoBehaviour
         newCannonball.transform.position = transform.position;
         rb.velocity = rbShip.velocity;
         rb.AddForce(transform.rotation*Vector3.up*barrelSpeed);
-        AudioManager.instance.Play(cannonSound);
+        AudioManager.instance.PlaySoundEffect(cannonSound, playerManager.index);
         // take cannonball from inventory
         inventory.UseCannonball();
     }

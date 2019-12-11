@@ -2480,6 +2480,8 @@ MonoBehaviour:
   fD: {fileID: 5677333847395773203}
   bobberPrefab: {fileID: 1994018001832071823, guid: a91fa1083fab549eeaa12c0c0e60308e,
     type: 3}
+  reelingSound: {fileID: 8300000, guid: 26442d40f3f9c4a6ca042e3f19dc1bed, type: 3}
+  castingSound: {fileID: 8300000, guid: eb508c670dd1d4c7386c3bf5af1ab92e, type: 3}
 --- !u!1 &8205407519639153502
 GameObject:
   m_ObjectHideFlags: 0
@@ -4574,19 +4576,15 @@ PrefabInstance:
       objectReference: {fileID: 4910465780170939560}
     - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
-      propertyPath: inventory
+      propertyPath: itemList.Array.data[2].icon
       value: 
-      objectReference: {fileID: 8205407519776410008}
+      objectReference: {fileID: 5770958956045166959, guid: 9d6ca0fbc65874538bc03d0952823d8b,
+        type: 3}
     - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: nextUpgrade
       value: 
       objectReference: {fileID: 4910465780170939560}
-    - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: inventory
-      value: 
-      objectReference: {fileID: 8205407519776410008}
     - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: itemList.Array.data[2].icon
@@ -4608,46 +4606,35 @@ PrefabInstance:
       propertyPath: itemList.Array.data[2].itemName
       value: GPS
       objectReference: {fileID: 0}
-    - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
-      propertyPath: nextUpgrade
-      value: 
-      objectReference: {fileID: 4910465780170939560}
-    - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
+      propertyPath: m_AnchoredPosition.y
+      value: -216
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 461.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -216
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: inventory
       value: 
       objectReference: {fileID: 8205407519776410008}
-    - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[2].icon
-      value: 
-      objectReference: {fileID: 5770958956045166959, guid: 9d6ca0fbc65874538bc03d0952823d8b,
-        type: 3}
-    - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: nameText
-      value: 
-      objectReference: {fileID: 1608771719459228770}
-    - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: priceText
-      value: 
-      objectReference: {fileID: 7134769367506306337}
-    - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[2].itemName
-      value: GPS
-      objectReference: {fileID: 0}
-    - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: nextUpgrade
       value: 
       objectReference: {fileID: 4910465780170939560}
-    - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
-      propertyPath: itemList.Array.data[1].category
-      value: propeller
+      propertyPath: itemList.Array.data[3].isEquipped
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
@@ -4683,6 +4670,21 @@ PrefabInstance:
         type: 3}
       propertyPath: itemList.Array.data[3].isEquipped
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[1].price
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[2].price
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[3].price
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7461611296603189017, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
@@ -5460,3 +5462,5 @@ MonoBehaviour:
   fD: {fileID: 5677333847395773203}
   bobberPrefab: {fileID: 1994018001832071823, guid: a91fa1083fab549eeaa12c0c0e60308e,
     type: 3}
+  reelingSound: {fileID: 0}
+  castingSound: {fileID: 0}
