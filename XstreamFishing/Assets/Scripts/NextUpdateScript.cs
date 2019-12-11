@@ -21,23 +21,29 @@ public class NextUpdateScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (nextItem == null)
+        if (nextItem == null || inventory.GetEquippedOfCategory("rod").itemName == "Goldenrod")
         {
             // if player has bought goldenrod, change text to something about shark
             // and set finjamin sprite to shark fin
             nextItemText.text = "Find the shark!";
             fin_sprite.SetActive(true);
             finjamin_sprite.SetActive(false);
-            gameObject.GetComponent<Image>().sprite = null;
+            Image img = gameObject.GetComponent<Image>();
+            var tempColor = img.color;
+            tempColor.a = 0f;
+            img.color = tempColor;
             // Destroy(gameObject);
         }
-        gameObject.GetComponent<Image>().sprite = nextItem.icon;
-        nextItemText.text = (nextItem.price - inventory.numFish) + "\n\nto go";
-        finjamin_sprite.SetActive(true);
-        if (nextItem.price - inventory.numFish <= 0)
+        else
         {
-            nextItemText.text = "Head to Jimbo's";
-            finjamin_sprite.SetActive(false);
+            gameObject.GetComponent<Image>().sprite = nextItem.icon;
+            nextItemText.text = (nextItem.price - inventory.numFish) + "\n\nto go";
+            finjamin_sprite.SetActive(true);
+            if (nextItem.price - inventory.numFish <= 0)
+            {
+                nextItemText.text = "Head to Jimbo's";
+                finjamin_sprite.SetActive(false);
+            }
         }
     }
 }
