@@ -25,7 +25,7 @@ public class NextUpdateScript : MonoBehaviour
             Destroy(gameObject);
         }
         gameObject.GetComponent<Image>().sprite = nextItem.icon;
-        nextItemText.text = (nextItem.price - inventory.numFish) + "\n\nleft";
+        nextItemText.text = (nextItem.price - inventory.numFish) + "\n\nto go";
         finjamin_sprite.SetActive(true);
         if (nextItem.price - inventory.numFish <= 0)
         {
