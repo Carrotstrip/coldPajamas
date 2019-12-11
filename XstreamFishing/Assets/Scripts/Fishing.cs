@@ -77,8 +77,12 @@ public class Fishing : MonoBehaviour
     Color red = new Color(161.0f/256f, 0.0f/256f, 12.0f/256f, 255.0f/255f);
     private LineRenderer line;
 
+    public AudioClip reelingSound;
+    AudioSource audioSource;
+
     void Start()
     {
+        audioSource = GetComponent<AudioSource>(); 
         fishMap = GameObject.Find("Ocean").GetComponent<FishMap>();
         rb = GetComponent<Rigidbody>();
         ptm = gameObject.GetComponentInParent(typeof(PlayerToastManager)) as PlayerToastManager;
@@ -320,6 +324,7 @@ public class Fishing : MonoBehaviour
 
     void endFish()
     {
+        AudioManager.instance.Stop(playerManager.index);
         Destroy(line);
         Destroy(bobber);
         caught = false;
@@ -410,6 +415,8 @@ public class Fishing : MonoBehaviour
         yield return new WaitForSeconds(num_seconds);
         rb.freezeRotation = true;
         findFish(fishCount, has_shark);
+        //audioSource.PlayOneShot(reelingSound, 1.0f);
+        AudioManager.instance.PlaySoundEffect(reelingSound, playerManager.index);
     }
 
     (int, int) FindLocation()
