@@ -9,6 +9,7 @@ public class NextUpdateScript : MonoBehaviour
     public GameObject nextItemSprite;
     public Text nextItemText;
     public Inventory inventory;
+    public GameObject finjamin_sprite;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,12 @@ public class NextUpdateScript : MonoBehaviour
             Destroy(gameObject);
         }
         gameObject.GetComponent<Image>().sprite = nextItem.icon;
-        nextItemText.text = (nextItem.price - inventory.numFish) + " to go";
+        nextItemText.text = (nextItem.price - inventory.numFish) + "\n\nto go";
+        finjamin_sprite.SetActive(true);
+        if (nextItem.price - inventory.numFish <= 0)
+        {
+            nextItemText.text = "Head to Jimbo's";
+            finjamin_sprite.SetActive(false);
+        }
     }
 }

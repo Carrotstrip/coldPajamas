@@ -81,7 +81,7 @@ public class ShopUI : MonoBehaviour
                 Item nextItem = null;
                 for (int i = 0; i < itemList.Count; i++)
                 {
-                    if (itemList[i].category == item.category && itemList[i].multiplier <= item.multiplier)
+                    if (itemList[i].category == item.category && (itemList[i].multiplier <= item.multiplier || itemList[i].itemName == item.itemName))
                     {
                         itemList.Remove(itemList[i]);
                     }
@@ -91,6 +91,10 @@ public class ShopUI : MonoBehaviour
                     {
                         nextItem = itemList[i];
                         nextMultiplier = nextItem.multiplier;
+                    }
+                    if (item.itemName == "Goldenrod")
+                    {
+                        nextItem = null;
                     }
                 }
                 nextUpgrade.nextItem = nextItem;
