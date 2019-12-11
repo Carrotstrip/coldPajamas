@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public static int winningPlayer = -1;
     public static bool minimap_tutorial;
     public static List<bool> fish_caught;
+    static bool prev_winstate;
 
 
     void Awake()
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
         fish_caught = new List<bool>();
         game_started = false;
         minimap_tutorial = true;
+        prev_winstate = false;
     }
 
 
@@ -103,9 +105,10 @@ public class GameManager : MonoBehaviour
             AudioManager.instance.PlayMusic(mainTheme);
         }
 
-        if (winState || Input.GetKeyDown(KeyCode.E))
+        if (winState && prev_winstate == false || Input.GetKeyDown(KeyCode.E))
         {
             // wait a sec
+            prev_winstate = true;
             StartCoroutine(WaitToEndGame());
         }
     }
@@ -115,22 +118,21 @@ public class GameManager : MonoBehaviour
         AudioManager.instance.PlayMusic(sharkTune);
     }
 
-    IEnumerator WaitToEndGame()
-    {
-        yield return new WaitForSeconds(5f);
-        winState = false;
-        numPlayers = controllers.Count;
-        controllers.Clear();
-        AudioManager.instance.PlayMusic(mainTheme);
-        fish_caught.Clear();
-        game_started = false;
-        minimap_tutorial = true;
-        SceneManager.LoadScene("EndCutscene");
-    }
-
     public static void SomeoneWon(int winner)
     {
         winningPlayer = winner;
         winState = true;
     }
+
+    public static IEnumerator WaitToEndGame()
+    {
+        yield return new WaitForSeconds(5f);
+        // winState = false;
+        // controllers.Clear();
+        // fish_caught.Clear();
+        // game_started = false;
+        // minimap_tutorial = true;
+        SceneManager.LoadScene("EndCutscene");
+    }
+
 }
