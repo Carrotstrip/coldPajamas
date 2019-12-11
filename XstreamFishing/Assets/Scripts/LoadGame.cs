@@ -18,6 +18,9 @@ public class LoadGame : MonoBehaviour
     }
 
     void Load(){
+        Destroy(AudioManager.instance);
+        // Camera.main.enabled = false;
     	SceneManager.LoadScene("MultiplayerScene");
+        Camera.main.enabled = false;
     }
 }

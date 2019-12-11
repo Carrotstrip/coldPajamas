@@ -57,8 +57,8 @@ public class Cannon : MonoBehaviour
         newCannonball.transform.position = transform.position;
         rb.velocity = rbShip.velocity;
         rb.AddForce(transform.rotation*Vector3.up*barrelSpeed);
-        //AudioManager.instance.PlaySoundEffect(cannonSound, playerManager.index);
-        AudioManager.instance.Play(cannonSound);
+        AudioManager.instance.PlaySoundEffect(cannonSound, playerManager.index);
+        //AudioManager.instance.Play(cannonSound);
         // take cannonball from inventory
         inventory.UseCannonball();
     }

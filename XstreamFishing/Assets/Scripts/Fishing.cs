@@ -398,8 +398,8 @@ public class Fishing : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        //AudioManager.instance.PlaySoundEffect(castingSound, playerManager.index);
-        AudioManager.instance.Play(castingSound);
+        AudioManager.instance.PlaySoundEffect(castingSound, playerManager.index);
+        //AudioManager.instance.Play(castingSound);
         rod_clone.gameObject.transform.Find("Bobber").gameObject.SetActive(false);
         // Set fishing line
         line = this.gameObject.AddComponent<LineRenderer>();
@@ -431,8 +431,8 @@ public class Fishing : MonoBehaviour
         findFish(fishCount, has_shark);
         //audioSource.PlayOneShot(reelingSound, 1.0f);
         if (has_fish){
-            //AudioManager.instance.PlaySoundEffect(reelingSound, playerManager.index);
-            AudioManager.instance.Play(reelingSound);
+            AudioManager.instance.PlaySoundEffect(reelingSound, playerManager.index);
+            //AudioManager.instance.Play(reelingSound);
         }
     }
 

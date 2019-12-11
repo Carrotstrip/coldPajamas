@@ -5,13 +5,12 @@ using System.Collections.Generic;
     public class AudioManager : MonoBehaviour 
     {
         public AudioSource musicSource;
-        public static AudioManager instance = null;
-
         public AudioSource efxSource;
-        // public AudioSource p0Source;
-        // public AudioSource p1Source;
-        // public AudioSource p2Source;
-        // public AudioSource p3Source;
+        public static AudioManager instance = null;
+        public AudioSource p0Source;
+        public AudioSource p1Source;
+        public AudioSource p2Source;
+        public AudioSource p3Source;
 
         void Awake ()
         {
@@ -44,51 +43,51 @@ using System.Collections.Generic;
         }
         
         public void PlaySoundEffect(AudioClip clip, int playerIndex){
-            this.Play(clip);
-            // switch (playerIndex){
-            //     case 0:
-            //         p0Source.clip = clip;
-            //         p0Source.Play();
-            //         break;
-            //     case 1:
-            //         p1Source.clip = clip;
-            //         p1Source.Play();
-            //         break;
-            //     case 2:
-            //         p2Source.clip = clip;
-            //         p2Source.Play();
-            //         break;
-            //     case 3:
-            //         p3Source.clip = clip;
-            //         p3Source.Play();
-            //         break;
-            //     default:
-            //         efxSource.clip = clip;
-            //         efxSource.PlayOneShot(clip,1.0f);
-            //         break;
+            //this.Play(clip);
+            switch (playerIndex){
+                case 0:
+                    p0Source.clip = clip;
+                    p0Source.Play();
+                    break;
+                case 1:
+                    p1Source.clip = clip;
+                    p1Source.Play();
+                    break;
+                case 2:
+                    p2Source.clip = clip;
+                    p2Source.Play();
+                    break;
+                case 3:
+                    p3Source.clip = clip;
+                    p3Source.Play();
+                    break;
+                default:
+                    efxSource.clip = clip;
+                    efxSource.PlayOneShot(clip,1.0f);
+                    break;
 
-            //}
+            }
         }
         public void Stop(int playerIndex){
-            efxSource.Stop();
-            // switch (playerIndex){
-            //     case 0:
-            //         p0Source.Stop();
-            //         break;
-            //     case 1:
-            //         p1Source.Stop();
-            //         break;
-            //     case 2:
-            //         p2Source.Stop();
-            //         break;
-            //     case 3:
-            //         p3Source.Stop();
-            //         break;
-            //     default:
-            //         efxSource.Stop();
-            //         break;
+            //efxSource.Stop();
+            switch (playerIndex){
+                case 0:
+                    p0Source.Stop();
+                    break;
+                case 1:
+                    p1Source.Stop();
+                    break;
+                case 2:
+                    p2Source.Stop();
+                    break;
+                case 3:
+                    p3Source.Stop();
+                    break;
+                default:
+                    efxSource.Stop();
+                    break;
 
-            // }
+            }
         }
 
     }
