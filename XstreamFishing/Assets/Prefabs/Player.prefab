@@ -1222,6 +1222,7 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+  m_CurrentSelected: {fileID: 0}
 --- !u!114 &4166195926025827095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2021,6 +2022,7 @@ MonoBehaviour:
   shopUI: {fileID: 7337718362746633477}
   inventoryUI: {fileID: 1136526086176231458}
   player_input: {fileID: 1072046423538352829}
+  pc: {fileID: 4336414445536499773}
   main_camera: {fileID: 8205407520347201178}
   fp_camera: {fileID: 8205407519381377794}
   main_UI: {fileID: 8205407519251580839}
@@ -2263,11 +2265,13 @@ MonoBehaviour:
   turnSpeed: 2000
   accelerateSpeed: 2000
   can_move: 1
+  actionText: {fileID: 2841608817701508874}
   shopUI: {fileID: 7337718362746633477}
   cannon: {fileID: 1136263272653782510}
   can_fly: 0
   player_input: {fileID: 1072046423538352829}
   cursor: {fileID: 7845460719153836384}
+  in_shop_zone: 0
 --- !u!1 &8205407519809741595
 GameObject:
   m_ObjectHideFlags: 0
@@ -2592,6 +2596,7 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 0
   m_DragThreshold: 10
+  m_CurrentSelected: {fileID: 0}
 --- !u!114 &7822469701722313020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3001,6 +3006,7 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+  m_CurrentSelected: {fileID: 0}
 --- !u!114 &4028804092663957811
 MonoBehaviour:
   m_ObjectHideFlags: 0
