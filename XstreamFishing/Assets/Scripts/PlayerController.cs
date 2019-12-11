@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public float accelerateSpeed = 1000f;
     public bool can_move;
     private Rigidbody rb;
+    public Text actionText;
+    private string cacheMichael;
     public GameObject shopUI;
     protected Vector2 move_vector;
     public Cannon cannon;
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public GameObject cursor;
     Inventory inventory;
     private bool inv_active = false;
+    public bool in_shop_zone = false;
 
 
     // Start is called before the first frame update
@@ -34,6 +37,7 @@ public class PlayerController : MonoBehaviour
         initial_y_pos = transform.position.y;
         inventory = GetComponent<Inventory>();
         inventory.GotPropeller += EnableFlight;
+        actionText.text = "FASDFASF";
     }
 
     void OnSail(InputValue input)
@@ -89,7 +93,15 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnA(){
-        up = true;
+        if(in_shop_zone){
+            can_move = false;
+            shopUI.SetActive(true);
+            cursor.SetActive(true);
+            player_input.SwitchCurrentActionMap("UI");
+        }
+        else{
+            up = true;
+        }
     }
 
     void OnAUp(){
@@ -112,10 +124,17 @@ public class PlayerController : MonoBehaviour
     }
     void OnCollisionEnter(Collision coll){
         if(coll.gameObject.tag == "Beach"){
-            can_move = false;
-            shopUI.SetActive(true);
-            cursor.SetActive(true);
-            player_input.SwitchCurrentActionMap("UI");
+            in_shop_zone = true;
+            Debug.Log("FIUCK 2");
+            //cacheMichael = actionText.text;
+            actionText.text = "A: Open Shop\n";
+        }
+    }
+    void OnCollisionExit(Collision coll){
+        if(coll.gameObject.tag == "Beach"){
+            Debug.Log("FIUCK 3");
+            in_shop_zone = false;
+            //actionText.text = cacheMichael;
         }
     }
 

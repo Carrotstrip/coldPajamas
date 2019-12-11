@@ -13,6 +13,7 @@ public class PlayerManager : MonoBehaviour
     private bool startSequence;
     private int num_screens;
     public PlayerInput player_input;
+    public PlayerController pc;
     public Camera main_camera;
     public Camera fp_camera;
     public Canvas main_UI;
@@ -196,6 +197,9 @@ public class PlayerManager : MonoBehaviour
             if (inventory.GetHasCategoryEquipped("propeller"))
             {
                 actionText.text += "A: Ascend";
+            }
+            if(pc.in_shop_zone){
+                actionText.text = "A: Open Shop\n";
             }
         }
     }
