@@ -99,27 +99,27 @@ public class FishMap : MonoBehaviour
             // put a fish in each player's corner
             if (GameManager.numPlayers >= 1)
             {
-                fishCountArray[2, 7] = 1;
+                fishCountArray[2, 7] = 5;
                 Material mat = fishCubes[2, 7].GetComponent<MeshRenderer>().materials[0];
-                mat.color = gradient.Evaluate(0.2f * 1);
+                mat.color = gradient.Evaluate(0.2f * 5);
             }
             if (GameManager.numPlayers >= 2)
             {
-                fishCountArray[7, 7] = 1;
+                fishCountArray[7, 7] = 5;
                 Material mat = fishCubes[7, 7].GetComponent<MeshRenderer>().materials[0];
-                mat.color = gradient.Evaluate(0.2f * 1);
+                mat.color = gradient.Evaluate(0.2f * 5);
             }
             if (GameManager.numPlayers >= 3)
             {
-                fishCountArray[2, 2] = 1;
+                fishCountArray[2, 2] = 5;
                 Material mat = fishCubes[2, 2].GetComponent<MeshRenderer>().materials[0];
-                mat.color = gradient.Evaluate(0.2f * 1);
+                mat.color = gradient.Evaluate(0.2f * 5);
             }
             if (GameManager.numPlayers >= 4)
             {
-                fishCountArray[7, 2] = 1;
+                fishCountArray[7, 2] = 5;
                 Material mat = fishCubes[7, 2].GetComponent<MeshRenderer>().materials[0];
-                mat.color = gradient.Evaluate(0.2f * 1);
+                mat.color = gradient.Evaluate(0.2f * 5);
             }
         }
     }

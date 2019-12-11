@@ -46,26 +46,17 @@ public class CursorController : MonoBehaviour
     void OnTriggerStay(Collider collider) {
         button = collider.gameObject.GetComponent<ShopButton>();
         entry = collider.gameObject.GetComponent<InventoryEntry>();
-
-        // if(button) {
-        //     Debug.Log("button " + button.item.itemName);
-        // }
-        // else if(entry) {
-        //     Debug.Log("entry " + entry);
-        // }
+        if(button) {
+            button.OnHover();
+        }
+        else {
+            // Debug.Log("nothing to click");
+        }
     }
 
     void OnTriggerEnter(Collider collider) {
         button = collider.gameObject.GetComponent<ShopButton>();
         entry = collider.gameObject.GetComponent<InventoryEntry>();
-
-        // if(button) {
-        //     Debug.Log("button " + button.item.itemName);
-        //     button.OnHover();
-        // }
-        // else if(entry) {
-        //     Debug.Log("entry " + entry);
-        // }
     }
 
     void OnSubmit() {
@@ -100,7 +91,8 @@ public class CursorController : MonoBehaviour
         else if(rt.anchoredPosition.y <= -crt.rect.height){
             rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -crt.rect.height + 10);
         }
-        if(Input.GetAxis("Horizontal") < .1 && Input.GetAxis("Vertical") < .1 ) {
+        Debug.Log(Input.GetAxis("Horizontal"));
+        if(Mathf.Abs(Input.GetAxis("Horizontal")) < .01 && Mathf.Abs(Input.GetAxis("Vertical")) < .01) {
             move_vector = Vector2.zero;
         }
         // move_vector = Vector2.zero;

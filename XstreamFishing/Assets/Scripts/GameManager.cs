@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public GameObject JoinCanvas;
     public GameObject Minimap;
     public AudioClip mainTheme;
+    public static AudioClip sharkTune;
     public static int numPlayers = 0;
     public static int winningPlayer = -1;
     public static bool minimap_tutorial;
@@ -101,6 +102,11 @@ public class GameManager : MonoBehaviour
             // wait a sec
             StartCoroutine(WaitToEndGame());
         }
+    }
+
+    public static void SomeoneHasGoldenrod() 
+    {
+        AudioManager.instance.PlayMusic(sharkTune);
     }
 
     IEnumerator WaitToEndGame()

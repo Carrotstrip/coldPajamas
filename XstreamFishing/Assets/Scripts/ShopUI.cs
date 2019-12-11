@@ -20,11 +20,13 @@ public class ShopUI : MonoBehaviour
     public Text nameText;
     public Text priceText;
     public NextUpdateScript nextUpgrade;
-
+    // public event Action OnUpdateDisplay;
 
     // Use this for initialization
     void Start()
     {
+        // OnUpdateDisplay += UpdateDisplay;
+        inventory.OnInventoryChange += UpdateDisplay;
     }
 
     void OnEnable()
@@ -39,6 +41,11 @@ public class ShopUI : MonoBehaviour
         {
             GameObject.Destroy(child.gameObject);
         }
+    }
+
+    void UpdateDisplay(bool b) {
+        RemoveButtons();
+        AddButtons();
     }
 
     void Update()
@@ -57,6 +64,10 @@ public class ShopUI : MonoBehaviour
             newButton.transform.localRotation = Quaternion.identity;
             ShopButton newShopButton = newButton.GetComponent<ShopButton>();
             newShopButton.Setup(item, this);
+            if(inventory.numFish < item.price) {
+                Image im = newShopButton.GetComponent<Image>();
+                im.color = new Color(0.1f, 0.1f, 0.1f, 1f);
+            }
         }
     }
 
@@ -95,6 +106,8 @@ public class ShopUI : MonoBehaviour
                     if (item.itemName == "Goldenrod")
                     {
                         nextItem = null;
+                        // set audio manager to play shark music once someone buys
+                        GameManager.SomeoneHasGoldenrod();
                     }
                 }
                 nextUpgrade.nextItem = nextItem;
@@ -102,8 +115,7 @@ public class ShopUI : MonoBehaviour
             }
 
             // re-render
-            RemoveButtons();
-            AddButtons();
+            UpdateDisplay(true);
         }
         // if not enough fish
         else

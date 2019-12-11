@@ -21,13 +21,8 @@ public class ButtonManager : MonoBehaviour
 
     }
 
-<<<<<<< HEAD
-    void OnA(){
-        
-=======
     void OnA()
     {
->>>>>>> 88207386700e48c48e4d57072f4cc05cfaf63f32
         LoadMP();
     }
 

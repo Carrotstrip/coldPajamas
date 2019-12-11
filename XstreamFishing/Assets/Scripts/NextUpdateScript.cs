@@ -10,11 +10,12 @@ public class NextUpdateScript : MonoBehaviour
     public Text nextItemText;
     public Inventory inventory;
     public GameObject finjamin_sprite;
+    public GameObject fin_sprite;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        fin_sprite.SetActive(false);
     }
 
     // Update is called once per frame
@@ -22,7 +23,12 @@ public class NextUpdateScript : MonoBehaviour
     {
         if (nextItem == null)
         {
-            Destroy(gameObject);
+            // if player has bought goldenrod, change text to something about shark
+            // and set finjamin sprite to shark fin
+            nextItemText.text = "Find the shark!";
+            fin_sprite.SetActive(true);
+            finjamin_sprite.SetActive(false);
+            // Destroy(gameObject);
         }
         gameObject.GetComponent<Image>().sprite = nextItem.icon;
         nextItemText.text = (nextItem.price - inventory.numFish) + "\n\nto go";

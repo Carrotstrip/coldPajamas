@@ -916,6 +916,7 @@ RectTransform:
   m_Children:
   - {fileID: 1992330739759231602}
   - {fileID: 2973924023403435048}
+  - {fileID: 7864689281096980331}
   m_Father: {fileID: 8205407519251580824}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -989,6 +990,7 @@ MonoBehaviour:
   nextItemText: {fileID: 6468966821681871204}
   inventory: {fileID: 8205407519776410008}
   finjamin_sprite: {fileID: 7721910225555630925}
+  fin_sprite: {fileID: 6387894878462685484}
 --- !u!1 &5148343023619026924
 GameObject:
   m_ObjectHideFlags: 0
@@ -1261,6 +1263,92 @@ MonoBehaviour:
     type: 3}
   m_TrackedDeviceSelectAction: {fileID: 2559092417903258184, guid: 6c9d8bb5b3ba44c69838bb820c7660b7,
     type: 3}
+--- !u!1 &6387894878462685484
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7864689281096980331}
+  - component: {fileID: 8567386171391722344}
+  m_Layer: 5
+  m_Name: sharkFin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7864689281096980331
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6387894878462685484}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 750, y: 750, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1627518380464131459}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -38, y: 119}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!212 &8567386171391722344
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6387894878462685484}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 8861480726252175340, guid: 201c58b43da364ea6b12663b476813ee,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.16, y: 0.13}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &7721910225555630925
 GameObject:
   m_ObjectHideFlags: 0
@@ -3309,14 +3397,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2079574644665926502, guid: 7998ad5a9a44e42a2963b172660bad1b,
+        type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 8205407519776410008}
+    - target: {fileID: 2079574644665926502, guid: 7998ad5a9a44e42a2963b172660bad1b,
+        type: 3}
+      propertyPath: fireDelay
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7998ad5a9a44e42a2963b172660bad1b, type: 3}
---- !u!4 &1136263272653782509 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2079574644665926501, guid: 7998ad5a9a44e42a2963b172660bad1b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1376117357832912520}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1136263272653782510 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2079574644665926502, guid: 7998ad5a9a44e42a2963b172660bad1b,
@@ -3329,6 +3421,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901ae81a57d2c4f2c94c65220cbd332c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1136263272653782509 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2079574644665926501, guid: 7998ad5a9a44e42a2963b172660bad1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1376117357832912520}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1637023797113923718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3663,10 +3761,131 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 9044586164703184772, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 9044586164703184772, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -598
+      objectReference: {fileID: 0}
+    - target: {fileID: 6601449101775841849, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 6601449101775841849, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 461.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553967292547856274, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553967292547856274, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -598
+      objectReference: {fileID: 0}
+    - target: {fileID: 6689289435704229590, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6689289435704229590, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -233
+      objectReference: {fileID: 0}
+    - target: {fileID: 6689289435704229590, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 224.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 6689289435704229590, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 373.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024623347819098847, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -309
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024623347819098847, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1427842354032089016, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1427842354032089016, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -597
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444451873169316025, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444451873169316025, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -599
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 8205407519776410008}
+    - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: nextUpgrade
+      value: 
+      objectReference: {fileID: 4910465780170939560}
+    - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 8205407519776410008}
+    - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[2].icon
+      value: 
+      objectReference: {fileID: 5770958956045166959, guid: 9d6ca0fbc65874538bc03d0952823d8b,
+        type: 3}
+    - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: nameText
+      value: 
+      objectReference: {fileID: 1608771719459228770}
+    - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: priceText
+      value: 
+      objectReference: {fileID: 7134769367506306337}
+    - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: itemList.Array.data[2].itemName
+      value: GPS
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: nextUpgrade
+      value: 
+      objectReference: {fileID: 4910465780170939560}
     - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
-      propertyPath: itemList.Array.size
-      value: 4
+      propertyPath: m_AnchoredPosition.y
+      value: -216
       objectReference: {fileID: 0}
     - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
@@ -3675,142 +3894,9 @@ PrefabInstance:
       objectReference: {fileID: 8205407519776410008}
     - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
-      propertyPath: itemList.Array.data[9].itemName
-      value: Cannoli Recipe
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[9].description
-      value: A cannoli recipe of such elegance to make men weep. Jimbo made this for
-        his wife on their first date way back in 19-eleventy-forty-eleven.
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[9].category
-      value: misc
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[9].icon
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[9].price
-      value: 1001
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[9].shopAmount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[9].multiplier
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[10].itemName
-      value: Mysterious Propeller
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[10].description
-      value: A hand me down from Jimbo's grandpa. He can't find any use for it.
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[10].category
-      value: misc
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[10].icon
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[10].price
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[10].shopAmount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[10].multiplier
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[9].isConsumable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[4].multiplier
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
       propertyPath: nextUpgrade
       value: 
       objectReference: {fileID: 4910465780170939560}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[11].itemName
-      value: Jimbo's Rugged Rod
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[11].description
-      value: Jimbo carves these out of an old hickory tree that fell in his yard during
-        The Storm.
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[11].category
-      value: rod
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[11].price
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[11].shopAmount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[11].multiplier
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[11].icon
-      value: 
-      objectReference: {fileID: -631023095337379593, guid: 5df9149245d0f4ffaadea05eaf37313a,
-        type: 3}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[1].price
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[2].price
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
-        type: 3}
-      propertyPath: itemList.Array.data[3].price
-      value: 200
-      objectReference: {fileID: 0}
     - target: {fileID: 7040715281381287154, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: itemList.Array.data[3].isEquipped
@@ -3861,30 +3947,35 @@ PrefabInstance:
       propertyPath: itemList.Array.data[2].price
       value: 25
       objectReference: {fileID: 0}
-    - target: {fileID: 4323689400931615609, guid: 18a8140dace6c4fb9b3cb11d06650156,
+    - target: {fileID: 946639834853302875, guid: 18a8140dace6c4fb9b3cb11d06650156,
+        type: 3}
+      propertyPath: m_Text
+      value: Welcome To Jimbo's Pro Shop!
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116640435779810831, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: inventory
       value: 
       objectReference: {fileID: 8205407519776410008}
-    - target: {fileID: 4323689400931615609, guid: 18a8140dace6c4fb9b3cb11d06650156,
+    - target: {fileID: 1116640435779810831, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: nextUpgrade
       value: 
       objectReference: {fileID: 4910465780170939560}
-    - target: {fileID: 4323689400931615609, guid: 18a8140dace6c4fb9b3cb11d06650156,
+    - target: {fileID: 1116640435779810831, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: itemList.Array.data[0].price
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 4323689400931615609, guid: 18a8140dace6c4fb9b3cb11d06650156,
+    - target: {fileID: 1116640435779810831, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: itemList.Array.data[1].price
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 4323689400931615609, guid: 18a8140dace6c4fb9b3cb11d06650156,
+    - target: {fileID: 1116640435779810831, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}
       propertyPath: itemList.Array.data[2].price
-      value: 15
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8701386559999482644, guid: 18a8140dace6c4fb9b3cb11d06650156,
         type: 3}

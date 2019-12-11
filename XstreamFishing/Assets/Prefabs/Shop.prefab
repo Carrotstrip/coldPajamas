@@ -150,7 +150,7 @@ MonoBehaviour:
     isEquipped: 0
     category: rod
     icon: {fileID: 7737449626985026946, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
-    price: 3
+    price: 12
     amount: 0
     shopAmount: 1
     multiplier: 5
@@ -161,7 +161,7 @@ MonoBehaviour:
     isEquipped: 0
     category: rod
     icon: {fileID: -1199251295059341621, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
-    price: 5
+    price: 35
     amount: 0
     shopAmount: 1
     multiplier: 13
@@ -172,7 +172,7 @@ MonoBehaviour:
     isEquipped: 0
     category: rod
     icon: {fileID: -2604225463047987414, guid: 5df9149245d0f4ffaadea05eaf37313a, type: 3}
-    price: 20
+    price: 200
     amount: 0
     shopAmount: 1
     multiplier: 100
@@ -290,7 +290,7 @@ MonoBehaviour:
     isEquipped: 0
     category: bait
     icon: {fileID: -2741604302042374173, guid: ca3d8067c079c4a55abfd9085be24f36, type: 3}
-    price: 1
+    price: 3
     amount: 0
     shopAmount: 5
     multiplier: 1
@@ -301,7 +301,7 @@ MonoBehaviour:
     isEquipped: 0
     category: bait
     icon: {fileID: 4450842075532100876, guid: ca3d8067c079c4a55abfd9085be24f36, type: 3}
-    price: 2
+    price: 10
     amount: 0
     shopAmount: 5
     multiplier: 2
@@ -313,7 +313,7 @@ MonoBehaviour:
     isEquipped: 0
     category: bait
     icon: {fileID: 8674628343370034503, guid: ca3d8067c079c4a55abfd9085be24f36, type: 3}
-    price: 3
+    price: 25
     amount: 5
     shopAmount: 0
     multiplier: 4
@@ -407,7 +407,7 @@ MonoBehaviour:
     isEquipped: 0
     category: cannonball
     icon: {fileID: 5596361543026112581, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
-    price: 1
+    price: 3
     amount: 0
     shopAmount: 5
     multiplier: 1
@@ -419,7 +419,7 @@ MonoBehaviour:
     isEquipped: 0
     category: cannonball
     icon: {fileID: 7199686104288873141, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
-    price: 2
+    price: 7
     amount: 0
     shopAmount: 5
     multiplier: 2
@@ -430,7 +430,7 @@ MonoBehaviour:
     isEquipped: 0
     category: cannonball
     icon: {fileID: -430754789020014975, guid: 6d29b3654b0cb450895865ca59662ac2, type: 3}
-    price: 3
+    price: 15
     amount: 0
     shopAmount: 5
     multiplier: 3
@@ -540,14 +540,14 @@ MonoBehaviour:
     amount: 0
     shopAmount: 1
     multiplier: 100
-  - itemName: Jimbo Positioning System
+  - itemName: GPS
     description: Jimbos threw up some satellites a couple of years ago. Should be
       able to pin you down on the map there.
     isSelected: 0
     isConsumable: 0
     isEquipped: 0
     category: misc
-    icon: {fileID: -9177418277584700315, guid: 9d6ca0fbc65874538bc03d0952823d8b, type: 3}
+    icon: {fileID: 5770958956045166959, guid: 9d6ca0fbc65874538bc03d0952823d8b, type: 3}
     price: 1000
     amount: 0
     shopAmount: 1
@@ -558,8 +558,8 @@ MonoBehaviour:
     type: 3}
   ptm: {fileID: 0}
   description: {fileID: 946639834853302875}
-  nameText: {fileID: 0}
-  priceText: {fileID: 0}
+  nameText: {fileID: 7461611296603189017}
+  priceText: {fileID: 1359168282922427994}
   nextUpgrade: {fileID: 0}
 --- !u!1 &3875069066950395959
 GameObject:
@@ -595,8 +595,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 220.3, y: -244.27}
-  m_SizeDelta: {x: 365.2, y: 73.662}
+  m_AnchoredPosition: {x: 224.59, y: -244.27}
+  m_SizeDelta: {x: 373.8, y: 73.662}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7759976520774740921
 CanvasRenderer:
@@ -626,7 +626,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 87c316b602156405d92e616621658222, type: 3}
-    m_FontSize: 36
+    m_FontSize: 34
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -714,7 +714,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: Welcome
 --- !u!1 &7998528964678180105
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,7 +750,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 461.6, y: -244.27}
-  m_SizeDelta: {x: 100.2, y: 73.66}
+  m_SizeDelta: {x: 100.21, y: 73.66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &475896157361771591
 CanvasRenderer:

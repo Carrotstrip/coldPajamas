@@ -13,7 +13,7 @@ public class ShopButton : MonoBehaviour {
     public Item item;
     private ShopUI scrollList;
     public bool hovered;
-    private Image im;
+    public Image im;
     private Color og;
 
     // Use this for initialization
