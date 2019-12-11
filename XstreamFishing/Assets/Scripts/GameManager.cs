@@ -87,8 +87,13 @@ public class GameManager : MonoBehaviour
                 panelRectTransform.anchorMin = new Vector2(1f, 0f);
                 panelRectTransform.anchorMax = new Vector2(1f, 0f);
                 panelRectTransform.pivot = new Vector2(0.5f, 0.5f);
-                panelRectTransform.anchoredPosition = new Vector3(-437f, 303f, 0);
-                panelRectTransform.localScale = new Vector3(7f, 7f, 1f);
+                panelRectTransform.anchoredPosition = new Vector3(-437f, 325f, 0);
+                panelRectTransform.localScale = new Vector3(10f, 10f, 1f);
+                // set opacity to 1
+                var img = panelRectTransform.gameObject.GetComponent<RawImage>();
+                var tempColor = img.color;
+                tempColor.a = 1f;
+                img.color = tempColor;
             }
             // once someone starts the game, remove join ui and camera and allow players to start toasting and moving
             game_started = true;
