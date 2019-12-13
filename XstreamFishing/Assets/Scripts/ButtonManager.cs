@@ -7,14 +7,14 @@ using UnityEngine.SceneManagement;
 public class ButtonManager : MonoBehaviour
 {
 
-    public Button b1, b2;
+    // public Button b1, b2;
     // Start is called before the first frame update
     void Start()
     {
-        Button btn1 = b1.GetComponent<Button>();
-        Button btn2 = b2.GetComponent<Button>();
-        btn1.onClick.AddListener(quitGame);
-        btn2.onClick.AddListener(LoadMP);
+        // Button btn1 = b1.GetComponent<Button>();
+        // Button btn2 = b2.GetComponent<Button>();
+        // btn1.onClick.AddListener(quitGame);
+        // btn2.onClick.AddListener(LoadMP);
         Screen.SetResolution((int)(Screen.height * (5f / 4f)), Screen.height, true);
     }
 

@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         winState = false;
-        controllers.Clear();
+        // controllers.Clear();
         fish_caught.Clear();
         game_started = false;
         minimap_tutorial = true;
